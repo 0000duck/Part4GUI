@@ -40,6 +40,7 @@
             this.memoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mDIModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.referenceToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +61,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.circularInterpButton = new System.Windows.Forms.Button();
             this.radiusBox = new System.Windows.Forms.TextBox();
+            this.M05Button = new System.Windows.Forms.Button();
+            this.M03Button = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.feedRateBox = new System.Windows.Forms.TextBox();
             this.sendProgramButton = new System.Windows.Forms.Button();
@@ -83,9 +86,12 @@
             this.jogXlabel = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label8 = new System.Windows.Forms.Label();
-            this.mDIModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.M03Button = new System.Windows.Forms.Button();
-            this.M05Button = new System.Windows.Forms.Button();
+            this.jogTab = new System.Windows.Forms.TabPage();
+            this.memoryTab = new System.Windows.Forms.TabPage();
+            this.referenceTab = new System.Windows.Forms.TabPage();
+            this.ModeControl = new System.Windows.Forms.TabControl();
+            this.editTab = new System.Windows.Forms.TabPage();
+            this.mdiTab = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -94,6 +100,10 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.jogTab.SuspendLayout();
+            this.ModeControl.SuspendLayout();
+            this.editTab.SuspendLayout();
+            this.mdiTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -106,7 +116,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(797, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(601, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -136,7 +146,7 @@
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
@@ -144,7 +154,7 @@
             // 
             this.terminateToolStripMenuItem.Enabled = false;
             this.terminateToolStripMenuItem.Name = "terminateToolStripMenuItem";
-            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.terminateToolStripMenuItem.Text = "Terminate";
             this.terminateToolStripMenuItem.Click += new System.EventHandler(this.terminateToolStripMenuItem_Click);
             // 
@@ -188,6 +198,13 @@
             this.editToolStripMenuItem.Text = "Edit Mode";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
+            // mDIModeToolStripMenuItem
+            // 
+            this.mDIModeToolStripMenuItem.Name = "mDIModeToolStripMenuItem";
+            this.mDIModeToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.mDIModeToolStripMenuItem.Text = "MDI Mode";
+            this.mDIModeToolStripMenuItem.Click += new System.EventHandler(this.mDIModeToolStripMenuItem_Click);
+            // 
             // functionsToolStripMenuItem
             // 
             this.functionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -222,7 +239,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.statusBox);
-            this.groupBox1.Location = new System.Drawing.Point(13, 249);
+            this.groupBox1.Location = new System.Drawing.Point(13, 285);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(772, 107);
             this.groupBox1.TabIndex = 1;
@@ -233,7 +250,7 @@
             // 
             this.statusBox.Location = new System.Drawing.Point(7, 19);
             this.statusBox.Name = "statusBox";
-            this.statusBox.Size = new System.Drawing.Size(759, 82);
+            this.statusBox.Size = new System.Drawing.Size(546, 82);
             this.statusBox.TabIndex = 0;
             this.statusBox.Text = "";
             // 
@@ -241,7 +258,7 @@
             // 
             this.groupBox2.Controls.Add(this.moveXup);
             this.groupBox2.Controls.Add(this.moveXdown);
-            this.groupBox2.Location = new System.Drawing.Point(615, 27);
+            this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(170, 52);
             this.groupBox2.TabIndex = 2;
@@ -274,7 +291,7 @@
             // 
             this.groupBox3.Controls.Add(this.moveYup);
             this.groupBox3.Controls.Add(this.moveYdown);
-            this.groupBox3.Location = new System.Drawing.Point(615, 82);
+            this.groupBox3.Location = new System.Drawing.Point(6, 61);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(170, 52);
             this.groupBox3.TabIndex = 3;
@@ -307,7 +324,7 @@
             // 
             this.groupBox4.Controls.Add(this.moveZdown);
             this.groupBox4.Controls.Add(this.moveZup);
-            this.groupBox4.Location = new System.Drawing.Point(615, 138);
+            this.groupBox4.Location = new System.Drawing.Point(6, 117);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(170, 52);
             this.groupBox4.TabIndex = 3;
@@ -342,8 +359,6 @@
             this.groupBox5.Controls.Add(this.label6);
             this.groupBox5.Controls.Add(this.circularInterpButton);
             this.groupBox5.Controls.Add(this.radiusBox);
-            this.groupBox5.Controls.Add(this.M05Button);
-            this.groupBox5.Controls.Add(this.M03Button);
             this.groupBox5.Controls.Add(this.label5);
             this.groupBox5.Controls.Add(this.feedRateBox);
             this.groupBox5.Controls.Add(this.sendProgramButton);
@@ -360,7 +375,7 @@
             this.groupBox5.Controls.Add(this.label2);
             this.groupBox5.Controls.Add(this.pgmX);
             this.groupBox5.Controls.Add(this.label1);
-            this.groupBox5.Location = new System.Drawing.Point(13, 27);
+            this.groupBox5.Location = new System.Drawing.Point(15, 7);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(596, 216);
             this.groupBox5.TabIndex = 4;
@@ -402,6 +417,26 @@
             this.radiusBox.Name = "radiusBox";
             this.radiusBox.Size = new System.Drawing.Size(63, 20);
             this.radiusBox.TabIndex = 18;
+            // 
+            // M05Button
+            // 
+            this.M05Button.Location = new System.Drawing.Point(87, 6);
+            this.M05Button.Name = "M05Button";
+            this.M05Button.Size = new System.Drawing.Size(75, 23);
+            this.M05Button.TabIndex = 17;
+            this.M05Button.Text = "Send M05";
+            this.M05Button.UseVisualStyleBackColor = true;
+            this.M05Button.Click += new System.EventHandler(this.M05Button_Click);
+            // 
+            // M03Button
+            // 
+            this.M03Button.Location = new System.Drawing.Point(6, 6);
+            this.M03Button.Name = "M03Button";
+            this.M03Button.Size = new System.Drawing.Size(75, 23);
+            this.M03Button.TabIndex = 17;
+            this.M03Button.Text = "Send M03";
+            this.M03Button.UseVisualStyleBackColor = true;
+            this.M03Button.Click += new System.EventHandler(this.M03Button_Click);
             // 
             // label5
             // 
@@ -561,7 +596,7 @@
             this.groupBox7.BackColor = System.Drawing.Color.Lavender;
             this.groupBox7.Controls.Add(this.feedDownButton);
             this.groupBox7.Controls.Add(this.feedUpButton);
-            this.groupBox7.Location = new System.Drawing.Point(615, 196);
+            this.groupBox7.Location = new System.Drawing.Point(6, 175);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(170, 51);
             this.groupBox7.TabIndex = 4;
@@ -593,7 +628,7 @@
             // jogXlabel
             // 
             this.jogXlabel.AutoSize = true;
-            this.jogXlabel.Location = new System.Drawing.Point(141, 379);
+            this.jogXlabel.Location = new System.Drawing.Point(89, 395);
             this.jogXlabel.Name = "jogXlabel";
             this.jogXlabel.Size = new System.Drawing.Size(13, 13);
             this.jogXlabel.TabIndex = 5;
@@ -607,51 +642,90 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(77, 379);
+            this.label8.Location = new System.Drawing.Point(29, 395);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 13);
             this.label8.TabIndex = 8;
             this.label8.Text = "X location";
             // 
-            // mDIModeToolStripMenuItem
+            // jogTab
             // 
-            this.mDIModeToolStripMenuItem.Name = "mDIModeToolStripMenuItem";
-            this.mDIModeToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.mDIModeToolStripMenuItem.Text = "MDI Mode";
-            this.mDIModeToolStripMenuItem.Click += new System.EventHandler(this.mDIModeToolStripMenuItem_Click);
+            this.jogTab.Controls.Add(this.groupBox2);
+            this.jogTab.Controls.Add(this.groupBox3);
+            this.jogTab.Controls.Add(this.groupBox4);
+            this.jogTab.Controls.Add(this.groupBox7);
+            this.jogTab.Location = new System.Drawing.Point(4, 22);
+            this.jogTab.Name = "jogTab";
+            this.jogTab.Padding = new System.Windows.Forms.Padding(3);
+            this.jogTab.Size = new System.Drawing.Size(545, 219);
+            this.jogTab.TabIndex = 4;
+            this.jogTab.Text = "Jog";
+            this.jogTab.UseVisualStyleBackColor = true;
             // 
-            // M03Button
+            // memoryTab
             // 
-            this.M03Button.Location = new System.Drawing.Point(62, 188);
-            this.M03Button.Name = "M03Button";
-            this.M03Button.Size = new System.Drawing.Size(75, 23);
-            this.M03Button.TabIndex = 17;
-            this.M03Button.Text = "Send M03";
-            this.M03Button.UseVisualStyleBackColor = true;
-            this.M03Button.Click += new System.EventHandler(this.M03Button_Click);
+            this.memoryTab.Location = new System.Drawing.Point(4, 22);
+            this.memoryTab.Name = "memoryTab";
+            this.memoryTab.Padding = new System.Windows.Forms.Padding(3);
+            this.memoryTab.Size = new System.Drawing.Size(545, 219);
+            this.memoryTab.TabIndex = 3;
+            this.memoryTab.Text = "Memory";
+            this.memoryTab.UseVisualStyleBackColor = true;
             // 
-            // M05Button
+            // referenceTab
             // 
-            this.M05Button.Location = new System.Drawing.Point(166, 188);
-            this.M05Button.Name = "M05Button";
-            this.M05Button.Size = new System.Drawing.Size(75, 23);
-            this.M05Button.TabIndex = 17;
-            this.M05Button.Text = "Send M05";
-            this.M05Button.UseVisualStyleBackColor = true;
-            this.M05Button.Click += new System.EventHandler(this.M05Button_Click);
+            this.referenceTab.Location = new System.Drawing.Point(4, 22);
+            this.referenceTab.Name = "referenceTab";
+            this.referenceTab.Padding = new System.Windows.Forms.Padding(3);
+            this.referenceTab.Size = new System.Drawing.Size(545, 219);
+            this.referenceTab.TabIndex = 0;
+            this.referenceTab.Text = "Reference";
+            this.referenceTab.UseVisualStyleBackColor = true;
+            // 
+            // ModeControl
+            // 
+            this.ModeControl.Controls.Add(this.referenceTab);
+            this.ModeControl.Controls.Add(this.memoryTab);
+            this.ModeControl.Controls.Add(this.jogTab);
+            this.ModeControl.Controls.Add(this.editTab);
+            this.ModeControl.Controls.Add(this.mdiTab);
+            this.ModeControl.Location = new System.Drawing.Point(13, 27);
+            this.ModeControl.Name = "ModeControl";
+            this.ModeControl.SelectedIndex = 0;
+            this.ModeControl.Size = new System.Drawing.Size(553, 245);
+            this.ModeControl.TabIndex = 22;
+            // 
+            // editTab
+            // 
+            this.editTab.Controls.Add(this.groupBox5);
+            this.editTab.Location = new System.Drawing.Point(4, 22);
+            this.editTab.Name = "editTab";
+            this.editTab.Padding = new System.Windows.Forms.Padding(3);
+            this.editTab.Size = new System.Drawing.Size(545, 219);
+            this.editTab.TabIndex = 5;
+            this.editTab.Text = "Edit";
+            this.editTab.UseVisualStyleBackColor = true;
+            // 
+            // mdiTab
+            // 
+            this.mdiTab.Controls.Add(this.M05Button);
+            this.mdiTab.Controls.Add(this.M03Button);
+            this.mdiTab.Location = new System.Drawing.Point(4, 22);
+            this.mdiTab.Name = "mdiTab";
+            this.mdiTab.Padding = new System.Windows.Forms.Padding(3);
+            this.mdiTab.Size = new System.Drawing.Size(545, 219);
+            this.mdiTab.TabIndex = 6;
+            this.mdiTab.Text = "MDI";
+            this.mdiTab.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(797, 415);
+            this.ClientSize = new System.Drawing.Size(601, 438);
+            this.Controls.Add(this.ModeControl);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.jogXlabel);
-            this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -667,6 +741,10 @@
             this.groupBox5.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
+            this.jogTab.ResumeLayout(false);
+            this.ModeControl.ResumeLayout(false);
+            this.editTab.ResumeLayout(false);
+            this.mdiTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -731,6 +809,12 @@
         private System.Windows.Forms.ToolStripMenuItem mDIModeToolStripMenuItem;
         private System.Windows.Forms.Button M05Button;
         private System.Windows.Forms.Button M03Button;
+        private System.Windows.Forms.TabPage jogTab;
+        private System.Windows.Forms.TabPage memoryTab;
+        private System.Windows.Forms.TabPage referenceTab;
+        private System.Windows.Forms.TabControl ModeControl;
+        private System.Windows.Forms.TabPage mdiTab;
+        private System.Windows.Forms.TabPage editTab;
     }
 }
 
