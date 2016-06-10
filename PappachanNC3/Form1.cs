@@ -76,6 +76,15 @@ namespace PappachanNC3
 
             statusBox.Text += "CNC Has Been Initialised..\r\n";
             referenceToolStripMenuItem1.Enabled = true;
+
+            //declare the packets
+            byte[] packet1 = { 21, 104, 0, 0, 0, 0, 10, 0 };
+            byte[] packet2 = { 0, 104, 2, 0, 0, 0, 0, 0, 3, 0 };
+
+            sendFile(packet1);
+            listenReturnCommunication();
+            //sendFile(packet2);
+            statusBox.Text += "Going to Reference Mode\r\n";
         }
 
         //sends the byte array to the remote location
@@ -445,6 +454,7 @@ namespace PappachanNC3
 
             //send both bytes
             sendFile(clk1);
+            System.Threading.Thread.Sleep(700);
             sendFile(clk2);
 
             double pos = axisLocationReturn("X");
@@ -461,6 +471,7 @@ namespace PappachanNC3
 
             //send both bytes
             sendFile(clk1);
+            System.Threading.Thread.Sleep(700);
             sendFile(clk2);
         }
 
@@ -471,6 +482,8 @@ namespace PappachanNC3
 
             //send both bytes
             sendFile(clk1);
+
+            System.Threading.Thread.Sleep(700);
             sendFile(clk2);
         }
 
@@ -481,6 +494,8 @@ namespace PappachanNC3
 
             //send both bytes
             sendFile(clk1);
+
+            System.Threading.Thread.Sleep(700);
             sendFile(clk2);
         }
 
@@ -491,6 +506,8 @@ namespace PappachanNC3
 
             //send both bytes
             sendFile(clk1);
+
+            System.Threading.Thread.Sleep(700);
             sendFile(clk2);
         }
         //end of jog modes
@@ -741,11 +758,7 @@ namespace PappachanNC3
             statusBox.Text += "Going to Jog Mode\r\n";
         }
 
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-
-        }
         private double axisLocationReturn(string axis)
         {
             //
@@ -858,6 +871,75 @@ namespace PappachanNC3
 
             //send both bytes
             sendFile(clk1);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            sendFile(reference);
+            //sendFile(packet2);
+            statusBox.Text += "Going to Reference Mode\r\n";
+        }
+
+        private void ModeControl_Click(object sender, EventArgs e)
+        {
+            TabControl tab = (TabControl)sender;
+            string tabName = tab.SelectedTab.Name;
+            if (tabName == "referenceTab")
+            {
+                //declare the packets
+                byte[] packet1 = { 21, 104, 0, 0, 0, 0, 10, 0 };
+                byte[] packet2 = { 0, 104, 2, 0, 0, 0, 0, 0, 3, 0 };
+
+                sendFile(packet1);
+                listenReturnCommunication();
+                //sendFile(packet2);
+                statusBox.Text += "Going to Reference Mode\r\n";
+            }
+            else if (tabName == "memoryTab")
+            {
+                //declare memory mode packets
+                byte[] packet1 = { 21, 104, 0, 0, 0, 0, 4, 0 };
+                byte[] packet2 = { 16, 104, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+                //send the packet
+                sendFile(packet1);
+                //listen for the return communication
+                listenReturnCommunication();
+                //send the second packet
+                //sendFile(packet2);
+                //listen for the return
+                //listenReturnCommunication();
+                statusBox.Text += "Going to Memory Mode Mode\r\n";
+            }
+            else if (tabName == "referenceTab")
+            {
+
+            }
+            else if (tabName == "jogTab")
+            {
+                //declare the jogmode file
+                byte[] packet1 = { 21, 104, 0, 0, 0, 0, 0, 0 };
+
+                sendFile(packet1);
+                listenReturnCommunication();
+                statusBox.Text += "Going to Jog Mode\r\n";
+            }
+            else if (tabName == "mdiTab")
+            {
+                //declare the packets
+                byte[] packet1 = { 21, 104, 0, 0, 0, 0, 2, 0 };
+
+                sendFile(packet1);
+                listenReturnCommunication();
+                //sendFile(packet2);
+                statusBox.Text += "Going to MDI Mode\r\n";
+            }
+
         }
 
 

@@ -40,3 +40,13 @@ C:\Users\sheng\Desktop\pappachan nc\PappachanNC3\obj\x86\Debug\PappachanNC3.cspr
 C:\Users\sheng\Desktop\pappachan nc\PappachanNC3\obj\x86\Debug\PappachanNC3.Form1.resources
 C:\Users\sheng\Desktop\pappachan nc\PappachanNC3\obj\x86\Debug\PappachanNC3.Properties.Resources.resources
 C:\Users\sheng\Desktop\pappachan nc\PappachanNC3\obj\x86\Debug\PappachanNC3.csproj.GenerateResource.Cache
+C:\Users\wtse224\Source\Repos\Part4GUI\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
+C:\Users\wtse224\Source\Repos\Part4GUI\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
+C:\Users\sheng\Desktop\Part4GUI\PappachanNC3\bin\Debug\PappachanNC3.exe
+C:\Users\sheng\Desktop\Part4GUI\PappachanNC3\bin\Debug\PappachanNC3.pdb
+C:\Users\sheng\Desktop\Part4GUI\PappachanNC3\obj\x86\Debug\PappachanNC3.csprojResolveAssemblyReference.cache
+C:\Users\sheng\Desktop\Part4GUI\PappachanNC3\obj\x86\Debug\PappachanNC3.Form1.resources
+C:\Users\sheng\Desktop\Part4GUI\PappachanNC3\obj\x86\Debug\PappachanNC3.Properties.Resources.resources
+C:\Users\sheng\Desktop\Part4GUI\PappachanNC3\obj\x86\Debug\PappachanNC3.csproj.GenerateResource.Cache
+C:\Users\sheng\Desktop\Part4GUI\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
+C:\Users\sheng\Desktop\Part4GUI\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
