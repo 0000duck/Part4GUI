@@ -61,6 +61,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.circularInterpButton = new System.Windows.Forms.Button();
             this.radiusBox = new System.Windows.Forms.TextBox();
+            this.M05Button = new System.Windows.Forms.Button();
+            this.M03Button = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.feedRateBox = new System.Windows.Forms.TextBox();
             this.sendProgramButton = new System.Windows.Forms.Button();
@@ -89,12 +91,18 @@
             this.jogTab = new System.Windows.Forms.TabPage();
             this.memoryTab = new System.Windows.Forms.TabPage();
             this.referenceTab = new System.Windows.Forms.TabPage();
+<<<<<<< HEAD
             this.button1 = new System.Windows.Forms.Button();
             this.ModeControl = new System.Windows.Forms.TabControl();
             this.editTab = new System.Windows.Forms.TabPage();
             this.mdiTab = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+=======
+            this.ModeControl = new System.Windows.Forms.TabControl();
+            this.editTab = new System.Windows.Forms.TabPage();
+            this.mdiTab = new System.Windows.Forms.TabPage();
+>>>>>>> origin/master
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -104,8 +112,11 @@
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.jogTab.SuspendLayout();
+<<<<<<< HEAD
             this.memoryTab.SuspendLayout();
             this.referenceTab.SuspendLayout();
+=======
+>>>>>>> origin/master
             this.ModeControl.SuspendLayout();
             this.editTab.SuspendLayout();
             this.mdiTab.SuspendLayout();
@@ -121,7 +132,11 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+<<<<<<< HEAD
             this.menuStrip1.Size = new System.Drawing.Size(816, 24);
+=======
+            this.menuStrip1.Size = new System.Drawing.Size(601, 24);
+>>>>>>> origin/master
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -151,7 +166,7 @@
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
@@ -159,7 +174,7 @@
             // 
             this.terminateToolStripMenuItem.Enabled = false;
             this.terminateToolStripMenuItem.Name = "terminateToolStripMenuItem";
-            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.terminateToolStripMenuItem.Text = "Terminate";
             this.terminateToolStripMenuItem.Click += new System.EventHandler(this.terminateToolStripMenuItem_Click);
             // 
@@ -201,6 +216,13 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.editToolStripMenuItem.Text = "Edit Mode";
+            // 
+            // mDIModeToolStripMenuItem
+            // 
+            this.mDIModeToolStripMenuItem.Name = "mDIModeToolStripMenuItem";
+            this.mDIModeToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.mDIModeToolStripMenuItem.Text = "MDI Mode";
+            this.mDIModeToolStripMenuItem.Click += new System.EventHandler(this.mDIModeToolStripMenuItem_Click);
             // 
             // mDIModeToolStripMenuItem
             // 
@@ -421,6 +443,26 @@
             this.radiusBox.Name = "radiusBox";
             this.radiusBox.Size = new System.Drawing.Size(63, 20);
             this.radiusBox.TabIndex = 18;
+            // 
+            // M05Button
+            // 
+            this.M05Button.Location = new System.Drawing.Point(87, 6);
+            this.M05Button.Name = "M05Button";
+            this.M05Button.Size = new System.Drawing.Size(75, 23);
+            this.M05Button.TabIndex = 17;
+            this.M05Button.Text = "Send M05";
+            this.M05Button.UseVisualStyleBackColor = true;
+            this.M05Button.Click += new System.EventHandler(this.M05Button_Click);
+            // 
+            // M03Button
+            // 
+            this.M03Button.Location = new System.Drawing.Point(6, 6);
+            this.M03Button.Name = "M03Button";
+            this.M03Button.Size = new System.Drawing.Size(75, 23);
+            this.M03Button.TabIndex = 17;
+            this.M03Button.Text = "Send M03";
+            this.M03Button.UseVisualStyleBackColor = true;
+            this.M03Button.Click += new System.EventHandler(this.M03Button_Click);
             // 
             // label5
             // 
@@ -668,19 +710,29 @@
             // 
             // memoryTab
             // 
+<<<<<<< HEAD
             this.memoryTab.Controls.Add(this.button3);
             this.memoryTab.Controls.Add(this.button2);
             this.memoryTab.Location = new System.Drawing.Point(4, 22);
             this.memoryTab.Name = "memoryTab";
             this.memoryTab.Padding = new System.Windows.Forms.Padding(3);
             this.memoryTab.Size = new System.Drawing.Size(426, 219);
+=======
+            this.memoryTab.Location = new System.Drawing.Point(4, 22);
+            this.memoryTab.Name = "memoryTab";
+            this.memoryTab.Padding = new System.Windows.Forms.Padding(3);
+            this.memoryTab.Size = new System.Drawing.Size(545, 219);
+>>>>>>> origin/master
             this.memoryTab.TabIndex = 3;
             this.memoryTab.Text = "Memory";
             this.memoryTab.UseVisualStyleBackColor = true;
             // 
             // referenceTab
             // 
+<<<<<<< HEAD
             this.referenceTab.Controls.Add(this.button1);
+=======
+>>>>>>> origin/master
             this.referenceTab.Location = new System.Drawing.Point(4, 22);
             this.referenceTab.Name = "referenceTab";
             this.referenceTab.Padding = new System.Windows.Forms.Padding(3);
@@ -689,6 +741,7 @@
             this.referenceTab.Text = "Reference";
             this.referenceTab.UseVisualStyleBackColor = true;
             // 
+<<<<<<< HEAD
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(15, 18);
@@ -699,6 +752,8 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+=======
+>>>>>>> origin/master
             // ModeControl
             // 
             this.ModeControl.Controls.Add(this.referenceTab);
@@ -709,9 +764,14 @@
             this.ModeControl.Location = new System.Drawing.Point(13, 27);
             this.ModeControl.Name = "ModeControl";
             this.ModeControl.SelectedIndex = 0;
+<<<<<<< HEAD
             this.ModeControl.Size = new System.Drawing.Size(434, 245);
             this.ModeControl.TabIndex = 22;
             this.ModeControl.Click += new System.EventHandler(this.ModeControl_Click);
+=======
+            this.ModeControl.Size = new System.Drawing.Size(553, 245);
+            this.ModeControl.TabIndex = 22;
+>>>>>>> origin/master
             // 
             // editTab
             // 
@@ -735,6 +795,7 @@
             this.mdiTab.TabIndex = 6;
             this.mdiTab.Text = "MDI";
             this.mdiTab.UseVisualStyleBackColor = true;
+<<<<<<< HEAD
             // 
             // button2
             // 
@@ -755,12 +816,18 @@
             this.button3.Text = "Send M05";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.M05Button_Click);
+=======
+>>>>>>> origin/master
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(816, 438);
+=======
+            this.ClientSize = new System.Drawing.Size(601, 438);
+>>>>>>> origin/master
             this.Controls.Add(this.ModeControl);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.jogXlabel);
@@ -780,8 +847,11 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.jogTab.ResumeLayout(false);
+<<<<<<< HEAD
             this.memoryTab.ResumeLayout(false);
             this.referenceTab.ResumeLayout(false);
+=======
+>>>>>>> origin/master
             this.ModeControl.ResumeLayout(false);
             this.editTab.ResumeLayout(false);
             this.mdiTab.ResumeLayout(false);
@@ -855,9 +925,12 @@
         private System.Windows.Forms.TabControl ModeControl;
         private System.Windows.Forms.TabPage mdiTab;
         private System.Windows.Forms.TabPage editTab;
+<<<<<<< HEAD
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
+=======
+>>>>>>> origin/master
     }
 }
 
