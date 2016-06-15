@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,9 +9,12 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
+using System.Threading;
+using System.Collections;
 
 namespace PappachanNC3
 {
+
     public partial class Form1 : Form
     {
         public TcpClient tcpclnt = new TcpClient();
@@ -36,6 +39,9 @@ namespace PappachanNC3
         public bool spindleOn = true;
         public bool feedOn = true;
         public double[] position = { 291.001, 125.403, 188.454 };
+
+        NetworkStream stm;
+        Queue<stmElement> stmQueue;
 
 
 
@@ -82,19 +88,37 @@ namespace PappachanNC3
             byte[] packet2 = { 0, 104, 2, 0, 0, 0, 0, 0, 3, 0 };
 
             sendFile(packet1);
-            listenReturnCommunication();
+            //listenReturnCommunication();
             //sendFile(packet2);
             statusBox.Text += "Going to Reference Mode\r\n";
+
+            stmQueue = new Queue<stmElement>();
+
+            ThreadStart tdStartstm = new ThreadStart(posThread);
+            Thread td1 = new Thread(tdStartstm);
+            td1.Start();
+
+            ThreadStart tdStartPos = new ThreadStart(displayPos);
+            Thread td2 = new Thread(tdStartPos);
+            td2.Start();
+        }
+
+        public void posThread()
+        {
+            while(true)
+            {
+                listenReturnCommunication();
+            }
         }
 
         //sends the byte array to the remote location
-        public void sendFile(byte[] bb)
+        public async void sendFile(byte[] bb)
         {
             //code here for sending files
             try
             {
                 //String str = System.IO.File.ReadAllText(file);
-                NetworkStream stm = tcpclnt.GetStream();
+                //stm = tcpclnt.GetStream();
                 tcpclnt.SendBufferSize = 512;
                 tcpclnt.NoDelay = true;
 
@@ -123,7 +147,7 @@ namespace PappachanNC3
                         }
                         Array.ConstrainedCopy(bb, i * 512, bb_temp, 0, length);
                         statusBox.Text += "Transmitting....Part" + i.ToString() + "\r\n";
-                        stm.Write(bb_temp, 0, bb_temp.Length);
+                        await stm.WriteAsync(bb_temp, 0, bb_temp.Length);
                     }
 
                 }
@@ -131,7 +155,7 @@ namespace PappachanNC3
                 {
                     statusBox.Text += "Transmitting...." + "\r\n";
 
-                    stm.Write(bb, 0, bb.Length);
+                    stm.WriteAsync(bb, 0, bb.Length);
 
                     //read the returning file
                     /* byte[] bc = new byte[1000];
@@ -151,36 +175,95 @@ namespace PappachanNC3
             }
 
         }
+        
 
-        private void listenTCP()
+        public async void listenReturnCommunication()
         {
-            NetworkStream stm = tcpclnt.GetStream();
-            byte[] bc = new byte[1000];
-            int k = stm.Read(bc, 0, 1000);
-
-            /*
-            for (int i = 0; i < k; i++)
+            if(stm.DataAvailable)
             {
-                statusBox.Text += Convert.ToChar(bc[i]);
+                byte[] bc = new byte[1000];
+                int k = await stm.ReadAsync(bc, 0, 1000);
+                int a = 1 + 1;
+                stmElement se = new stmElement();
+                se.bc = bc;
+                se.k = k;
+                stmQueue.Enqueue(se);
             }
-             * */
-
-            //sendFile(PappachanNC3.Properties.Resources.lastpacket);
 
         }
 
-        private void listenReturnCommunication()
+        private void displayPos()
         {
-            Stream stm = tcpclnt.GetStream();
-            byte[] bc = new byte[1000];
-            int k = stm.Read(bc, 0, 1000);
-
-            for (int i = 0; i < k; i++)
+            while (true)
             {
-                statusBox.Text += Convert.ToChar(bc[i]);
-            }
-            statusBox.Text += "/r/n";
+                while (stmQueue.Count == 0)
+                    ;
 
+                stmElement se = stmQueue.Dequeue();
+
+                byte[] bc = se.bc;
+                int k = se.k;
+
+                string str = "";
+
+                for (int i = 0; i < k; i++)
+                {
+                    str += Convert.ToChar(bc[i]);
+                }
+
+                MethodInvoker mi = delegate
+                {
+                    returnBox.Text += k + ":    " + str + "\r\n";
+                };
+                if (InvokeRequired)
+                    this.Invoke(mi);
+
+                if (k == 26)
+                {
+                    if (bc[0] == 2 && bc[1] == 8)
+                    {
+                        //directions
+                        if (bc[6] == 1)//
+                        {
+                            int[] point = new int[8];
+                            for (int i = 0; i < 8; i++)
+                                point[i] = bc[10 + i];
+
+                            string txt = binaryToPos(point);
+
+                            MethodInvoker mi2 = delegate
+                            {
+                                xBox.Text = txt;
+                            };
+                            if (InvokeRequired)
+                                this.Invoke(mi2);
+                        }
+                    }
+                }
+            }
+
+        }
+
+        public string posToBinary(int pos)
+        {
+            // y = 6,507,078,312,247,450ln(x) + 4,580,272,755,767,100,000
+            double ret = 4580272755767100000;
+            double ln = Math.Log((double)pos);
+            ret += ln * 6507078312247450.0;
+            return ret.ToString();
+        }
+
+        public string binaryToPos(int[] binaryPoint)
+        {
+            long intPos = 0;
+            for (int i = 5; i < 8; i++)
+                intPos += (long)(binaryPoint[i] * Math.Pow(256, i) / 1E15);
+
+            double doublePos = (double)(intPos);
+            //y= 6.507078312247120ln(x) + 4,580.272755767090000
+            doublePos -= 4580.272755767090000;
+            doublePos /= 6.507078312247120; //== lnx
+            return Math.Exp(doublePos).ToString();
         }
 
         // get the axis location in bytes from the x,y,z and r values
@@ -393,7 +476,7 @@ namespace PappachanNC3
                 moveZup.Enabled = true;
 
                 //read the returning file
-                Stream stm = tcpclnt.GetStream();
+                stm = tcpclnt.GetStream();
                 byte[] bc = new byte[1000];
                 int k = stm.Read(bc, 0, 1000);
 
@@ -436,14 +519,9 @@ namespace PappachanNC3
 
             //send both bytes
             sendFile(clk1);
-            System.Threading.Thread.Sleep(700);
+            System.Threading.Thread.Sleep(1500);
             sendFile(clk2);
 
-            double pos = axisLocationReturn("X");
-            if (pos >= 0)
-            {
-                jogXlabel.Text = pos.ToString();
-            }
 
         }
 
@@ -457,11 +535,6 @@ namespace PappachanNC3
             System.Threading.Thread.Sleep(700);
             sendFile(clk2);
 
-            double pos = axisLocationReturn("X");
-            if (pos >= 0)
-            {
-                jogXlabel.Text = pos.ToString();
-            }
         }
 
         private void moveYup_Click(object sender, EventArgs e)
@@ -523,8 +596,8 @@ namespace PappachanNC3
                 sendFile(packet1);
 
                 //listen to the acceptence
-                listenReturnCommunication();
-                //listenReturnCommunication();
+                ////listenReturnCommunication();
+                ////listenReturnCommunication();
 
                 //declare the packets to send
                 //G57
@@ -726,7 +799,7 @@ namespace PappachanNC3
             byte[] packet2 = { 0, 104, 2, 0, 0, 0, 0, 0, 3, 0 };
 
             sendFile(packet1);
-            listenReturnCommunication();
+            //listenReturnCommunication();
             //sendFile(packet2);
             statusBox.Text += "Going to Reference Mode\r\n";
         }
@@ -740,11 +813,11 @@ namespace PappachanNC3
             //send the packet
             sendFile(packet1);
             //listen for the return communication
-            listenReturnCommunication();
+            //listenReturnCommunication();
             //send the second packet
             //sendFile(packet2);
             //listen for the return
-            //listenReturnCommunication();
+            ////listenReturnCommunication();
             statusBox.Text += "Going to Memory Mode Mode\r\n";
         }
 
@@ -754,97 +827,9 @@ namespace PappachanNC3
             byte[] packet1 = { 21, 104, 0, 0, 0, 0, 0, 0 };
 
             sendFile(packet1);
-            listenReturnCommunication();
+            //listenReturnCommunication();
             statusBox.Text += "Going to Jog Mode\r\n";
         }
-
-
-        private double axisLocationReturn(string axis)
-        {
-            //
-            Stream stm = tcpclnt.GetStream();
-            //stm.set_ReadTimeout(10);
-            byte[] bc = new byte[1000];
-            int k = stm.Read(bc, 0, 26);
-            string hexvalue;
-            double decvalue;
-            double aloc = 0;
-
-            statusBox.Text += "this works until here \r\n";
-
-            //byte condition = 2;
-            //if (bc[0] == condition)
-            //{
-            //get the hex value from the packet
-            //byte[] hexbyteval = new byte[] { bc[16], bc[15], bc[14], bc[13], bc[12], bc[11], bc[10] };
-            //hexvalue = BitConverter.ToString(hexbyteval).Replace("-",string.Empty);
-            hexvalue = bc[16].ToString("X") + bc[15].ToString("X") + bc[14].ToString("X") +
-    bc[13].ToString("X") + bc[12].ToString("X") + bc[11].ToString("X") + bc[10].ToString("X");
-
-            statusBox.Text += hexvalue;
-            //convert the hex value to decimal value
-            decvalue = Convert.ToInt64(hexvalue, 16);
-            double breakvalue;
-            switch (axis)
-            {
-                case "X":
-                    breakvalue = (1.8014398509474E+13 * 250) + 5.404318832268880E+16;
-                    if (decvalue >= breakvalue)
-                    {
-                        //axisLocation = (1.8014398509474E+13 * location) + 5.404318832268880E+16
-                     aloc = (decvalue - 5.404318832268880E+16) / 1.8014398509474E+13;
-                    }
-                    else
-                    {
-                        //axisLocation = (3.60287970189636000E+13 * location) + 4.9539581489556700E+16
-                     aloc = (decvalue - 4.9539581489556700E+16) /  3.60287970189636000E+13;
-                    }
-                    break;
-                case "Y":
-                    breakvalue = (7.205759403792790000E+13 * 63) + 4.50360320208648000E+16;
-                    if (decvalue >= breakvalue)
-                    {
-                        //axisLocation = (7.205759403792790000E+13 * location) + 4.50360320208648000E+16
-                     aloc = (decvalue - 4.50360320208648000E+16) /  7.205759403792790000E+13;
-                    }
-                    else
-                    {
-                        //axisLocation = (1.44115188075853000E+14 * location) +4.05324687039287000E+16
-                        aloc = (decvalue - 4.05324687039287000E+16) / 1.44115188075853000E+14;
-                    }
-                    break;
-                case "Z":
-                    breakvalue = (3.602879701896300E+13 * 125) + 4.9539595901075600E+16;
-                    if (decvalue >= breakvalue)
-                    {
-                        //axisLocation = (3.602879701896300E+13 * location) +4.9539595901075600E+16;
-                        aloc = (decvalue - 4.9539595901075600E+16) / 3.602879701896300E+13;
-                    }
-                    else
-                    {
-                        //axisLocation = (7.2057594037925000E+13 * location) +4.5035996273705300E+16
-                        aloc = (decvalue - 4.5035996273705300E+16) / 7.2057594037925000E+13;
-                    }
-                    break;
-                default:
-                    //default is same as X
-                    breakvalue = (1.8014398509474E+13 * 250) + 5.404318832268880E+16;
-                    if (decvalue >= breakvalue)
-                    {
-                        //axisLocation = (1.8014398509474E+13 * location) +5.404318832268880E+16
-                        aloc = (decvalue - 5.404318832268880E+16) / 1.8014398509474E+13;
-                    }
-                    else
-                    {
-                        //axisLocation = (3.60287970189636000E+13 * location) +4.9539581489556700E+16
-                        aloc = (decvalue - 4.9539581489556700E+16) / 3.60287970189636000E+13;
-                    }
-                    break;
-            }
-            statusBox.Text += aloc;
-            statusBox.Text += "\r\n";
-            return aloc;
-    }
 
         private void mDIModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -852,7 +837,7 @@ namespace PappachanNC3
             byte[] packet1 = { 21, 104, 0, 0, 0, 0, 2, 0 };
 
             sendFile(packet1);
-            listenReturnCommunication();
+            //listenReturnCommunication();
             //sendFile(packet2);
             statusBox.Text += "Going to Reference Mode\r\n";
         }
@@ -896,7 +881,7 @@ namespace PappachanNC3
                 byte[] packet2 = { 0, 104, 2, 0, 0, 0, 0, 0, 3, 0 };
 
                 sendFile(packet1);
-                listenReturnCommunication();
+                //listenReturnCommunication();
                 //sendFile(packet2);
                 statusBox.Text += "Going to Reference Mode\r\n";
             }
@@ -909,11 +894,11 @@ namespace PappachanNC3
                 //send the packet
                 sendFile(packet1);
                 //listen for the return communication
-                listenReturnCommunication();
+                //listenReturnCommunication();
                 //send the second packet
                 //sendFile(packet2);
                 //listen for the return
-                //listenReturnCommunication();
+                ////listenReturnCommunication();
                 statusBox.Text += "Going to Memory Mode Mode\r\n";
             }
             else if (tabName == "referenceTab")
@@ -926,7 +911,7 @@ namespace PappachanNC3
                 byte[] packet1 = { 21, 104, 0, 0, 0, 0, 0, 0 };
 
                 sendFile(packet1);
-                listenReturnCommunication();
+                //listenReturnCommunication();
                 statusBox.Text += "Going to Jog Mode\r\n";
             }
             else if (tabName == "mdiTab")
@@ -935,7 +920,7 @@ namespace PappachanNC3
                 byte[] packet1 = { 21, 104, 0, 0, 0, 0, 2, 0 };
 
                 sendFile(packet1);
-                listenReturnCommunication();
+                //listenReturnCommunication();
                 //sendFile(packet2);
                 statusBox.Text += "Going to MDI Mode\r\n";
             }
@@ -943,7 +928,28 @@ namespace PappachanNC3
         }
 
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (System.Windows.Forms.Application.MessageLoop)
+            {
+                // WinForms app
+                System.Windows.Forms.Application.Exit();
+            }
+            else
+            {
+                // Console app
+                System.Environment.Exit(1);
+            }
+        }
+
+
         //end of modes
 
     }
+    public class stmElement
+    {
+        public byte[] bc;
+        public int k;
+    }
+
 }

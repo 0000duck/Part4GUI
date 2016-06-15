@@ -56,30 +56,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.moveZdown = new System.Windows.Forms.Button();
             this.moveZup = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.counterCircle = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.circularInterpButton = new System.Windows.Forms.Button();
-            this.radiusBox = new System.Windows.Forms.TextBox();
-            this.M05Button = new System.Windows.Forms.Button();
-            this.M03Button = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.feedRateBox = new System.Windows.Forms.TextBox();
-            this.sendProgramButton = new System.Windows.Forms.Button();
-            this.rapidMove = new System.Windows.Forms.RadioButton();
-            this.SpindleOffButton = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.spindleOnButton = new System.Windows.Forms.Button();
-            this.spindleSpeedBox = new System.Windows.Forms.TextBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.codeBox = new System.Windows.Forms.RichTextBox();
-            this.addLocButton = new System.Windows.Forms.Button();
-            this.pgmZ = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.pgmY = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pgmX = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.M05Button = new System.Windows.Forms.Button();
             this.M03Button = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -91,34 +67,36 @@
             this.jogTab = new System.Windows.Forms.TabPage();
             this.memoryTab = new System.Windows.Forms.TabPage();
             this.referenceTab = new System.Windows.Forms.TabPage();
-<<<<<<< HEAD
-            this.button1 = new System.Windows.Forms.Button();
             this.ModeControl = new System.Windows.Forms.TabControl();
             this.editTab = new System.Windows.Forms.TabPage();
             this.mdiTab = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-=======
-            this.ModeControl = new System.Windows.Forms.TabControl();
-            this.editTab = new System.Windows.Forms.TabPage();
-            this.mdiTab = new System.Windows.Forms.TabPage();
->>>>>>> origin/master
+            this.M03Param = new System.Windows.Forms.TextBox();
+            this.returnBox = new System.Windows.Forms.RichTextBox();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.xtgBox = new System.Windows.Forms.TextBox();
+            this.ytgBox = new System.Windows.Forms.TextBox();
+            this.ztgBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.fBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.xBox = new System.Windows.Forms.TextBox();
+            this.yBox = new System.Windows.Forms.TextBox();
+            this.zBox = new System.Windows.Forms.TextBox();
+            this.sBox = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.jogTab.SuspendLayout();
-<<<<<<< HEAD
-            this.memoryTab.SuspendLayout();
-            this.referenceTab.SuspendLayout();
-=======
->>>>>>> origin/master
             this.ModeControl.SuspendLayout();
-            this.editTab.SuspendLayout();
             this.mdiTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,11 +110,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-<<<<<<< HEAD
-            this.menuStrip1.Size = new System.Drawing.Size(816, 24);
-=======
-            this.menuStrip1.Size = new System.Drawing.Size(601, 24);
->>>>>>> origin/master
+            this.menuStrip1.Size = new System.Drawing.Size(975, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -166,7 +140,7 @@
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
@@ -174,7 +148,7 @@
             // 
             this.terminateToolStripMenuItem.Enabled = false;
             this.terminateToolStripMenuItem.Name = "terminateToolStripMenuItem";
-            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.terminateToolStripMenuItem.Text = "Terminate";
             this.terminateToolStripMenuItem.Click += new System.EventHandler(this.terminateToolStripMenuItem_Click);
             // 
@@ -216,13 +190,6 @@
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.editToolStripMenuItem.Text = "Edit Mode";
-            // 
-            // mDIModeToolStripMenuItem
-            // 
-            this.mDIModeToolStripMenuItem.Name = "mDIModeToolStripMenuItem";
-            this.mDIModeToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.mDIModeToolStripMenuItem.Text = "MDI Mode";
-            this.mDIModeToolStripMenuItem.Click += new System.EventHandler(this.mDIModeToolStripMenuItem_Click);
             // 
             // mDIModeToolStripMenuItem
             // 
@@ -379,247 +346,9 @@
             this.moveZup.UseVisualStyleBackColor = true;
             this.moveZup.Click += new System.EventHandler(this.moveZup_Click);
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.counterCircle);
-            this.groupBox5.Controls.Add(this.label6);
-            this.groupBox5.Controls.Add(this.circularInterpButton);
-            this.groupBox5.Controls.Add(this.radiusBox);
-            this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.feedRateBox);
-            this.groupBox5.Controls.Add(this.sendProgramButton);
-            this.groupBox5.Controls.Add(this.rapidMove);
-            this.groupBox5.Controls.Add(this.SpindleOffButton);
-            this.groupBox5.Controls.Add(this.label4);
-            this.groupBox5.Controls.Add(this.spindleOnButton);
-            this.groupBox5.Controls.Add(this.spindleSpeedBox);
-            this.groupBox5.Controls.Add(this.groupBox6);
-            this.groupBox5.Controls.Add(this.addLocButton);
-            this.groupBox5.Controls.Add(this.pgmZ);
-            this.groupBox5.Controls.Add(this.label3);
-            this.groupBox5.Controls.Add(this.pgmY);
-            this.groupBox5.Controls.Add(this.label2);
-            this.groupBox5.Controls.Add(this.pgmX);
-            this.groupBox5.Controls.Add(this.label1);
-            this.groupBox5.Location = new System.Drawing.Point(15, 7);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(596, 216);
-            this.groupBox5.TabIndex = 4;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Program";
-            // 
-            // counterCircle
-            // 
-            this.counterCircle.AutoSize = true;
-            this.counterCircle.Location = new System.Drawing.Point(213, 99);
-            this.counterCircle.Name = "counterCircle";
-            this.counterCircle.Size = new System.Drawing.Size(114, 17);
-            this.counterCircle.TabIndex = 21;
-            this.counterCircle.Text = "Counter Clockwise";
-            this.counterCircle.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 100);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 13);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "Radius";
-            // 
-            // circularInterpButton
-            // 
-            this.circularInterpButton.Location = new System.Drawing.Point(131, 95);
-            this.circularInterpButton.Name = "circularInterpButton";
-            this.circularInterpButton.Size = new System.Drawing.Size(75, 23);
-            this.circularInterpButton.TabIndex = 19;
-            this.circularInterpButton.Text = "Circular Int.";
-            this.circularInterpButton.UseVisualStyleBackColor = true;
-            this.circularInterpButton.Click += new System.EventHandler(this.circularInterpButton_Click);
-            // 
-            // radiusBox
-            // 
-            this.radiusBox.Location = new System.Drawing.Point(62, 97);
-            this.radiusBox.Name = "radiusBox";
-            this.radiusBox.Size = new System.Drawing.Size(63, 20);
-            this.radiusBox.TabIndex = 18;
-            // 
             // M05Button
             // 
-            this.M05Button.Location = new System.Drawing.Point(87, 6);
-            this.M05Button.Name = "M05Button";
-            this.M05Button.Size = new System.Drawing.Size(75, 23);
-            this.M05Button.TabIndex = 17;
-            this.M05Button.Text = "Send M05";
-            this.M05Button.UseVisualStyleBackColor = true;
-            this.M05Button.Click += new System.EventHandler(this.M05Button_Click);
-            // 
-            // M03Button
-            // 
-            this.M03Button.Location = new System.Drawing.Point(6, 6);
-            this.M03Button.Name = "M03Button";
-            this.M03Button.Size = new System.Drawing.Size(75, 23);
-            this.M03Button.TabIndex = 17;
-            this.M03Button.Text = "Send M03";
-            this.M03Button.UseVisualStyleBackColor = true;
-            this.M03Button.Click += new System.EventHandler(this.M03Button_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 157);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 13);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Feed rate";
-            // 
-            // feedRateBox
-            // 
-            this.feedRateBox.Location = new System.Drawing.Point(62, 154);
-            this.feedRateBox.Name = "feedRateBox";
-            this.feedRateBox.Size = new System.Drawing.Size(63, 20);
-            this.feedRateBox.TabIndex = 15;
-            this.feedRateBox.Text = "200";
-            // 
-            // sendProgramButton
-            // 
-            this.sendProgramButton.Location = new System.Drawing.Point(228, 12);
-            this.sendProgramButton.Name = "sendProgramButton";
-            this.sendProgramButton.Size = new System.Drawing.Size(104, 30);
-            this.sendProgramButton.TabIndex = 14;
-            this.sendProgramButton.Text = "Send Program";
-            this.sendProgramButton.UseVisualStyleBackColor = true;
-            this.sendProgramButton.Click += new System.EventHandler(this.sendProgramButton_Click);
-            // 
-            // rapidMove
-            // 
-            this.rapidMove.AutoSize = true;
-            this.rapidMove.Location = new System.Drawing.Point(7, 74);
-            this.rapidMove.Name = "rapidMove";
-            this.rapidMove.Size = new System.Drawing.Size(106, 17);
-            this.rapidMove.TabIndex = 13;
-            this.rapidMove.Text = "Rapid Movement";
-            this.rapidMove.UseVisualStyleBackColor = true;
-            // 
-            // SpindleOffButton
-            // 
-            this.SpindleOffButton.Location = new System.Drawing.Point(212, 125);
-            this.SpindleOffButton.Name = "SpindleOffButton";
-            this.SpindleOffButton.Size = new System.Drawing.Size(75, 23);
-            this.SpindleOffButton.TabIndex = 12;
-            this.SpindleOffButton.Text = "Spindle Off";
-            this.SpindleOffButton.UseVisualStyleBackColor = true;
-            this.SpindleOffButton.Click += new System.EventHandler(this.SpindleOffButton_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 130);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Spindle";
-            // 
-            // spindleOnButton
-            // 
-            this.spindleOnButton.Location = new System.Drawing.Point(131, 125);
-            this.spindleOnButton.Name = "spindleOnButton";
-            this.spindleOnButton.Size = new System.Drawing.Size(75, 23);
-            this.spindleOnButton.TabIndex = 10;
-            this.spindleOnButton.Text = "Spindle On";
-            this.spindleOnButton.UseVisualStyleBackColor = true;
-            this.spindleOnButton.Click += new System.EventHandler(this.spindleOnButton_Click);
-            // 
-            // spindleSpeedBox
-            // 
-            this.spindleSpeedBox.Location = new System.Drawing.Point(62, 127);
-            this.spindleSpeedBox.Name = "spindleSpeedBox";
-            this.spindleSpeedBox.Size = new System.Drawing.Size(63, 20);
-            this.spindleSpeedBox.TabIndex = 9;
-            this.spindleSpeedBox.Text = "1000";
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.codeBox);
-            this.groupBox6.Location = new System.Drawing.Point(340, 16);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(250, 194);
-            this.groupBox6.TabIndex = 8;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Resulting Program";
-            // 
-            // codeBox
-            // 
-            this.codeBox.Location = new System.Drawing.Point(6, 19);
-            this.codeBox.Name = "codeBox";
-            this.codeBox.Size = new System.Drawing.Size(238, 169);
-            this.codeBox.TabIndex = 7;
-            this.codeBox.Text = "";
-            // 
-            // addLocButton
-            // 
-            this.addLocButton.Location = new System.Drawing.Point(254, 44);
-            this.addLocButton.Name = "addLocButton";
-            this.addLocButton.Size = new System.Drawing.Size(75, 23);
-            this.addLocButton.TabIndex = 6;
-            this.addLocButton.Text = "Add";
-            this.addLocButton.UseVisualStyleBackColor = true;
-            this.addLocButton.Click += new System.EventHandler(this.addLocButton_Click);
-            // 
-            // pgmZ
-            // 
-            this.pgmZ.Location = new System.Drawing.Point(186, 47);
-            this.pgmZ.Name = "pgmZ";
-            this.pgmZ.Size = new System.Drawing.Size(55, 20);
-            this.pgmZ.TabIndex = 5;
-            this.pgmZ.Text = "188.454";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(166, 53);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(14, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Z";
-            // 
-            // pgmY
-            // 
-            this.pgmY.Location = new System.Drawing.Point(105, 47);
-            this.pgmY.Name = "pgmY";
-            this.pgmY.Size = new System.Drawing.Size(55, 20);
-            this.pgmY.TabIndex = 3;
-            this.pgmY.Text = "125.403";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(85, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Y";
-            // 
-            // pgmX
-            // 
-            this.pgmX.Location = new System.Drawing.Point(24, 48);
-            this.pgmX.Name = "pgmX";
-            this.pgmX.Size = new System.Drawing.Size(55, 20);
-            this.pgmX.TabIndex = 1;
-            this.pgmX.Text = "291.001";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(14, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "X";
-            // 
-            // M05Button
-            // 
-            this.M05Button.Location = new System.Drawing.Point(87, 6);
+            this.M05Button.Location = new System.Drawing.Point(303, 6);
             this.M05Button.Name = "M05Button";
             this.M05Button.Size = new System.Drawing.Size(75, 23);
             this.M05Button.TabIndex = 17;
@@ -710,29 +439,16 @@
             // 
             // memoryTab
             // 
-<<<<<<< HEAD
-            this.memoryTab.Controls.Add(this.button3);
-            this.memoryTab.Controls.Add(this.button2);
-            this.memoryTab.Location = new System.Drawing.Point(4, 22);
-            this.memoryTab.Name = "memoryTab";
-            this.memoryTab.Padding = new System.Windows.Forms.Padding(3);
-            this.memoryTab.Size = new System.Drawing.Size(426, 219);
-=======
             this.memoryTab.Location = new System.Drawing.Point(4, 22);
             this.memoryTab.Name = "memoryTab";
             this.memoryTab.Padding = new System.Windows.Forms.Padding(3);
             this.memoryTab.Size = new System.Drawing.Size(545, 219);
->>>>>>> origin/master
             this.memoryTab.TabIndex = 3;
             this.memoryTab.Text = "Memory";
             this.memoryTab.UseVisualStyleBackColor = true;
             // 
             // referenceTab
             // 
-<<<<<<< HEAD
-            this.referenceTab.Controls.Add(this.button1);
-=======
->>>>>>> origin/master
             this.referenceTab.Location = new System.Drawing.Point(4, 22);
             this.referenceTab.Name = "referenceTab";
             this.referenceTab.Padding = new System.Windows.Forms.Padding(3);
@@ -741,19 +457,6 @@
             this.referenceTab.Text = "Reference";
             this.referenceTab.UseVisualStyleBackColor = true;
             // 
-<<<<<<< HEAD
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(15, 18);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 52);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "reference";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-=======
->>>>>>> origin/master
             // ModeControl
             // 
             this.ModeControl.Controls.Add(this.referenceTab);
@@ -764,18 +467,12 @@
             this.ModeControl.Location = new System.Drawing.Point(13, 27);
             this.ModeControl.Name = "ModeControl";
             this.ModeControl.SelectedIndex = 0;
-<<<<<<< HEAD
-            this.ModeControl.Size = new System.Drawing.Size(434, 245);
-            this.ModeControl.TabIndex = 22;
-            this.ModeControl.Click += new System.EventHandler(this.ModeControl_Click);
-=======
             this.ModeControl.Size = new System.Drawing.Size(553, 245);
             this.ModeControl.TabIndex = 22;
->>>>>>> origin/master
+            this.ModeControl.Click += new System.EventHandler(this.ModeControl_Click);
             // 
             // editTab
             // 
-            this.editTab.Controls.Add(this.groupBox5);
             this.editTab.Location = new System.Drawing.Point(4, 22);
             this.editTab.Name = "editTab";
             this.editTab.Padding = new System.Windows.Forms.Padding(3);
@@ -786,6 +483,7 @@
             // 
             // mdiTab
             // 
+            this.mdiTab.Controls.Add(this.M03Param);
             this.mdiTab.Controls.Add(this.M05Button);
             this.mdiTab.Controls.Add(this.M03Button);
             this.mdiTab.Location = new System.Drawing.Point(4, 22);
@@ -795,39 +493,177 @@
             this.mdiTab.TabIndex = 6;
             this.mdiTab.Text = "MDI";
             this.mdiTab.UseVisualStyleBackColor = true;
-<<<<<<< HEAD
             // 
-            // button2
+            // M03Param
             // 
-            this.button2.Location = new System.Drawing.Point(15, 15);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "Send M03";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.M03Button_Click);
+            this.M03Param.Location = new System.Drawing.Point(106, 8);
+            this.M03Param.Name = "M03Param";
+            this.M03Param.Size = new System.Drawing.Size(100, 20);
+            this.M03Param.TabIndex = 18;
             // 
-            // button3
+            // returnBox
             // 
-            this.button3.Location = new System.Drawing.Point(112, 15);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "Send M05";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.M05Button_Click);
-=======
->>>>>>> origin/master
+            this.returnBox.Location = new System.Drawing.Point(633, 151);
+            this.returnBox.Name = "returnBox";
+            this.returnBox.Size = new System.Drawing.Size(225, 235);
+            this.returnBox.TabIndex = 23;
+            this.returnBox.Text = "";
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(795, 49);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(43, 13);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "X to Go";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(795, 75);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 13);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Y to Go";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(795, 102);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(43, 13);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Z to Go";
+            // 
+            // xtgBox
+            // 
+            this.xtgBox.Location = new System.Drawing.Point(839, 46);
+            this.xtgBox.Name = "xtgBox";
+            this.xtgBox.Size = new System.Drawing.Size(100, 20);
+            this.xtgBox.TabIndex = 25;
+            // 
+            // ytgBox
+            // 
+            this.ytgBox.Location = new System.Drawing.Point(839, 72);
+            this.ytgBox.Name = "ytgBox";
+            this.ytgBox.Size = new System.Drawing.Size(100, 20);
+            this.ytgBox.TabIndex = 25;
+            // 
+            // ztgBox
+            // 
+            this.ztgBox.Location = new System.Drawing.Point(839, 99);
+            this.ztgBox.Name = "ztgBox";
+            this.ztgBox.Size = new System.Drawing.Size(100, 20);
+            this.ztgBox.TabIndex = 25;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(796, 128);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "feed rate";
+            // 
+            // fBox
+            // 
+            this.fBox.Location = new System.Drawing.Point(839, 125);
+            this.fBox.Name = "fBox";
+            this.fBox.Size = new System.Drawing.Size(100, 20);
+            this.fBox.TabIndex = 25;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(591, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(14, 13);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "X";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(591, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(14, 13);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Y";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(591, 102);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(14, 13);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Z";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(581, 128);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 13);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Spindle";
+            // 
+            // xBox
+            // 
+            this.xBox.Location = new System.Drawing.Point(624, 46);
+            this.xBox.Name = "xBox";
+            this.xBox.Size = new System.Drawing.Size(100, 20);
+            this.xBox.TabIndex = 25;
+            // 
+            // yBox
+            // 
+            this.yBox.Location = new System.Drawing.Point(624, 72);
+            this.yBox.Name = "yBox";
+            this.yBox.Size = new System.Drawing.Size(100, 20);
+            this.yBox.TabIndex = 25;
+            // 
+            // zBox
+            // 
+            this.zBox.Location = new System.Drawing.Point(624, 99);
+            this.zBox.Name = "zBox";
+            this.zBox.Size = new System.Drawing.Size(100, 20);
+            this.zBox.TabIndex = 25;
+            // 
+            // sBox
+            // 
+            this.sBox.Location = new System.Drawing.Point(624, 125);
+            this.sBox.Name = "sBox";
+            this.sBox.Size = new System.Drawing.Size(100, 20);
+            this.sBox.TabIndex = 25;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
-            this.ClientSize = new System.Drawing.Size(816, 438);
-=======
-            this.ClientSize = new System.Drawing.Size(601, 438);
->>>>>>> origin/master
+            this.ClientSize = new System.Drawing.Size(975, 438);
+            this.Controls.Add(this.sBox);
+            this.Controls.Add(this.zBox);
+            this.Controls.Add(this.fBox);
+            this.Controls.Add(this.yBox);
+            this.Controls.Add(this.ztgBox);
+            this.Controls.Add(this.xBox);
+            this.Controls.Add(this.ytgBox);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.xtgBox);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.returnBox);
             this.Controls.Add(this.ModeControl);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.jogXlabel);
@@ -842,19 +678,11 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.jogTab.ResumeLayout(false);
-<<<<<<< HEAD
-            this.memoryTab.ResumeLayout(false);
-            this.referenceTab.ResumeLayout(false);
-=======
->>>>>>> origin/master
             this.ModeControl.ResumeLayout(false);
-            this.editTab.ResumeLayout(false);
             this.mdiTab.ResumeLayout(false);
+            this.mdiTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -878,7 +706,6 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RichTextBox statusBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button moveXup;
         private System.Windows.Forms.Button moveXdown;
@@ -888,31 +715,9 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button moveZdown;
         private System.Windows.Forms.Button moveZup;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.RichTextBox codeBox;
-        private System.Windows.Forms.Button addLocButton;
-        private System.Windows.Forms.TextBox pgmZ;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox pgmY;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox pgmX;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button SpindleOffButton;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button spindleOnButton;
-        private System.Windows.Forms.TextBox spindleSpeedBox;
-        private System.Windows.Forms.RadioButton rapidMove;
-        private System.Windows.Forms.Button sendProgramButton;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Button feedDownButton;
         private System.Windows.Forms.Button feedUpButton;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox feedRateBox;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button circularInterpButton;
-        private System.Windows.Forms.TextBox radiusBox;
-        private System.Windows.Forms.CheckBox counterCircle;
         private System.Windows.Forms.Label jogXlabel;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label8;
@@ -925,12 +730,26 @@
         private System.Windows.Forms.TabControl ModeControl;
         private System.Windows.Forms.TabPage mdiTab;
         private System.Windows.Forms.TabPage editTab;
-<<<<<<< HEAD
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-=======
->>>>>>> origin/master
+        public System.Windows.Forms.RichTextBox returnBox;
+        public System.Windows.Forms.RichTextBox statusBox;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox xtgBox;
+        private System.Windows.Forms.TextBox ytgBox;
+        private System.Windows.Forms.TextBox ztgBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox fBox;
+        private System.Windows.Forms.TextBox M03Param;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox xBox;
+        private System.Windows.Forms.TextBox yBox;
+        private System.Windows.Forms.TextBox zBox;
+        private System.Windows.Forms.TextBox sBox;
     }
 }
 
