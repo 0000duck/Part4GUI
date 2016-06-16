@@ -89,6 +89,15 @@
             this.yBox = new System.Windows.Forms.TextBox();
             this.zBox = new System.Windows.Forms.TextBox();
             this.sBox = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.xIn = new System.Windows.Forms.TextBox();
+            this.yIn = new System.Windows.Forms.TextBox();
+            this.zIn = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -225,7 +234,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -483,9 +492,18 @@
             // 
             // mdiTab
             // 
+            this.mdiTab.Controls.Add(this.zIn);
+            this.mdiTab.Controls.Add(this.yIn);
+            this.mdiTab.Controls.Add(this.xIn);
             this.mdiTab.Controls.Add(this.M03Param);
             this.mdiTab.Controls.Add(this.M05Button);
+            this.mdiTab.Controls.Add(this.button3);
+            this.mdiTab.Controls.Add(this.button2);
+            this.mdiTab.Controls.Add(this.button1);
             this.mdiTab.Controls.Add(this.M03Button);
+            this.mdiTab.Controls.Add(this.label6);
+            this.mdiTab.Controls.Add(this.label11);
+            this.mdiTab.Controls.Add(this.label12);
             this.mdiTab.Location = new System.Drawing.Point(4, 22);
             this.mdiTab.Name = "mdiTab";
             this.mdiTab.Padding = new System.Windows.Forms.Padding(3);
@@ -642,6 +660,84 @@
             this.sBox.Size = new System.Drawing.Size(100, 20);
             this.sBox.TabIndex = 25;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 53);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "G00";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.g00Button_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(103, 58);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(14, 13);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "X";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(201, 58);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(14, 13);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "Y";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(300, 58);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(14, 13);
+            this.label12.TabIndex = 24;
+            this.label12.Text = "Z";
+            // 
+            // xIn
+            // 
+            this.xIn.Location = new System.Drawing.Point(123, 55);
+            this.xIn.Name = "xIn";
+            this.xIn.Size = new System.Drawing.Size(66, 20);
+            this.xIn.TabIndex = 18;
+            // 
+            // yIn
+            // 
+            this.yIn.Location = new System.Drawing.Point(228, 55);
+            this.yIn.Name = "yIn";
+            this.yIn.Size = new System.Drawing.Size(66, 20);
+            this.yIn.TabIndex = 18;
+            // 
+            // zIn
+            // 
+            this.zIn.Location = new System.Drawing.Point(320, 55);
+            this.zIn.Name = "zIn";
+            this.zIn.Size = new System.Drawing.Size(66, 20);
+            this.zIn.TabIndex = 18;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(42, 116);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "G00";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.SendM06_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(219, 116);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 17;
+            this.button3.Text = "G00";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -750,6 +846,15 @@
         private System.Windows.Forms.TextBox yBox;
         private System.Windows.Forms.TextBox zBox;
         private System.Windows.Forms.TextBox sBox;
+        private System.Windows.Forms.TextBox zIn;
+        private System.Windows.Forms.TextBox yIn;
+        private System.Windows.Forms.TextBox xIn;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
     }
 }
 

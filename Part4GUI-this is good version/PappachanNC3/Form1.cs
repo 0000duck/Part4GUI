@@ -38,7 +38,7 @@ namespace PappachanNC3
         public bool spindleOn = true;
         public bool feedOn = true;
         public double[] position = { 291.001, 125.403, 188.454 };
-        
+
         Queue<stmElement> stmQueue;
 
 
@@ -274,7 +274,7 @@ namespace PappachanNC3
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
-                        
+
 
                         for (int i = 0; i < 8; i++)
                             point[i] = bc[28 + i];
@@ -513,13 +513,22 @@ namespace PappachanNC3
 
         }
 
-        public string posToBinary(int pos)
+        public byte[] posToBinary(int pos)
         {
-            // y = 6,507,078,312,247,450ln(x) + 4,580,272,755,767,100,000
-            double ret = 4580272755767100000;
-            double ln = Math.Log((double)pos);
-            ret += ln * 6507078312247450.0;
-            return ret.ToString();
+            //= 1,517,068.10ln(x) + 1,062,166,905.73
+            double first4 = 1517068.10 * Math.Log(pos) + 1062166905.73;
+            long first4Long = Convert.ToInt64(first4);
+
+            byte[] output = new byte[8];
+            output[7] = (byte)(first4Long / (256L * 256 * 256));
+            first4Long %= (256L * 256 * 256);
+            output[6] = (byte)(first4Long / (256L * 256));
+            first4Long %= (256L * 256);
+            output[5] = (byte)(first4Long / (256L));
+            first4Long %= (256L);
+            output[4] = (byte)first4Long;
+
+            return output;
         }
 
         public byte[] spindleToBinary(double spindle)
@@ -530,10 +539,10 @@ namespace PappachanNC3
             long first4Long = Convert.ToInt64(first4);
 
             byte[] output = new byte[8];
-            output[7] = (byte) (first4Long / (256L * 256 * 256));
+            output[7] = (byte)(first4Long / (256L * 256 * 256));
             first4Long %= (256L * 256 * 256);
-            output[6] = (byte)(first4Long / (256L * 256 ));
-            first4Long %= (256L * 256 );
+            output[6] = (byte)(first4Long / (256L * 256));
+            first4Long %= (256L * 256);
             output[5] = (byte)(first4Long / (256L));
             first4Long %= (256L);
             output[4] = (byte)first4Long;
@@ -544,7 +553,7 @@ namespace PappachanNC3
         public string binaryToPosLin(int[] binaryPoint)
         {
             long intPos = (binaryPoint[4]) + (binaryPoint[5] * 256L) + (binaryPoint[6] * 256 * 256L) + (binaryPoint[7] * 256L * 256 * 256);
-             
+
             double doublePos = intPos - 1062166905.73;
             doublePos = (double)(doublePos) / (double)1517068.10;
             //= 1,517,068.10ln(x) + 1,062,166,905.73
@@ -553,7 +562,7 @@ namespace PappachanNC3
 
         public string binaryToPosSpindle(int[] binaryPoint)
         {
-            long intPos = (binaryPoint[4]) + (binaryPoint[5] *256L) + (binaryPoint[6] * 256 *256L ) + (binaryPoint[7] * 256L * 256 * 256);
+            long intPos = (binaryPoint[4]) + (binaryPoint[5] * 256L) + (binaryPoint[6] * 256 * 256L) + (binaryPoint[7] * 256L * 256 * 256);
 
             double doublePos = intPos - 1066427853.40808;
             doublePos = (double)(doublePos) / (double)1515047.22522;
@@ -566,7 +575,8 @@ namespace PappachanNC3
         {
             while (true)
             {
-                listenReturnCommunication();
+                ;
+                //listenReturnCommunication();
             }
         }
 
@@ -664,7 +674,7 @@ namespace PappachanNC3
             stmQueue.Enqueue(se);
 
         }
-       
+
 
         public Form1()
         {
@@ -747,7 +757,7 @@ namespace PappachanNC3
             sendFile(clk1);
             System.Threading.Thread.Sleep(700);
             sendFile(clk2);
-            
+
 
         }
 
@@ -761,7 +771,7 @@ namespace PappachanNC3
 
             System.Threading.Thread.Sleep(700);
             sendFile(clk2);
-            
+
         }
 
         private void moveYup_Click(object sender, EventArgs e)
@@ -820,7 +830,7 @@ namespace PappachanNC3
                 sendFile(packet1);
 
                 //listen to the acceptence
-                listenReturnCommunication();
+                //listenReturnCommunication();
                 //listenReturnCommunication();
 
                 //declare the packets to send
@@ -854,16 +864,16 @@ namespace PappachanNC3
             }
         }
 
-        
+
 
         private void programFeedButton_Click(object sender, EventArgs e)
         {
-            byte[] clk1 = { 0, 88, 30, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 14, 0, 0, 0, 0, 0, 1, 0, 143, 138, 255, 59, 162, 66, 199, 63 , 222, 0, 0, 0, 3, 0, 150, 0 };
+            byte[] clk1 = { 0, 88, 30, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 14, 0, 0, 0, 0, 0, 1, 0, 143, 138, 255, 59, 162, 66, 199, 63, 222, 0, 0, 0, 3, 0, 150, 0 };
 
             //send both bytes
             sendFile(clk1);
         }
-     
+
 
         //modes
         private void referenceToolStripMenuItem_Click(object sender, EventArgs e)
@@ -873,7 +883,7 @@ namespace PappachanNC3
             byte[] packet2 = { 0, 104, 2, 0, 0, 0, 0, 0, 3, 0 };
 
             sendFile(packet1);
-            listenReturnCommunication();
+            //listenReturnCommunication();
             //sendFile(packet2);
             statusBox.Text += "Going to Reference Mode\r\n";
         }
@@ -887,7 +897,7 @@ namespace PappachanNC3
             //send the packet
             sendFile(packet1);
             //listen for the return communication
-            listenReturnCommunication();
+            //listenReturnCommunication();
             //send the second packet
             //sendFile(packet2);
             //listen for the return
@@ -901,7 +911,7 @@ namespace PappachanNC3
             byte[] packet1 = { 21, 104, 0, 0, 0, 0, 0, 0 };
 
             sendFile(packet1);
-            listenReturnCommunication();
+            //listenReturnCommunication();
             statusBox.Text += "Going to Jog Mode\r\n";
         }
 
@@ -917,7 +927,7 @@ namespace PappachanNC3
             byte[] packet1 = { 21, 104, 0, 0, 0, 0, 2, 0 };
 
             sendFile(packet1);
-            listenReturnCommunication();
+            //listenReturnCommunication();
             //sendFile(packet2);
             statusBox.Text += "Going to Reference Mode\r\n";
         }
@@ -1006,6 +1016,98 @@ namespace PappachanNC3
                 statusBox.Text += "Going to MDI Mode\r\n";
             }
 
+        }
+
+        private void g00Button_Click(object sender, EventArgs e)
+        {
+            byte length = 20;
+            byte lineNum = 1;
+            if (xIn.Text != "")
+            {
+                length += 10;
+            }
+            if (yIn.Text != "")
+            {
+                length += 10;
+            }
+            if (zIn.Text != "")
+            {
+                length += 10;
+            }
+
+            if (length == 20)
+            {
+                statusBox.Text += "error: G00 no position \r\n";
+                return;
+            }
+
+            byte[] commandStart = {
+            0, 0x58,
+            length, 0, 0, 0, 0, 0, 0, 0,
+            lineNum, 0,0,0 , 0x0e, 0, 0, 0,
+            0,0, 0x1c,0,0x01,0
+            };
+
+            byte[] commandEnd =
+            {
+                0x64,0,0x96,0
+            };
+
+            byte[] commandMid = new byte[length - 20];
+            int commandMidPos = 0;
+            if (xIn.Text != "")
+            {
+                commandMid[0] = 0x1e;
+                commandMid[1] = 0;
+                byte[] pos = posToBinary(int.Parse(xIn.Text));
+                for (int i = 0; i < 8; i++)
+                    commandMid[2 + i] = pos[i];
+                commandMidPos += 10;
+            }
+            if (yIn.Text != "")
+            {
+                commandMid[commandMidPos + 0] = 0x1f;
+                commandMid[commandMidPos + 1] = 0;
+                byte[] pos = posToBinary(int.Parse(yIn.Text));
+                for (int i = 0; i < 8; i++)
+                    commandMid[commandMidPos + 2 + i] = pos[i];
+                commandMidPos += 10;
+            }
+            if (zIn.Text != "")
+            {
+                commandMid[commandMidPos + 0] = 0x20;
+                commandMid[commandMidPos + 1] = 0;
+                byte[] pos = posToBinary(int.Parse(zIn.Text));
+                for (int i = 0; i < 8; i++)
+                    commandMid[commandMidPos + 2 + i] = pos[i];
+                commandMidPos += 10;
+            }
+
+            byte[] command = new byte[length + 8];
+            for (int i = 0; i < commandStart.Length; i++)
+                command[i] = commandStart[i];
+            for (int i = 0; i < commandMid.Length; i++)
+                command[i + commandStart.Length] = commandMid[i];
+            for (int i = 0; i < commandEnd.Length; i++)
+                command[i + commandStart.Length + commandMid.Length] = commandEnd[i];
+
+            sendFile(command);
+        }
+
+        private void SendM06_Click(object sender, EventArgs e)
+        {
+            byte[] clk1 = { 0, 0x58, 0x24, 0, 0, 0, 0, 0, 0, 0, 0x01, 0, 0, 0, 0x0E, 0, 0x05, 0, 0, 0, 0x01, 0, 0x8f, 0xc2, 0xf5, 0x28, 0x5c, 0x8f, 0xca, 0x3f, 0xde, 0, 0, 0, 0x06, 0, 0xdf, 0, 0, 0, 0x01, 0, 0x96, 0 };
+
+            //send both bytes
+            sendFile(clk1);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            byte[] clk1 = { 0, 0x58, 0x24, 0, 0, 0, 0, 0, 0, 0, 0x01, 0, 0, 0, 0x0E, 0, 0x05, 0, 0, 0, 0x01, 0, 0x8f, 0xc2, 0xf5, 0x28, 0x5c, 0x8f, 0xca, 0x3f, 0xde, 0, 0, 0, 0x06, 0, 0xdf, 0, 0, 0, 0x03, 0, 0x96, 0 };
+
+            //send both bytes
+            sendFile(clk1);
         }
 
 
