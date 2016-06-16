@@ -515,6 +515,26 @@ namespace PappachanNC3
 
         }
 
+        
+
+        public byte[] feedToBinary(int pos)
+        {
+            // y = 1,514,611.88ln(x) + 1,055,979,950.10
+            double first4 = 1514611.88 * Math.Log(pos) + 1055979950.10;
+            long first4Long = Convert.ToInt64(first4);
+
+            byte[] output = new byte[8];
+            output[7] = (byte)(first4Long / (256L * 256 * 256));
+            first4Long %= (256L * 256 * 256);
+            output[6] = (byte)(first4Long / (256L * 256));
+            first4Long %= (256L * 256);
+            output[5] = (byte)(first4Long / (256L));
+            first4Long %= (256L);
+            output[4] = (byte)first4Long;
+
+            return output;
+        }
+
         public byte[] posToBinary(int pos)
         {
             //= 1,517,068.10ln(x) + 1,062,166,905.73
@@ -570,6 +590,16 @@ namespace PappachanNC3
             doublePos = (double)(doublePos) / (double)1515047.22522;
             //y=1,515,047.22522ln(x) + 1,066,427,853.40808
             return Math.Exp(doublePos).ToString();
+        }
+
+        public string binaryToFeed(int[] feed)
+        {
+            long intFeed = (feed[4]) + (feed[5] * 256L) + (feed[6] * 256 * 256L) + (feed[7] * 256L * 256 * 256);
+
+            double doubleFeed = intFeed - 1055979950.10;
+            doubleFeed = (double)(doubleFeed) / (double)1514611.88;
+            //y = 1,514,611.88ln(x) + 1,055,979,950.10
+            return Math.Exp(doubleFeed).ToString();
         }
 
 
@@ -1090,7 +1120,7 @@ namespace PappachanNC3
                 {
                     length += 10;
                     feedrate = int.Parse(fIn.Text);
-                    byte[] feedSpeed = posToBinary(feedrate);
+                    byte[] feedSpeed = feedToBinary(feedrate);
                     feedCommand = new byte[] { 0x18, 0, feedSpeed[0], feedSpeed[1], feedSpeed[2], feedSpeed[3], feedSpeed[4], feedSpeed[5], feedSpeed[6], feedSpeed[7] };
                 }
                 commandEnd = new byte[] { 0x65, 0, 0x96,0};
