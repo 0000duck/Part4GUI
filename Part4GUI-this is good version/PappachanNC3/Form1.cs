@@ -41,6 +41,8 @@ namespace PappachanNC3
 
         Queue<stmElement> stmQueue;
 
+        static int feedrate =0;
+
 
         // functions
         public void initialiseCNC()
@@ -575,8 +577,7 @@ namespace PappachanNC3
         {
             while (true)
             {
-                ;
-                //listenReturnCommunication();
+                listenReturnCommunication();
             }
         }
 
@@ -1041,27 +1042,19 @@ namespace PappachanNC3
                 return;
             }
 
-            byte[] commandStart = {
-            0, 0x58,
-            length, 0, 0, 0, 0, 0, 0, 0,
-            lineNum, 0,0,0 , 0x0e, 0, 0, 0,
-            0,0, 0x1c,0,0x01,0
-            };
-
-            byte[] commandEnd =
-            {
-                0x64,0,0x96,0
-            };
-
-            byte[] commandMid = new byte[length - 20];
-            int commandMidPos = 0;
+            byte[] commandMid = new byte[length - 20 +4];
+            commandMid[0] = 0x1c;
+            commandMid[1] = 0;
+            commandMid[2] = 0x01;
+            commandMid[3] = 0;
+            int commandMidPos = 4;
             if (xIn.Text != "")
             {
-                commandMid[0] = 0x1e;
-                commandMid[1] = 0;
+                commandMid[commandMidPos+0] = 0x1e;
+                commandMid[commandMidPos+1] = 0;
                 byte[] pos = posToBinary(int.Parse(xIn.Text));
                 for (int i = 0; i < 8; i++)
-                    commandMid[2 + i] = pos[i];
+                    commandMid[commandMidPos+2 + i] = pos[i];
                 commandMidPos += 10;
             }
             if (yIn.Text != "")
@@ -1083,20 +1076,73 @@ namespace PappachanNC3
                 commandMidPos += 10;
             }
 
-            byte[] command = new byte[length + 8];
+
+            byte[] commandEnd = { };
+            byte[] feedCommand = { };
+
+            if (sender == G00Button)
+            {
+                commandEnd = new byte[]{ 0x64,0,0x96,0 };
+            }
+            else if (sender == G01Button)
+            {
+                if(int.Parse(fIn.Text) != feedrate)
+                {
+                    length += 10;
+                    feedrate = int.Parse(fIn.Text);
+                    byte[] feedSpeed = posToBinary(feedrate);
+                    feedCommand = new byte[] { 0x18, 0, feedSpeed[0], feedSpeed[1], feedSpeed[2], feedSpeed[3], feedSpeed[4], feedSpeed[5], feedSpeed[6], feedSpeed[7] };
+                }
+                commandEnd = new byte[] { 0x65, 0, 0x96,0};
+            }
+
+            byte[] commandStart = {
+            0, 0x58,
+            length, 0, 0, 0, 0, 0, 0, 0,
+            lineNum, 0,0,0 , 0x0e, 0, 0, 0,
+            0,0
+            };
+
+            if (sender == G00Button)
+            {
+                byte[] commandEndTmp =
+                {
+                    0x64,0,0x96,0
+                };
+                commandEnd = commandEndTmp;
+            }
+
+          
+
+            byte[] command= new byte[length + 8];
+
             for (int i = 0; i < commandStart.Length; i++)
                 command[i] = commandStart[i];
-            for (int i = 0; i < commandMid.Length; i++)
-                command[i + commandStart.Length] = commandMid[i];
-            for (int i = 0; i < commandEnd.Length; i++)
-                command[i + commandStart.Length + commandMid.Length] = commandEnd[i];
+            if (feedCommand.Length ==0)
+            {
+                for (int i = 0; i < commandMid.Length; i++)
+                    command[i + commandStart.Length] = commandMid[i];
+                for (int i = 0; i < commandEnd.Length; i++)
+                    command[i + commandStart.Length + commandMid.Length] = commandEnd[i];
+            }
+            else
+            {
+                for (int i = 0; i < feedCommand.Length; i++)
+                    command[i + commandStart.Length] = feedCommand[i];
+                for (int i = 0; i < commandMid.Length; i++)
+                    command[i + commandStart.Length+feedCommand.Length] = commandMid[i];
+                for (int i = 0; i < commandEnd.Length; i++)
+                    command[i + commandStart.Length + commandMid.Length + feedCommand.Length] = commandEnd[i];
+            }
 
             sendFile(command);
         }
 
         private void SendM06_Click(object sender, EventArgs e)
         {
-            byte[] clk1 = { 0, 0x58, 0x24, 0, 0, 0, 0, 0, 0, 0, 0x01, 0, 0, 0, 0x0E, 0, 0x05, 0, 0, 0, 0x01, 0, 0x8f, 0xc2, 0xf5, 0x28, 0x5c, 0x8f, 0xca, 0x3f, 0xde, 0, 0, 0, 0x06, 0, 0xdf, 0, 0, 0, 0x01, 0, 0x96, 0 };
+            byte i = (byte)M06Number.Value;
+
+            byte[] clk1 = { 0, 0x58, 0x24, 0, 0, 0, 0, 0, 0, 0, 0x01, 0, 0, 0, 0x0E, 0, 0x05, 0, 0, 0, 0x01, 0, 0x8f, 0xc2, 0xf5, 0x28, 0x5c, 0x8f, 0xca, 0x3f, 0xde, 0, 0, 0, 0x06, 0, 0xdf, 0, 0, 0, i, 0, 0x96, 0 };
 
             //send both bytes
             sendFile(clk1);
@@ -1104,15 +1150,14 @@ namespace PappachanNC3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            byte[] clk1 = { 0, 0x58, 0x24, 0, 0, 0, 0, 0, 0, 0, 0x01, 0, 0, 0, 0x0E, 0, 0x05, 0, 0, 0, 0x01, 0, 0x8f, 0xc2, 0xf5, 0x28, 0x5c, 0x8f, 0xca, 0x3f, 0xde, 0, 0, 0, 0x06, 0, 0xdf, 0, 0, 0, 0x03, 0, 0x96, 0 };
+            byte i = (byte)M06Number.Value;
+
+            byte[] clk1 = { 0, 0x58, 0x24, 0, 0, 0, 0, 0, 0, 0, 0x01, 0, 0, 0, 0x0E, 0, 0x05, 0, 0, 0, 0x01, 0, 0x8f, 0xc2, 0xf5, 0x28, 0x5c, 0x8f, 0xca, 0x3f, 0xde, 0, 0, 0, 0x06, 0, 0xdf, 0, 0, 0, i, 0, 0x96, 0 };
 
             //send both bytes
             sendFile(clk1);
         }
-
-
-
-
+       
 
         //end of modes
 
