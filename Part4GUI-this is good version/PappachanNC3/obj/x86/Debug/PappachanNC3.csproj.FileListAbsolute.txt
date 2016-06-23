@@ -64,3 +64,5 @@ C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x
 C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.Form1.resources
 C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.Properties.Resources.resources
 C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.csproj.GenerateResource.Cache
+C:\Users\Wayne\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
+C:\Users\Wayne\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
