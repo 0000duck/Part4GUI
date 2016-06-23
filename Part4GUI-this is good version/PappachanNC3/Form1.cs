@@ -139,8 +139,6 @@ namespace PappachanNC3
                         if (bc[6] == 1)// x direction
                         {
                             int[] point = new int[8];
-                            for (int i = 0; i < 8; i++)
-                                point[i] = bc[10 + i];
 
                             string txt = binaryToString(bc, 10);
 
@@ -152,8 +150,6 @@ namespace PappachanNC3
                                 this.Invoke(mi2);
 
                             //dist to go
-                            for (int i = 0; i < 8; i++)
-                                point[i] = bc[18 + i];
 
                             txt = binaryToString(bc, 18);
 
@@ -168,8 +164,6 @@ namespace PappachanNC3
                         if (bc[6] == 2)// y direction
                         {
                             int[] point = new int[8];
-                            for (int i = 0; i < 8; i++)
-                                point[i] = bc[10 + i];
 
                             string txt = binaryToString(bc, 10);
 
@@ -182,8 +176,6 @@ namespace PappachanNC3
 
 
                             //dist to go
-                            for (int i = 0; i < 8; i++)
-                                point[i] = bc[18 + i];
 
                             txt = binaryToString(bc, 18);
 
@@ -199,8 +191,6 @@ namespace PappachanNC3
                         if (bc[6] == 4)// z direction
                         {
                             int[] point = new int[8];
-                            for (int i = 0; i < 8; i++)
-                                point[i] = bc[10 + i];
 
                             string txt = binaryToString(bc, 10);
 
@@ -212,8 +202,6 @@ namespace PappachanNC3
                                 this.Invoke(mi2);
 
                             //dist to go
-                            for (int i = 0; i < 8; i++)
-                                point[i] = bc[18 + i];
 
                             txt = binaryToString(bc, 18);
 
@@ -251,8 +239,6 @@ namespace PappachanNC3
                     if (bc[6] == 3)// x + y direction
                     {
                         int[] point = new int[8];
-                        for (int i = 0; i < 8; i++)
-                            point[i] = bc[10 + i];
 
                         string txt = binaryToString(bc, 10);
 
@@ -265,8 +251,6 @@ namespace PappachanNC3
 
 
                         //dist to go
-                        for (int i = 0; i < 8; i++)
-                            point[i] = bc[18 + i];
 
                         txt = binaryToString(bc, 18);
 
@@ -290,10 +274,7 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-
                         //dist to go
-                        for (int i = 0; i < 8; i++)
-                            point[i] = bc[36 + i];
 
                         txt = binaryToString(bc, 36);
 
@@ -308,8 +289,6 @@ namespace PappachanNC3
                     if (bc[6] == 5)//  z + x direction
                     {
                         int[] point = new int[8];
-                        for (int i = 0; i < 8; i++)
-                            point[i] = bc[10 + i];
 
                         string txt = binaryToString(bc, 10);
 
@@ -320,10 +299,7 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-
                         //dist to go
-                        for (int i = 0; i < 8; i++)
-                            point[i] = bc[18 + i];
 
                         txt = binaryToString(bc, 18);
 
@@ -333,10 +309,6 @@ namespace PappachanNC3
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
-
-
-                        for (int i = 0; i < 8; i++)
-                            point[i] = bc[28 + i];
 
                         txt = binaryToString(bc, 28);
 
@@ -349,8 +321,6 @@ namespace PappachanNC3
 
 
                         //dist to go
-                        for (int i = 0; i < 8; i++)
-                            point[i] = bc[36 + i];
 
                         txt = binaryToString(bc, 36);
 
@@ -378,8 +348,6 @@ namespace PappachanNC3
 
 
                         //dist to go
-                        for (int i = 0; i < 8; i++)
-                            point[i] = bc[18 + i];
 
                         txt = binaryToString(bc, 18);
 
@@ -389,10 +357,6 @@ namespace PappachanNC3
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
-
-
-                        for (int i = 0; i < 8; i++)
-                            point[i] = bc[28 + i];
 
                         txt = binaryToString(bc, 28);
 
@@ -405,8 +369,6 @@ namespace PappachanNC3
 
 
                         //dist to go
-                        for (int i = 0; i < 8; i++)
-                            point[i] = bc[36 + i];
 
                         txt = binaryToString(bc, 36);
 
