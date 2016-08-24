@@ -1,0 +1,9 @@
+diameter outer :29.8
+sec : 19.8
+innterb: 14.6
+
+height, outerb:1.9
+mid : 2.9
+innter: 4.8
+
+there's a slight round between inner and mid
