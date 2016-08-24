@@ -125,7 +125,7 @@ namespace PappachanNC3
 
                 MethodInvoker mi = delegate
                 {
-                    //returnBox.Text += k + ":    " + str + "\r\n";
+                    returnBox.Text += k + ":    " + str + "\r\n";
                 };
                 if (InvokeRequired)
                     this.Invoke(mi);
@@ -136,11 +136,13 @@ namespace PappachanNC3
                     if (bc[0] == 2 && bc[1] == 8)
                     {
                         //directions
-                        if (bc[6] == 1)// x direction
+                        if (bc[6] == 1)//
                         {
                             int[] point = new int[8];
+                            for (int i = 0; i < 8; i++)
+                                point[i] = bc[10 + i];
 
-                            string txt = binaryToString(bc, 10);
+                            string txt = binaryToPosLin(point);
 
                             MethodInvoker mi2 = delegate
                             {
@@ -150,8 +152,10 @@ namespace PappachanNC3
                                 this.Invoke(mi2);
 
                             //dist to go
+                            for (int i = 0; i < 8; i++)
+                                point[i] = bc[18 + i];
 
-                            txt = binaryToString(bc, 18);
+                            txt = binaryToPosLin(point);
 
                             mi2 = delegate
                             {
@@ -161,11 +165,13 @@ namespace PappachanNC3
                                 this.Invoke(mi2);
                         }
 
-                        if (bc[6] == 2)// y direction
+                        if (bc[6] == 2)// 
                         {
                             int[] point = new int[8];
+                            for (int i = 0; i < 8; i++)
+                                point[i] = bc[10 + i];
 
-                            string txt = binaryToString(bc, 10);
+                            string txt = binaryToPosLin(point);
 
                             MethodInvoker mi2 = delegate
                             {
@@ -176,8 +182,10 @@ namespace PappachanNC3
 
 
                             //dist to go
+                            for (int i = 0; i < 8; i++)
+                                point[i] = bc[18 + i];
 
-                            txt = binaryToString(bc, 18);
+                            txt = binaryToPosLin(point);
 
                             mi2 = delegate
                             {
@@ -188,11 +196,13 @@ namespace PappachanNC3
                         }
 
 
-                        if (bc[6] == 4)// z direction
+                        if (bc[6] == 4)//
                         {
                             int[] point = new int[8];
+                            for (int i = 0; i < 8; i++)
+                                point[i] = bc[10 + i];
 
-                            string txt = binaryToString(bc, 10);
+                            string txt = binaryToPosLin(point);
 
                             MethodInvoker mi2 = delegate
                             {
@@ -202,8 +212,10 @@ namespace PappachanNC3
                                 this.Invoke(mi2);
 
                             //dist to go
+                            for (int i = 0; i < 8; i++)
+                                point[i] = bc[18 + i];
 
-                            txt = binaryToString(bc, 18);
+                            txt = binaryToPosLin(point);
 
                             mi2 = delegate
                             {
@@ -221,7 +233,7 @@ namespace PappachanNC3
                             for (int i = 0; i < 8; i++)
                                 point[i] = bc[8 + i];
 
-                            string txt = binaryToSpindle(point);
+                            string txt = binaryToPosSpindle(point);
 
                             MethodInvoker mi2 = delegate
                             {
@@ -236,11 +248,13 @@ namespace PappachanNC3
 
                 else if (k == 44)
                 {
-                    if (bc[6] == 3)// x + y direction
+                    if (bc[6] == 3)// 
                     {
                         int[] point = new int[8];
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[10 + i];
 
-                        string txt = binaryToString(bc, 10);
+                        string txt = binaryToPosLin(point);
 
                         MethodInvoker mi2 = delegate
                         {
@@ -251,8 +265,10 @@ namespace PappachanNC3
 
 
                         //dist to go
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[18 + i];
 
-                        txt = binaryToString(bc, 18);
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -265,7 +281,7 @@ namespace PappachanNC3
                         for (int i = 0; i < 8; i++)
                             point[i] = bc[28 + i];
 
-                        txt = binaryToString(bc, 28);
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -274,9 +290,12 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        //dist to go
 
-                        txt = binaryToString(bc, 36);
+                        //dist to go
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[36 + i];
+
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -286,11 +305,15 @@ namespace PappachanNC3
                             this.Invoke(mi2);
                     }
 
-                    if (bc[6] == 5)//  z + x direction
+
+                    //x,z
+                    if (bc[6] == 5)// 
                     {
                         int[] point = new int[8];
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[10 + i];
 
-                        string txt = binaryToString(bc, 10);
+                        string txt = binaryToPosLin(point);
 
                         MethodInvoker mi2 = delegate
                         {
@@ -299,9 +322,12 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        //dist to go
 
-                        txt = binaryToString(bc, 18);
+                        //dist to go
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[18 + i];
+
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -310,7 +336,11 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        txt = binaryToString(bc, 28);
+
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[28 + i];
+
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -321,8 +351,10 @@ namespace PappachanNC3
 
 
                         //dist to go
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[36 + i];
 
-                        txt = binaryToString(bc, 36);
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -332,12 +364,13 @@ namespace PappachanNC3
                             this.Invoke(mi2);
                     }
 
-                    if (bc[6] == 6)// z + y direction
+                    if (bc[6] == 6)// 
                     {
                         int[] point = new int[8];
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[10 + i];
 
-
-                        string txt = binaryToString(bc, 10);
+                        string txt = binaryToPosLin(point);
 
                         MethodInvoker mi2 = delegate
                         {
@@ -348,8 +381,10 @@ namespace PappachanNC3
 
 
                         //dist to go
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[18 + i];
 
-                        txt = binaryToString(bc, 18);
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -358,7 +393,11 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        txt = binaryToString(bc, 28);
+
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[28 + i];
+
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -369,8 +408,10 @@ namespace PappachanNC3
 
 
                         //dist to go
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[36 + i];
 
-                        txt = binaryToString(bc, 36);
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -385,10 +426,13 @@ namespace PappachanNC3
 
                 else if (k == 62)
                 {
-                    if (bc[6] == 7)// x + y + z direction
+                    if (bc[6] == 7)// 
                     {
+                        int[] point = new int[8];
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[10 + i];
 
-                        string txt = binaryToString(bc, 10);
+                        string txt = binaryToPosLin(point);
 
                         MethodInvoker mi2 = delegate
                         {
@@ -397,9 +441,12 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        //dist to go
 
-                        txt = binaryToString(bc, 18);
+                        //dist to go
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[18 + i];
+
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -409,7 +456,10 @@ namespace PappachanNC3
                             this.Invoke(mi2);
 
 
-                        txt = binaryToString(bc, 28);
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[28 + i];
+
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -420,8 +470,10 @@ namespace PappachanNC3
 
 
                         //dist to go
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[36 + i];
 
-                        txt = binaryToString(bc, 36);
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -430,7 +482,10 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        txt = binaryToString(bc, 46);
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[46 + i];
+
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -439,9 +494,12 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        //dist to go
 
-                        txt = binaryToString(bc, 54);
+                        //dist to go
+                        for (int i = 0; i < 8; i++)
+                            point[i] = bc[54 + i];
+
+                        txt = binaryToPosLin(point);
 
                         mi2 = delegate
                         {
@@ -455,38 +513,6 @@ namespace PappachanNC3
 
             }
 
-        }
-
-        public string binaryToString(byte[] byteArray, int startPos)
-        {
-           
-            int[] point = new int[8];
-            for (int i = 0; i < 8; i++)
-                point[i] = byteArray[startPos + i];
-
-            string output = binaryToPosLin(point);
-
-            return output;
-        }
-
-        
-
-        public byte[] feedToBinary(int pos)
-        {
-            // y = 1,514,611.88ln(x) + 1,055,979,950.10
-            double first4 = 1514611.88 * Math.Log(pos) + 1055979950.10;
-            long first4Long = Convert.ToInt64(first4);
-
-            byte[] output = new byte[8];
-            output[7] = (byte)(first4Long / (256L * 256 * 256));
-            first4Long %= (256L * 256 * 256);
-            output[6] = (byte)(first4Long / (256L * 256));
-            first4Long %= (256L * 256);
-            output[5] = (byte)(first4Long / (256L));
-            first4Long %= (256L);
-            output[4] = (byte)first4Long;
-
-            return output;
         }
 
         public byte[] posToBinary(int pos)
@@ -536,7 +562,7 @@ namespace PappachanNC3
             return Math.Exp(doublePos).ToString();
         }
 
-        public string binaryToSpindle(int[] binaryPoint)
+        public string binaryToPosSpindle(int[] binaryPoint)
         {
             long intPos = (binaryPoint[4]) + (binaryPoint[5] * 256L) + (binaryPoint[6] * 256 * 256L) + (binaryPoint[7] * 256L * 256 * 256);
 
@@ -544,16 +570,6 @@ namespace PappachanNC3
             doublePos = (double)(doublePos) / (double)1515047.22522;
             //y=1,515,047.22522ln(x) + 1,066,427,853.40808
             return Math.Exp(doublePos).ToString();
-        }
-
-        public string binaryToFeed(int[] feed)
-        {
-            long intFeed = (feed[4]) + (feed[5] * 256L) + (feed[6] * 256 * 256L) + (feed[7] * 256L * 256 * 256);
-
-            double doubleFeed = intFeed - 1055979950.10;
-            doubleFeed = (double)(doubleFeed) / (double)1514611.88;
-            //y = 1,514,611.88ln(x) + 1,055,979,950.10
-            return Math.Exp(doubleFeed).ToString();
         }
 
 
@@ -1074,7 +1090,7 @@ namespace PappachanNC3
                 {
                     length += 10;
                     feedrate = int.Parse(fIn.Text);
-                    byte[] feedSpeed = feedToBinary(feedrate);
+                    byte[] feedSpeed = posToBinary(feedrate);
                     feedCommand = new byte[] { 0x18, 0, feedSpeed[0], feedSpeed[1], feedSpeed[2], feedSpeed[3], feedSpeed[4], feedSpeed[5], feedSpeed[6], feedSpeed[7] };
                 }
                 commandEnd = new byte[] { 0x65, 0, 0x96,0};
@@ -1132,31 +1148,16 @@ namespace PappachanNC3
             sendFile(clk1);
         }
 
-        private void refBtn_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            //send the reference byte array
-            sendFile(reference);
+            byte i = (byte)M06Number.Value;
+
+            byte[] clk1 = { 0, 0x58, 0x24, 0, 0, 0, 0, 0, 0, 0, 0x01, 0, 0, 0, 0x0E, 0, 0x05, 0, 0, 0, 0x01, 0, 0x8f, 0xc2, 0xf5, 0x28, 0x5c, 0x8f, 0xca, 0x3f, 0xde, 0, 0, 0, 0x06, 0, 0xdf, 0, 0, 0, i, 0, 0x96, 0 };
+
+            //send both bytes
+            sendFile(clk1);
         }
-
-        private void jogTab_Click(object sender, EventArgs e)
-        {
-
-        }
-
-<<<<<<< HEAD
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-=======
-
->>>>>>> origin/master
-
+       
 
         //end of modes
 
