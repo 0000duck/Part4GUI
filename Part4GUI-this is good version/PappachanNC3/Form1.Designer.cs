@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -47,27 +48,30 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+=======
+            this.statusGroup = new System.Windows.Forms.GroupBox();
+>>>>>>> origin/master
             this.statusBox = new System.Windows.Forms.RichTextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.XgroupBox = new System.Windows.Forms.GroupBox();
             this.moveXup = new System.Windows.Forms.Button();
             this.moveXdown = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.YGroupBox = new System.Windows.Forms.GroupBox();
             this.moveYup = new System.Windows.Forms.Button();
             this.moveYdown = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.ZGroupBox = new System.Windows.Forms.GroupBox();
             this.moveZdown = new System.Windows.Forms.Button();
             this.moveZup = new System.Windows.Forms.Button();
             this.M05Button = new System.Windows.Forms.Button();
             this.M03Button = new System.Windows.Forms.Button();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.FeedGroupBox = new System.Windows.Forms.GroupBox();
             this.feedDownButton = new System.Windows.Forms.Button();
             this.feedUpButton = new System.Windows.Forms.Button();
             this.jogXlabel = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.jogTab = new System.Windows.Forms.TabPage();
             this.memoryTab = new System.Windows.Forms.TabPage();
             this.referenceTab = new System.Windows.Forms.TabPage();
+            this.refBtn = new System.Windows.Forms.Button();
             this.ModeControl = new System.Windows.Forms.TabControl();
             this.editTab = new System.Windows.Forms.TabPage();
             this.mdiTab = new System.Windows.Forms.TabPage();
@@ -77,7 +81,6 @@
             this.yIn = new System.Windows.Forms.TextBox();
             this.xIn = new System.Windows.Forms.TextBox();
             this.M03Param = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.M06button = new System.Windows.Forms.Button();
             this.G01Button = new System.Windows.Forms.Button();
             this.G00Button = new System.Windows.Forms.Button();
@@ -85,23 +88,31 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+<<<<<<< HEAD
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+=======
+            this.returnBox = new System.Windows.Forms.RichTextBox();
+            this.XtoGoLbl = new System.Windows.Forms.Label();
+            this.YtoGoLbl = new System.Windows.Forms.Label();
+            this.ZtoGoLbl = new System.Windows.Forms.Label();
+>>>>>>> origin/master
             this.xtgBox = new System.Windows.Forms.TextBox();
             this.ytgBox = new System.Windows.Forms.TextBox();
             this.ztgBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.feedRateLbl = new System.Windows.Forms.Label();
             this.fBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.XLbl = new System.Windows.Forms.Label();
+            this.YLbl = new System.Windows.Forms.Label();
+            this.ZLbl = new System.Windows.Forms.Label();
+            this.spindleLbl = new System.Windows.Forms.Label();
             this.xBox = new System.Windows.Forms.TextBox();
             this.yBox = new System.Windows.Forms.TextBox();
             this.zBox = new System.Windows.Forms.TextBox();
             this.sBox = new System.Windows.Forms.TextBox();
+<<<<<<< HEAD
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
@@ -110,16 +121,45 @@
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox7.SuspendLayout();
+=======
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.terminateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.referenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.memoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mDIModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.functionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.referenceToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.statusGroup.SuspendLayout();
+            this.XgroupBox.SuspendLayout();
+            this.YGroupBox.SuspendLayout();
+            this.ZGroupBox.SuspendLayout();
+            this.FeedGroupBox.SuspendLayout();
+>>>>>>> origin/master
             this.jogTab.SuspendLayout();
+            this.referenceTab.SuspendLayout();
             this.ModeControl.SuspendLayout();
             this.mdiTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.M06Number)).BeginInit();
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+=======
+            this.menuStrip1.SuspendLayout();
+>>>>>>> origin/master
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // statusGroup
             // 
+<<<<<<< HEAD
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.connectionToolStripMenuItem,
@@ -256,6 +296,15 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Status";
+=======
+            this.statusGroup.Controls.Add(this.statusBox);
+            this.statusGroup.Location = new System.Drawing.Point(13, 285);
+            this.statusGroup.Name = "statusGroup";
+            this.statusGroup.Size = new System.Drawing.Size(772, 107);
+            this.statusGroup.TabIndex = 1;
+            this.statusGroup.TabStop = false;
+            this.statusGroup.Text = "Status";
+>>>>>>> origin/master
             // 
             // statusBox
             // 
@@ -265,16 +314,16 @@
             this.statusBox.TabIndex = 0;
             this.statusBox.Text = "";
             // 
-            // groupBox2
+            // XgroupBox
             // 
-            this.groupBox2.Controls.Add(this.moveXup);
-            this.groupBox2.Controls.Add(this.moveXdown);
-            this.groupBox2.Location = new System.Drawing.Point(6, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(170, 52);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "X axis";
+            this.XgroupBox.Controls.Add(this.moveXup);
+            this.XgroupBox.Controls.Add(this.moveXdown);
+            this.XgroupBox.Location = new System.Drawing.Point(6, 6);
+            this.XgroupBox.Name = "XgroupBox";
+            this.XgroupBox.Size = new System.Drawing.Size(170, 52);
+            this.XgroupBox.TabIndex = 2;
+            this.XgroupBox.TabStop = false;
+            this.XgroupBox.Text = "X axis";
             // 
             // moveXup
             // 
@@ -298,16 +347,16 @@
             this.moveXdown.UseVisualStyleBackColor = true;
             this.moveXdown.Click += new System.EventHandler(this.moveXdown_Click_1);
             // 
-            // groupBox3
+            // YGroupBox
             // 
-            this.groupBox3.Controls.Add(this.moveYup);
-            this.groupBox3.Controls.Add(this.moveYdown);
-            this.groupBox3.Location = new System.Drawing.Point(6, 61);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(170, 52);
-            this.groupBox3.TabIndex = 3;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Y axis";
+            this.YGroupBox.Controls.Add(this.moveYup);
+            this.YGroupBox.Controls.Add(this.moveYdown);
+            this.YGroupBox.Location = new System.Drawing.Point(6, 61);
+            this.YGroupBox.Name = "YGroupBox";
+            this.YGroupBox.Size = new System.Drawing.Size(170, 52);
+            this.YGroupBox.TabIndex = 3;
+            this.YGroupBox.TabStop = false;
+            this.YGroupBox.Text = "Y axis";
             // 
             // moveYup
             // 
@@ -331,16 +380,16 @@
             this.moveYdown.UseVisualStyleBackColor = true;
             this.moveYdown.Click += new System.EventHandler(this.moveYdown_Click);
             // 
-            // groupBox4
+            // ZGroupBox
             // 
-            this.groupBox4.Controls.Add(this.moveZdown);
-            this.groupBox4.Controls.Add(this.moveZup);
-            this.groupBox4.Location = new System.Drawing.Point(6, 117);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(170, 52);
-            this.groupBox4.TabIndex = 3;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Z axis";
+            this.ZGroupBox.Controls.Add(this.moveZdown);
+            this.ZGroupBox.Controls.Add(this.moveZup);
+            this.ZGroupBox.Location = new System.Drawing.Point(6, 117);
+            this.ZGroupBox.Name = "ZGroupBox";
+            this.ZGroupBox.Size = new System.Drawing.Size(170, 52);
+            this.ZGroupBox.TabIndex = 3;
+            this.ZGroupBox.TabStop = false;
+            this.ZGroupBox.Text = "Z axis";
             // 
             // moveZdown
             // 
@@ -384,17 +433,17 @@
             this.M03Button.UseVisualStyleBackColor = true;
             this.M03Button.Click += new System.EventHandler(this.M03Button_Click);
             // 
-            // groupBox7
+            // FeedGroupBox
             // 
-            this.groupBox7.BackColor = System.Drawing.Color.Lavender;
-            this.groupBox7.Controls.Add(this.feedDownButton);
-            this.groupBox7.Controls.Add(this.feedUpButton);
-            this.groupBox7.Location = new System.Drawing.Point(6, 175);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(170, 51);
-            this.groupBox7.TabIndex = 4;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Feed Rate";
+            this.FeedGroupBox.BackColor = System.Drawing.Color.Lavender;
+            this.FeedGroupBox.Controls.Add(this.feedDownButton);
+            this.FeedGroupBox.Controls.Add(this.feedUpButton);
+            this.FeedGroupBox.Location = new System.Drawing.Point(6, 175);
+            this.FeedGroupBox.Name = "FeedGroupBox";
+            this.FeedGroupBox.Size = new System.Drawing.Size(170, 51);
+            this.FeedGroupBox.TabIndex = 4;
+            this.FeedGroupBox.TabStop = false;
+            this.FeedGroupBox.Text = "Feed Rate";
             // 
             // feedDownButton
             // 
@@ -427,11 +476,6 @@
             this.jogXlabel.TabIndex = 5;
             this.jogXlabel.Text = "0";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -443,10 +487,10 @@
             // 
             // jogTab
             // 
-            this.jogTab.Controls.Add(this.groupBox2);
-            this.jogTab.Controls.Add(this.groupBox3);
-            this.jogTab.Controls.Add(this.groupBox4);
-            this.jogTab.Controls.Add(this.groupBox7);
+            this.jogTab.Controls.Add(this.XgroupBox);
+            this.jogTab.Controls.Add(this.YGroupBox);
+            this.jogTab.Controls.Add(this.ZGroupBox);
+            this.jogTab.Controls.Add(this.FeedGroupBox);
             this.jogTab.Location = new System.Drawing.Point(4, 22);
             this.jogTab.Name = "jogTab";
             this.jogTab.Padding = new System.Windows.Forms.Padding(3);
@@ -454,6 +498,7 @@
             this.jogTab.TabIndex = 4;
             this.jogTab.Text = "Jog";
             this.jogTab.UseVisualStyleBackColor = true;
+            this.jogTab.Click += new System.EventHandler(this.jogTab_Click);
             // 
             // memoryTab
             // 
@@ -467,6 +512,7 @@
             // 
             // referenceTab
             // 
+            this.referenceTab.Controls.Add(this.refBtn);
             this.referenceTab.Location = new System.Drawing.Point(4, 22);
             this.referenceTab.Name = "referenceTab";
             this.referenceTab.Padding = new System.Windows.Forms.Padding(3);
@@ -474,6 +520,16 @@
             this.referenceTab.TabIndex = 0;
             this.referenceTab.Text = "Reference";
             this.referenceTab.UseVisualStyleBackColor = true;
+            // 
+            // refBtn
+            // 
+            this.refBtn.Location = new System.Drawing.Point(10, 6);
+            this.refBtn.Name = "refBtn";
+            this.refBtn.Size = new System.Drawing.Size(75, 23);
+            this.refBtn.TabIndex = 0;
+            this.refBtn.Text = "reference";
+            this.refBtn.UseVisualStyleBackColor = true;
+            this.refBtn.Click += new System.EventHandler(this.refBtn_Click);
             // 
             // ModeControl
             // 
@@ -508,7 +564,6 @@
             this.mdiTab.Controls.Add(this.xIn);
             this.mdiTab.Controls.Add(this.M03Param);
             this.mdiTab.Controls.Add(this.M05Button);
-            this.mdiTab.Controls.Add(this.button3);
             this.mdiTab.Controls.Add(this.M06button);
             this.mdiTab.Controls.Add(this.G01Button);
             this.mdiTab.Controls.Add(this.G00Button);
@@ -586,16 +641,6 @@
             this.M03Param.Size = new System.Drawing.Size(100, 20);
             this.M03Param.TabIndex = 18;
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(219, 138);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "G00";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button1_Click);
-            // 
             // M06button
             // 
             this.M06button.Location = new System.Drawing.Point(42, 138);
@@ -662,37 +707,44 @@
             this.label12.TabIndex = 24;
             this.label12.Text = "Z";
             // 
+<<<<<<< HEAD
             // contextMenuStrip2
+=======
+            // returnBox
             // 
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            this.returnBox.Location = new System.Drawing.Point(633, 151);
+            this.returnBox.Name = "returnBox";
+            this.returnBox.Size = new System.Drawing.Size(225, 235);
+            this.returnBox.TabIndex = 23;
+            this.returnBox.Text = "";
             // 
-            // label7
+            // XtoGoLbl
+>>>>>>> origin/master
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(795, 49);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 13);
-            this.label7.TabIndex = 24;
-            this.label7.Text = "X to Go";
+            this.XtoGoLbl.AutoSize = true;
+            this.XtoGoLbl.Location = new System.Drawing.Point(795, 49);
+            this.XtoGoLbl.Name = "XtoGoLbl";
+            this.XtoGoLbl.Size = new System.Drawing.Size(43, 13);
+            this.XtoGoLbl.TabIndex = 24;
+            this.XtoGoLbl.Text = "X to Go";
             // 
-            // label9
+            // YtoGoLbl
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(795, 75);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(43, 13);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "Y to Go";
+            this.YtoGoLbl.AutoSize = true;
+            this.YtoGoLbl.Location = new System.Drawing.Point(795, 75);
+            this.YtoGoLbl.Name = "YtoGoLbl";
+            this.YtoGoLbl.Size = new System.Drawing.Size(43, 13);
+            this.YtoGoLbl.TabIndex = 24;
+            this.YtoGoLbl.Text = "Y to Go";
             // 
-            // label10
+            // ZtoGoLbl
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(795, 102);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(43, 13);
-            this.label10.TabIndex = 24;
-            this.label10.Text = "Z to Go";
+            this.ZtoGoLbl.AutoSize = true;
+            this.ZtoGoLbl.Location = new System.Drawing.Point(795, 102);
+            this.ZtoGoLbl.Name = "ZtoGoLbl";
+            this.ZtoGoLbl.Size = new System.Drawing.Size(43, 13);
+            this.ZtoGoLbl.TabIndex = 24;
+            this.ZtoGoLbl.Text = "Z to Go";
             // 
             // xtgBox
             // 
@@ -715,14 +767,14 @@
             this.ztgBox.Size = new System.Drawing.Size(100, 20);
             this.ztgBox.TabIndex = 25;
             // 
-            // label1
+            // feedRateLbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(796, 128);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "feed rate";
+            this.feedRateLbl.AutoSize = true;
+            this.feedRateLbl.Location = new System.Drawing.Point(796, 128);
+            this.feedRateLbl.Name = "feedRateLbl";
+            this.feedRateLbl.Size = new System.Drawing.Size(49, 13);
+            this.feedRateLbl.TabIndex = 24;
+            this.feedRateLbl.Text = "feed rate";
             // 
             // fBox
             // 
@@ -731,41 +783,41 @@
             this.fBox.Size = new System.Drawing.Size(100, 20);
             this.fBox.TabIndex = 25;
             // 
-            // label2
+            // XLbl
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(591, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 13);
-            this.label2.TabIndex = 24;
-            this.label2.Text = "X";
+            this.XLbl.AutoSize = true;
+            this.XLbl.Location = new System.Drawing.Point(591, 49);
+            this.XLbl.Name = "XLbl";
+            this.XLbl.Size = new System.Drawing.Size(14, 13);
+            this.XLbl.TabIndex = 24;
+            this.XLbl.Text = "X";
             // 
-            // label3
+            // YLbl
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(591, 75);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(14, 13);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "Y";
+            this.YLbl.AutoSize = true;
+            this.YLbl.Location = new System.Drawing.Point(591, 75);
+            this.YLbl.Name = "YLbl";
+            this.YLbl.Size = new System.Drawing.Size(14, 13);
+            this.YLbl.TabIndex = 24;
+            this.YLbl.Text = "Y";
             // 
-            // label4
+            // ZLbl
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(591, 102);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(14, 13);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Z";
+            this.ZLbl.AutoSize = true;
+            this.ZLbl.Location = new System.Drawing.Point(591, 102);
+            this.ZLbl.Name = "ZLbl";
+            this.ZLbl.Size = new System.Drawing.Size(14, 13);
+            this.ZLbl.TabIndex = 24;
+            this.ZLbl.Text = "Z";
             // 
-            // label5
+            // spindleLbl
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(581, 128);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 13);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "Spindle";
+            this.spindleLbl.AutoSize = true;
+            this.spindleLbl.Location = new System.Drawing.Point(581, 128);
+            this.spindleLbl.Name = "spindleLbl";
+            this.spindleLbl.Size = new System.Drawing.Size(42, 13);
+            this.spindleLbl.TabIndex = 24;
+            this.spindleLbl.Text = "Spindle";
             // 
             // xBox
             // 
@@ -795,6 +847,7 @@
             this.sBox.Size = new System.Drawing.Size(100, 20);
             this.sBox.TabIndex = 25;
             // 
+<<<<<<< HEAD
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -816,6 +869,136 @@
             this.pictureBox2.TabIndex = 26;
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+=======
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.closeToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            // 
+            // connectionToolStripMenuItem
+            // 
+            this.connectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.startToolStripMenuItem,
+            this.terminateToolStripMenuItem});
+            this.connectionToolStripMenuItem.Name = "connectionToolStripMenuItem";
+            this.connectionToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+            this.connectionToolStripMenuItem.Text = "Connection";
+            // 
+            // startToolStripMenuItem
+            // 
+            this.startToolStripMenuItem.Name = "startToolStripMenuItem";
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.startToolStripMenuItem.Text = "Start";
+            this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
+            // 
+            // terminateToolStripMenuItem
+            // 
+            this.terminateToolStripMenuItem.Enabled = false;
+            this.terminateToolStripMenuItem.Name = "terminateToolStripMenuItem";
+            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.terminateToolStripMenuItem.Text = "Terminate";
+            this.terminateToolStripMenuItem.Click += new System.EventHandler(this.terminateToolStripMenuItem_Click);
+            // 
+            // modesToolStripMenuItem
+            // 
+            this.modesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.referenceToolStripMenuItem,
+            this.memoryToolStripMenuItem,
+            this.jogToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.mDIModeToolStripMenuItem});
+            this.modesToolStripMenuItem.Name = "modesToolStripMenuItem";
+            this.modesToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.modesToolStripMenuItem.Text = "Modes";
+            // 
+            // referenceToolStripMenuItem
+            // 
+            this.referenceToolStripMenuItem.Name = "referenceToolStripMenuItem";
+            this.referenceToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.referenceToolStripMenuItem.Text = "Reference Mode";
+            this.referenceToolStripMenuItem.Click += new System.EventHandler(this.referenceToolStripMenuItem_Click);
+            // 
+            // memoryToolStripMenuItem
+            // 
+            this.memoryToolStripMenuItem.Name = "memoryToolStripMenuItem";
+            this.memoryToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.memoryToolStripMenuItem.Text = "Memory Mode";
+            this.memoryToolStripMenuItem.Click += new System.EventHandler(this.memoryToolStripMenuItem_Click);
+            // 
+            // jogToolStripMenuItem
+            // 
+            this.jogToolStripMenuItem.Name = "jogToolStripMenuItem";
+            this.jogToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.jogToolStripMenuItem.Text = "Jog Mode";
+            this.jogToolStripMenuItem.Click += new System.EventHandler(this.jogToolStripMenuItem_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.editToolStripMenuItem.Text = "Edit Mode";
+            // 
+            // mDIModeToolStripMenuItem
+            // 
+            this.mDIModeToolStripMenuItem.Name = "mDIModeToolStripMenuItem";
+            this.mDIModeToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.mDIModeToolStripMenuItem.Text = "MDI Mode";
+            this.mDIModeToolStripMenuItem.Click += new System.EventHandler(this.mDIModeToolStripMenuItem_Click);
+            // 
+            // functionsToolStripMenuItem
+            // 
+            this.functionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.referenceToolStripMenuItem1});
+            this.functionsToolStripMenuItem.Name = "functionsToolStripMenuItem";
+            this.functionsToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.functionsToolStripMenuItem.Text = "Functions";
+            // 
+            // referenceToolStripMenuItem1
+            // 
+            this.referenceToolStripMenuItem1.Enabled = false;
+            this.referenceToolStripMenuItem1.Name = "referenceToolStripMenuItem1";
+            this.referenceToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
+            this.referenceToolStripMenuItem1.Text = "Reference";
+            this.referenceToolStripMenuItem1.Click += new System.EventHandler(this.referenceToolStripMenuItem1_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.connectionToolStripMenuItem,
+            this.modesToolStripMenuItem,
+            this.functionsToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(975, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+>>>>>>> origin/master
             // 
             // Form1
             // 
@@ -831,8 +1014,9 @@
             this.Controls.Add(this.ztgBox);
             this.Controls.Add(this.xBox);
             this.Controls.Add(this.ytgBox);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.spindleLbl);
             this.Controls.Add(this.xtgBox);
+<<<<<<< HEAD
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
@@ -840,67 +1024,63 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
+=======
+            this.Controls.Add(this.ZLbl);
+            this.Controls.Add(this.feedRateLbl);
+            this.Controls.Add(this.YLbl);
+            this.Controls.Add(this.ZtoGoLbl);
+            this.Controls.Add(this.XLbl);
+            this.Controls.Add(this.YtoGoLbl);
+            this.Controls.Add(this.XtoGoLbl);
+            this.Controls.Add(this.returnBox);
+>>>>>>> origin/master
             this.Controls.Add(this.ModeControl);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.jogXlabel);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.statusGroup);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "PappachanNC ver 0.3";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
+            this.statusGroup.ResumeLayout(false);
+            this.XgroupBox.ResumeLayout(false);
+            this.YGroupBox.ResumeLayout(false);
+            this.ZGroupBox.ResumeLayout(false);
+            this.FeedGroupBox.ResumeLayout(false);
             this.jogTab.ResumeLayout(false);
+            this.referenceTab.ResumeLayout(false);
             this.ModeControl.ResumeLayout(false);
             this.mdiTab.ResumeLayout(false);
             this.mdiTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.M06Number)).EndInit();
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+=======
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+>>>>>>> origin/master
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem connectionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem terminateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem referenceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem memoryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem jogToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem functionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem referenceToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox statusGroup;
+        private System.Windows.Forms.GroupBox XgroupBox;
         private System.Windows.Forms.Button moveXup;
         private System.Windows.Forms.Button moveXdown;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox YGroupBox;
         private System.Windows.Forms.Button moveYup;
         private System.Windows.Forms.Button moveYdown;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox ZGroupBox;
         private System.Windows.Forms.Button moveZdown;
         private System.Windows.Forms.Button moveZup;
-        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox FeedGroupBox;
         private System.Windows.Forms.Button feedDownButton;
         private System.Windows.Forms.Button feedUpButton;
         private System.Windows.Forms.Label jogXlabel;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ToolStripMenuItem mDIModeToolStripMenuItem;
         private System.Windows.Forms.Button M05Button;
         private System.Windows.Forms.Button M03Button;
         private System.Windows.Forms.TabPage jogTab;
@@ -910,20 +1090,19 @@
         private System.Windows.Forms.TabPage mdiTab;
         private System.Windows.Forms.TabPage editTab;
         public System.Windows.Forms.RichTextBox statusBox;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label XtoGoLbl;
+        private System.Windows.Forms.Label YtoGoLbl;
+        private System.Windows.Forms.Label ZtoGoLbl;
         private System.Windows.Forms.TextBox xtgBox;
         private System.Windows.Forms.TextBox ytgBox;
         private System.Windows.Forms.TextBox ztgBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label feedRateLbl;
         private System.Windows.Forms.TextBox fBox;
         private System.Windows.Forms.TextBox M03Param;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label XLbl;
+        private System.Windows.Forms.Label YLbl;
+        private System.Windows.Forms.Label ZLbl;
+        private System.Windows.Forms.Label spindleLbl;
         private System.Windows.Forms.TextBox xBox;
         private System.Windows.Forms.TextBox yBox;
         private System.Windows.Forms.TextBox zBox;
@@ -935,14 +1114,33 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button M06button;
         private System.Windows.Forms.Button G01Button;
         private System.Windows.Forms.TextBox fIn;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.NumericUpDown M06Number;
+<<<<<<< HEAD
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+=======
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem connectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem terminateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem referenceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem memoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mDIModeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem functionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem referenceToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Button refBtn;
+>>>>>>> origin/master
     }
 }
 
