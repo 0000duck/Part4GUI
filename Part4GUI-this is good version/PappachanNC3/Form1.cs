@@ -125,7 +125,7 @@ namespace PappachanNC3
 
                 MethodInvoker mi = delegate
                 {
-                    returnBox.Text += k + ":    " + str + "\r\n";
+                    //returnBox.Text += k + ":    " + str + "\r\n";
                 };
                 if (InvokeRequired)
                     this.Invoke(mi);
@@ -1187,7 +1187,17 @@ namespace PappachanNC3
             //send both bytes
             sendFile(clk1);
         }
-       
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         //end of modes
 

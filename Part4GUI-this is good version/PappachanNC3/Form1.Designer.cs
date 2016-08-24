@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,7 +85,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.returnBox = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -102,6 +102,8 @@
             this.yBox = new System.Windows.Forms.TextBox();
             this.zBox = new System.Windows.Forms.TextBox();
             this.sBox = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -112,6 +114,8 @@
             this.ModeControl.SuspendLayout();
             this.mdiTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.M06Number)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -124,7 +128,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(975, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(987, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -658,14 +662,6 @@
             this.label12.TabIndex = 24;
             this.label12.Text = "Z";
             // 
-            // returnBox
-            // 
-            this.returnBox.Location = new System.Drawing.Point(633, 151);
-            this.returnBox.Name = "returnBox";
-            this.returnBox.Size = new System.Drawing.Size(225, 235);
-            this.returnBox.TabIndex = 23;
-            this.returnBox.Text = "";
-            // 
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.Name = "contextMenuStrip2";
@@ -799,11 +795,35 @@
             this.sBox.Size = new System.Drawing.Size(100, 20);
             this.sBox.TabIndex = 25;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(614, 175);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 116);
+            this.pictureBox1.TabIndex = 26;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
+            this.pictureBox2.Location = new System.Drawing.Point(839, 175);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(101, 116);
+            this.pictureBox2.TabIndex = 26;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(975, 438);
+            this.ClientSize = new System.Drawing.Size(987, 438);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.sBox);
             this.Controls.Add(this.zBox);
             this.Controls.Add(this.fBox);
@@ -820,7 +840,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.returnBox);
             this.Controls.Add(this.ModeControl);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.jogXlabel);
@@ -841,6 +860,8 @@
             this.mdiTab.ResumeLayout(false);
             this.mdiTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.M06Number)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -888,7 +909,6 @@
         private System.Windows.Forms.TabControl ModeControl;
         private System.Windows.Forms.TabPage mdiTab;
         private System.Windows.Forms.TabPage editTab;
-        public System.Windows.Forms.RichTextBox returnBox;
         public System.Windows.Forms.RichTextBox statusBox;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.Label label7;
@@ -921,6 +941,8 @@
         private System.Windows.Forms.TextBox fIn;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.NumericUpDown M06Number;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 
