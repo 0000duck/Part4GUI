@@ -28,29 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-<<<<<<< HEAD
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.connectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.terminateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.referenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.memoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mDIModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.functionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.referenceToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-=======
             this.statusGroup = new System.Windows.Forms.GroupBox();
->>>>>>> origin/master
             this.statusBox = new System.Windows.Forms.RichTextBox();
             this.XgroupBox = new System.Windows.Forms.GroupBox();
             this.moveXup = new System.Windows.Forms.Button();
@@ -88,17 +66,10 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-<<<<<<< HEAD
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-=======
             this.returnBox = new System.Windows.Forms.RichTextBox();
             this.XtoGoLbl = new System.Windows.Forms.Label();
             this.YtoGoLbl = new System.Windows.Forms.Label();
             this.ZtoGoLbl = new System.Windows.Forms.Label();
->>>>>>> origin/master
             this.xtgBox = new System.Windows.Forms.TextBox();
             this.ytgBox = new System.Windows.Forms.TextBox();
             this.ztgBox = new System.Windows.Forms.TextBox();
@@ -112,16 +83,6 @@
             this.yBox = new System.Windows.Forms.TextBox();
             this.zBox = new System.Windows.Forms.TextBox();
             this.sBox = new System.Windows.Forms.TextBox();
-<<<<<<< HEAD
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.menuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-=======
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -143,160 +104,16 @@
             this.YGroupBox.SuspendLayout();
             this.ZGroupBox.SuspendLayout();
             this.FeedGroupBox.SuspendLayout();
->>>>>>> origin/master
             this.jogTab.SuspendLayout();
             this.referenceTab.SuspendLayout();
             this.ModeControl.SuspendLayout();
             this.mdiTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.M06Number)).BeginInit();
-<<<<<<< HEAD
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-=======
             this.menuStrip1.SuspendLayout();
->>>>>>> origin/master
             this.SuspendLayout();
             // 
             // statusGroup
             // 
-<<<<<<< HEAD
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.connectionToolStripMenuItem,
-            this.modesToolStripMenuItem,
-            this.functionsToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(987, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.closeToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.closeToolStripMenuItem.Text = "Close";
-            // 
-            // connectionToolStripMenuItem
-            // 
-            this.connectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.startToolStripMenuItem,
-            this.terminateToolStripMenuItem});
-            this.connectionToolStripMenuItem.Name = "connectionToolStripMenuItem";
-            this.connectionToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
-            this.connectionToolStripMenuItem.Text = "Connection";
-            // 
-            // startToolStripMenuItem
-            // 
-            this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.startToolStripMenuItem.Text = "Start";
-            this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
-            // 
-            // terminateToolStripMenuItem
-            // 
-            this.terminateToolStripMenuItem.Enabled = false;
-            this.terminateToolStripMenuItem.Name = "terminateToolStripMenuItem";
-            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
-            this.terminateToolStripMenuItem.Text = "Terminate";
-            this.terminateToolStripMenuItem.Click += new System.EventHandler(this.terminateToolStripMenuItem_Click);
-            // 
-            // modesToolStripMenuItem
-            // 
-            this.modesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.referenceToolStripMenuItem,
-            this.memoryToolStripMenuItem,
-            this.jogToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.mDIModeToolStripMenuItem});
-            this.modesToolStripMenuItem.Name = "modesToolStripMenuItem";
-            this.modesToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.modesToolStripMenuItem.Text = "Modes";
-            // 
-            // referenceToolStripMenuItem
-            // 
-            this.referenceToolStripMenuItem.Name = "referenceToolStripMenuItem";
-            this.referenceToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.referenceToolStripMenuItem.Text = "Reference Mode";
-            this.referenceToolStripMenuItem.Click += new System.EventHandler(this.referenceToolStripMenuItem_Click);
-            // 
-            // memoryToolStripMenuItem
-            // 
-            this.memoryToolStripMenuItem.Name = "memoryToolStripMenuItem";
-            this.memoryToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.memoryToolStripMenuItem.Text = "Memory Mode";
-            this.memoryToolStripMenuItem.Click += new System.EventHandler(this.memoryToolStripMenuItem_Click);
-            // 
-            // jogToolStripMenuItem
-            // 
-            this.jogToolStripMenuItem.Name = "jogToolStripMenuItem";
-            this.jogToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.jogToolStripMenuItem.Text = "Jog Mode";
-            this.jogToolStripMenuItem.Click += new System.EventHandler(this.jogToolStripMenuItem_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.editToolStripMenuItem.Text = "Edit Mode";
-            // 
-            // mDIModeToolStripMenuItem
-            // 
-            this.mDIModeToolStripMenuItem.Name = "mDIModeToolStripMenuItem";
-            this.mDIModeToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.mDIModeToolStripMenuItem.Text = "MDI Mode";
-            this.mDIModeToolStripMenuItem.Click += new System.EventHandler(this.mDIModeToolStripMenuItem_Click);
-            // 
-            // functionsToolStripMenuItem
-            // 
-            this.functionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.referenceToolStripMenuItem1});
-            this.functionsToolStripMenuItem.Name = "functionsToolStripMenuItem";
-            this.functionsToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.functionsToolStripMenuItem.Text = "Functions";
-            // 
-            // referenceToolStripMenuItem1
-            // 
-            this.referenceToolStripMenuItem1.Enabled = false;
-            this.referenceToolStripMenuItem1.Name = "referenceToolStripMenuItem1";
-            this.referenceToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
-            this.referenceToolStripMenuItem1.Text = "Reference";
-            this.referenceToolStripMenuItem1.Click += new System.EventHandler(this.referenceToolStripMenuItem1_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.statusBox);
-            this.groupBox1.Location = new System.Drawing.Point(13, 285);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(772, 107);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Status";
-=======
             this.statusGroup.Controls.Add(this.statusBox);
             this.statusGroup.Location = new System.Drawing.Point(13, 285);
             this.statusGroup.Name = "statusGroup";
@@ -304,7 +121,6 @@
             this.statusGroup.TabIndex = 1;
             this.statusGroup.TabStop = false;
             this.statusGroup.Text = "Status";
->>>>>>> origin/master
             // 
             // statusBox
             // 
@@ -707,9 +523,6 @@
             this.label12.TabIndex = 24;
             this.label12.Text = "Z";
             // 
-<<<<<<< HEAD
-            // contextMenuStrip2
-=======
             // returnBox
             // 
             this.returnBox.Location = new System.Drawing.Point(633, 151);
@@ -719,7 +532,6 @@
             this.returnBox.Text = "";
             // 
             // XtoGoLbl
->>>>>>> origin/master
             // 
             this.XtoGoLbl.AutoSize = true;
             this.XtoGoLbl.Location = new System.Drawing.Point(795, 49);
@@ -847,29 +659,6 @@
             this.sBox.Size = new System.Drawing.Size(100, 20);
             this.sBox.TabIndex = 25;
             // 
-<<<<<<< HEAD
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(614, 175);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 116);
-            this.pictureBox1.TabIndex = 26;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(839, 175);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(101, 116);
-            this.pictureBox2.TabIndex = 26;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-=======
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -998,15 +787,12 @@
             this.menuStrip1.Size = new System.Drawing.Size(975, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
->>>>>>> origin/master
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(987, 438);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.ClientSize = new System.Drawing.Size(975, 438);
             this.Controls.Add(this.sBox);
             this.Controls.Add(this.zBox);
             this.Controls.Add(this.fBox);
@@ -1016,15 +802,6 @@
             this.Controls.Add(this.ytgBox);
             this.Controls.Add(this.spindleLbl);
             this.Controls.Add(this.xtgBox);
-<<<<<<< HEAD
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label7);
-=======
             this.Controls.Add(this.ZLbl);
             this.Controls.Add(this.feedRateLbl);
             this.Controls.Add(this.YLbl);
@@ -1033,7 +810,6 @@
             this.Controls.Add(this.YtoGoLbl);
             this.Controls.Add(this.XtoGoLbl);
             this.Controls.Add(this.returnBox);
->>>>>>> origin/master
             this.Controls.Add(this.ModeControl);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.jogXlabel);
@@ -1053,13 +829,8 @@
             this.mdiTab.ResumeLayout(false);
             this.mdiTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.M06Number)).EndInit();
-<<<<<<< HEAD
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-=======
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
->>>>>>> origin/master
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1089,6 +860,7 @@
         private System.Windows.Forms.TabControl ModeControl;
         private System.Windows.Forms.TabPage mdiTab;
         private System.Windows.Forms.TabPage editTab;
+        public System.Windows.Forms.RichTextBox returnBox;
         public System.Windows.Forms.RichTextBox statusBox;
         private System.Windows.Forms.Label XtoGoLbl;
         private System.Windows.Forms.Label YtoGoLbl;
@@ -1119,10 +891,6 @@
         private System.Windows.Forms.TextBox fIn;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.NumericUpDown M06Number;
-<<<<<<< HEAD
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-=======
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem connectionToolStripMenuItem;
@@ -1140,7 +908,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Button refBtn;
->>>>>>> origin/master
     }
 }
 
