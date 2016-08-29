@@ -134,6 +134,7 @@ namespace WindowsFormsApplication2
 
                     if (r != null)
                     {
+                        double[] results;
                         if (x != null && y != null && z == null)
                         {
                             if ((xPast == null) || (yPast == null))
@@ -142,21 +143,50 @@ namespace WindowsFormsApplication2
                             }
                             else
                             {
-                                RtoCentre(r.Value, xPast.Value, yPast.Value, x.Value, y.Value);
+                               results = RtoCentre(r.Value, xPast.Value, yPast.Value, x.Value, y.Value);
                             }
                             //i,j
 
                         }
                         else if (x == null && y != null && z != null)
                         {
+                            if ((yPast == null) || (zPast == null))
+                            {
+                                //fetch current position
+                            }
+                            else
+                            {
+                                
+                            }
                             //j,k
                         }
                         else if (x != null && y == null && z != null)
                         {
+                            if ((xPast == null) || (zPast == null))
+                            {
+                                //fetch current position
+                            }
+                            else
+                            {
+                               
+                            }
                             //i,k
                         }
                         else
                             ; ///error
+                        if (g == 02)
+                        {
+                            //clockwise
+                            //break into four quadrants
+                            //first quad upleft
+                            //second quad downleft
+                            //third quad downright
+                            //fouth quad up right
+                        }
+                        else if (g == 03)
+                        {
+                            //counter-clockwise
+                        }
                     }
                     if (g != null)
                     {
