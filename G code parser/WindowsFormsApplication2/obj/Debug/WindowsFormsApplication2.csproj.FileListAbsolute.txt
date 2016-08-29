@@ -7,3 +7,6 @@ C:\Users\sheng\Documents\Visual Studio 2015\Projects\WindowsFormsApplication2\Wi
 C:\Users\sheng\Documents\Visual Studio 2015\Projects\WindowsFormsApplication2\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.GenerateResource.Cache
 C:\Users\sheng\Documents\Visual Studio 2015\Projects\WindowsFormsApplication2\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.exe
 C:\Users\sheng\Documents\Visual Studio 2015\Projects\WindowsFormsApplication2\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.pdb
+C:\Users\wtse224\Source\Repos\Part4GUI\G code parser\WindowsFormsApplication2\bin\Debug\WindowsFormsApplication2.exe.config
+C:\Users\wtse224\Source\Repos\Part4GUI\G code parser\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.exe
+C:\Users\wtse224\Source\Repos\Part4GUI\G code parser\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.pdb

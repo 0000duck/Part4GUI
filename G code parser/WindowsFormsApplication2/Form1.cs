@@ -21,25 +21,26 @@ namespace WindowsFormsApplication2
         private void button1_Click(object sender, EventArgs e)
         {
             string textLong = textBox1.Text;
-            textLong = textLong.Replace(";\r\n",";");
+            textLong = textLong.Replace(";\r\n", ";");
             textLong = textLong.Replace("; \r\n", ";");
             textLong = textLong.Replace("\r\n", ";");
             textLong = textLong.ToUpper();
             string[] commandArray = textLong.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             int lineCount = 1;   //??? starts at 1
+            double? xPast = null, yPast = null, zPast = null;
             foreach (string command in commandArray)
             {
-                string[] commandPart = command.Split(new char[]{ ' '},StringSplitOptions.RemoveEmptyEntries);
-                ArrayList commandPartList =new ArrayList(commandPart);
+                string[] commandPart = command.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                ArrayList commandPartList = new ArrayList(commandPart);
 
                 ArrayList outputArr = new ArrayList();
 
                 //first 2
-                outputArr.Add( 0x0);
-                outputArr.Add( 0x58);
+                outputArr.Add(0x0);
+                outputArr.Add(0x58);
 
                 //length 
-                outputArr.Add( 0x0); //!!!!!temp, will be changed at end //(outputLength - 8);
+                outputArr.Add(0x0); //!!!!!temp, will be changed at end //(outputLength - 8);
                 for (int i = 0; i < 7; i++)
                     outputArr.Add(0);
 
@@ -56,7 +57,7 @@ namespace WindowsFormsApplication2
                 outputArr.Add(0);
 
                 //first deal with the first term, can only be G or M (others possible, but not implemented, as the use is rare(?))= 
-                string firstCommand = (string) commandPartList[0];
+                string firstCommand = (string)commandPartList[0];
                 int GCodeCommand = -1;
                 if (firstCommand[0] == 'M')
                 {
@@ -81,17 +82,17 @@ namespace WindowsFormsApplication2
                     for (int i = 0; i < 8; i++)
                         outputArr.Add(pos[i]);
                 }
-                
+
                 //remove now processed initial command
                 commandPartList.RemoveAt(0);
 
-                commandPart = (string[]) commandPartList.ToArray(typeof(string));
+                commandPart = (string[])commandPartList.ToArray(typeof(string));
 
                 //sort list if doing arcs
 
 
                 //add mysterious paramter for G00 and G01
-                if (GCodeCommand ==0 || GCodeCommand == 1 || GCodeCommand == 2 || GCodeCommand == 3)
+                if (GCodeCommand == 0 || GCodeCommand == 1 || GCodeCommand == 2 || GCodeCommand == 3)
                 {
                     outputArr.Add(0x1c);
                     outputArr.Add(0);
@@ -106,7 +107,7 @@ namespace WindowsFormsApplication2
                     ArrayList commandPartNew = new ArrayList(commandPart);
 
                     //nullable double values for parameters
-                    double? x = null, y = null, z = null, r = null;
+                    double? x = null, y = null, z = null, r = null,g = null;
                     foreach (string oldCommand in commandPartNew)
                     {
                         if (oldCommand[0] == 'X')
@@ -123,25 +124,47 @@ namespace WindowsFormsApplication2
                             r = int.Parse(oldCommand.Substring(1));
                             commandPartNew.Remove(oldCommand);
                         }
+
+                        if (oldCommand[0] == 'G')
+                        {
+                            g = int.Parse(oldCommand.Substring(1));
+
+                        }
                     }
 
                     if (r != null)
                     {
                         if (x != null && y != null && z == null)
                         {
+                            if ((xPast == null) || (yPast == null))
+                            {
+                                //fetch current position
+                            }
+                            else
+                            {
+                                RtoCentre(r.Value, xPast.Value, yPast.Value, x.Value, y.Value);
+                            }
                             //i,j
 
                         }
                         else if (x == null && y != null && z != null)
                         {
-
+                            //j,k
                         }
                         else if (x != null && y == null && z != null)
                         {
+                            //i,k
                         }
                         else
                             ; ///error
                     }
+                    if (g != null)
+                    {
+                        xPast = x;
+                        yPast = y;
+                        zPast = z;
+                    }
+
                 }
 
                 //sorts arcs commands into proper order
@@ -153,10 +176,10 @@ namespace WindowsFormsApplication2
                     //converts array into arrList for easier sorting
                     ArrayList commandPartArrList = new ArrayList(commandPart);
 
-                    
+
                     foreach (string unsorted in commandPartArrList)
                     {
-                        if(unsorted[0] == 'I')
+                        if (unsorted[0] == 'I')
                         {
                             commandPartSort.Add(unsorted);
                             //commandPartArrList.Remove(unsorted);
@@ -202,11 +225,11 @@ namespace WindowsFormsApplication2
                             //commandPartArrList.Remove(unsorted);
                         }
                     }
-                        
-                    for(int i=0;i<commandPartArrList.Count;i++)
+
+                    for (int i = 0; i < commandPartArrList.Count; i++)
                     {
-                        string unsorted = (string) commandPartArrList[i];
-                        if(unsorted[0] == 'X' || unsorted[0] == 'Y' || unsorted[0] == 'Z' ||
+                        string unsorted = (string)commandPartArrList[i];
+                        if (unsorted[0] == 'X' || unsorted[0] == 'Y' || unsorted[0] == 'Z' ||
                             unsorted[0] == 'I' || unsorted[0] == 'J' || unsorted[0] == 'K')
                         {
                             commandPartArrList.Remove(unsorted);
@@ -258,16 +281,16 @@ namespace WindowsFormsApplication2
                         commandPartSort.Add(unsorted);
                     }
 
-                    
-                    
-                    commandPart = (string[]) commandPartSort.ToArray(typeof(string));
+
+
+                    commandPart = (string[])commandPartSort.ToArray(typeof(string));
                 }
 
 
 
                 foreach (string indCommand in commandPart)
                 {
-                   if (indCommand[0] == 'X')
+                    if (indCommand[0] == 'X')
                     {
                         outputArr.Add(0x1e);
                         outputArr.Add(0);
@@ -390,8 +413,8 @@ namespace WindowsFormsApplication2
 
                 //replace correct length
                 outputArr[2] = outputArr.Count - 8;
-                for(int i=0;i<outputArr.Count;i++)
-                    Console.Write("{0:X} ",outputArr[i]);
+                for (int i = 0; i < outputArr.Count; i++)
+                    Console.Write("{0:X} ", outputArr[i]);
                 Console.WriteLine();
 
                 lineCount++;
@@ -482,6 +505,51 @@ namespace WindowsFormsApplication2
             //y = 1,514,611.88ln(x) + 1,055,979,950.10
             return Math.Exp(doubleFeed).ToString();
         }
+
+
+        public double[] quadratic(double a, double b, double c)
+        {
+            double[] answer = new double[2];
+            answer[0] = (-b + Math.Sqrt(Math.Pow(b, 2) - 4 * a * c)) / (2 * a);
+            answer[1] = (-b - Math.Sqrt(Math.Pow(b, 2) - 4 * a * c)) / (2 * a);
+
+            return answer;
+        }
+
+        public double[] RtoCentre(double r, double xstart, double ystart, double xend, double yend)
+        {
+            double[] answer = new double[4];
+            double[] xresult = new double[2];
+            double[] yresult = new double[2];
+            double xdiff = xend - xstart;
+            double ydiff = yend - ystart;
+
+            double yA = Math.Pow(ydiff, 2)/Math.Pow(xdiff, 2) + 1;
+
+            double yC = (Math.Pow(xdiff, 2) + Math.Pow(ydiff, 2)) / (2 * xdiff);
+
+            double yB = -(yC * ydiff / xdiff);
+
+            yresult = quadratic(yA, yB, yC);
+
+            double xA = Math.Pow(xdiff, 2) / Math.Pow(ydiff, 2) + 1;
+
+            double xC = (Math.Pow(ydiff, 2) + Math.Pow(xdiff, 2)) / (2 * ydiff);
+
+            double xB = -(xC * xdiff / ydiff);
+
+            xresult = quadratic(xA, xB, xC);
+
+
+            answer[0] = xresult[0];
+            answer[1] = yresult[0];
+            answer[2] = xresult[1];
+            answer[3] = yresult[1];  
+            
+
+            return answer;
+        }
+
+
     }
-    
 }
