@@ -27,9 +27,12 @@ namespace WindowsFormsApplication2
             textLong = textLong.ToUpper();
             string[] commandArray = textLong.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             int lineCount = 1;   //??? starts at 1
+
+
             foreach (string command in commandArray)
             {
                 string[] commandPart = command.Split(new char[]{ ' '},StringSplitOptions.RemoveEmptyEntries);
+                commandPart = moveToFront(commandPart, "MG");
                 ArrayList commandPartList =new ArrayList(commandPart);
 
                 ArrayList outputArr = new ArrayList();
@@ -147,121 +150,10 @@ namespace WindowsFormsApplication2
                 //sorts arcs commands into proper order
                 if (GCodeCommand == 2 || GCodeCommand == 3)
                 {
-                    //stores sorted commands
-                    ArrayList commandPartSort = new ArrayList();
-
-                    //converts array into arrList for easier sorting
-                    ArrayList commandPartArrList = new ArrayList(commandPart);
-
-                    
-                    foreach (string unsorted in commandPartArrList)
-                    {
-                        if(unsorted[0] == 'I')
-                        {
-                            commandPartSort.Add(unsorted);
-                            //commandPartArrList.Remove(unsorted);
-                        }
-                    }
-                    foreach (string unsorted in commandPartArrList)
-                    {
-                        if (unsorted[0] == 'X')
-                        {
-                            commandPartSort.Add(unsorted);
-                            //commandPartArrList.Remove(unsorted);
-                        }
-                    }
-                    foreach (string unsorted in commandPartArrList)
-                    {
-                        if (unsorted[0] == 'J')
-                        {
-                            commandPartSort.Add(unsorted);
-                            //commandPartArrList.Remove(unsorted);
-                        }
-                    }
-                    foreach (string unsorted in commandPartArrList)
-                    {
-                        if (unsorted[0] == 'Y')
-                        {
-                            commandPartSort.Add(unsorted);
-                            //commandPartArrList.Remove(unsorted);
-                        }
-                    }
-                    foreach (string unsorted in commandPartArrList)
-                    {
-                        if (unsorted[0] == 'K')
-                        {
-                            commandPartSort.Add(unsorted);
-                            //commandPartArrList.Remove(unsorted);
-                        }
-                    }
-                    foreach (string unsorted in commandPartArrList)
-                    {
-                        if (unsorted[0] == 'Z')
-                        {
-                            commandPartSort.Add(unsorted);
-                            //commandPartArrList.Remove(unsorted);
-                        }
-                    }
-                        
-                    for(int i=0;i<commandPartArrList.Count;i++)
-                    {
-                        string unsorted = (string) commandPartArrList[i];
-                        if(unsorted[0] == 'X' || unsorted[0] == 'Y' || unsorted[0] == 'Z' ||
-                            unsorted[0] == 'I' || unsorted[0] == 'J' || unsorted[0] == 'K')
-                        {
-                            commandPartArrList.Remove(unsorted);
-                            i--;
-                        }
-
-                    }
-
-                    foreach (string unsorted in commandPartArrList)
-                    {
-                        commandPartSort.Add(unsorted);
-                    }
-
-
-                    commandPart = (string[])commandPartSort.ToArray(typeof(string));
+                    commandPart = moveToFront(commandPart, "IXJYKZ");
                 }
 
-                //eleganise later (jk)
-                if (true)
-                {
-                    //stores sorted commands
-                    ArrayList commandPartSort = new ArrayList();
-
-                    //converts array into arrList for easier sorting
-                    ArrayList commandPartArrList = new ArrayList(commandPart);
-
-                    foreach (string unsorted in commandPartArrList)
-                    {
-                        if (unsorted[0] == 'F')
-                        {
-                            commandPartSort.Add(unsorted);
-                            //commandPartArrList.Remove(unsorted);
-                        }
-                    }
-
-                    for (int i = 0; i < commandPartArrList.Count; i++)
-                    {
-                        string unsorted = (string)commandPartArrList[i];
-                        if (unsorted[0] == 'F')
-                        {
-                            commandPartArrList.Remove(unsorted);
-                            i--;
-                        }
-
-                    }
-
-                    foreach (string unsorted in commandPartArrList)
-                    {
-                        commandPartSort.Add(unsorted);
-                    }
-
-                    
-                    
-                    commandPart = (string[]) commandPartSort.ToArray(typeof(string));
-                }
+                commandPart = moveToFront(commandPart, "F");
 
 
 
@@ -396,6 +288,49 @@ namespace WindowsFormsApplication2
 
                 lineCount++;
             }
+        }
+
+        private string[] moveToFront(string[] commandPart, string toFront)
+        {
+            //stores sorted commands
+            ArrayList commandPartSort = new ArrayList();
+
+            //converts array into arrList for easier sorting
+            ArrayList commandPartArrList = new ArrayList(commandPart);
+
+            foreach (char toFrontLetter in toFront)
+            {
+                foreach (string unsorted in commandPartArrList)
+                {
+                    if (unsorted[0] == toFrontLetter)
+                    {
+                        commandPartSort.Add(unsorted);
+                        //commandPartArrList.Remove(unsorted);
+                    }
+                }
+            }
+
+
+
+            for (int i = 0; i < commandPartArrList.Count; i++)
+            {
+                string unsorted = (string)commandPartArrList[i];
+                if (toFront.Contains(unsorted[0]))
+                {
+                    commandPartArrList.Remove(unsorted);
+                    i--;
+                }
+
+            }
+
+            foreach (string unsorted in commandPartArrList)
+            {
+                commandPartSort.Add(unsorted);
+            }
+
+
+            commandPart = (string[])commandPartSort.ToArray(typeof(string));
+            return commandPart;
         }
 
         public byte[] feedToBinary(int pos)
