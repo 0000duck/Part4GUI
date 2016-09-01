@@ -16,6 +16,13 @@ namespace PappachanNC3
 {
     public partial class Form1 : Form
     {
+        //global offset values
+        double xOffset = 0;
+        double yOffset = 0;
+        double zOffset = 0;
+        double toolHeightOffset = 0;
+        double radiusOffset = 0;
+
         public TcpClient tcpclnt = new TcpClient();
 
         //Common variables
@@ -145,6 +152,7 @@ namespace PappachanNC3
                             MethodInvoker mi2 = delegate
                             {
                                 xBox.Text = txt;
+                                xOffseted.Text = (double.Parse(txt) + xOffset ).ToString();
                             };
                             if (InvokeRequired)
                                 this.Invoke(mi2);
@@ -170,6 +178,7 @@ namespace PappachanNC3
                             MethodInvoker mi2 = delegate
                             {
                                 yBox.Text = txt;
+                                yOffseted.Text = (double.Parse(txt) + yOffset).ToString();
                             };
                             if (InvokeRequired)
                                 this.Invoke(mi2);
@@ -197,6 +206,7 @@ namespace PappachanNC3
                             MethodInvoker mi2 = delegate
                             {
                                 zBox.Text = txt;
+                                zOffseted.Text = (double.Parse(txt) + zOffset + toolHeightOffset).ToString();
                             };
                             if (InvokeRequired)
                                 this.Invoke(mi2);
@@ -245,6 +255,7 @@ namespace PappachanNC3
                         MethodInvoker mi2 = delegate
                         {
                             xBox.Text = txt;
+                            xOffseted.Text = (double.Parse(txt) + xOffset).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -270,6 +281,7 @@ namespace PappachanNC3
                         mi2 = delegate
                         {
                             yBox.Text = txt;
+                            yOffseted.Text = (double.Parse(txt) + yOffset ).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -295,6 +307,7 @@ namespace PappachanNC3
                         MethodInvoker mi2 = delegate
                         {
                             xBox.Text = txt;
+                            xOffseted.Text = (double.Parse(txt) + xOffset ).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -315,6 +328,7 @@ namespace PappachanNC3
                         mi2 = delegate
                         {
                             zBox.Text = txt;
+                            zOffseted.Text = (double.Parse(txt) + zOffset + toolHeightOffset).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -342,6 +356,7 @@ namespace PappachanNC3
                         MethodInvoker mi2 = delegate
                         {
                             yBox.Text = txt;
+                            yOffseted.Text = (double.Parse(txt) + yOffset ).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -362,7 +377,8 @@ namespace PappachanNC3
 
                         mi2 = delegate
                         {
-                            xBox.Text = txt;
+                            zBox.Text = txt;
+                            zOffseted.Text = (double.Parse(txt) + zOffset + toolHeightOffset).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -393,6 +409,7 @@ namespace PappachanNC3
                         MethodInvoker mi2 = delegate
                         {
                             xBox.Text = txt;
+                            xOffseted.Text = (double.Parse(txt) + xOffset ).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -414,6 +431,7 @@ namespace PappachanNC3
                         mi2 = delegate
                         {
                             yBox.Text = txt;
+                            yOffseted.Text = (double.Parse(txt) + yOffset ).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -435,6 +453,7 @@ namespace PappachanNC3
                         mi2 = delegate
                         {
                             zBox.Text = txt;
+                            zOffseted.Text = (double.Parse(txt) + zOffset + toolHeightOffset).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -1141,6 +1160,13 @@ namespace PappachanNC3
         private void jogTab_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void setOffsetButton_Click(object sender, EventArgs e)
+        {
+            xOffset = double.Parse(xOffseted.Text) - double.Parse(xBox.Text);
+            yOffset = double.Parse(yOffseted.Text) - double.Parse(yBox.Text);
+            zOffset = double.Parse(zOffseted.Text) - double.Parse(zBox.Text) - toolHeightOffset;
         }
 
 

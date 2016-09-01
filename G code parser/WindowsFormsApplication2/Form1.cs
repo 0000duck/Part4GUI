@@ -1,11 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 
@@ -13,6 +7,9 @@ namespace WindowsFormsApplication2
 {
     public partial class Form1 : Form
     {
+        double toolHeightOffset = 0;
+        double toolRadiusOffset = 0;
+        double[] toolOffsetTable = new double[21];
         public Form1()
         {
             InitializeComponent();
@@ -57,7 +54,7 @@ namespace WindowsFormsApplication2
                 outputArr.Add(0);
                 outputArr.Add(0);
 
-                //first deal with the first term, can only be G or M (others possible, but not implemented, as the use is rare(?))= 
+                //first deal with the first ter-m, can only be G or M (others possible, but not implemented, as the use is rare(?))= 
                 string firstCommand = (string)commandPartList[0];
                 int GCodeCommand = -1;
                 if (firstCommand[0] == 'M')
@@ -203,9 +200,10 @@ namespace WindowsFormsApplication2
                     commandPart = moveToFront(commandPart, "IXJYKZ");
                 }
 
+                if (GCodeCommand == 49 || ((GCodeCommand == 43 || GCodeCommand == 44) && commandPart.Length ==0))
+                    toolHeightOffset = 0;
+
                 commandPart = moveToFront(commandPart, "F");
-
-
 
 
                 foreach (string indCommand in commandPart)
@@ -318,6 +316,14 @@ namespace WindowsFormsApplication2
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
+                    }
+                    else if (indCommand[0] == 'H')
+                    {
+                        //check correct order!!!
+                        if (GCodeCommand == 43)
+                            toolHeightOffset = toolOffsetTable[int.Parse(indCommand.Substring(1))];
+                        if (GCodeCommand == 44)
+                            toolHeightOffset = - toolOffsetTable[int.Parse(indCommand.Substring(1))];
                     }
 
                 }

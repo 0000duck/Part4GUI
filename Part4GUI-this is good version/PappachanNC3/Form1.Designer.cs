@@ -99,6 +99,10 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.xOffseted = new System.Windows.Forms.TextBox();
+            this.yOffseted = new System.Windows.Forms.TextBox();
+            this.zOffseted = new System.Windows.Forms.TextBox();
+            this.setOffsetButton = new System.Windows.Forms.Button();
             this.statusGroup.SuspendLayout();
             this.XgroupBox.SuspendLayout();
             this.YGroupBox.SuspendLayout();
@@ -534,7 +538,7 @@
             // XtoGoLbl
             // 
             this.XtoGoLbl.AutoSize = true;
-            this.XtoGoLbl.Location = new System.Drawing.Point(795, 49);
+            this.XtoGoLbl.Location = new System.Drawing.Point(819, 49);
             this.XtoGoLbl.Name = "XtoGoLbl";
             this.XtoGoLbl.Size = new System.Drawing.Size(43, 13);
             this.XtoGoLbl.TabIndex = 24;
@@ -543,7 +547,7 @@
             // YtoGoLbl
             // 
             this.YtoGoLbl.AutoSize = true;
-            this.YtoGoLbl.Location = new System.Drawing.Point(795, 75);
+            this.YtoGoLbl.Location = new System.Drawing.Point(819, 75);
             this.YtoGoLbl.Name = "YtoGoLbl";
             this.YtoGoLbl.Size = new System.Drawing.Size(43, 13);
             this.YtoGoLbl.TabIndex = 24;
@@ -552,7 +556,7 @@
             // ZtoGoLbl
             // 
             this.ZtoGoLbl.AutoSize = true;
-            this.ZtoGoLbl.Location = new System.Drawing.Point(795, 102);
+            this.ZtoGoLbl.Location = new System.Drawing.Point(819, 102);
             this.ZtoGoLbl.Name = "ZtoGoLbl";
             this.ZtoGoLbl.Size = new System.Drawing.Size(43, 13);
             this.ZtoGoLbl.TabIndex = 24;
@@ -560,21 +564,21 @@
             // 
             // xtgBox
             // 
-            this.xtgBox.Location = new System.Drawing.Point(839, 46);
+            this.xtgBox.Location = new System.Drawing.Point(863, 46);
             this.xtgBox.Name = "xtgBox";
             this.xtgBox.Size = new System.Drawing.Size(100, 20);
             this.xtgBox.TabIndex = 25;
             // 
             // ytgBox
             // 
-            this.ytgBox.Location = new System.Drawing.Point(839, 72);
+            this.ytgBox.Location = new System.Drawing.Point(863, 72);
             this.ytgBox.Name = "ytgBox";
             this.ytgBox.Size = new System.Drawing.Size(100, 20);
             this.ytgBox.TabIndex = 25;
             // 
             // ztgBox
             // 
-            this.ztgBox.Location = new System.Drawing.Point(839, 99);
+            this.ztgBox.Location = new System.Drawing.Point(863, 99);
             this.ztgBox.Name = "ztgBox";
             this.ztgBox.Size = new System.Drawing.Size(100, 20);
             this.ztgBox.TabIndex = 25;
@@ -582,7 +586,7 @@
             // feedRateLbl
             // 
             this.feedRateLbl.AutoSize = true;
-            this.feedRateLbl.Location = new System.Drawing.Point(796, 128);
+            this.feedRateLbl.Location = new System.Drawing.Point(820, 128);
             this.feedRateLbl.Name = "feedRateLbl";
             this.feedRateLbl.Size = new System.Drawing.Size(49, 13);
             this.feedRateLbl.TabIndex = 24;
@@ -590,7 +594,7 @@
             // 
             // fBox
             // 
-            this.fBox.Location = new System.Drawing.Point(839, 125);
+            this.fBox.Location = new System.Drawing.Point(863, 125);
             this.fBox.Name = "fBox";
             this.fBox.Size = new System.Drawing.Size(100, 20);
             this.fBox.TabIndex = 25;
@@ -598,7 +602,7 @@
             // XLbl
             // 
             this.XLbl.AutoSize = true;
-            this.XLbl.Location = new System.Drawing.Point(591, 49);
+            this.XLbl.Location = new System.Drawing.Point(573, 49);
             this.XLbl.Name = "XLbl";
             this.XLbl.Size = new System.Drawing.Size(14, 13);
             this.XLbl.TabIndex = 24;
@@ -607,7 +611,7 @@
             // YLbl
             // 
             this.YLbl.AutoSize = true;
-            this.YLbl.Location = new System.Drawing.Point(591, 75);
+            this.YLbl.Location = new System.Drawing.Point(573, 75);
             this.YLbl.Name = "YLbl";
             this.YLbl.Size = new System.Drawing.Size(14, 13);
             this.YLbl.TabIndex = 24;
@@ -616,7 +620,7 @@
             // ZLbl
             // 
             this.ZLbl.AutoSize = true;
-            this.ZLbl.Location = new System.Drawing.Point(591, 102);
+            this.ZLbl.Location = new System.Drawing.Point(573, 102);
             this.ZLbl.Name = "ZLbl";
             this.ZLbl.Size = new System.Drawing.Size(14, 13);
             this.ZLbl.TabIndex = 24;
@@ -625,7 +629,7 @@
             // spindleLbl
             // 
             this.spindleLbl.AutoSize = true;
-            this.spindleLbl.Location = new System.Drawing.Point(581, 128);
+            this.spindleLbl.Location = new System.Drawing.Point(563, 128);
             this.spindleLbl.Name = "spindleLbl";
             this.spindleLbl.Size = new System.Drawing.Size(42, 13);
             this.spindleLbl.TabIndex = 24;
@@ -633,28 +637,28 @@
             // 
             // xBox
             // 
-            this.xBox.Location = new System.Drawing.Point(624, 46);
+            this.xBox.Location = new System.Drawing.Point(606, 46);
             this.xBox.Name = "xBox";
             this.xBox.Size = new System.Drawing.Size(100, 20);
             this.xBox.TabIndex = 25;
             // 
             // yBox
             // 
-            this.yBox.Location = new System.Drawing.Point(624, 72);
+            this.yBox.Location = new System.Drawing.Point(606, 72);
             this.yBox.Name = "yBox";
             this.yBox.Size = new System.Drawing.Size(100, 20);
             this.yBox.TabIndex = 25;
             // 
             // zBox
             // 
-            this.zBox.Location = new System.Drawing.Point(624, 99);
+            this.zBox.Location = new System.Drawing.Point(606, 99);
             this.zBox.Name = "zBox";
             this.zBox.Size = new System.Drawing.Size(100, 20);
             this.zBox.TabIndex = 25;
             // 
             // sBox
             // 
-            this.sBox.Location = new System.Drawing.Point(624, 125);
+            this.sBox.Location = new System.Drawing.Point(606, 125);
             this.sBox.Name = "sBox";
             this.sBox.Size = new System.Drawing.Size(100, 20);
             this.sBox.TabIndex = 25;
@@ -685,7 +689,7 @@
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
@@ -693,7 +697,7 @@
             // 
             this.terminateToolStripMenuItem.Enabled = false;
             this.terminateToolStripMenuItem.Name = "terminateToolStripMenuItem";
-            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.terminateToolStripMenuItem.Text = "Terminate";
             this.terminateToolStripMenuItem.Click += new System.EventHandler(this.terminateToolStripMenuItem_Click);
             // 
@@ -788,15 +792,50 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // xOffseted
+            // 
+            this.xOffseted.Location = new System.Drawing.Point(713, 46);
+            this.xOffseted.Name = "xOffseted";
+            this.xOffseted.Size = new System.Drawing.Size(100, 20);
+            this.xOffseted.TabIndex = 25;
+            // 
+            // yOffseted
+            // 
+            this.yOffseted.Location = new System.Drawing.Point(713, 72);
+            this.yOffseted.Name = "yOffseted";
+            this.yOffseted.Size = new System.Drawing.Size(100, 20);
+            this.yOffseted.TabIndex = 25;
+            // 
+            // zOffseted
+            // 
+            this.zOffseted.Location = new System.Drawing.Point(713, 99);
+            this.zOffseted.Name = "zOffseted";
+            this.zOffseted.Size = new System.Drawing.Size(100, 20);
+            this.zOffseted.TabIndex = 25;
+            // 
+            // setOffsetButton
+            // 
+            this.setOffsetButton.Location = new System.Drawing.Point(712, 123);
+            this.setOffsetButton.Name = "setOffsetButton";
+            this.setOffsetButton.Size = new System.Drawing.Size(100, 23);
+            this.setOffsetButton.TabIndex = 26;
+            this.setOffsetButton.Text = "Set Offset";
+            this.setOffsetButton.UseVisualStyleBackColor = true;
+            this.setOffsetButton.Click += new System.EventHandler(this.setOffsetButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(975, 438);
+            this.Controls.Add(this.setOffsetButton);
             this.Controls.Add(this.sBox);
+            this.Controls.Add(this.zOffseted);
             this.Controls.Add(this.zBox);
+            this.Controls.Add(this.yOffseted);
             this.Controls.Add(this.fBox);
             this.Controls.Add(this.yBox);
+            this.Controls.Add(this.xOffseted);
             this.Controls.Add(this.ztgBox);
             this.Controls.Add(this.xBox);
             this.Controls.Add(this.ytgBox);
@@ -908,6 +947,10 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Button refBtn;
+        private System.Windows.Forms.TextBox xOffseted;
+        private System.Windows.Forms.TextBox yOffseted;
+        private System.Windows.Forms.TextBox zOffseted;
+        private System.Windows.Forms.Button setOffsetButton;
     }
 }
 
