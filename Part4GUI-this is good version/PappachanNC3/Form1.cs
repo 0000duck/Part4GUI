@@ -11,6 +11,8 @@ using System.Net.Sockets;
 using System.IO;
 using System.Threading;
 using System.Collections;
+//using PappachanNC3.GCodeParser;
+
 
 namespace PappachanNC3
 {
@@ -1167,6 +1169,21 @@ namespace PappachanNC3
             xOffset = double.Parse(xOffseted.Text) - double.Parse(xBox.Text);
             yOffset = double.Parse(yOffseted.Text) - double.Parse(yBox.Text);
             zOffset = double.Parse(zOffseted.Text) - double.Parse(zBox.Text) - toolHeightOffset;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            /*
+            ArrayList outputs  = Class1.runGCode(GCodeTxtbox.Text);
+            foreach ( ArrayList outputLine in outputs)
+            {
+                object[] a = outputLine.ToArray();
+                byte[] byteArr = new byte[a.Length];
+                for (int i = 0; i < a.Length; i++)
+                    byteArr[i] = Convert.ToByte(a[i]);
+                sendFile(byteArr);
+            }
+            */
         }
 
 

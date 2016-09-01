@@ -48,6 +48,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.jogTab = new System.Windows.Forms.TabPage();
             this.memoryTab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.GCodeTxtbox = new System.Windows.Forms.TextBox();
             this.referenceTab = new System.Windows.Forms.TabPage();
             this.refBtn = new System.Windows.Forms.Button();
             this.ModeControl = new System.Windows.Forms.TabControl();
@@ -109,6 +111,7 @@
             this.ZGroupBox.SuspendLayout();
             this.FeedGroupBox.SuspendLayout();
             this.jogTab.SuspendLayout();
+            this.memoryTab.SuspendLayout();
             this.referenceTab.SuspendLayout();
             this.ModeControl.SuspendLayout();
             this.mdiTab.SuspendLayout();
@@ -322,6 +325,8 @@
             // 
             // memoryTab
             // 
+            this.memoryTab.Controls.Add(this.button1);
+            this.memoryTab.Controls.Add(this.GCodeTxtbox);
             this.memoryTab.Location = new System.Drawing.Point(4, 22);
             this.memoryTab.Name = "memoryTab";
             this.memoryTab.Padding = new System.Windows.Forms.Padding(3);
@@ -329,6 +334,24 @@
             this.memoryTab.TabIndex = 3;
             this.memoryTab.Text = "Memory";
             this.memoryTab.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(218, 26);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "run G code";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // GCodeTxtbox
+            // 
+            this.GCodeTxtbox.Location = new System.Drawing.Point(30, 23);
+            this.GCodeTxtbox.Multiline = true;
+            this.GCodeTxtbox.Name = "GCodeTxtbox";
+            this.GCodeTxtbox.Size = new System.Drawing.Size(158, 168);
+            this.GCodeTxtbox.TabIndex = 0;
             // 
             // referenceTab
             // 
@@ -689,7 +712,7 @@
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
@@ -697,7 +720,7 @@
             // 
             this.terminateToolStripMenuItem.Enabled = false;
             this.terminateToolStripMenuItem.Name = "terminateToolStripMenuItem";
-            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.terminateToolStripMenuItem.Text = "Terminate";
             this.terminateToolStripMenuItem.Click += new System.EventHandler(this.terminateToolStripMenuItem_Click);
             // 
@@ -863,6 +886,8 @@
             this.ZGroupBox.ResumeLayout(false);
             this.FeedGroupBox.ResumeLayout(false);
             this.jogTab.ResumeLayout(false);
+            this.memoryTab.ResumeLayout(false);
+            this.memoryTab.PerformLayout();
             this.referenceTab.ResumeLayout(false);
             this.ModeControl.ResumeLayout(false);
             this.mdiTab.ResumeLayout(false);
@@ -951,6 +976,8 @@
         private System.Windows.Forms.TextBox yOffseted;
         private System.Windows.Forms.TextBox zOffseted;
         private System.Windows.Forms.Button setOffsetButton;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox GCodeTxtbox;
     }
 }
 

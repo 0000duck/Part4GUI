@@ -1,68 +1,7 @@
-C:\Users\BinsInc\AppData\Local\Temporary Projects\PappachanNC3\bin\Debug\PappachanNC3.exe
-C:\Users\BinsInc\AppData\Local\Temporary Projects\PappachanNC3\bin\Debug\PappachanNC3.pdb
-C:\Users\BinsInc\AppData\Local\Temporary Projects\PappachanNC3\obj\x86\Debug\PappachanNC3.Form1.resources
-C:\Users\BinsInc\AppData\Local\Temporary Projects\PappachanNC3\obj\x86\Debug\PappachanNC3.Properties.Resources.resources
-C:\Users\BinsInc\AppData\Local\Temporary Projects\PappachanNC3\obj\x86\Debug\PappachanNC3.csproj.GenerateResource.Cache
-C:\Users\BinsInc\AppData\Local\Temporary Projects\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
-C:\Users\BinsInc\AppData\Local\Temporary Projects\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
-C:\Users\BinsInc\Documents\Visual Studio 2010\Projects\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
-C:\Users\BinsInc\Documents\Visual Studio 2010\Projects\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
-C:\Users\BinsInc\Documents\Visual Studio 2010\Projects\PappachanNC3\PappachanNC3\bin\Debug\PappachanNC3.exe
-C:\Users\BinsInc\Documents\Visual Studio 2010\Projects\PappachanNC3\PappachanNC3\bin\Debug\PappachanNC3.pdb
-C:\Users\BinsInc\Documents\Visual Studio 2010\Projects\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.Form1.resources
-C:\Users\BinsInc\Documents\Visual Studio 2010\Projects\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.Properties.Resources.resources
-C:\Users\BinsInc\Documents\Visual Studio 2010\Projects\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.csproj.GenerateResource.Cache
-C:\Users\BinsInc\Documents\Visual Studio 2010\Projects\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.csprojResolveAssemblyReference.cache
-F:\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
-F:\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
-F:\#My Program\PappachanNC3\PappachanNC3\bin\Debug\PappachanNC3.exe
-F:\#My Program\PappachanNC3\PappachanNC3\bin\Debug\PappachanNC3.pdb
-F:\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\ResolveAssemblyReference.cache
-F:\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.Form1.resources
-F:\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.Properties.Resources.resources
-F:\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\GenerateResource.read.1.tlog
-F:\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\GenerateResource.write.1.tlog
-G:\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
-G:\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
-G:\#My Program\PappachanNC3\PappachanNC3\bin\Debug\PappachanNC3.exe
-G:\#My Program\PappachanNC3\PappachanNC3\bin\Debug\PappachanNC3.pdb
-G:\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.csprojResolveAssemblyReference.cache
-G:\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.Form1.resources
-G:\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.Properties.Resources.resources
-G:\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.csproj.GenerateResource.Cache
-C:\Users\BinsInc\Dropbox\Masters\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
-C:\Users\BinsInc\Dropbox\Masters\#My Program\PappachanNC3\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
-C:\Users\sheng\Desktop\pappachan nc\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
-C:\Users\sheng\Desktop\pappachan nc\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
-C:\Users\sheng\Desktop\pappachan nc\PappachanNC3\bin\Debug\PappachanNC3.exe
-C:\Users\sheng\Desktop\pappachan nc\PappachanNC3\bin\Debug\PappachanNC3.pdb
-C:\Users\sheng\Desktop\pappachan nc\PappachanNC3\obj\x86\Debug\PappachanNC3.csprojResolveAssemblyReference.cache
-C:\Users\sheng\Desktop\pappachan nc\PappachanNC3\obj\x86\Debug\PappachanNC3.Form1.resources
-C:\Users\sheng\Desktop\pappachan nc\PappachanNC3\obj\x86\Debug\PappachanNC3.Properties.Resources.resources
-C:\Users\sheng\Desktop\pappachan nc\PappachanNC3\obj\x86\Debug\PappachanNC3.csproj.GenerateResource.Cache
-C:\Users\sheng\Desktop\Part4GUI-f76f7c7733223920238bcacd74a25dc7339878cb\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
-C:\Users\sheng\Desktop\Part4GUI-f76f7c7733223920238bcacd74a25dc7339878cb\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
-C:\Users\sheng\Desktop\Part4GUI-f76f7c7733223920238bcacd74a25dc7339878cb\PappachanNC3\bin\Debug\PappachanNC3.exe
-C:\Users\sheng\Desktop\Part4GUI-f76f7c7733223920238bcacd74a25dc7339878cb\PappachanNC3\bin\Debug\PappachanNC3.pdb
-C:\Users\sheng\Desktop\Part4GUI-f76f7c7733223920238bcacd74a25dc7339878cb\PappachanNC3\obj\x86\Debug\PappachanNC3.csprojResolveAssemblyReference.cache
-C:\Users\sheng\Desktop\Part4GUI-f76f7c7733223920238bcacd74a25dc7339878cb\PappachanNC3\obj\x86\Debug\PappachanNC3.Form1.resources
-C:\Users\sheng\Desktop\Part4GUI-f76f7c7733223920238bcacd74a25dc7339878cb\PappachanNC3\obj\x86\Debug\PappachanNC3.Properties.Resources.resources
-C:\Users\sheng\Desktop\Part4GUI-f76f7c7733223920238bcacd74a25dc7339878cb\PappachanNC3\obj\x86\Debug\PappachanNC3.csproj.GenerateResource.Cache
-C:\Users\sheng\Desktop\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
-C:\Users\sheng\Desktop\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
-C:\Users\sheng\Desktop\Part4GUI-this is good version\PappachanNC3\bin\Debug\PappachanNC3.exe
-C:\Users\sheng\Desktop\Part4GUI-this is good version\PappachanNC3\bin\Debug\PappachanNC3.pdb
-C:\Users\sheng\Desktop\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.csprojResolveAssemblyReference.cache
-C:\Users\sheng\Desktop\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.Form1.resources
-C:\Users\sheng\Desktop\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.Properties.Resources.resources
-C:\Users\sheng\Desktop\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.csproj.GenerateResource.Cache
-C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
-C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
 C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\Debug\PappachanNC3.exe
 C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\Debug\PappachanNC3.pdb
-C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.csprojResolveAssemblyReference.cache
 C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.Form1.resources
 C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.Properties.Resources.resources
 C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.csproj.GenerateResource.Cache
-C:\Users\Wayne\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
-C:\Users\Wayne\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
+C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
+C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
