@@ -50,7 +50,7 @@ namespace PappachanNC3
 
         Queue<stmElement> stmQueue;
 
-        static int feedrate =0;
+        static int feedrate = 0;
 
 
         // functions
@@ -154,7 +154,7 @@ namespace PappachanNC3
                             MethodInvoker mi2 = delegate
                             {
                                 xBox.Text = txt;
-                                xOffseted.Text = (double.Parse(txt) + xOffset ).ToString();
+                                xOffseted.Text = (double.Parse(txt) + xOffset).ToString();
                             };
                             if (InvokeRequired)
                                 this.Invoke(mi2);
@@ -283,7 +283,7 @@ namespace PappachanNC3
                         mi2 = delegate
                         {
                             yBox.Text = txt;
-                            yOffseted.Text = (double.Parse(txt) + yOffset ).ToString();
+                            yOffseted.Text = (double.Parse(txt) + yOffset).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -309,7 +309,7 @@ namespace PappachanNC3
                         MethodInvoker mi2 = delegate
                         {
                             xBox.Text = txt;
-                            xOffseted.Text = (double.Parse(txt) + xOffset ).ToString();
+                            xOffseted.Text = (double.Parse(txt) + xOffset).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -358,7 +358,7 @@ namespace PappachanNC3
                         MethodInvoker mi2 = delegate
                         {
                             yBox.Text = txt;
-                            yOffseted.Text = (double.Parse(txt) + yOffset ).ToString();
+                            yOffseted.Text = (double.Parse(txt) + yOffset).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -411,7 +411,7 @@ namespace PappachanNC3
                         MethodInvoker mi2 = delegate
                         {
                             xBox.Text = txt;
-                            xOffseted.Text = (double.Parse(txt) + xOffset ).ToString();
+                            xOffseted.Text = (double.Parse(txt) + xOffset).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -433,7 +433,7 @@ namespace PappachanNC3
                         mi2 = delegate
                         {
                             yBox.Text = txt;
-                            yOffseted.Text = (double.Parse(txt) + yOffset ).ToString();
+                            yOffseted.Text = (double.Parse(txt) + yOffset).ToString();
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -480,7 +480,7 @@ namespace PappachanNC3
 
         public string binaryToString(byte[] byteArray, int startPos)
         {
-           
+
             int[] point = new int[8];
             for (int i = 0; i < 8; i++)
                 point[i] = byteArray[startPos + i];
@@ -490,7 +490,7 @@ namespace PappachanNC3
             return output;
         }
 
-        
+
 
         public byte[] feedToBinary(int pos)
         {
@@ -1047,7 +1047,7 @@ namespace PappachanNC3
                 return;
             }
 
-            byte[] commandMid = new byte[length - 20 +4];
+            byte[] commandMid = new byte[length - 20 + 4];
             commandMid[0] = 0x1c;
             commandMid[1] = 0;
             commandMid[2] = 0x01;
@@ -1055,11 +1055,11 @@ namespace PappachanNC3
             int commandMidPos = 4;
             if (xIn.Text != "")
             {
-                commandMid[commandMidPos+0] = 0x1e;
-                commandMid[commandMidPos+1] = 0;
+                commandMid[commandMidPos + 0] = 0x1e;
+                commandMid[commandMidPos + 1] = 0;
                 byte[] pos = posToBinary(int.Parse(xIn.Text));
                 for (int i = 0; i < 8; i++)
-                    commandMid[commandMidPos+2 + i] = pos[i];
+                    commandMid[commandMidPos + 2 + i] = pos[i];
                 commandMidPos += 10;
             }
             if (yIn.Text != "")
@@ -1087,18 +1087,18 @@ namespace PappachanNC3
 
             if (sender == G00Button)
             {
-                commandEnd = new byte[]{ 0x64,0,0x96,0 };
+                commandEnd = new byte[] { 0x64, 0, 0x96, 0 };
             }
             else if (sender == G01Button)
             {
-                if(int.Parse(fIn.Text) != feedrate)
+                if (int.Parse(fIn.Text) != feedrate)
                 {
                     length += 10;
                     feedrate = int.Parse(fIn.Text);
                     byte[] feedSpeed = feedToBinary(feedrate);
                     feedCommand = new byte[] { 0x18, 0, feedSpeed[0], feedSpeed[1], feedSpeed[2], feedSpeed[3], feedSpeed[4], feedSpeed[5], feedSpeed[6], feedSpeed[7] };
                 }
-                commandEnd = new byte[] { 0x65, 0, 0x96,0};
+                commandEnd = new byte[] { 0x65, 0, 0x96, 0 };
             }
 
             byte[] commandStart = {
@@ -1117,13 +1117,13 @@ namespace PappachanNC3
                 commandEnd = commandEndTmp;
             }
 
-          
 
-            byte[] command= new byte[length + 8];
+
+            byte[] command = new byte[length + 8];
 
             for (int i = 0; i < commandStart.Length; i++)
                 command[i] = commandStart[i];
-            if (feedCommand.Length ==0)
+            if (feedCommand.Length == 0)
             {
                 for (int i = 0; i < commandMid.Length; i++)
                     command[i + commandStart.Length] = commandMid[i];
@@ -1135,7 +1135,7 @@ namespace PappachanNC3
                 for (int i = 0; i < feedCommand.Length; i++)
                     command[i + commandStart.Length] = feedCommand[i];
                 for (int i = 0; i < commandMid.Length; i++)
-                    command[i + commandStart.Length+feedCommand.Length] = commandMid[i];
+                    command[i + commandStart.Length + feedCommand.Length] = commandMid[i];
                 for (int i = 0; i < commandEnd.Length; i++)
                     command[i + commandStart.Length + commandMid.Length + feedCommand.Length] = commandEnd[i];
             }
