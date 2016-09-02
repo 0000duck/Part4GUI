@@ -66,6 +66,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.jogTab = new System.Windows.Forms.TabPage();
             this.memoryTab = new System.Windows.Forms.TabPage();
+            this.runGCode = new System.Windows.Forms.Button();
+            this.GCodeTxt = new System.Windows.Forms.TextBox();
             this.referenceTab = new System.Windows.Forms.TabPage();
             this.ModeControl = new System.Windows.Forms.TabControl();
             this.editTab = new System.Windows.Forms.TabPage();
@@ -76,7 +78,6 @@
             this.yIn = new System.Windows.Forms.TextBox();
             this.xIn = new System.Windows.Forms.TextBox();
             this.M03Param = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.M06button = new System.Windows.Forms.Button();
             this.G01Button = new System.Windows.Forms.Button();
             this.G00Button = new System.Windows.Forms.Button();
@@ -105,6 +106,7 @@
             this.xOffseted = new System.Windows.Forms.TextBox();
             this.yOffseted = new System.Windows.Forms.TextBox();
             this.zOffseted = new System.Windows.Forms.TextBox();
+            this.offsetButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -112,6 +114,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.jogTab.SuspendLayout();
+            this.memoryTab.SuspendLayout();
             this.ModeControl.SuspendLayout();
             this.mdiTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.M06Number)).BeginInit();
@@ -456,6 +459,8 @@
             // 
             // memoryTab
             // 
+            this.memoryTab.Controls.Add(this.runGCode);
+            this.memoryTab.Controls.Add(this.GCodeTxt);
             this.memoryTab.Location = new System.Drawing.Point(4, 22);
             this.memoryTab.Name = "memoryTab";
             this.memoryTab.Padding = new System.Windows.Forms.Padding(3);
@@ -463,6 +468,24 @@
             this.memoryTab.TabIndex = 3;
             this.memoryTab.Text = "Memory";
             this.memoryTab.UseVisualStyleBackColor = true;
+            // 
+            // runGCode
+            // 
+            this.runGCode.Location = new System.Drawing.Point(238, 26);
+            this.runGCode.Name = "runGCode";
+            this.runGCode.Size = new System.Drawing.Size(75, 23);
+            this.runGCode.TabIndex = 1;
+            this.runGCode.Text = "Run G Code";
+            this.runGCode.UseVisualStyleBackColor = true;
+            this.runGCode.Click += new System.EventHandler(this.runGCode_Click);
+            // 
+            // GCodeTxt
+            // 
+            this.GCodeTxt.Location = new System.Drawing.Point(34, 23);
+            this.GCodeTxt.Multiline = true;
+            this.GCodeTxt.Name = "GCodeTxt";
+            this.GCodeTxt.Size = new System.Drawing.Size(170, 177);
+            this.GCodeTxt.TabIndex = 0;
             // 
             // referenceTab
             // 
@@ -507,7 +530,6 @@
             this.mdiTab.Controls.Add(this.xIn);
             this.mdiTab.Controls.Add(this.M03Param);
             this.mdiTab.Controls.Add(this.M05Button);
-            this.mdiTab.Controls.Add(this.button3);
             this.mdiTab.Controls.Add(this.M06button);
             this.mdiTab.Controls.Add(this.G01Button);
             this.mdiTab.Controls.Add(this.G00Button);
@@ -584,16 +606,6 @@
             this.M03Param.Name = "M03Param";
             this.M03Param.Size = new System.Drawing.Size(100, 20);
             this.M03Param.TabIndex = 18;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(219, 138);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "G00";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button1_Click);
             // 
             // M06button
             // 
@@ -823,11 +835,22 @@
             this.zOffseted.Size = new System.Drawing.Size(58, 20);
             this.zOffseted.TabIndex = 26;
             // 
+            // offsetButton
+            // 
+            this.offsetButton.Location = new System.Drawing.Point(727, 126);
+            this.offsetButton.Name = "offsetButton";
+            this.offsetButton.Size = new System.Drawing.Size(63, 23);
+            this.offsetButton.TabIndex = 27;
+            this.offsetButton.Text = "Offset Coordinate";
+            this.offsetButton.UseVisualStyleBackColor = true;
+            this.offsetButton.Click += new System.EventHandler(this.offsetButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(975, 438);
+            this.Controls.Add(this.offsetButton);
             this.Controls.Add(this.zOffseted);
             this.Controls.Add(this.yOffseted);
             this.Controls.Add(this.xOffseted);
@@ -864,6 +887,8 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.jogTab.ResumeLayout(false);
+            this.memoryTab.ResumeLayout(false);
+            this.memoryTab.PerformLayout();
             this.ModeControl.ResumeLayout(false);
             this.mdiTab.ResumeLayout(false);
             this.mdiTab.PerformLayout();
@@ -942,7 +967,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button M06button;
         private System.Windows.Forms.Button G01Button;
         private System.Windows.Forms.TextBox fIn;
@@ -951,6 +975,9 @@
         private System.Windows.Forms.TextBox xOffseted;
         private System.Windows.Forms.TextBox yOffseted;
         private System.Windows.Forms.TextBox zOffseted;
+        private System.Windows.Forms.Button runGCode;
+        private System.Windows.Forms.TextBox GCodeTxt;
+        private System.Windows.Forms.Button offsetButton;
     }
 }
 

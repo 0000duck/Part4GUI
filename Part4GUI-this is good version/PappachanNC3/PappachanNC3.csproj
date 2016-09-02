@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GCodeParser.cs" />
+    <Compile Include="Converter.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\part11.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AR\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

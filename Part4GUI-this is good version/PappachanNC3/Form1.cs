@@ -19,11 +19,10 @@ namespace PappachanNC3
     public partial class Form1 : Form
     {
         //global offset values
-        double xOffset = 0;
-        double yOffset = 0;
-        double zOffset = 0;
-        double toolHeightOffset = 0;
-        double radiusOffset = 0;
+        public static double xOffset = 0;
+        public static double yOffset = 0;
+        public static double zOffset = 0;
+        public static double toolHeightOffset = 0;
 
         public TcpClient tcpclnt = new TcpClient();
 
@@ -50,7 +49,7 @@ namespace PappachanNC3
 
         Queue<stmElement> stmQueue;
 
-        static int feedrate = 0;
+        static double feedrate = 0;
 
 
         // functions
@@ -149,19 +148,19 @@ namespace PappachanNC3
                         {
                             int[] point = new int[8];
 
-                            string txt = binaryToString(bc, 10);
+                            string txt = Converter.binaryToString(bc, 10);
 
                             MethodInvoker mi2 = delegate
                             {
                                 xBox.Text = txt;
-                                xOffseted.Text = (double.Parse(txt) + xOffset).ToString();
+                                xOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + xOffset));
                             };
                             if (InvokeRequired)
                                 this.Invoke(mi2);
 
                             //dist to go
 
-                            txt = binaryToString(bc, 18);
+                            txt = Converter.binaryToString(bc, 18);
 
                             mi2 = delegate
                             {
@@ -175,12 +174,12 @@ namespace PappachanNC3
                         {
                             int[] point = new int[8];
 
-                            string txt = binaryToString(bc, 10);
+                            string txt = Converter.binaryToString(bc, 10);
 
                             MethodInvoker mi2 = delegate
                             {
                                 yBox.Text = txt;
-                                yOffseted.Text = (double.Parse(txt) + yOffset).ToString();
+                                yOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + yOffset));
                             };
                             if (InvokeRequired)
                                 this.Invoke(mi2);
@@ -188,7 +187,7 @@ namespace PappachanNC3
 
                             //dist to go
 
-                            txt = binaryToString(bc, 18);
+                            txt = Converter.binaryToString(bc, 18);
 
                             mi2 = delegate
                             {
@@ -203,19 +202,19 @@ namespace PappachanNC3
                         {
                             int[] point = new int[8];
 
-                            string txt = binaryToString(bc, 10);
+                            string txt = Converter.binaryToString(bc, 10);
 
                             MethodInvoker mi2 = delegate
                             {
                                 zBox.Text = txt;
-                                zOffseted.Text = (double.Parse(txt) + zOffset + toolHeightOffset).ToString();
+                                zOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + zOffset));
                             };
                             if (InvokeRequired)
                                 this.Invoke(mi2);
 
                             //dist to go
 
-                            txt = binaryToString(bc, 18);
+                            txt = Converter.binaryToString(bc, 18);
 
                             mi2 = delegate
                             {
@@ -233,7 +232,7 @@ namespace PappachanNC3
                             for (int i = 0; i < 8; i++)
                                 point[i] = bc[8 + i];
 
-                            string txt = binaryToSpindle(point);
+                            string txt = Converter.binaryToSpindle(point);
 
                             MethodInvoker mi2 = delegate
                             {
@@ -252,12 +251,12 @@ namespace PappachanNC3
                     {
                         int[] point = new int[8];
 
-                        string txt = binaryToString(bc, 10);
+                        string txt = Converter.binaryToString(bc, 10);
 
                         MethodInvoker mi2 = delegate
                         {
                             xBox.Text = txt;
-                            xOffseted.Text = (double.Parse(txt) + xOffset).ToString();
+                            xOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + xOffset));
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -265,7 +264,7 @@ namespace PappachanNC3
 
                         //dist to go
 
-                        txt = binaryToString(bc, 18);
+                        txt = Converter.binaryToString(bc, 18);
 
                         mi2 = delegate
                         {
@@ -278,19 +277,19 @@ namespace PappachanNC3
                         for (int i = 0; i < 8; i++)
                             point[i] = bc[28 + i];
 
-                        txt = binaryToString(bc, 28);
+                        txt = Converter.binaryToString(bc, 28);
 
                         mi2 = delegate
                         {
                             yBox.Text = txt;
-                            yOffseted.Text = (double.Parse(txt) + yOffset).ToString();
+                            yOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + yOffset));
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
                         //dist to go
 
-                        txt = binaryToString(bc, 36);
+                        txt = Converter.binaryToString(bc, 36);
 
                         mi2 = delegate
                         {
@@ -304,19 +303,19 @@ namespace PappachanNC3
                     {
                         int[] point = new int[8];
 
-                        string txt = binaryToString(bc, 10);
+                        string txt = Converter.binaryToString(bc, 10);
 
                         MethodInvoker mi2 = delegate
                         {
                             xBox.Text = txt;
-                            xOffseted.Text = (double.Parse(txt) + xOffset).ToString();
+                            xOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + xOffset));
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
                         //dist to go
 
-                        txt = binaryToString(bc, 18);
+                        txt = Converter.binaryToString(bc, 18);
 
                         mi2 = delegate
                         {
@@ -325,12 +324,12 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        txt = binaryToString(bc, 28);
+                        txt = Converter.binaryToString(bc, 28);
 
                         mi2 = delegate
                         {
                             zBox.Text = txt;
-                            zOffseted.Text = (double.Parse(txt) + zOffset + toolHeightOffset).ToString();
+                            zOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + zOffset + toolHeightOffset));
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -338,7 +337,7 @@ namespace PappachanNC3
 
                         //dist to go
 
-                        txt = binaryToString(bc, 36);
+                        txt = Converter.binaryToString(bc, 36);
 
                         mi2 = delegate
                         {
@@ -353,12 +352,12 @@ namespace PappachanNC3
                         int[] point = new int[8];
 
 
-                        string txt = binaryToString(bc, 10);
+                        string txt = Converter.binaryToString(bc, 10);
 
                         MethodInvoker mi2 = delegate
                         {
                             yBox.Text = txt;
-                            yOffseted.Text = (double.Parse(txt) + yOffset).ToString();
+                            yOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + yOffset));
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -366,7 +365,7 @@ namespace PappachanNC3
 
                         //dist to go
 
-                        txt = binaryToString(bc, 18);
+                        txt = Converter.binaryToString(bc, 18);
 
                         mi2 = delegate
                         {
@@ -375,12 +374,12 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        txt = binaryToString(bc, 28);
+                        txt = Converter.binaryToString(bc, 28);
 
                         mi2 = delegate
                         {
                             zBox.Text = txt;
-                            zOffseted.Text = (double.Parse(txt) + zOffset + toolHeightOffset).ToString();
+                            zOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + zOffset + toolHeightOffset));
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -388,7 +387,7 @@ namespace PappachanNC3
 
                         //dist to go
 
-                        txt = binaryToString(bc, 36);
+                        txt = Converter.binaryToString(bc, 36);
 
                         mi2 = delegate
                         {
@@ -406,19 +405,19 @@ namespace PappachanNC3
                     if (bc[6] == 7)// x + y + z direction
                     {
 
-                        string txt = binaryToString(bc, 10);
+                        string txt = Converter.binaryToString(bc, 10);
 
                         MethodInvoker mi2 = delegate
                         {
                             xBox.Text = txt;
-                            xOffseted.Text = (double.Parse(txt) + xOffset).ToString();
+                            xOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + xOffset));
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
                         //dist to go
 
-                        txt = binaryToString(bc, 18);
+                        txt = Converter.binaryToString(bc, 18);
 
                         mi2 = delegate
                         {
@@ -428,12 +427,12 @@ namespace PappachanNC3
                             this.Invoke(mi2);
 
 
-                        txt = binaryToString(bc, 28);
+                        txt = Converter.binaryToString(bc, 28);
 
                         mi2 = delegate
                         {
                             yBox.Text = txt;
-                            yOffseted.Text = (double.Parse(txt) + yOffset).ToString();
+                            yOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + yOffset));
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
@@ -441,7 +440,7 @@ namespace PappachanNC3
 
                         //dist to go
 
-                        txt = binaryToString(bc, 36);
+                        txt = Converter.binaryToString(bc, 36);
 
                         mi2 = delegate
                         {
@@ -450,19 +449,19 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        txt = binaryToString(bc, 46);
+                        txt = Converter.binaryToString(bc, 46);
 
                         mi2 = delegate
                         {
                             zBox.Text = txt;
-                            zOffseted.Text = (double.Parse(txt) + zOffset + toolHeightOffset).ToString();
+                            zOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + xOffset + toolHeightOffset));
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
                         //dist to go
 
-                        txt = binaryToString(bc, 54);
+                        txt = Converter.binaryToString(bc, 54);
 
                         mi2 = delegate
                         {
@@ -478,104 +477,6 @@ namespace PappachanNC3
 
         }
 
-        public string binaryToString(byte[] byteArray, int startPos)
-        {
-
-            int[] point = new int[8];
-            for (int i = 0; i < 8; i++)
-                point[i] = byteArray[startPos + i];
-
-            string output = binaryToPosLin(point);
-
-            return output;
-        }
-
-
-
-        public byte[] feedToBinary(int pos)
-        {
-            // y = 1,514,611.88ln(x) + 1,055,979,950.10
-            double first4 = 1514611.88 * Math.Log(pos) + 1055979950.10;
-            long first4Long = Convert.ToInt64(first4);
-
-            byte[] output = new byte[8];
-            output[7] = (byte)(first4Long / (256L * 256 * 256));
-            first4Long %= (256L * 256 * 256);
-            output[6] = (byte)(first4Long / (256L * 256));
-            first4Long %= (256L * 256);
-            output[5] = (byte)(first4Long / (256L));
-            first4Long %= (256L);
-            output[4] = (byte)first4Long;
-
-            return output;
-        }
-
-        public byte[] posToBinary(int pos)
-        {
-            //= 1,517,068.10ln(x) + 1,062,166,905.73
-            double first4 = 1517068.10 * Math.Log(pos) + 1062166905.73;
-            long first4Long = Convert.ToInt64(first4);
-
-            byte[] output = new byte[8];
-            output[7] = (byte)(first4Long / (256L * 256 * 256));
-            first4Long %= (256L * 256 * 256);
-            output[6] = (byte)(first4Long / (256L * 256));
-            first4Long %= (256L * 256);
-            output[5] = (byte)(first4Long / (256L));
-            first4Long %= (256L);
-            output[4] = (byte)first4Long;
-
-            return output;
-        }
-
-        public byte[] spindleToBinary(double spindle)
-        {
-            //y= 6.507078312247120ln(x) + 4,580.272755767090000
-
-            double first4 = 1515047.22522 * Math.Log(spindle) + 1066427853.40808;
-            long first4Long = Convert.ToInt64(first4);
-
-            byte[] output = new byte[8];
-            output[7] = (byte)(first4Long / (256L * 256 * 256));
-            first4Long %= (256L * 256 * 256);
-            output[6] = (byte)(first4Long / (256L * 256));
-            first4Long %= (256L * 256);
-            output[5] = (byte)(first4Long / (256L));
-            first4Long %= (256L);
-            output[4] = (byte)first4Long;
-
-            return output;
-        }
-
-        public string binaryToPosLin(int[] binaryPoint)
-        {
-            long intPos = (binaryPoint[4]) + (binaryPoint[5] * 256L) + (binaryPoint[6] * 256 * 256L) + (binaryPoint[7] * 256L * 256 * 256);
-
-            double doublePos = intPos - 1062166905.73;
-            doublePos = (double)(doublePos) / (double)1517068.10;
-            //= 1,517,068.10ln(x) + 1,062,166,905.73
-            return Math.Exp(doublePos).ToString();
-        }
-
-        public string binaryToSpindle(int[] binaryPoint)
-        {
-            long intPos = (binaryPoint[4]) + (binaryPoint[5] * 256L) + (binaryPoint[6] * 256 * 256L) + (binaryPoint[7] * 256L * 256 * 256);
-
-            double doublePos = intPos - 1066427853.40808;
-            doublePos = (double)(doublePos) / (double)1515047.22522;
-            //y=1,515,047.22522ln(x) + 1,066,427,853.40808
-            return Math.Exp(doublePos).ToString();
-        }
-
-        public string binaryToFeed(int[] feed)
-        {
-            long intFeed = (feed[4]) + (feed[5] * 256L) + (feed[6] * 256 * 256L) + (feed[7] * 256L * 256 * 256);
-
-            double doubleFeed = intFeed - 1055979950.10;
-            doubleFeed = (double)(doubleFeed) / (double)1514611.88;
-            //y = 1,514,611.88ln(x) + 1,055,979,950.10
-            return Math.Exp(doubleFeed).ToString();
-        }
 
 
         public void posThread()
@@ -761,7 +662,7 @@ namespace PappachanNC3
 
             //send both bytes
             sendFile(clk1);
-            System.Threading.Thread.Sleep(700);
+            System.Threading.Thread.Sleep(300);
             sendFile(clk2);
 
 
@@ -775,7 +676,7 @@ namespace PappachanNC3
             //send both bytes
             sendFile(clk1);
 
-            System.Threading.Thread.Sleep(700);
+            System.Threading.Thread.Sleep(300);
             sendFile(clk2);
 
         }
@@ -787,7 +688,7 @@ namespace PappachanNC3
 
             //send both bytes
             sendFile(clk1);
-            System.Threading.Thread.Sleep(700);
+            System.Threading.Thread.Sleep(300);
             sendFile(clk2);
         }
 
@@ -798,7 +699,7 @@ namespace PappachanNC3
 
             //send both bytes
             sendFile(clk1);
-            System.Threading.Thread.Sleep(700);
+            System.Threading.Thread.Sleep(300);
             sendFile(clk2);
         }
 
@@ -809,7 +710,7 @@ namespace PappachanNC3
 
             //send both bytes
             sendFile(clk1);
-            System.Threading.Thread.Sleep(700);
+            System.Threading.Thread.Sleep(300);
             sendFile(clk2);
         }
 
@@ -820,7 +721,7 @@ namespace PappachanNC3
 
             //send both bytes
             sendFile(clk1);
-            System.Threading.Thread.Sleep(700);
+            System.Threading.Thread.Sleep(300);
             sendFile(clk2);
         }
         //end of jog modes
@@ -958,7 +859,7 @@ namespace PappachanNC3
             else
             {
                 byte[] letterS = { 0x1d, 0x00, 0xff, 0xff };
-                byte[] number = spindleToBinary(double.Parse(M03Param.Text));
+                byte[] number = Converter.spindleToBinary(double.Parse(M03Param.Text));
 
                 byte[] clk1 = { 0, 0x58, 0x20, 0, 0, 0, 0, 0, 0, 0, 0xb6, 0, 0, 0, 0x0e, 0, 0, 0, 0, 0, 0xde, 0, 0, 0, 3, 0, letterS[0], letterS[1], letterS[2], letterS[3], number[0], number[1], number[2], number[3], number[4], number[5], number[6], number[7], 150, 0 };
 
@@ -1057,7 +958,7 @@ namespace PappachanNC3
             {
                 commandMid[commandMidPos + 0] = 0x1e;
                 commandMid[commandMidPos + 1] = 0;
-                byte[] pos = posToBinary(int.Parse(xIn.Text));
+                byte[] pos = Converter.posToBinary(double.Parse(xIn.Text),xOffset);
                 for (int i = 0; i < 8; i++)
                     commandMid[commandMidPos + 2 + i] = pos[i];
                 commandMidPos += 10;
@@ -1066,7 +967,7 @@ namespace PappachanNC3
             {
                 commandMid[commandMidPos + 0] = 0x1f;
                 commandMid[commandMidPos + 1] = 0;
-                byte[] pos = posToBinary(int.Parse(yIn.Text));
+                byte[] pos = Converter.posToBinary(double.Parse(yIn.Text),yOffset);
                 for (int i = 0; i < 8; i++)
                     commandMid[commandMidPos + 2 + i] = pos[i];
                 commandMidPos += 10;
@@ -1075,7 +976,7 @@ namespace PappachanNC3
             {
                 commandMid[commandMidPos + 0] = 0x20;
                 commandMid[commandMidPos + 1] = 0;
-                byte[] pos = posToBinary(int.Parse(zIn.Text));
+                byte[] pos = Converter.posToBinary(double.Parse(zIn.Text),zOffset);
                 for (int i = 0; i < 8; i++)
                     commandMid[commandMidPos + 2 + i] = pos[i];
                 commandMidPos += 10;
@@ -1091,11 +992,11 @@ namespace PappachanNC3
             }
             else if (sender == G01Button)
             {
-                if (int.Parse(fIn.Text) != feedrate)
+                if (double.Parse(fIn.Text) != feedrate)
                 {
                     length += 10;
-                    feedrate = int.Parse(fIn.Text);
-                    byte[] feedSpeed = feedToBinary(feedrate);
+                    feedrate = double.Parse(fIn.Text);
+                    byte[] feedSpeed = Converter.feedToBinary(feedrate);
                     feedCommand = new byte[] { 0x18, 0, feedSpeed[0], feedSpeed[1], feedSpeed[2], feedSpeed[3], feedSpeed[4], feedSpeed[5], feedSpeed[6], feedSpeed[7] };
                 }
                 commandEnd = new byte[] { 0x65, 0, 0x96, 0 };
@@ -1164,18 +1065,10 @@ namespace PappachanNC3
 
         }
 
-        private void setOffsetButton_Click(object sender, EventArgs e)
+        private void runGCode_Click(object sender, EventArgs e)
         {
-            xOffset = double.Parse(xOffseted.Text) - double.Parse(xBox.Text);
-            yOffset = double.Parse(yOffseted.Text) - double.Parse(yBox.Text);
-            zOffset = double.Parse(zOffseted.Text) - double.Parse(zBox.Text) - toolHeightOffset;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            /*
-            ArrayList outputs  = Class1.runGCode(GCodeTxtbox.Text);
-            foreach ( ArrayList outputLine in outputs)
+            ArrayList outputs = GCodeParser.runGCode(GCodeTxt.Text);
+            foreach (ArrayList outputLine in outputs)
             {
                 object[] a = outputLine.ToArray();
                 byte[] byteArr = new byte[a.Length];
@@ -1183,7 +1076,13 @@ namespace PappachanNC3
                     byteArr[i] = Convert.ToByte(a[i]);
                 sendFile(byteArr);
             }
-            */
+        }
+
+        private void offsetButton_Click(object sender, EventArgs e)
+        {
+            xOffset = double.Parse(xOffseted.Text) - double.Parse(xBox.Text);
+            yOffset = double.Parse(yOffseted.Text) - double.Parse(yBox.Text);
+            zOffset = double.Parse(zOffseted.Text) - double.Parse(zBox.Text) - toolHeightOffset;
         }
 
 
