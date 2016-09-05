@@ -7,10 +7,9 @@ using Emgu.CV.Structure;
 using OpenTK.Graphics.OpenGL;
 using System.IO;
 using System.Collections;
-using System.Threading;
-using System.Drawing;
 using System.Drawing.Imaging;
-using OpenTK.Graphics.OpenGL;
+using System.Xml;
+using System.Xml.Serialization;
 
 
 
@@ -23,6 +22,10 @@ namespace WindowsFormsApplication2
         float[] rotateArr;
         float[] translateArr;
         float[] cameraPar;
+
+        bool bgLoaded = false;
+        int BGtextureID;
+        int arr1ID, arr2ID, arr3ID;
 
         bool loaded = false;
         bool running = false;
@@ -42,65 +45,76 @@ namespace WindowsFormsApplication2
             const int height = 5;//5 // heght of chess board no. squares in heigth - 1
             Size patternSize = new Size(width, height); //size of chess board to be detected
 
-            //Bgr[] line_colour_array = new Bgr[width * height]; // just for displaying coloured lines of detected chessboard
-            //Image<Gray, Byte>[] Frame_array_buffer = new Image<Gray, byte>[100];
-            MCvPoint3D32f[][] corners_object_list = new MCvPoint3D32f[1][];
-            PointF[][] corners_points_list = new PointF[1][];
+            MCvPoint3D32f[][] corners_object_list = new MCvPoint3D32f[6][];
+            PointF[][] corners_points_list = new PointF[6][];
 
-            corners_object_list[0] = new MCvPoint3D32f[width * height];
 
-            for(int i =0;i<5;i++)
+
+            for (int k = 0; k < 6; k++)
             {
-                for(int j=0; j <5;j++)
+
+                corners_object_list[k] = new MCvPoint3D32f[width * height];
+                for (int i = 0; i < 5; i++)
                 {
-                    corners_object_list[0][5*i+j] = new MCvPoint3D32f((4-i)*29, (4-j)*29, 0);
+                    for (int j = 0; j < 5; j++)
+                    {
+                        corners_object_list[k][5 * i + j] = new MCvPoint3D32f((4 - i) * 29, (4 - j) * 29, 0);
+                    }
                 }
             }
 
 
-            
+
 
 
             var output = new Emgu.CV.Util.VectorOfPointF();
-
-
-            Mat imgCam = new Mat("pic2.jpg", LoadImageType.Unchanged);//load picture of chessboard
-            Mat smallerPic = new Mat();
             Size smallerPicSize = new Size(816, 612);
 
-            Size PicSize = new Size(3264, 2448);
-            CvInvoke.Resize(imgCam, smallerPic, smallerPicSize);
+            for (int k = 1; k <= 6; k++)
+            {
+                Mat imgCam = new Mat(k + ".jpg", LoadImageType.Unchanged);//load picture of chessboard
+                Mat smallerPic = new Mat();
 
-            //CvInvoke.Imshow("small", smallerPic);
+                Size PicSize = new Size(3264, 2448);
+                CvInvoke.Resize(imgCam, smallerPic, smallerPicSize);
 
-            bool found = CvInvoke.FindChessboardCorners(smallerPic, patternSize, output);//find chessboard
-            corners_points_list[0] = output.ToArray();
+                if (k == 1)
+                    smallerPic.Save("small1.jpg");
 
-            for(int i=0;i<output.Size;i++)
+                //CvInvoke.Imshow("small", smallerPic);
+
+                bool found = CvInvoke.FindChessboardCorners(smallerPic, patternSize, output);//find chessboard
+                Console.WriteLine("found:" + found);
+                corners_points_list[k - 1] = output.ToArray();
+            }
+
+            for (int i = 0; i < output.Size; i++)
             {
                 Console.WriteLine(corners_points_list[0].GetValue(i));
             }
 
             Mat cameraMat = new Mat();
             Mat distorCoef = new Mat();
-            Mat[] rotationVec = new Mat[1];
-            rotationVec[0] = new Mat();
-            Mat[] translationVec = new Mat[1];
-            translationVec.Initialize();
+            Mat[] rotationVec = new Mat[6];
 
-
+            Mat[] translationVec = new Mat[6];
+            for (int k = 0; k < 6; k++)
+            {
+                translationVec[k] = new Mat();
+                rotationVec[k] = new Mat();
+            }
 
             MCvTermCriteria criteria = new MCvTermCriteria();
-       
-            double rms = CvInvoke.CalibrateCamera(corners_object_list, corners_points_list, smallerPicSize, cameraMat, distorCoef, CalibType.RationalModel, criteria,out rotationVec,out translationVec);
+
+            double rms = CvInvoke.CalibrateCamera(corners_object_list, corners_points_list, smallerPicSize, cameraMat, distorCoef, CalibType.RationalModel, criteria, out rotationVec, out translationVec);
 
 
             cameraPar = new float[9];
             double[] cameraParDouble = new Double[9];
             cameraMat.CopyTo(cameraParDouble);
-            for(int i=0;i<9;i++)
+            for (int i = 0; i < 9; i++)
             {
-                cameraPar[i] = (float) cameraParDouble[i];
+                cameraPar[i] = (float)cameraParDouble[i];
             }
 
 
@@ -116,7 +130,7 @@ namespace WindowsFormsApplication2
             //rotationVec[0].CopyTo(rv);
             //rv[1] = -1.0f * rv[1]; rv[2] = -1.0f * rv[2];
             //rotationVec[0].SetTo(rv);
-            CvInvoke.Rodrigues(rotationVec[0],rotationMatrix);
+            CvInvoke.Rodrigues(rotationVec[0], rotationMatrix);
             double[] rotateArrDouble = new double[9];
             rotationMatrix.CopyTo(rotateArrDouble);
             for (int i = 0; i < 9; i++)
@@ -143,9 +157,14 @@ namespace WindowsFormsApplication2
 
             //CvInvoke.Imshow("chessboard", imgCam);
 
-            Console.WriteLine(found);
             Console.WriteLine(rms);
-            
+
+            FileStorage fs = new FileStorage("cameraMat.txt", FileStorage.Mode.Write);
+            fs.Write(cameraMat);
+            fs.ReleaseAndGetString();
+            fs = new FileStorage("distort.txt", FileStorage.Mode.Write);
+            fs.Write(distorCoef);
+            fs.ReleaseAndGetString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -201,7 +220,7 @@ namespace WindowsFormsApplication2
                 loaded = true;
 
             }
-           
+
 
         }
 
@@ -234,24 +253,36 @@ namespace WindowsFormsApplication2
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            GL.Ortho(0.0f, 816, 612.0f, 0.0f, 0.0f, 1.0f);
+            GL.MatrixMode(MatrixMode.Modelview);
+            GL.LoadIdentity();
 
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
+            GL.Ortho(0.0f, 816, 612.0f, 0.0f, 100.0f, 500.0f);
 
-            GL.Enable(EnableCap.Texture2D);
 
-            
+            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
+            GL.Color3(Color.White);
 
-            GL.BindTexture(TextureTarget.Texture2D, LoadTexture("picSmall.bmp"));
+            if (bgLoaded == false)
+            {
+
+                GL.Enable(EnableCap.Texture2D);
+                BGtextureID = LoadTexture("small1.jpg");
+                arr1ID = LoadTexture("arrow.png");
+                bgLoaded = true;
+            }
+
+            GL.BindTexture(TextureTarget.Texture2D, BGtextureID);
 
             GL.Begin(PrimitiveType.Quads);
-            GL.TexCoord2(0.0, 0.0); GL.Vertex2(0.0, 0.0);
-            GL.TexCoord2(1.0, 0.0); GL.Vertex2(816.0, 0.0);
-            GL.TexCoord2(1.0, 1.0); GL.Vertex2(816.0, 612.0);
-            GL.TexCoord2(0.0, 1.0); GL.Vertex2(0.0, 612.0);
+            GL.TexCoord2(0.0, 0.0); GL.Vertex3(0.0, 0.0, -499);
+            GL.TexCoord2(1.0, 0.0); GL.Vertex3(816.0, 0.0, -499);
+            GL.TexCoord2(1.0, 1.0); GL.Vertex3(816.0, 612.0, -499);
+            GL.TexCoord2(0.0, 1.0); GL.Vertex3(0.0, 612.0, -499);
             GL.End();
-            
+
+
         }
 
         private void draw()
@@ -259,7 +290,7 @@ namespace WindowsFormsApplication2
             //GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             displayBackground();
 
-            float far = 300, near = 5f;
+            float far = 500, near = 100f;
 
 
 
@@ -268,24 +299,24 @@ namespace WindowsFormsApplication2
             rotateArr[0], rotateArr[1], rotateArr[2], translateArr[0],
             rotateArr[3], rotateArr[4], rotateArr[5], translateArr[1],
             rotateArr[6], rotateArr[7], rotateArr[8], translateArr[2],
-            0, 0, 0, 1 );//translateArr[0], -translateArr[1], -translateArr[2], 1.0f};
+            0, 0, 0, 1);
 
             OpenTK.Matrix4 reverse = new OpenTK.Matrix4(
             1, 0, 0, 0,
             0, -1, 0, 0,
             0, 0, -1, 0,
-            0,0,0,1);
+            0, 0, 0, 1);
 
             //not sure if needed
             OpenTK.Matrix4 landscape = new OpenTK.Matrix4(
             0, 1, 0, 0,
             -1, 0, 0, 0,
             0, 0, 1, 0,
-            0, 0, 0, 1 );
+            0, 0, 0, 1);
 
             OpenTK.Matrix4 projection = new OpenTK.Matrix4(
             2 * cameraPar[0] / 816f, 0, 1 - (2 * cameraPar[2] / 816f), 0,
-            0, 2 * cameraPar[4] / 612f, -1 + (2 * cameraPar[5] +2) / 612f, 0,
+            0, 2 * cameraPar[4] / 612f, -1 + (2 * cameraPar[5] + 2) / 612f, 0,
             0, 0, -(far + near) / (far - near), -2 * far * near / (far - near),
             0, 0, -1, 0);
 
@@ -301,55 +332,35 @@ namespace WindowsFormsApplication2
             OpenTK.Matrix4 mvp = OpenTK.Matrix4.Mult(projection, mvMat);
 
 
-            /*
-            Mat mvMat = reverseYZ * Rt;
-            projMat = rot2D * projMat;
-
-            Mat mvp = projMat * mvMat;
-            */
-
             // render graphics
 
             GL.MatrixMode(MatrixMode.Projection);
-
+            GL.LoadIdentity();
             GL.LoadMatrix(ref projT.Row0.X);
-            //GL.Ortho(-0.0001f, 0.0001f, -0.0001f, 0.0001f, 0.0001f, 0.0001f);
 
             mvMat.Transpose();
             GL.MatrixMode(MatrixMode.Modelview);
+            GL.LoadIdentity();
             GL.LoadMatrix(ref mvMat.Row0.X);
-            //GL.MatrixMode(MatrixMode.Projection);
-            //GL.LoadIdentity();
-            //GL.LoadMatrix(ref projection.Row0.X);\
-        
 
-            OpenTK.Matrix4 m2 = new OpenTK.Matrix4();
-            GL.GetFloat(GetPName.ModelviewMatrix, out m2.Row0.X);
-            m2.Transpose();
 
-            OpenTK.Matrix4 m3 = new OpenTK.Matrix4();
-            GL.GetFloat(GetPName.ProjectionMatrix, out m3.Row0.X);
-            m3.Transpose();
 
-            
 
             GL.LineWidth(2.5f);
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
             GL.Color3(Color.Green);
             GL.Begin(PrimitiveType.Lines);
-            GL.Vertex3(0,0,0);
+            GL.Vertex3(0, 0, 0);
             GL.Vertex3(0, 0, 100);
 
             GL.End();
-            
-            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
+
             GL.Color3(Color.Aqua);
             GL.Begin(PrimitiveType.Lines);
             GL.Vertex3(0, 0, 0);
             GL.Vertex3(0, 100, 0);
-            
 
-            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
+
             GL.Color3(Color.Yellow);
             GL.Begin(PrimitiveType.Lines);
             GL.Vertex3(0, 0, 0);
@@ -357,13 +368,16 @@ namespace WindowsFormsApplication2
 
             GL.End();
 
+
+
+
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
             GL.Enable(EnableCap.Blend);
 
             Color a = Color.FromArgb(160, 255, 0, 0);
             Color b = Color.FromArgb(160, 225, 25, 25);
             Color c = Color.FromArgb(160, 195, 50, 50);
-            
+
 
             Color black = Color.FromArgb(0, 0, 0);
             GL.Enable(EnableCap.DepthTest);
@@ -388,8 +402,8 @@ namespace WindowsFormsApplication2
                     GL.Vertex3(fct.points[2].x + float.Parse(textBox1.Text), fct.points[2].y + float.Parse(textBox2.Text), fct.points[2].z + float.Parse(textBox3.Text));
 
                     GL.End();
-                    
 
+                    /*
                     GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
                     GL.Color3(black);
                     GL.Begin(PrimitiveType.Triangles);
@@ -398,17 +412,21 @@ namespace WindowsFormsApplication2
                     GL.Vertex3(fct.points[2].x , fct.points[2].y, fct.points[2].z );
 
                     GL.End();
-                    
+                    */
                 }
 
 
             }
+
+
 
             GL.Disable(EnableCap.Blend);
 
             glControl1.Refresh();// redraws and updates
             Bitmap gl_image = TakeScreenshot();
             gl_image.Save("screenshot.bmp");
+
+
 
             glControl1.SwapBuffers();
         }
@@ -456,6 +474,86 @@ namespace WindowsFormsApplication2
         {
             draw();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FileStorage fs = new FileStorage("cameraMat.txt", FileStorage.Mode.Read);
+            Mat cameraMat = new Mat();
+            fs.GetFirstTopLevelNode().ReadMat(cameraMat);
+            fs = new FileStorage("distort.txt", FileStorage.Mode.Read);
+            Mat distortMat = new Mat();
+            fs.GetFirstTopLevelNode().ReadMat(distortMat);
+
+            cameraPar = new float[9];
+            double[] cameraParDouble = new Double[9];
+            cameraMat.CopyTo(cameraParDouble);
+            for (int i = 0; i < 9; i++)
+            {
+                cameraPar[i] = (float)cameraParDouble[i];
+            }
+
+            const int width = 5;//5 //width of chessboard no. squares in width - 1
+            const int height = 5;//5 // heght of chess board no. squares in heigth - 1
+            Size patternSize = new Size(width, height); //size of chess board to be detected
+
+            MCvPoint3D32f[] corners_object_list = new MCvPoint3D32f[width * height];
+            PointF[] corners_points_list = new PointF[width * height];
+
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    corners_object_list[5 * i + j] = new MCvPoint3D32f((4 - i) * 29, (4 - j) * 29, 0);
+                }
+            }
+
+
+
+
+
+
+            var output = new Emgu.CV.Util.VectorOfPointF();
+            Size smallerPicSize = new Size(816, 612);
+
+
+            Mat imgCam = new Mat("1.jpg", LoadImageType.Unchanged);//load picture of chessboard
+            Mat smallerPic = new Mat();
+
+            Size PicSize = new Size(3264, 2448);
+            CvInvoke.Resize(imgCam, smallerPic, smallerPicSize);
+
+            bool found = CvInvoke.FindChessboardCorners(smallerPic, patternSize, output);//find chessboard
+            Console.WriteLine("found:" + found);
+            corners_points_list = output.ToArray();
+
+
+            Mat rotationVec = new Mat();
+            Mat translationVec = new Mat();
+
+            CvInvoke.SolvePnP(corners_object_list, corners_points_list, cameraMat, distortMat, rotationVec, translationVec);
+
+            //1 by 3 array of rotate Matrix
+            rotateArr = new float[9];
+            Mat rotationMatrix = new Mat();
+            CvInvoke.Rodrigues(rotationVec, rotationMatrix);
+            double[] rotateArrDouble = new double[9];
+            rotationMatrix.CopyTo(rotateArrDouble);
+            for (int i = 0; i < 9; i++)
+            {
+                rotateArr[i] = (float)rotateArrDouble[i];
+            }
+
+            //1 by 3 array of translate Matrix
+            translateArr = new float[3];
+            double[] translateArrDouble = new double[3];
+            translationVec.CopyTo(translateArrDouble);
+            for (int i = 0; i < 3; i++)
+            {
+                translateArr[i] = (float)translateArrDouble[i];
+            }
+
+        }
+
     }
 
     class stlObj
@@ -500,5 +598,11 @@ namespace WindowsFormsApplication2
             y = yIn;
             z = zIn;
         }
+
+
+
     }
+
+
+
 }
