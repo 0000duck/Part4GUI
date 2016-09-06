@@ -107,6 +107,11 @@
             this.yOffseted = new System.Windows.Forms.TextBox();
             this.zOffseted = new System.Windows.Forms.TextBox();
             this.offsetButton = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.glControl1 = new OpenTK.GLControl();
+            this.glTB1 = new System.Windows.Forms.TextBox();
+            this.glTB2 = new System.Windows.Forms.TextBox();
+            this.glTB3 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -118,6 +123,7 @@
             this.ModeControl.SuspendLayout();
             this.mdiTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.M06Number)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -504,6 +510,7 @@
             this.ModeControl.Controls.Add(this.jogTab);
             this.ModeControl.Controls.Add(this.editTab);
             this.ModeControl.Controls.Add(this.mdiTab);
+            this.ModeControl.Controls.Add(this.tabPage1);
             this.ModeControl.Location = new System.Drawing.Point(13, 27);
             this.ModeControl.Name = "ModeControl";
             this.ModeControl.SelectedIndex = 0;
@@ -845,6 +852,50 @@
             this.offsetButton.UseVisualStyleBackColor = true;
             this.offsetButton.Click += new System.EventHandler(this.offsetButton_Click);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.glTB3);
+            this.tabPage1.Controls.Add(this.glTB2);
+            this.tabPage1.Controls.Add(this.glTB1);
+            this.tabPage1.Controls.Add(this.glControl1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(545, 219);
+            this.tabPage1.TabIndex = 7;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // glControl1
+            // 
+            this.glControl1.BackColor = System.Drawing.Color.Black;
+            this.glControl1.Location = new System.Drawing.Point(15, 6);
+            this.glControl1.Name = "glControl1";
+            this.glControl1.Size = new System.Drawing.Size(511, 207);
+            this.glControl1.TabIndex = 0;
+            this.glControl1.VSync = false;
+            // 
+            // glTB1
+            // 
+            this.glTB1.Location = new System.Drawing.Point(338, 26);
+            this.glTB1.Name = "glTB1";
+            this.glTB1.Size = new System.Drawing.Size(100, 20);
+            this.glTB1.TabIndex = 1;
+            // 
+            // glTB2
+            // 
+            this.glTB2.Location = new System.Drawing.Point(338, 72);
+            this.glTB2.Name = "glTB2";
+            this.glTB2.Size = new System.Drawing.Size(100, 20);
+            this.glTB2.TabIndex = 1;
+            // 
+            // glTB3
+            // 
+            this.glTB3.Location = new System.Drawing.Point(338, 128);
+            this.glTB3.Name = "glTB3";
+            this.glTB3.Size = new System.Drawing.Size(100, 20);
+            this.glTB3.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -893,6 +944,8 @@
             this.mdiTab.ResumeLayout(false);
             this.mdiTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.M06Number)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -978,6 +1031,11 @@
         private System.Windows.Forms.Button runGCode;
         private System.Windows.Forms.TextBox GCodeTxt;
         private System.Windows.Forms.Button offsetButton;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TextBox glTB3;
+        private System.Windows.Forms.TextBox glTB2;
+        private System.Windows.Forms.TextBox glTB1;
+        private OpenTK.GLControl glControl1;
     }
 }
 

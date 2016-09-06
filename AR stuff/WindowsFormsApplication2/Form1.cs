@@ -10,6 +10,7 @@ using System.Collections;
 using System.Drawing.Imaging;
 using System.Xml;
 using System.Xml.Serialization;
+using MjpegProcessor;
 
 
 
@@ -22,6 +23,8 @@ namespace WindowsFormsApplication2
         float[] rotateArr;
         float[] translateArr;
         float[] cameraPar;
+
+        Bitmap currentBMP;
 
         bool bgLoaded = false;
         int BGtextureID;
@@ -249,6 +252,28 @@ namespace WindowsFormsApplication2
             return id;
         }
 
+        static int LoadTexture(Bitmap bmp)
+        {
+        
+            int id = GL.GenTexture();
+            GL.BindTexture(TextureTarget.Texture2D, id);
+
+            // We will not upload mipmaps, so disable mipmapping (otherwise the texture will not appear).
+            // We can use GL.GenerateMipmaps() or GL.Ext.GenerateMipmaps() to create
+            // mipmaps automatically. In that case, use TextureMinFilter.LinearMipmapLinear to enable them.
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
+            
+            BitmapData bmp_data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bmp_data.Width, bmp_data.Height, 0,
+                OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bmp_data.Scan0);
+
+            bmp.UnlockBits(bmp_data);
+
+            return id;
+        }
+
         private void displayBackground()
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
@@ -272,6 +297,9 @@ namespace WindowsFormsApplication2
                 arr1ID = LoadTexture("arrow.png");
                 bgLoaded = true;
             }
+
+            else
+                BGtextureID = LoadTexture(currentBMP);
 
             GL.BindTexture(TextureTarget.Texture2D, BGtextureID);
 
@@ -472,7 +500,20 @@ namespace WindowsFormsApplication2
 
         private void button3_Click(object sender, EventArgs e)
         {
-            draw();
+
+            MjpegDecoder MD = new MjpegDecoder();
+
+            MD.FrameReady += mjpeg_FrameReady;
+            System.Uri a = new Uri("http://192.168.1.1:8081/");
+            MD.ParseStream(a);
+
+            while(true)
+                draw();
+        }
+
+        private void mjpeg_FrameReady(object sender, FrameReadyEventArgs e)
+        {
+            currentBMP = e.Bitmap;
         }
 
         private void button4_Click(object sender, EventArgs e)

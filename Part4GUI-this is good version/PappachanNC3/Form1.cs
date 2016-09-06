@@ -110,6 +110,21 @@ namespace PappachanNC3
             ThreadStart tdStartPos = new ThreadStart(displayPos);
             Thread td2 = new Thread(tdStartPos);
             td2.Start();
+
+            ThreadStart tdStartGL = new ThreadStart(renderGL);
+            Thread td3 = new Thread(tdStartGL);
+            td3.Start();
+        }
+
+        private void renderGL()
+        {
+            AR.render glRender = new AR.render(glTB1,glTB2,glTB3,glControl1);
+
+            while(true)
+            {
+                glRender.draw();
+                Thread.Sleep(400);
+            }
         }
 
         private void displayPos()

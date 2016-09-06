@@ -23,7 +23,7 @@ namespace WindowsFormsApplication2
             MjpegDecoder MD = new MjpegDecoder();
 
             MD.FrameReady += mjpeg_FrameReady;
-            System.Uri a = new Uri("http://169.254.6.232:8081/");
+            System.Uri a = new Uri("http://192.168.1.1:8081/");
             MD.ParseStream(a);
             ;
         }
