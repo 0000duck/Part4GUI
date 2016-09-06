@@ -82,3 +82,7 @@ C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\D
 C:\Users\sheng\Desktop\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\Debug\OpenTK.GLControl.xml
 C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.exe
 C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.pdb
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.csprojResolveAssemblyReference.cache
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.Form1.resources
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.Properties.Resources.resources
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.csproj.GenerateResource.Cache
