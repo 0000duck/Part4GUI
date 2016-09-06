@@ -28,18 +28,15 @@ C:\Users\sheng\Documents\Visual Studio 2015\Projects\AR stuff\WindowsFormsApplic
 C:\Users\sheng\Documents\Visual Studio 2015\Projects\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.Properties.Resources.resources
 C:\Users\sheng\Documents\Visual Studio 2015\Projects\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.GenerateResource.Cache
 C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\bin\Debug\WindowsFormsApplication2.exe.config
-C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.exe
-C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.pdb
 C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\bin\Debug\WindowsFormsApplication2.exe
 C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\bin\Debug\WindowsFormsApplication2.pdb
 C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\bin\Debug\Emgu.CV.World.dll
 C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\bin\Debug\MjpegProcessor.dll
 C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\bin\Debug\Emgu.CV.World.pdb
 C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\bin\Debug\Emgu.CV.World.xml
-C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\bin\Debug\OpenTK.pdb
-C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\bin\Debug\OpenTK.xml
-C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\bin\Debug\OpenTK.GLControl.xml
-C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csprojResolveAssemblyReference.cache
 C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.Form1.resources
 C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.Properties.Resources.resources
 C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csproj.GenerateResource.Cache
+C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.exe
+C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.pdb
+C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csprojResolveAssemblyReference.cache

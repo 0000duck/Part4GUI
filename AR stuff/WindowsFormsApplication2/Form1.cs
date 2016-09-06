@@ -24,6 +24,8 @@ namespace WindowsFormsApplication2
         float[] translateArr;
         float[] cameraPar;
 
+        double xPos = 0;
+
         Bitmap currentBMP;
 
         bool bgLoaded = false;
@@ -227,7 +229,7 @@ namespace WindowsFormsApplication2
 
         }
 
-        static int LoadTexture(string filename)
+        int LoadTexture(string filename)
         {
             if (String.IsNullOrEmpty(filename))
                 throw new ArgumentException(filename);
@@ -242,6 +244,7 @@ namespace WindowsFormsApplication2
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
 
             Bitmap bmp = new Bitmap(filename);
+            currentBMP = bmp;
             BitmapData bmp_data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bmp_data.Width, bmp_data.Height, 0,
@@ -252,9 +255,8 @@ namespace WindowsFormsApplication2
             return id;
         }
 
-        static int LoadTexture(Bitmap bmp)
+        int LoadTexture(Bitmap bmp)
         {
-        
             int id = GL.GenTexture();
             GL.BindTexture(TextureTarget.Texture2D, id);
 
@@ -263,11 +265,14 @@ namespace WindowsFormsApplication2
             // mipmaps automatically. In that case, use TextureMinFilter.LinearMipmapLinear to enable them.
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
-            
+
+            Bitmap bmt2 = bmp.Clone(new Rectangle(0, 0, bmp.Width, bmp.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
             BitmapData bmp_data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bmp_data.Width, bmp_data.Height, 0,
                 OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bmp_data.Scan0);
+
 
             bmp.UnlockBits(bmp_data);
 
@@ -289,25 +294,32 @@ namespace WindowsFormsApplication2
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
             GL.Color3(Color.White);
 
+            /*
             if (bgLoaded == false)
             {
 
-                GL.Enable(EnableCap.Texture2D);
-                BGtextureID = LoadTexture("small1.jpg");
-                arr1ID = LoadTexture("arrow.png");
+                //arr1ID = LoadTexture("arrow.png");
                 bgLoaded = true;
             }
 
             else
-                BGtextureID = LoadTexture(currentBMP);
+
+            
+            BGtextureID = LoadTexture(currentBMP);
+            */
+
+            GL.Enable(EnableCap.Texture2D);
+            Bitmap bmptmp = new Bitmap("small1.jpg");
+            BGtextureID = LoadTexture(currentBMP);
+
 
             GL.BindTexture(TextureTarget.Texture2D, BGtextureID);
 
             GL.Begin(PrimitiveType.Quads);
             GL.TexCoord2(0.0, 0.0); GL.Vertex3(0.0, 0.0, -499);
-            GL.TexCoord2(1.0, 0.0); GL.Vertex3(816.0, 0.0, -499);
-            GL.TexCoord2(1.0, 1.0); GL.Vertex3(816.0, 612.0, -499);
-            GL.TexCoord2(0.0, 1.0); GL.Vertex3(0.0, 612.0, -499);
+            GL.TexCoord2(1.0, 0.0); GL.Vertex3(800.0, 0.0, -499);
+            GL.TexCoord2(1.0, 1.0); GL.Vertex3(800.0, 600.0, -499);
+            GL.TexCoord2(0.0, 1.0); GL.Vertex3(0.0, 600.0, -499);
             GL.End();
 
 
@@ -315,6 +327,7 @@ namespace WindowsFormsApplication2
 
         private void draw()
         {
+            xPos += 0.1;
             //GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             displayBackground();
 
@@ -423,11 +436,11 @@ namespace WindowsFormsApplication2
                     facet fct = (facet)fcet;
 
                     GL.Color4(a);
-                    GL.Vertex3(fct.points[0].x + float.Parse(textBox1.Text), fct.points[0].y + float.Parse(textBox2.Text), fct.points[0].z + float.Parse(textBox3.Text));
+                    GL.Vertex3(fct.points[0].x + float.Parse(textBox1.Text) + xPos, fct.points[0].y + float.Parse(textBox2.Text), fct.points[0].z + float.Parse(textBox3.Text));
                     GL.Color4(b);
-                    GL.Vertex3(fct.points[1].x + float.Parse(textBox1.Text), fct.points[1].y + float.Parse(textBox2.Text), fct.points[1].z + float.Parse(textBox3.Text));
+                    GL.Vertex3(fct.points[1].x + float.Parse(textBox1.Text) + xPos, fct.points[1].y + float.Parse(textBox2.Text), fct.points[1].z + float.Parse(textBox3.Text));
                     GL.Color4(c);
-                    GL.Vertex3(fct.points[2].x + float.Parse(textBox1.Text), fct.points[2].y + float.Parse(textBox2.Text), fct.points[2].z + float.Parse(textBox3.Text));
+                    GL.Vertex3(fct.points[2].x + float.Parse(textBox1.Text) + xPos, fct.points[2].y + float.Parse(textBox2.Text), fct.points[2].z + float.Parse(textBox3.Text));
 
                     GL.End();
 
@@ -485,35 +498,36 @@ namespace WindowsFormsApplication2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (!loaded)
-                return;
-            if (running)
+            if(hasFirst)
             {
-                skipped++;
-                return;
+                currentBMP = MD.Bitmap;
+                draw();
             }
-            running = true;
-            //draw();
-            running = false;
-            skipped = 0;
         }
+
+        bool hasFirst = false;
+
+        MjpegDecoder MD;
 
         private void button3_Click(object sender, EventArgs e)
         {
 
-            MjpegDecoder MD = new MjpegDecoder();
+             MD = new MjpegDecoder();
 
             MD.FrameReady += mjpeg_FrameReady;
             System.Uri a = new Uri("http://192.168.1.1:8081/");
             MD.ParseStream(a);
-
-            while(true)
-                draw();
+            
         }
 
         private void mjpeg_FrameReady(object sender, FrameReadyEventArgs e)
         {
-            currentBMP = e.Bitmap;
+
+            MjpegDecoder md = (MjpegDecoder)sender;
+            hasFirst = true;
+            currentBMP = MD.Bitmap;
+            draw();
+            md.FrameReady -= mjpeg_FrameReady;
         }
 
         private void button4_Click(object sender, EventArgs e)
