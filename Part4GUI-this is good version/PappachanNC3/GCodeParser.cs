@@ -388,6 +388,7 @@ namespace PappachanNC3
             return commandPart;
         }
 
+       
 
         private static double[] quadratic(double a, double b, double c)
         {
@@ -431,5 +432,49 @@ namespace PappachanNC3
 
             return answer;
         }
+
+        private static int quadrant(double xstart, double ystart, double xend, double yend)
+        {
+            int quadResult = 0; // 0 = first quadrant, 1 = second quadrant, 2 = third quadrant,  3 = fourth quadrant
+            bool xPositive = true, yPositive = true;
+            if (xstart - xend >= 0)
+            {
+                xPositive = true;
+            }
+            else
+            {
+                xPositive = false;
+            }
+
+            if (ystart - yend >= 0)
+            {
+                yPositive = true;
+
+            }
+            else
+            {
+                yPositive = false;
+            }
+
+            if ((yPositive == true) && (xPositive == true))
+            {
+                quadResult = 0;
+            }
+            else if ((yPositive == true) && (xPositive == false))
+            {
+                quadResult = 1;
+            }
+            else if ((yPositive == false) && (xPositive == false))
+            {
+                quadResult = 2;
+            }
+            else if ((yPositive == false) && (xPositive == true))
+            {
+                quadResult = 3;
+            }
+
+
+            return quadResult;
+        } 
     }
 }
