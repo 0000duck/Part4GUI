@@ -129,6 +129,7 @@ namespace PappachanNC3
                     if (r != null)
                     {
                         double[] results;
+                        double xPrev = 0, yPrev = 0, xTo = 0, yTo = 0;
                         if (x != null && y != null && z == null)
                         {
                             if ((xPast == null) || (yPast == null))
@@ -137,8 +138,13 @@ namespace PappachanNC3
                             }
                             else
                             {
-                                results = RtoCentre(r.Value, xPast.Value, yPast.Value, x.Value, y.Value);
+                                xPrev = xPast.Value;
+                                yPrev = yPast.Value;
+                                xTo = x.Value;
+                                yTo = y.Value;
+
                             }
+
                             //i,j
 
                         }
@@ -150,8 +156,12 @@ namespace PappachanNC3
                             }
                             else
                             {
-
+                                xPrev = yPast.Value;
+                                yPrev = zPast.Value;
+                                xTo = y.Value;
+                                yTo = z.Value;
                             }
+
                             //j,k
                         }
                         else if (x != null && y == null && z != null)
@@ -162,12 +172,18 @@ namespace PappachanNC3
                             }
                             else
                             {
-
+                                xPrev = xPast.Value;
+                                yPrev = zPast.Value;
+                                xTo = x.Value;
+                                yTo = z.Value;
                             }
+
                             //i,k
                         }
-                        else
-                            ; ///error
+                    else
+                        ; ///error
+
+                        double[] result = RtoCentre(r.Value, xPrev, yPrev, xTo, yTo);
                         if (g == 02)
                         {
                             //clockwise
@@ -176,11 +192,26 @@ namespace PappachanNC3
                             //second quad downleft
                             //third quad downright
                             //fouth quad up right
+                            int quad = quadrant(xPast.Value, yPast.Value, x.Value, y.Value);
+                            if (quad == 0)
+                            {
+
+                            }
+                            else if (quad == 1)
+                            { }
+                            else if (quad == 2)
+                            { }
+                            else
+                            { }
+
+                              
+
                         }
                         else if (g == 03)
                         {
                             //counter-clockwise
                         }
+
                     }
                     if (g != null)
                     {
@@ -388,6 +419,7 @@ namespace PappachanNC3
             return commandPart;
         }
 
+       
 
         private static double[] quadratic(double a, double b, double c)
         {
@@ -423,13 +455,57 @@ namespace PappachanNC3
             xresult = quadratic(xA, xB, xC);
 
 
-            answer[0] = xresult[0];
-            answer[1] = yresult[0];
-            answer[2] = xresult[1];
-            answer[3] = yresult[1];
+            answer[0] = xresult[0] >= xresult[1] ? xresult[0] : xresult[1];
+            answer[1] = yresult[0] >= yresult[1] ? yresult[0] : yresult[1];
+            answer[2] = xresult[0] >= xresult[1] ? xresult[1] : xresult[0];
+            answer[3] = yresult[0] >= yresult[1] ? yresult[1] : yresult[0];
 
 
             return answer;
         }
+
+        private static int quadrant(double xstart, double ystart, double xend, double yend)
+        {
+            int quadResult = 0; // 0 = first quadrant, 1 = second quadrant, 2 = third quadrant,  3 = fourth quadrant
+            bool xPositive = true, yPositive = true;
+            if (xstart - xend >= 0)
+            {
+                xPositive = true;
+            }
+            else
+            {
+                xPositive = false;
+            }
+
+            if (ystart - yend >= 0)
+            {
+                yPositive = true;
+
+            }
+            else
+            {
+                yPositive = false;
+            }
+
+            if ((yPositive == true) && (xPositive == true))
+            {
+                quadResult = 0;
+            }
+            else if ((yPositive == true) && (xPositive == false))
+            {
+                quadResult = 1;
+            }
+            else if ((yPositive == false) && (xPositive == false))
+            {
+                quadResult = 2;
+            }
+            else if ((yPositive == false) && (xPositive == true))
+            {
+                quadResult = 3;
+            }
+
+
+            return quadResult;
+        } 
     }
 }
