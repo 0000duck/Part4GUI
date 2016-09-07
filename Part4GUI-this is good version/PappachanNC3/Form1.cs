@@ -113,7 +113,7 @@ namespace PappachanNC3
 
             ThreadStart tdStartGL = new ThreadStart(renderGL);
             Thread td3 = new Thread(tdStartGL);
-            td3.Start();
+            //td3.Start();
         }
 
         private void renderGL()
@@ -157,38 +157,46 @@ namespace PappachanNC3
                 {
                     if(bc[0] == 0x0a && bc[1] == 0x08)
                     {
+                        string feedPercent = "";
                         if (bc[6] == 0xb0 && bc[7] == 0x04)
-                            feedRatePercentTxtbox.Text = "120%";
+                            feedPercent = "120%";
                         else if (bc[6] == 0x4c && bc[7] == 0x04)
-                            feedRatePercentTxtbox.Text = "110%";
+                            feedPercent = "110%";
                         else if (bc[6] == 0xe8 && bc[7] == 0x03)
-                            feedRatePercentTxtbox.Text = "100%";
+                            feedPercent = "100%";
                         else if (bc[6] == 0x84 && bc[7] == 0x03)
-                            feedRatePercentTxtbox.Text = "90%";
+                            feedPercent = "90%";
                         else if (bc[6] == 0x20 && bc[7] == 0x03)
-                            feedRatePercentTxtbox.Text = "80%";
+                            feedPercent = "80%";
                         else if (bc[6] == 0xbc && bc[7] == 0x02)
-                            feedRatePercentTxtbox.Text = "70%";
+                            feedPercent = "70%";
                         else if (bc[6] == 0x58 && bc[7] == 0x02)
-                            feedRatePercentTxtbox.Text = "60%";
+                            feedPercent = "60%";
                         else if (bc[6] == 0xf4 && bc[7] == 0x01)
-                            feedRatePercentTxtbox.Text = "50%";
+                            feedPercent = "50%";
                         else if (bc[6] == 0x90 && bc[7] == 0x01)
-                            feedRatePercentTxtbox.Text = "40%";
+                            feedPercent = "40%";
                         else if (bc[6] == 0x2c && bc[7] == 0x01)
-                            feedRatePercentTxtbox.Text = "30%";
+                            feedPercent = "30%";
                         else if (bc[6] == 0xc8 && bc[7] == 0x00)
-                            feedRatePercentTxtbox.Text = "20%";
+                            feedPercent = "20%";
                         else if (bc[6] == 0x64 && bc[7] == 0x00)
-                            feedRatePercentTxtbox.Text = "10%";
+                            feedPercent = "10%";
                         else if (bc[6] == 0x32 && bc[7] == 0x00)
-                            feedRatePercentTxtbox.Text = "5%";
+                            feedPercent = "5%";
                         else if (bc[6] == 0x14 && bc[7] == 0x00)
-                            feedRatePercentTxtbox.Text = "2%";
+                            feedPercent = "2%";
                         else if (bc[6] == 0x08 && bc[7] == 0x00)
-                            feedRatePercentTxtbox.Text = "1%";
+                            feedPercent = "1%";
                         else if (bc[6] == 0x00 && bc[7] == 0x00)
-                            feedRatePercentTxtbox.Text = "0%";
+                            feedPercent = "0%";
+
+                        MethodInvoker mi2 = delegate
+                        {
+                            feedRatePercentTxtbox.Text = feedPercent;
+                        };
+                        if (InvokeRequired)
+                            this.Invoke(mi2);
                     }
                 }
 
