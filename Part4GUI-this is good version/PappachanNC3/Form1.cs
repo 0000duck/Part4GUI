@@ -153,6 +153,45 @@ namespace PappachanNC3
                 if (InvokeRequired)
                     this.Invoke(mi);
 
+                if(k == 8)
+                {
+                    if(bc[0] == 0x0a && bc[1] == 0x08)
+                    {
+                        if (bc[6] == 0xb0 && bc[7] == 0x04)
+                            feedRatePercentTxtbox.Text = "120%";
+                        else if (bc[6] == 0x4c && bc[7] == 0x04)
+                            feedRatePercentTxtbox.Text = "110%";
+                        else if (bc[6] == 0xe8 && bc[7] == 0x03)
+                            feedRatePercentTxtbox.Text = "100%";
+                        else if (bc[6] == 0x84 && bc[7] == 0x03)
+                            feedRatePercentTxtbox.Text = "90%";
+                        else if (bc[6] == 0x20 && bc[7] == 0x03)
+                            feedRatePercentTxtbox.Text = "80%";
+                        else if (bc[6] == 0xbc && bc[7] == 0x02)
+                            feedRatePercentTxtbox.Text = "70%";
+                        else if (bc[6] == 0x58 && bc[7] == 0x02)
+                            feedRatePercentTxtbox.Text = "60%";
+                        else if (bc[6] == 0xf4 && bc[7] == 0x01)
+                            feedRatePercentTxtbox.Text = "50%";
+                        else if (bc[6] == 0x90 && bc[7] == 0x01)
+                            feedRatePercentTxtbox.Text = "40%";
+                        else if (bc[6] == 0x2c && bc[7] == 0x01)
+                            feedRatePercentTxtbox.Text = "30%";
+                        else if (bc[6] == 0xc8 && bc[7] == 0x00)
+                            feedRatePercentTxtbox.Text = "20%";
+                        else if (bc[6] == 0x64 && bc[7] == 0x00)
+                            feedRatePercentTxtbox.Text = "10%";
+                        else if (bc[6] == 0x32 && bc[7] == 0x00)
+                            feedRatePercentTxtbox.Text = "5%";
+                        else if (bc[6] == 0x14 && bc[7] == 0x00)
+                            feedRatePercentTxtbox.Text = "2%";
+                        else if (bc[6] == 0x08 && bc[7] == 0x00)
+                            feedRatePercentTxtbox.Text = "1%";
+                        else if (bc[6] == 0x00 && bc[7] == 0x00)
+                            feedRatePercentTxtbox.Text = "0%";
+                    }
+                }
+
                 if (k == 26)
                 {
 
@@ -1098,6 +1137,16 @@ namespace PappachanNC3
             xOffset = double.Parse(xOffseted.Text) - double.Parse(xBox.Text);
             yOffset = double.Parse(yOffseted.Text) - double.Parse(yBox.Text);
             zOffset = double.Parse(zOffseted.Text) - double.Parse(zBox.Text) - toolHeightOffset;
+        }
+
+        private void feedMinusButton_Click(object sender, EventArgs e)
+        {
+            sendFile(new byte[8] { 0x01, 0x68, 0, 0, 0, 0, 0xff, 0xff });
+        }
+
+        private void feedPlusButton_Click(object sender, EventArgs e)
+        {
+            sendFile(new byte[8] { 0x01, 0x68, 0, 0, 0, 0, 0x00, 0x80 });
         }
 
 

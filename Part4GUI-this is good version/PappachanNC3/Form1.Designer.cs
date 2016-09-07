@@ -85,6 +85,11 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.glTB3 = new System.Windows.Forms.TextBox();
+            this.glTB2 = new System.Windows.Forms.TextBox();
+            this.glTB1 = new System.Windows.Forms.TextBox();
+            this.glControl1 = new OpenTK.GLControl();
             this.returnBox = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label7 = new System.Windows.Forms.Label();
@@ -107,11 +112,9 @@
             this.yOffseted = new System.Windows.Forms.TextBox();
             this.zOffseted = new System.Windows.Forms.TextBox();
             this.offsetButton = new System.Windows.Forms.Button();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.glControl1 = new OpenTK.GLControl();
-            this.glTB1 = new System.Windows.Forms.TextBox();
-            this.glTB2 = new System.Windows.Forms.TextBox();
-            this.glTB3 = new System.Windows.Forms.TextBox();
+            this.feedPlusButton = new System.Windows.Forms.Button();
+            this.feedMinusButton = new System.Windows.Forms.Button();
+            this.feedRatePercentTxtbox = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -680,9 +683,53 @@
             this.label12.TabIndex = 24;
             this.label12.Text = "Z";
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.glTB3);
+            this.tabPage1.Controls.Add(this.glTB2);
+            this.tabPage1.Controls.Add(this.glTB1);
+            this.tabPage1.Controls.Add(this.glControl1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(545, 219);
+            this.tabPage1.TabIndex = 7;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // glTB3
+            // 
+            this.glTB3.Location = new System.Drawing.Point(338, 128);
+            this.glTB3.Name = "glTB3";
+            this.glTB3.Size = new System.Drawing.Size(100, 20);
+            this.glTB3.TabIndex = 1;
+            // 
+            // glTB2
+            // 
+            this.glTB2.Location = new System.Drawing.Point(338, 72);
+            this.glTB2.Name = "glTB2";
+            this.glTB2.Size = new System.Drawing.Size(100, 20);
+            this.glTB2.TabIndex = 1;
+            // 
+            // glTB1
+            // 
+            this.glTB1.Location = new System.Drawing.Point(338, 26);
+            this.glTB1.Name = "glTB1";
+            this.glTB1.Size = new System.Drawing.Size(100, 20);
+            this.glTB1.TabIndex = 1;
+            // 
+            // glControl1
+            // 
+            this.glControl1.BackColor = System.Drawing.Color.Black;
+            this.glControl1.Location = new System.Drawing.Point(15, 6);
+            this.glControl1.Name = "glControl1";
+            this.glControl1.Size = new System.Drawing.Size(511, 207);
+            this.glControl1.TabIndex = 0;
+            this.glControl1.VSync = false;
+            // 
             // returnBox
             // 
-            this.returnBox.Location = new System.Drawing.Point(633, 151);
+            this.returnBox.Location = new System.Drawing.Point(594, 173);
             this.returnBox.Name = "returnBox";
             this.returnBox.Size = new System.Drawing.Size(225, 235);
             this.returnBox.TabIndex = 23;
@@ -852,61 +899,48 @@
             this.offsetButton.UseVisualStyleBackColor = true;
             this.offsetButton.Click += new System.EventHandler(this.offsetButton_Click);
             // 
-            // tabPage1
+            // feedPlusButton
             // 
-            this.tabPage1.Controls.Add(this.glTB3);
-            this.tabPage1.Controls.Add(this.glTB2);
-            this.tabPage1.Controls.Add(this.glTB1);
-            this.tabPage1.Controls.Add(this.glControl1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(545, 219);
-            this.tabPage1.TabIndex = 7;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.feedPlusButton.Location = new System.Drawing.Point(849, 173);
+            this.feedPlusButton.Name = "feedPlusButton";
+            this.feedPlusButton.Size = new System.Drawing.Size(75, 23);
+            this.feedPlusButton.TabIndex = 28;
+            this.feedPlusButton.Text = "feed rate +";
+            this.feedPlusButton.UseVisualStyleBackColor = true;
+            this.feedPlusButton.Click += new System.EventHandler(this.feedPlusButton_Click);
             // 
-            // glControl1
+            // feedMinusButton
             // 
-            this.glControl1.BackColor = System.Drawing.Color.Black;
-            this.glControl1.Location = new System.Drawing.Point(15, 6);
-            this.glControl1.Name = "glControl1";
-            this.glControl1.Size = new System.Drawing.Size(511, 207);
-            this.glControl1.TabIndex = 0;
-            this.glControl1.VSync = false;
+            this.feedMinusButton.Location = new System.Drawing.Point(849, 202);
+            this.feedMinusButton.Name = "feedMinusButton";
+            this.feedMinusButton.Size = new System.Drawing.Size(75, 23);
+            this.feedMinusButton.TabIndex = 28;
+            this.feedMinusButton.Text = "feed rate -";
+            this.feedMinusButton.UseVisualStyleBackColor = true;
+            this.feedMinusButton.Click += new System.EventHandler(this.feedMinusButton_Click);
             // 
-            // glTB1
+            // feedRatePercentTxtbox
             // 
-            this.glTB1.Location = new System.Drawing.Point(338, 26);
-            this.glTB1.Name = "glTB1";
-            this.glTB1.Size = new System.Drawing.Size(100, 20);
-            this.glTB1.TabIndex = 1;
-            // 
-            // glTB2
-            // 
-            this.glTB2.Location = new System.Drawing.Point(338, 72);
-            this.glTB2.Name = "glTB2";
-            this.glTB2.Size = new System.Drawing.Size(100, 20);
-            this.glTB2.TabIndex = 1;
-            // 
-            // glTB3
-            // 
-            this.glTB3.Location = new System.Drawing.Point(338, 128);
-            this.glTB3.Name = "glTB3";
-            this.glTB3.Size = new System.Drawing.Size(100, 20);
-            this.glTB3.TabIndex = 1;
+            this.feedRatePercentTxtbox.Location = new System.Drawing.Point(839, 248);
+            this.feedRatePercentTxtbox.Name = "feedRatePercentTxtbox";
+            this.feedRatePercentTxtbox.Size = new System.Drawing.Size(100, 20);
+            this.feedRatePercentTxtbox.TabIndex = 25;
+            this.feedRatePercentTxtbox.Text = "100%";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(975, 438);
+            this.Controls.Add(this.feedMinusButton);
+            this.Controls.Add(this.feedPlusButton);
             this.Controls.Add(this.offsetButton);
             this.Controls.Add(this.zOffseted);
             this.Controls.Add(this.yOffseted);
             this.Controls.Add(this.xOffseted);
             this.Controls.Add(this.sBox);
             this.Controls.Add(this.zBox);
+            this.Controls.Add(this.feedRatePercentTxtbox);
             this.Controls.Add(this.fBox);
             this.Controls.Add(this.yBox);
             this.Controls.Add(this.ztgBox);
@@ -1036,6 +1070,9 @@
         private System.Windows.Forms.TextBox glTB2;
         private System.Windows.Forms.TextBox glTB1;
         private OpenTK.GLControl glControl1;
+        private System.Windows.Forms.Button feedPlusButton;
+        private System.Windows.Forms.Button feedMinusButton;
+        private System.Windows.Forms.TextBox feedRatePercentTxtbox;
     }
 }
 
