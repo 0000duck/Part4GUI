@@ -86,3 +86,13 @@ C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC
 C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.Form1.resources
 C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.Properties.Resources.resources
 C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\obj\x86\Debug\PappachanNC3.csproj.GenerateResource.Cache
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\Debug\PappachanNC3.exe
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\Debug\PappachanNC3.pdb
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\Debug\Emgu.CV.World.dll
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\Debug\OpenTK.dll
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\Debug\OpenTK.GLControl.dll
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\Debug\Emgu.CV.World.pdb
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\Debug\Emgu.CV.World.xml
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\Debug\OpenTK.pdb
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\Debug\OpenTK.xml
+C:\Users\wtse224\Source\Repos\Part4GUI\Part4GUI-this is good version\PappachanNC3\bin\Debug\OpenTK.GLControl.xml
