@@ -101,7 +101,7 @@ namespace PappachanNC3
                     ArrayList commandPartNew = new ArrayList(commandPart);
 
                     //nullable double values for parameters
-                    double? x = null, y = null, z = null, r = null, g = null;
+                    double? x = null, y = null, z = null, r = null;
                     foreach (string oldCommand in commandPartNew)
                     {
                         if (oldCommand[0] == 'X')
@@ -119,11 +119,6 @@ namespace PappachanNC3
                             commandPartNew.Remove(oldCommand);
                         }
 
-                        if (oldCommand[0] == 'G')
-                        {
-                            g = int.Parse(oldCommand.Substring(1));
-
-                        }
                     }
 
                     if (r != null)
@@ -183,8 +178,10 @@ namespace PappachanNC3
                     else
                         ; ///error
 
+                        double i = 0, j = 0;
                         double[] result = RtoCentre(r.Value, xPrev, yPrev, xTo, yTo);
-                        if (g == 02)
+                        int quad = quadrant(xPast.Value, yPast.Value, x.Value, y.Value);
+                        if (GCodeCommand == 2)
                         {
                             //clockwise
                             //break into four quadrants
@@ -192,28 +189,72 @@ namespace PappachanNC3
                             //second quad downleft
                             //third quad downright
                             //fouth quad up right
-                            int quad = quadrant(xPast.Value, yPast.Value, x.Value, y.Value);
+                           
                             if (quad == 0)
                             {
+                                i = result[1];// left
+                                j = result[2];//up
 
                             }
                             else if (quad == 1)
-                            { }
+                            {
+                                i = result[1];//left
+                                j = result[3];//down
+                            }
                             else if (quad == 2)
-                            { }
+                            {
+                                i = result[0];//right
+                                j = result[3];//down
+                            }
                             else
-                            { }
-
-                              
-
+                            {
+                                i = result[0];//right
+                                j = result[2];//up
+                            }
                         }
-                        else if (g == 03)
+                        else if (GCodeCommand == 03)
                         {
                             //counter-clockwise
-                        }
 
+                            if (quad == 0)
+                            {
+                                i = result[0];//right
+                                j = result[3];//down
+
+                            }
+                            else if (quad == 1)
+                            {
+                                i = result[0];//right
+                                j = result[2];//up
+                            }
+                            else if (quad == 2)
+                            {
+                                i = result[1];//left
+                                j = result[2];//up
+                            }
+                            else
+                            {
+                                i = result[1];//left
+                                j = result[3];//down
+                            }
+                        }
+                        if (x != null && y != null && z == null)
+                        {
+                            commandPartNew.Add('I' + i);
+                            commandPartNew.Add('J' + j);
+                        }
+                        else if (x == null && y != null && z != null)
+                        {
+                            commandPartNew.Add('J' + i);
+                            commandPartNew.Add('K' + j);
+                        }
+                        else if (x != null && y == null && z != null)
+                        {
+                            commandPartNew.Add('I' + i);
+                            commandPartNew.Add('K' + j);
+                        }
                     }
-                    if (g != null)
+                    if (GCodeCommand != -1)//-1 means no Gcodecommand
                     {
                         xPast = x;
                         yPast = y;
