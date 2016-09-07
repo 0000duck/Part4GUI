@@ -266,7 +266,6 @@ namespace WindowsFormsApplication2
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
 
-            Bitmap bmt2 = bmp.Clone(new Rectangle(0, 0, bmp.Width, bmp.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             BitmapData bmp_data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
@@ -309,7 +308,6 @@ namespace WindowsFormsApplication2
             */
 
             GL.Enable(EnableCap.Texture2D);
-            Bitmap bmptmp = new Bitmap("small1.jpg");
             BGtextureID = LoadTexture(currentBMP);
 
 
@@ -436,11 +434,11 @@ namespace WindowsFormsApplication2
                     facet fct = (facet)fcet;
 
                     GL.Color4(a);
-                    GL.Vertex3(fct.points[0].x + float.Parse(textBox1.Text) + xPos, fct.points[0].y + float.Parse(textBox2.Text), fct.points[0].z + float.Parse(textBox3.Text));
+                    GL.Vertex3(fct.points[0].x + xPos, fct.points[0].y , fct.points[0].z );
                     GL.Color4(b);
-                    GL.Vertex3(fct.points[1].x + float.Parse(textBox1.Text) + xPos, fct.points[1].y + float.Parse(textBox2.Text), fct.points[1].z + float.Parse(textBox3.Text));
+                    GL.Vertex3(fct.points[1].x + xPos, fct.points[1].y , fct.points[1].z );
                     GL.Color4(c);
-                    GL.Vertex3(fct.points[2].x + float.Parse(textBox1.Text) + xPos, fct.points[2].y + float.Parse(textBox2.Text), fct.points[2].z + float.Parse(textBox3.Text));
+                    GL.Vertex3(fct.points[2].x + xPos, fct.points[2].y , fct.points[2].z );
 
                     GL.End();
 
@@ -464,8 +462,6 @@ namespace WindowsFormsApplication2
             GL.Disable(EnableCap.Blend);
 
             glControl1.Refresh();// redraws and updates
-            Bitmap gl_image = TakeScreenshot();
-            gl_image.Save("screenshot.bmp");
 
 
 
@@ -561,7 +557,7 @@ namespace WindowsFormsApplication2
                     corners_object_list[5 * i + j] = new MCvPoint3D32f((4 - i) * 29, (4 - j) * 29, 0);
                 }
             }
-
+            
 
 
 
