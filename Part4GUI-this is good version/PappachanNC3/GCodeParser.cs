@@ -18,11 +18,15 @@ namespace PappachanNC3
             textLong = textLong.Replace("; \r\n", ";");
             textLong = textLong.Replace("\r\n", ";");
             textLong = textLong.ToUpper();
+
+
+
             string[] commandArray = textLong.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             int lineCount = 1;   //??? starts at 1
             double? xPast = null, yPast = null, zPast = null;
             foreach (string command in commandArray)
             {
+
                 string[] commandPart = command.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 commandPart = moveToFront(commandPart, "MG");
                 ArrayList commandPartList = new ArrayList(commandPart);
@@ -175,8 +179,8 @@ namespace PappachanNC3
 
                             //i,k
                         }
-                    else
-                        ; ///error
+                        else
+                            ; ///error
 
                         double i = 0, j = 0;
                         double[] result = RtoCentre(r.Value, xPrev, yPrev, xTo, yTo);
@@ -189,7 +193,7 @@ namespace PappachanNC3
                             //second quad downleft
                             //third quad downright
                             //fouth quad up right
-                           
+
                             if (quad == 0)
                             {
                                 i = result[1];// left
@@ -280,7 +284,7 @@ namespace PappachanNC3
                     {
                         outputArr.Add(0x1e);
                         outputArr.Add(0);
-                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)),Form1.xOffset);
+                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.xOffset);
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
@@ -290,7 +294,7 @@ namespace PappachanNC3
                     {
                         outputArr.Add(0x1f);
                         outputArr.Add(0);
-                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)),Form1.yOffset);
+                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.yOffset);
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
@@ -300,7 +304,7 @@ namespace PappachanNC3
                     {
                         outputArr.Add(0x20);
                         outputArr.Add(0);
-                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)),Form1.zOffset);
+                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.zOffset);
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
@@ -360,7 +364,7 @@ namespace PappachanNC3
                     {
                         outputArr.Add(0x32);
                         outputArr.Add(0);
-                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)),Form1.xOffset);
+                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.xOffset);
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
@@ -370,7 +374,7 @@ namespace PappachanNC3
                     {
                         outputArr.Add(0x33);
                         outputArr.Add(0);
-                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)),Form1.yOffset);
+                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.yOffset);
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
@@ -380,7 +384,7 @@ namespace PappachanNC3
                     {
                         outputArr.Add(0x34);
                         outputArr.Add(0);
-                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)),Form1.zOffset);
+                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.zOffset);
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
@@ -460,7 +464,7 @@ namespace PappachanNC3
             return commandPart;
         }
 
-       
+
 
         private static double[] quadratic(double a, double b, double c)
         {
@@ -547,6 +551,13 @@ namespace PappachanNC3
 
 
             return quadResult;
-        } 
+        }
+        private static string removeWhiteSpace(string input)
+        {
+            return new string(input.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
+        }
+
+
     }
+
 }
