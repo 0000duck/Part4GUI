@@ -8,8 +8,6 @@ using OpenTK.Graphics.OpenGL;
 using System.IO;
 using System.Collections;
 using System.Drawing.Imaging;
-using System.Xml;
-using System.Xml.Serialization;
 using MjpegProcessor;
 
 
