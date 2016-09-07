@@ -24,10 +24,11 @@ namespace PappachanNC3
             string[] commandArray = textLong.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             int lineCount = 1;   //??? starts at 1
             double? xPast = null, yPast = null, zPast = null;
+            char[] splitter = new char[] {'G'};
             foreach (string command in commandArray)
             {
-
-                string[] commandPart = command.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                string noSpace = removeWhiteSpace(command);
+                string[] commandPart = noSpace.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
                 commandPart = moveToFront(commandPart, "MG");
                 ArrayList commandPartList = new ArrayList(commandPart);
 
@@ -127,7 +128,6 @@ namespace PappachanNC3
 
                     if (r != null)
                     {
-                        double[] results;
                         double xPrev = 0, yPrev = 0, xTo = 0, yTo = 0;
                         if (x != null && y != null && z == null)
                         {
@@ -264,8 +264,22 @@ namespace PappachanNC3
                         yPast = y;
                         zPast = z;
                     }
+                    commandPart = (string[])commandPartNew.ToArray(typeof(string));
 
                 }
+                else if (GCodeCommand == 43)
+                {
+                    /* string[] newCommandPart = commandPart.Where(str => str != "G43").ToArray();
+                     newCommandPart = commandPart.Where(str => str != "H1").ToArray();*/
+                    ArrayList newCommandPart = new ArrayList(commandPart);
+                    newCommandPart.Remove("G43");
+                    newCommandPart.Remove("H1");
+                    newCommandPart.Insert(0, "G43H1");
+                    commandPart = (string[])newCommandPart.ToArray(typeof(string));
+
+                }
+
+                
 
                 if (GCodeCommand == 2 || GCodeCommand == 3)
                 {
