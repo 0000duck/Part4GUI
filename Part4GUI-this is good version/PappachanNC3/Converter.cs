@@ -7,7 +7,6 @@ namespace PappachanNC3
 {
     class Converter
     {
-        //Converts feed rate into sendable byte to milling machine
         public static byte[] feedToBinary(double pos)
         {
             // y = 1,514,611.88ln(x) + 1,055,979,950.10
@@ -26,8 +25,6 @@ namespace PappachanNC3
             return output;
         }
 
-
-        //Converts position into sendable byte to milling machine
         public static byte[] posToBinary(double pos, double offset)
         {
             //= 1,517,068.10ln(x) + 1,062,166,905.73
@@ -46,7 +43,6 @@ namespace PappachanNC3
             return output;
         }
 
-        //Converts spindle into sendable byte to milling machine 
         public static byte[] spindleToBinary(double spindle)
         {
             //y= 6.507078312247120ln(x) + 4,580.272755767090000
@@ -66,7 +62,7 @@ namespace PappachanNC3
             return output;
         }
 
-        //Converts Binary into readable string 
+
         public static string binaryToString(byte[] byteArray, int startPos)
         {
 
@@ -79,7 +75,10 @@ namespace PappachanNC3
             return output;
         }
 
-        //Converts Binary into position position relative to machine origin(mm)
+
+
+
+
         public static string binaryToPosLin(int[] binaryPoint)
         {
             long intPos = (binaryPoint[4]) + (binaryPoint[5] * 256L) + (binaryPoint[6] * 256 * 256L) + (binaryPoint[7] * 256L * 256 * 256);
@@ -90,8 +89,6 @@ namespace PappachanNC3
             return String.Format("{0:0.0000}", Math.Exp(doublePos));
         }
 
-
-        //Converts binary to spindle speed
         public static string binaryToSpindle(int[] binaryPoint)
         {
             long intPos = (binaryPoint[4]) + (binaryPoint[5] * 256L) + (binaryPoint[6] * 256 * 256L) + (binaryPoint[7] * 256L * 256 * 256);
@@ -102,7 +99,6 @@ namespace PappachanNC3
             return String.Format("{0:0.0000}", Math.Exp(doublePos));
         }
 
-        //Converts binary into returned feedrate
         public static string binaryToFeed(int[] feed)
         {
             long intFeed = (feed[4]) + (feed[5] * 256L) + (feed[6] * 256 * 256L) + (feed[7] * 256L * 256 * 256);

@@ -11,27 +11,18 @@ namespace PappachanNC3
         static double toolHeightOffset = 0;
         static double[] toolOffsetTable = new double[21];
 
-        //Converts string commands into byte Gcode format
         public static ArrayList runGCode(string textLong)
         {
-      
             ArrayList ouput = new ArrayList();
-
-            //Replaces all new line variations into a semicolon.
             textLong = textLong.Replace(";\r\n", ";");
             textLong = textLong.Replace("; \r\n", ";");
             textLong = textLong.Replace("\r\n", ";");
-
-            //Split the string into an array where there is a semicolon
-            string[] commandArray = textLong.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-
-            //Converts the string into all uppercase
             textLong = textLong.ToUpper();
 
 
-            int lineCount = 1; 
 
-            //nullable doubles to record positions sent
+            string[] commandArray = textLong.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+            int lineCount = 1;   //??? starts at 1
             double? xPast = null, yPast = null, zPast = null;
 
             int GCodeCommand = -1;
@@ -99,8 +90,8 @@ namespace PappachanNC3
 
 
                     GCodeCommand = -1;
-                //remove now processed initial command
-                commandPartList.RemoveAt(0);
+                    //remove now processed initial command
+                    commandPartList.RemoveAt(0);
                 }
 
 
@@ -120,11 +111,11 @@ namespace PappachanNC3
                 }
 
 
-                    //nullable double values for parameters
+                //nullable double values for parameters
                 double? xNow = null, yNow = null, zNow = null, r = null;
 
                 if (GCodeCommand == 2 || GCodeCommand == 3 || GCodeCommand == 1 || GCodeCommand == 0)
-                    {
+                {
                     foreach (string oldCommand in commandPart)
                     {
                         if (oldCommand[0] == 'X')
@@ -488,7 +479,6 @@ namespace PappachanNC3
             return ouput;
         }
 
-        //Rearranges string for target string tpo be moved towards the front
         private static string[] moveToFront(string[] commandPart, string toFront)
         {
             //stores sorted commands
@@ -533,7 +523,7 @@ namespace PappachanNC3
         }
 
 
-        //quadractic equation
+
         private static double[] quadratic(double a, double b, double c)
         {
             double[] answer = new double[2];
@@ -543,7 +533,6 @@ namespace PappachanNC3
             return answer;
         }
 
-        //converts radius and target location into a centre point for the circle
         private static double[] RtoCentre(double r, double xstart, double ystart, double xend, double yend)
         {
             double[] answer = new double[4];
