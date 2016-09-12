@@ -24,12 +24,15 @@ namespace PappachanNC3
             string[] commandArray = textLong.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
             int lineCount = 1;   //??? starts at 1
             double? xPast = null, yPast = null, zPast = null;
-            char[] splitter = new char[] {'G'};
+
+            int GCodeCommand = -1;
+
             foreach (string command in commandArray)
             {
-                string noSpace = removeWhiteSpace(command);
-                string[] commandPart = noSpace.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
+                string noSpace = addWhiteSpace(command);
+                string[] commandPart = noSpace.Split(new char[1] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 commandPart = moveToFront(commandPart, "MG");
+
                 ArrayList commandPartList = new ArrayList(commandPart);
 
                 ArrayList outputArr = new ArrayList();
@@ -57,7 +60,6 @@ namespace PappachanNC3
 
                 //first deal with the first ter-m, can only be G or M (others possible, but not implemented, as the use is rare(?))= 
                 string firstCommand = (string)commandPartList[0];
-                int GCodeCommand = -1;
                 if (firstCommand[0] == 'M')
                 {
                     outputArr.Add(0xDE);
@@ -67,23 +69,32 @@ namespace PappachanNC3
                     outputArr.Add(0);
                     outputArr.Add(int.Parse(firstCommand.Substring(1)));
                     outputArr.Add(0);
+                    GCodeCommand = -1;
+                    //remove now processed initial command
+                    commandPartList.RemoveAt(0);
                 }
                 else if (firstCommand[0] == 'G')
                 {
                     GCodeCommand = int.Parse(firstCommand.Substring(1));
+                    //remove now processed initial command
+                    commandPartList.RemoveAt(0);
                 }
                 else if (firstCommand[0] == 'F')
                 {
                     outputArr.Add(0x18);
                     outputArr.Add(0);
-                    byte[] pos = Converter.feedToBinary(int.Parse(firstCommand.Substring(1, firstCommand.Length - 1)));
+                    byte[] pos = Converter.feedToBinary(double.Parse(firstCommand.Substring(1, firstCommand.Length - 1)));
 
                     for (int i = 0; i < 8; i++)
                         outputArr.Add(pos[i]);
+
+
+                    GCodeCommand = -1;
+                    //remove now processed initial command
+                    commandPartList.RemoveAt(0);
                 }
 
-                //remove now processed initial command
-                commandPartList.RemoveAt(0);
+
 
                 commandPart = (string[])commandPartList.ToArray(typeof(string));
 
@@ -99,28 +110,40 @@ namespace PappachanNC3
                     outputArr.Add(0);
                 }
 
+
+                //nullable double values for parameters
+                double? xNow = null, yNow = null, zNow = null, r = null;
+
+                if (GCodeCommand == 2 || GCodeCommand == 3 || GCodeCommand == 1 || GCodeCommand == 0)
+                {
+                    foreach (string oldCommand in commandPart)
+                    {
+                        if (oldCommand[0] == 'X')
+                            xNow = double.Parse(oldCommand.Substring(1));
+
+                        if (oldCommand[0] == 'Y')
+                            yNow = double.Parse(oldCommand.Substring(1));
+
+                        if (oldCommand[0] == 'Z')
+                            zNow = double.Parse(oldCommand.Substring(1));
+
+                    }
+
+                }
+
                 //converts r command into IJK commands
                 if (GCodeCommand == 2 || GCodeCommand == 3)
                 {
                     //stores converted commands
                     ArrayList commandPartNew = new ArrayList(commandPart);
 
-                    //nullable double values for parameters
-                    double? x = null, y = null, z = null, r = null;
-                    foreach (string oldCommand in commandPartNew)
+                    commandPart = (string[])commandPartNew.ToArray(typeof(string));
+
+                    foreach (string oldCommand in commandPart)
                     {
-                        if (oldCommand[0] == 'X')
-                            x = int.Parse(oldCommand.Substring(1));
-
-                        if (oldCommand[0] == 'Y')
-                            y = int.Parse(oldCommand.Substring(1));
-
-                        if (oldCommand[0] == 'Z')
-                            z = int.Parse(oldCommand.Substring(1));
-
                         if (oldCommand[0] == 'R')
                         {
-                            r = int.Parse(oldCommand.Substring(1));
+                            r = double.Parse(oldCommand.Substring(1));
                             commandPartNew.Remove(oldCommand);
                         }
 
@@ -129,25 +152,26 @@ namespace PappachanNC3
                     if (r != null)
                     {
                         double xPrev = 0, yPrev = 0, xTo = 0, yTo = 0;
-                        if (x != null && y != null && z == null)
+                        if (xNow != null && yNow != null && zNow == null)
                         {
                             if ((xPast == null) || (yPast == null))
                             {
+
                                 //fetch current position
                             }
                             else
                             {
                                 xPrev = xPast.Value;
                                 yPrev = yPast.Value;
-                                xTo = x.Value;
-                                yTo = y.Value;
 
                             }
+                            xTo = xNow.Value;
+                            yTo = yNow.Value;
 
                             //i,j
 
                         }
-                        else if (x == null && y != null && z != null)
+                        else if (xNow == null && yNow != null && zNow != null)
                         {
                             if ((yPast == null) || (zPast == null))
                             {
@@ -157,24 +181,25 @@ namespace PappachanNC3
                             {
                                 xPrev = yPast.Value;
                                 yPrev = zPast.Value;
-                                xTo = y.Value;
-                                yTo = z.Value;
+                                xTo = yNow.Value;
+                                yTo = zNow.Value;
                             }
 
                             //j,k
                         }
-                        else if (x != null && y == null && z != null)
+                        else if (xNow != null && yNow == null && zNow != null)
                         {
                             if ((xPast == null) || (zPast == null))
                             {
+
                                 //fetch current position
                             }
                             else
                             {
                                 xPrev = xPast.Value;
                                 yPrev = zPast.Value;
-                                xTo = x.Value;
-                                yTo = z.Value;
+                                xTo = xNow.Value;
+                                yTo = zNow.Value;
                             }
 
                             //i,k
@@ -184,7 +209,7 @@ namespace PappachanNC3
 
                         double i = 0, j = 0;
                         double[] result = RtoCentre(r.Value, xPrev, yPrev, xTo, yTo);
-                        int quad = quadrant(xPast.Value, yPast.Value, x.Value, y.Value);
+                        int quad = quadrant(xPast, yPast, xNow.Value, yNow.Value);
                         if (GCodeCommand == 2)
                         {
                             //clockwise
@@ -242,42 +267,39 @@ namespace PappachanNC3
                                 j = result[3];//down
                             }
                         }
-                        if (x != null && y != null && z == null)
+                        if (xNow != null && yNow != null && zNow == null)
                         {
                             commandPartNew.Add('I' + i);
                             commandPartNew.Add('J' + j);
                         }
-                        else if (x == null && y != null && z != null)
+                        else if (xNow == null && yNow != null && zNow != null)
                         {
                             commandPartNew.Add('J' + i);
                             commandPartNew.Add('K' + j);
                         }
-                        else if (x != null && y == null && z != null)
+                        else if (xNow != null && yNow == null && zNow != null)
                         {
                             commandPartNew.Add('I' + i);
                             commandPartNew.Add('K' + j);
                         }
                     }
-                    if (GCodeCommand != -1)//-1 means no Gcodecommand
-                    {
-                        xPast = x;
-                        yPast = y;
-                        zPast = z;
-                    }
                     commandPart = (string[])commandPartNew.ToArray(typeof(string));
 
                 }
+                /*
                 else if (GCodeCommand == 43)
                 {
                     /* string[] newCommandPart = commandPart.Where(str => str != "G43").ToArray();
-                     newCommandPart = commandPart.Where(str => str != "H1").ToArray();*/
+                    newCommandPart = commandPart.Where(str => str != "H1").ToArray();*//*
                     ArrayList newCommandPart = new ArrayList(commandPart);
                     newCommandPart.Remove("G43");
                     newCommandPart.Remove("H1");
-                    newCommandPart.Insert(0, "G43H1");
+                    newCommandPart.Insert(0, "H1");
+                    newCommandPart.Insert(0, "G43");
                     commandPart = (string[])newCommandPart.ToArray(typeof(string));
 
                 }
+            */
 
                 
 
@@ -298,7 +320,7 @@ namespace PappachanNC3
                     {
                         outputArr.Add(0x1e);
                         outputArr.Add(0);
-                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.xOffset);
+                        byte[] pos = Converter.posToBinary(double.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.xOffset);
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
@@ -308,7 +330,7 @@ namespace PappachanNC3
                     {
                         outputArr.Add(0x1f);
                         outputArr.Add(0);
-                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.yOffset);
+                        byte[] pos = Converter.posToBinary(double.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.yOffset);
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
@@ -318,7 +340,7 @@ namespace PappachanNC3
                     {
                         outputArr.Add(0x20);
                         outputArr.Add(0);
-                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.zOffset);
+                        byte[] pos = Converter.posToBinary(double.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.zOffset);
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
@@ -342,7 +364,7 @@ namespace PappachanNC3
                             outputArr.Add(0x68);
                             outputArr.Add(0);
 
-                            byte[] pos = Converter.spindleToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)));
+                            byte[] pos = Converter.spindleToBinary(double.Parse(indCommand.Substring(1, indCommand.Length - 1)));
                             /////!!!!Using wrong formula
 
                             for (int i = 0; i < 8; i++)
@@ -358,7 +380,7 @@ namespace PappachanNC3
                         outputArr.Add(0xff);
                         outputArr.Add(0xff);
 
-                        byte[] pos = Converter.spindleToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)));
+                        byte[] pos = Converter.spindleToBinary(double.Parse(indCommand.Substring(1, indCommand.Length - 1)));
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
@@ -366,29 +388,40 @@ namespace PappachanNC3
 
                     else if (indCommand[0] == 'F')
                     {
+
+                        outputArr.RemoveAt(outputArr.Count - 1);
+                        outputArr.RemoveAt(outputArr.Count - 1);
+                        outputArr.RemoveAt(outputArr.Count - 1);
+                        outputArr.RemoveAt(outputArr.Count - 1);
+
                         outputArr.Add(0x18);
                         outputArr.Add(0);
-                        byte[] pos = Converter.feedToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)));
+                        byte[] pos = Converter.feedToBinary(double.Parse(indCommand.Substring(1, indCommand.Length - 1)));
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
+
+                        outputArr.Add(0x1c);
+                        outputArr.Add(0);
+                        outputArr.Add(0x01);
+                        outputArr.Add(0);
                     }
 
                     else if (indCommand[0] == 'I')
                     {
                         outputArr.Add(0x32);
                         outputArr.Add(0);
-                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.xOffset);
+                        byte[] pos = Converter.posToBinary(xPast.Value + double.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.xOffset);
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
                     }
 
-                    else if (indCommand[0] == 'j')
+                    else if (indCommand[0] == 'J')
                     {
                         outputArr.Add(0x33);
                         outputArr.Add(0);
-                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.yOffset);
+                        byte[] pos = Converter.posToBinary(yPast.Value + double.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.yOffset);
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
@@ -398,7 +431,7 @@ namespace PappachanNC3
                     {
                         outputArr.Add(0x34);
                         outputArr.Add(0);
-                        byte[] pos = Converter.posToBinary(int.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.zOffset);
+                        byte[] pos = Converter.posToBinary(zPast.Value + double.Parse(indCommand.Substring(1, indCommand.Length - 1)), Form1.zOffset);
 
                         for (int i = 0; i < 8; i++)
                             outputArr.Add(pos[i]);
@@ -431,6 +464,17 @@ namespace PappachanNC3
 
                 lineCount++;
                 ouput.Add(outputArr);
+
+                if (GCodeCommand != -1)//-1 means no Gcodecommand
+                {
+                    if(xNow != null)
+                        xPast = xNow;
+                    if (yNow != null)
+                        yPast = yNow;
+                    if (zNow != null)
+                        zPast = zNow;
+                }
+
             }
             return ouput;
         }
@@ -523,8 +567,13 @@ namespace PappachanNC3
             return answer;
         }
 
-        private static int quadrant(double xstart, double ystart, double xend, double yend)
+        private static int quadrant(double? xstart, double? ystart, double xend, double yend)
         {
+            if (xstart == null)
+                xstart = 0;
+            if (ystart == null)
+                ystart = 0;
+
             int quadResult = 0; // 0 = first quadrant, 1 = second quadrant, 2 = third quadrant,  3 = fourth quadrant
             bool xPositive = true, yPositive = true;
             if (xstart - xend >= 0)
@@ -566,10 +615,18 @@ namespace PappachanNC3
 
             return quadResult;
         }
-        private static string removeWhiteSpace(string input)
+        /*
+        private static string addWhiteSpace(string input)
         {
             return new string(input.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
+        }*/
+
+        private static string addWhiteSpace(string input)
+        {
+            string returnStr = input;
+            return System.Text.RegularExpressions.Regex.Replace(input,"[A-Z]"," $0");
         }
+
 
 
     }

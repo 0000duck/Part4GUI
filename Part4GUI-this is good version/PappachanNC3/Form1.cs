@@ -51,6 +51,11 @@ namespace PappachanNC3
 
         static double feedrate = 0;
 
+        AR.render glRender;
+        bool glSync = false;
+
+        public static double? currentX = null, currentY = null, currentZ = null;
+
 
         // functions
         public void initialiseCNC()
@@ -103,6 +108,8 @@ namespace PappachanNC3
 
             stmQueue = new Queue<stmElement>();
 
+            renderGL();
+
             ThreadStart tdStartstm = new ThreadStart(posThread);
             Thread td1 = new Thread(tdStartstm);
             td1.Start();
@@ -111,20 +118,11 @@ namespace PappachanNC3
             Thread td2 = new Thread(tdStartPos);
             td2.Start();
 
-            ThreadStart tdStartGL = new ThreadStart(renderGL);
-            Thread td3 = new Thread(tdStartGL);
-            //td3.Start();
         }
 
         private void renderGL()
         {
-            AR.render glRender = new AR.render(glTB1,glTB2,glTB3,glControl1);
-
-            while(true)
-            {
-                glRender.draw();
-                Thread.Sleep(400);
-            }
+            glRender = new AR.render(glTB1,glTB2,glTB3,glControl1);
         }
 
         private void displayPos()
@@ -133,6 +131,8 @@ namespace PappachanNC3
             {
                 while (stmQueue.Count == 0)
                     ;
+
+                Thread.Sleep(10);
 
                 stmElement se = stmQueue.Dequeue();
 
@@ -146,12 +146,14 @@ namespace PappachanNC3
                     str += Convert.ToChar(bc[i]);
                 }
 
+                /*
                 MethodInvoker mi = delegate
                 {
                     returnBox.Text += k + ":    " + str + "\r\n";
                 };
                 if (InvokeRequired)
                     this.Invoke(mi);
+                    */
 
                 if(k == 8)
                 {
@@ -198,6 +200,12 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
                     }
+
+                    if (bc[0] == 0x00 && bc[1] == 0x08 && bc[2] == 0x04 && bc[8]== 0x00)
+                    {
+                        //line ended
+                        lineComplete.Text = (int.Parse(lineComplete.Text)+1).ToString();
+                    }
                 }
 
                 if (k == 26)
@@ -219,6 +227,8 @@ namespace PappachanNC3
                             };
                             if (InvokeRequired)
                                 this.Invoke(mi2);
+
+                            currentX = double.Parse(txt) + xOffset;
 
                             //dist to go
 
@@ -246,6 +256,7 @@ namespace PappachanNC3
                             if (InvokeRequired)
                                 this.Invoke(mi2);
 
+                            currentY = double.Parse(txt) + yOffset;
 
                             //dist to go
 
@@ -269,10 +280,12 @@ namespace PappachanNC3
                             MethodInvoker mi2 = delegate
                             {
                                 zBox.Text = txt;
-                                zOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + zOffset));
+                                zOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + zOffset + toolHeightOffset));
                             };
                             if (InvokeRequired)
                                 this.Invoke(mi2);
+
+                            currentZ = double.Parse(txt) + zOffset + toolHeightOffset;
 
                             //dist to go
 
@@ -323,6 +336,7 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
+                        currentX = double.Parse(txt) + xOffset;
 
                         //dist to go
 
@@ -348,6 +362,8 @@ namespace PappachanNC3
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
+
+                        currentY = double.Parse(txt) + yOffset;
 
                         //dist to go
 
@@ -375,6 +391,8 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
+                        currentX = double.Parse(txt) + xOffset;
+
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 18);
@@ -395,6 +413,8 @@ namespace PappachanNC3
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
+
+                        currentZ = double.Parse(txt) + zOffset + toolHeightOffset;
 
 
                         //dist to go
@@ -424,6 +444,7 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
+                        currentY = double.Parse(txt) + yOffset;
 
                         //dist to go
 
@@ -445,6 +466,8 @@ namespace PappachanNC3
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
+
+                        currentZ = double.Parse(txt) + zOffset + toolHeightOffset;
 
 
                         //dist to go
@@ -477,6 +500,8 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
+                        currentX = double.Parse(txt) + xOffset;
+
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 18);
@@ -499,6 +524,8 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
+                        currentY = double.Parse(txt) + yOffset;
+
 
                         //dist to go
 
@@ -516,10 +543,12 @@ namespace PappachanNC3
                         mi2 = delegate
                         {
                             zBox.Text = txt;
-                            zOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + xOffset + toolHeightOffset));
+                            zOffseted.Text = String.Format("{0:0.0000}", (double.Parse(txt) + zOffset + toolHeightOffset));
                         };
                         if (InvokeRequired)
                             this.Invoke(mi2);
+
+                        currentZ = double.Parse(txt) + zOffset;
 
                         //dist to go
 
@@ -1155,6 +1184,31 @@ namespace PappachanNC3
         private void feedPlusButton_Click(object sender, EventArgs e)
         {
             sendFile(new byte[8] { 0x01, 0x68, 0, 0, 0, 0, 0x00, 0x80 });
+        }
+
+        private void glControl1_Load(object sender, EventArgs e)
+        {
+            glControl1.VSync = true;//not fired
+            glSync = true;
+        }
+
+        private void clearLine_Click(object sender, EventArgs e)
+        {
+            glRender.lineList = new ArrayList();
+        }
+
+        private void alarmBtn_Click(object sender, EventArgs e)
+        {
+            sendFile(new byte[8] { 0x09, 0x60, 0, 0, 0, 0, 0, 0 });
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (AR.render.hasFirst && glSync)
+            {
+                AR.render.currentBMP = AR.cameraFeed.MD.Bitmap;
+                glRender.draw();
+            }
         }
 
 
