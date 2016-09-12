@@ -11,24 +11,38 @@ namespace PappachanNC3
         static double toolHeightOffset = 0;
         static double[] toolOffsetTable = new double[21];
 
+        //Converts string commands into byte Gcode format
         public static ArrayList runGCode(string textLong)
         {
+      
             ArrayList ouput = new ArrayList();
+
+            //Replaces all new line variations into a semicolon.
             textLong = textLong.Replace(";\r\n", ";");
             textLong = textLong.Replace("; \r\n", ";");
             textLong = textLong.Replace("\r\n", ";");
-            textLong = textLong.ToUpper();
 
-
-
+            //Split the string into an array where there is a semicolon
             string[] commandArray = textLong.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            int lineCount = 1;   //??? starts at 1
+
+            //Converts the string into all uppercase
+            textLong = textLong.ToUpper();
+            
+
+            int lineCount = 1; 
+
+            //nullable doubles to record positions sent
             double? xPast = null, yPast = null, zPast = null;
+
+            //Split up each G command
             char[] splitter = new char[] {'G'};
             foreach (string command in commandArray)
             {
+
                 string noSpace = removeWhiteSpace(command);
                 string[] commandPart = noSpace.Split(splitter, StringSplitOptions.RemoveEmptyEntries);
+
+                //move to front
                 commandPart = moveToFront(commandPart, "MG");
                 ArrayList commandPartList = new ArrayList(commandPart);
 
@@ -435,6 +449,7 @@ namespace PappachanNC3
             return ouput;
         }
 
+        //Rearranges string for target string tpo be moved towards the front
         private static string[] moveToFront(string[] commandPart, string toFront)
         {
             //stores sorted commands
@@ -479,7 +494,7 @@ namespace PappachanNC3
         }
 
 
-
+        //quadractic equation
         private static double[] quadratic(double a, double b, double c)
         {
             double[] answer = new double[2];
@@ -489,6 +504,7 @@ namespace PappachanNC3
             return answer;
         }
 
+        //converts radius and target location into a centre point for the circle
         private static double[] RtoCentre(double r, double xstart, double ystart, double xend, double yend)
         {
             double[] answer = new double[4];
@@ -523,6 +539,7 @@ namespace PappachanNC3
             return answer;
         }
 
+        //determine which quadrant the point is heading towards
         private static int quadrant(double xstart, double ystart, double xend, double yend)
         {
             int quadResult = 0; // 0 = first quadrant, 1 = second quadrant, 2 = third quadrant,  3 = fourth quadrant
@@ -566,6 +583,8 @@ namespace PappachanNC3
 
             return quadResult;
         }
+
+        //removes white space froma string
         private static string removeWhiteSpace(string input)
         {
             return new string(input.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
