@@ -21,20 +21,12 @@ namespace PappachanNC3.AR
 
         bool bgLoaded = false;
         int BGtextureID;
-        int id;
-
-        public static Bitmap currentBMP;
-        public static bool hasFirst;
 
         //ui elements
         TextBox textBox1, textBox2, textBox3;
         OpenTK.GLControl glControl1;
         
         ArrayList objects;
-
-        public ArrayList lineList;
-
-        double? prevX = null, prevY = null, prevZ = null;
 
         public render(TextBox txb1, TextBox txb2, TextBox txb3,OpenTK.GLControl gc)
         {
@@ -44,8 +36,6 @@ namespace PappachanNC3.AR
 
             glControl1 = gc;
 
-            lineList = new ArrayList();
-
             readStlObj rso = new readStlObj();
             objects = rso.objects;
 
@@ -54,36 +44,11 @@ namespace PappachanNC3.AR
             cameraPar = cc.cameraPar;
             rotateArr = cc.rotateArr;
             translateArr = cc.translateArr;
-
-            cameraFeed.loadCamera();
-
-            int id = GL.GenTexture();
-        }
-
-        public void addLine()
-        {
-            if(Form1.currentX != null && Form1.currentY != null && Form1.currentZ != null )
-            {
-                if(prevX != null)
-                {
-                    if (Form1.currentX != prevX || Form1.currentY != prevY || Form1.currentZ != prevZ)
-                    {
-                        line temp = new line(Form1.currentX.Value, Form1.currentY.Value, Form1.currentZ.Value, prevX.Value, prevY.Value, prevZ.Value);
-                        lineList.Add(temp);
-                    }
-                }
-
-                prevX = Form1.currentX;
-                prevY = Form1.currentY;
-                prevZ = Form1.currentZ;
-            }
         }
 
 
         public void draw()
         {
-            addLine();
-
             //GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             displayBackground();
 
@@ -165,15 +130,7 @@ namespace PappachanNC3.AR
 
             GL.End();
 
-            foreach (line ln in lineList)
-            {
-                GL.Color3(Color.Black);
-                GL.Begin(PrimitiveType.Lines);
-                GL.Vertex3(ln.startX, ln.startY, ln.startZ);
-                GL.Vertex3(ln.endX, ln.endY, ln.endZ);
 
-                GL.End();
-            }
 
 
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
@@ -200,11 +157,11 @@ namespace PappachanNC3.AR
                     facet fct = (facet)fcet;
 
                     GL.Color4(a);
-                    GL.Vertex3(fct.points[0].x , fct.points[0].y, fct.points[0].z);
+                    GL.Vertex3(fct.points[0].x + float.Parse(textBox1.Text), fct.points[0].y + float.Parse(textBox2.Text), fct.points[0].z + float.Parse(textBox3.Text));
                     GL.Color4(b);
-                    GL.Vertex3(fct.points[1].x , fct.points[1].y, fct.points[1].z);
+                    GL.Vertex3(fct.points[1].x + float.Parse(textBox1.Text), fct.points[1].y + float.Parse(textBox2.Text), fct.points[1].z + float.Parse(textBox3.Text));
                     GL.Color4(c);
-                    GL.Vertex3(fct.points[2].x , fct.points[2].y, fct.points[2].z);
+                    GL.Vertex3(fct.points[2].x + float.Parse(textBox1.Text), fct.points[2].y + float.Parse(textBox2.Text), fct.points[2].z + float.Parse(textBox3.Text));
 
                     GL.End();
 
@@ -228,6 +185,8 @@ namespace PappachanNC3.AR
             GL.Disable(EnableCap.Blend);
 
             glControl1.Refresh();// redraws and updates
+            Bitmap gl_image = TakeScreenshot();
+            gl_image.Save("screenshot.bmp");
 
 
 
@@ -248,7 +207,7 @@ namespace PappachanNC3.AR
             return bmp;
         }
 
-        int LoadTexture(string filename)
+        static int LoadTexture(string filename)
         {
             if (String.IsNullOrEmpty(filename))
                 throw new ArgumentException(filename);
@@ -263,7 +222,6 @@ namespace PappachanNC3.AR
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
 
             Bitmap bmp = new Bitmap(filename);
-            currentBMP = bmp;
             BitmapData bmp_data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bmp_data.Width, bmp_data.Height, 0,
@@ -273,30 +231,6 @@ namespace PappachanNC3.AR
 
             return id;
         }
-
-        int LoadTexture(Bitmap bmp)
-        {
-            
-            GL.BindTexture(TextureTarget.Texture2D, id);
-
-            // We will not upload mipmaps, so disable mipmapping (otherwise the texture will not appear).
-            // We can use GL.GenerateMipmaps() or GL.Ext.GenerateMipmaps() to create
-            // mipmaps automatically. In that case, use TextureMinFilter.LinearMipmapLinear to enable them.
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
-
-
-            BitmapData bmp_data = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-
-            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bmp_data.Width, bmp_data.Height, 0,
-                OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bmp_data.Scan0);
-
-
-            bmp.UnlockBits(bmp_data);
-
-            return id;
-        }
-
 
         private void displayBackground()
         {
@@ -313,50 +247,24 @@ namespace PappachanNC3.AR
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
             GL.Color3(Color.White);
 
-            /*
             if (bgLoaded == false)
             {
 
-                //arr1ID = LoadTexture("arrow.png");
+                GL.Enable(EnableCap.Texture2D);
+                BGtextureID = LoadTexture("small1.jpg");
                 bgLoaded = true;
             }
-
-            else
-
-            
-            BGtextureID = LoadTexture(currentBMP);
-            */
-
-            GL.Enable(EnableCap.Texture2D);
-            BGtextureID = LoadTexture(currentBMP);
-
 
             GL.BindTexture(TextureTarget.Texture2D, BGtextureID);
 
             GL.Begin(PrimitiveType.Quads);
             GL.TexCoord2(0.0, 0.0); GL.Vertex3(0.0, 0.0, -499);
-            GL.TexCoord2(1.0, 0.0); GL.Vertex3(800.0, 0.0, -499);
-            GL.TexCoord2(1.0, 1.0); GL.Vertex3(800.0, 600.0, -499);
-            GL.TexCoord2(0.0, 1.0); GL.Vertex3(0.0, 600.0, -499);
+            GL.TexCoord2(1.0, 0.0); GL.Vertex3(816.0, 0.0, -499);
+            GL.TexCoord2(1.0, 1.0); GL.Vertex3(816.0, 612.0, -499);
+            GL.TexCoord2(0.0, 1.0); GL.Vertex3(0.0, 612.0, -499);
             GL.End();
 
 
-        }
-    }
-
-    class line
-    {
-        public double startX, startY, startZ, endX, endY, endZ;
-
-        public line(double xIn1, double yIn1, double zIn1, double xIn2, double yIn2, double zIn2)
-        {
-            startX = xIn2;
-            startY = yIn2;
-            startZ = zIn2;
-
-            endX = xIn1;
-            endY = yIn1;
-            endZ = zIn1;
         }
     }
 }

@@ -37,9 +37,6 @@
     <Reference Include="Emgu.CV.World">
       <HintPath>..\..\AR stuff\emgu\Emgu.CV.World.dll</HintPath>
     </Reference>
-    <Reference Include="MjpegProcessor">
-      <HintPath>..\..\WindowsFormsApplication2\WindowsFormsApplication2\bin\Debug\MjpegProcessor.dll</HintPath>
-    </Reference>
     <Reference Include="OpenTK">
       <HintPath>..\..\AR stuff\openTK\OpenTK\Release\OpenTK.dll</HintPath>
     </Reference>
@@ -59,7 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AR\cameraCalibrate.cs" />
-    <Compile Include="AR\cameraFeed.cs" />
     <Compile Include="AR\render.cs" />
     <Compile Include="AR\stlObject.cs" />
     <Compile Include="GCodeParser.cs" />

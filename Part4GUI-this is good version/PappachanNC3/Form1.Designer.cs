@@ -45,6 +45,8 @@
             this.referenceToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.statusBox = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.moveXup = new System.Windows.Forms.Button();
             this.moveXdown = new System.Windows.Forms.Button();
@@ -59,7 +61,9 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.feedDownButton = new System.Windows.Forms.Button();
             this.feedUpButton = new System.Windows.Forms.Button();
+            this.jogXlabel = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.label8 = new System.Windows.Forms.Label();
             this.jogTab = new System.Windows.Forms.TabPage();
             this.memoryTab = new System.Windows.Forms.TabPage();
             this.runGCode = new System.Windows.Forms.Button();
@@ -86,6 +90,7 @@
             this.glTB2 = new System.Windows.Forms.TextBox();
             this.glTB1 = new System.Windows.Forms.TextBox();
             this.glControl1 = new OpenTK.GLControl();
+            this.returnBox = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xToGoLbl = new System.Windows.Forms.Label();
             this.yToGoLbl = new System.Windows.Forms.Label();
@@ -110,13 +115,8 @@
             this.feedPlusButton = new System.Windows.Forms.Button();
             this.feedMinusButton = new System.Windows.Forms.Button();
             this.feedRatePercentTxtbox = new System.Windows.Forms.TextBox();
-            this.alarmBtn = new System.Windows.Forms.Button();
-            this.lineComplete = new System.Windows.Forms.TextBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.statusBox = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.clearLine = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -136,7 +136,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1284, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(975, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -392,6 +392,15 @@
             this.jogXlabel.TabIndex = 5;
             this.jogXlabel.Text = "0";
             // 
+            // jogXlabel
+            // 
+            this.jogXlabel.AutoSize = true;
+            this.jogXlabel.Location = new System.Drawing.Point(89, 395);
+            this.jogXlabel.Name = "jogXlabel";
+            this.jogXlabel.Size = new System.Drawing.Size(13, 13);
+            this.jogXlabel.TabIndex = 5;
+            this.jogXlabel.Text = "0";
+            // 
             // contextMenuStrip1
             // 
             this.zLbl.AutoSize = true;
@@ -400,6 +409,15 @@
             this.zLbl.Size = new System.Drawing.Size(14, 13);
             this.zLbl.TabIndex = 24;
             this.zLbl.Text = "Z";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(29, 395);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "X location";
             // 
             // label8
             // 
@@ -591,7 +609,7 @@
             this.mdiTab.Location = new System.Drawing.Point(4, 22);
             this.mdiTab.Name = "mdiTab";
             this.mdiTab.Padding = new System.Windows.Forms.Padding(3);
-            this.mdiTab.Size = new System.Drawing.Size(418, 219);
+            this.mdiTab.Size = new System.Drawing.Size(545, 219);
             this.mdiTab.TabIndex = 6;
             this.mdiTab.Text = "MDI";
             this.mdiTab.UseVisualStyleBackColor = true;
@@ -947,63 +965,11 @@
             this.feedRatePercentTxtbox.TabIndex = 25;
             this.feedRatePercentTxtbox.Text = "100%";
             // 
-            // alarmBtn
-            // 
-            this.alarmBtn.Location = new System.Drawing.Point(909, 164);
-            this.alarmBtn.Name = "alarmBtn";
-            this.alarmBtn.Size = new System.Drawing.Size(75, 23);
-            this.alarmBtn.TabIndex = 28;
-            this.alarmBtn.Text = "clear alarm";
-            this.alarmBtn.UseVisualStyleBackColor = true;
-            this.alarmBtn.Click += new System.EventHandler(this.alarmBtn_Click);
-            // 
-            // lineComplete
-            // 
-            this.lineComplete.Location = new System.Drawing.Point(884, 196);
-            this.lineComplete.Name = "lineComplete";
-            this.lineComplete.Size = new System.Drawing.Size(100, 20);
-            this.lineComplete.TabIndex = 29;
-            this.lineComplete.Text = "0";
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // statusBox
-            // 
-            this.statusBox.Location = new System.Drawing.Point(21, 520);
-            this.statusBox.Multiline = true;
-            this.statusBox.Name = "statusBox";
-            this.statusBox.Size = new System.Drawing.Size(541, 69);
-            this.statusBox.TabIndex = 30;
-            // 
-            // contextMenuStrip3
-            // 
-            this.contextMenuStrip3.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.contextMenuStrip3.Name = "contextMenuStrip3";
-            this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
-            // 
-            // clearLine
-            // 
-            this.clearLine.Location = new System.Drawing.Point(47, 29);
-            this.clearLine.Name = "clearLine";
-            this.clearLine.Size = new System.Drawing.Size(75, 23);
-            this.clearLine.TabIndex = 2;
-            this.clearLine.Text = "clear drawing";
-            this.clearLine.UseVisualStyleBackColor = true;
-            this.clearLine.Click += new System.EventHandler(this.clearLine_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 601);
-            this.Controls.Add(this.statusBox);
-            this.Controls.Add(this.ModeControl);
-            this.Controls.Add(this.lineComplete);
-            this.Controls.Add(this.glControl1);
-            this.Controls.Add(this.alarmBtn);
+            this.ClientSize = new System.Drawing.Size(975, 438);
             this.Controls.Add(this.feedMinusButton);
             this.Controls.Add(this.feedPlusButton);
             this.Controls.Add(this.offsetButton);
