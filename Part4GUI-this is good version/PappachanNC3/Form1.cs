@@ -130,7 +130,7 @@ namespace PappachanNC3
             while (true)
             {
                 while (stmQueue.Count == 0)
-                    ;
+                    Thread.Sleep(10);
 
                 Thread.Sleep(10);
 
@@ -1195,7 +1195,12 @@ namespace PappachanNC3
         private void clearLine_Click(object sender, EventArgs e)
         {
             glRender.lineList = new ArrayList();
+            glRender.prevX = null;
+            glRender.prevY = null;
+            glRender.prevZ = null;
+
         }
+        
 
         private void alarmBtn_Click(object sender, EventArgs e)
         {

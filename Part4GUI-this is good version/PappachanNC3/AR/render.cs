@@ -29,14 +29,15 @@ namespace PappachanNC3.AR
         //ui elements
         TextBox textBox1, textBox2, textBox3;
         OpenTK.GLControl glControl1;
-        
+
         ArrayList objects;
 
         public ArrayList lineList;
+        
 
-        double? prevX = null, prevY = null, prevZ = null;
+        public double? prevX = null, prevY = null, prevZ = null;
 
-        public render(TextBox txb1, TextBox txb2, TextBox txb3,OpenTK.GLControl gc)
+        public render(TextBox txb1, TextBox txb2, TextBox txb3, OpenTK.GLControl gc)
         {
             textBox1 = txb1;
             textBox2 = txb2;
@@ -62,9 +63,9 @@ namespace PappachanNC3.AR
 
         public void addLine()
         {
-            if(Form1.currentX != null && Form1.currentY != null && Form1.currentZ != null )
+            if (Form1.currentX != null && Form1.currentY != null && Form1.currentZ != null)
             {
-                if(prevX != null)
+                if (prevX != null)
                 {
                     if (Form1.currentX != prevX || Form1.currentY != prevY || Form1.currentZ != prevZ)
                     {
@@ -76,6 +77,8 @@ namespace PappachanNC3.AR
                 prevX = Form1.currentX;
                 prevY = Form1.currentY;
                 prevZ = Form1.currentZ;
+
+                
             }
         }
 
@@ -176,17 +179,22 @@ namespace PappachanNC3.AR
             }
 
 
+
+
+            Color black = Color.FromArgb(0, 0, 0);
+            GL.Enable(EnableCap.DepthTest);
+            GL.DepthFunc(DepthFunction.Lequal);
+
+
+
+
+
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
             GL.Enable(EnableCap.Blend);
 
             Color a = Color.FromArgb(160, 255, 0, 0);
             Color b = Color.FromArgb(160, 225, 25, 25);
             Color c = Color.FromArgb(160, 195, 50, 50);
-
-
-            Color black = Color.FromArgb(0, 0, 0);
-            GL.Enable(EnableCap.DepthTest);
-            GL.DepthFunc(DepthFunction.Lequal);
 
             GL.LineWidth(1.0f);
             foreach (stlObj obj in objects)
@@ -200,11 +208,11 @@ namespace PappachanNC3.AR
                     facet fct = (facet)fcet;
 
                     GL.Color4(a);
-                    GL.Vertex3(fct.points[0].x , fct.points[0].y, fct.points[0].z);
+                    GL.Vertex3(fct.points[0].x, fct.points[0].y, fct.points[0].z);
                     GL.Color4(b);
-                    GL.Vertex3(fct.points[1].x , fct.points[1].y, fct.points[1].z);
+                    GL.Vertex3(fct.points[1].x, fct.points[1].y, fct.points[1].z);
                     GL.Color4(c);
-                    GL.Vertex3(fct.points[2].x , fct.points[2].y, fct.points[2].z);
+                    GL.Vertex3(fct.points[2].x, fct.points[2].y, fct.points[2].z);
 
                     GL.End();
 
@@ -233,6 +241,8 @@ namespace PappachanNC3.AR
 
             glControl1.SwapBuffers();
         }
+
+
 
         public Bitmap TakeScreenshot()
         {
@@ -276,7 +286,7 @@ namespace PappachanNC3.AR
 
         int LoadTexture(Bitmap bmp)
         {
-            
+
             GL.BindTexture(TextureTarget.Texture2D, id);
 
             // We will not upload mipmaps, so disable mipmapping (otherwise the texture will not appear).
@@ -359,4 +369,9 @@ namespace PappachanNC3.AR
             endZ = zIn1;
         }
     }
+
+    
+
+    
 }
+

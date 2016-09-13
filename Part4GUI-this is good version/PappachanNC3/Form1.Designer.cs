@@ -82,6 +82,14 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.wpZLength = new System.Windows.Forms.TextBox();
+            this.wpYLength = new System.Windows.Forms.TextBox();
+            this.wpXLength = new System.Windows.Forms.TextBox();
+            this.wpZloc = new System.Windows.Forms.TextBox();
+            this.wpYloc = new System.Windows.Forms.TextBox();
+            this.wpXloc = new System.Windows.Forms.TextBox();
+            this.wpButton = new System.Windows.Forms.Button();
+            this.clearLine = new System.Windows.Forms.Button();
             this.glTB3 = new System.Windows.Forms.TextBox();
             this.glTB2 = new System.Windows.Forms.TextBox();
             this.glTB1 = new System.Windows.Forms.TextBox();
@@ -115,7 +123,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusBox = new System.Windows.Forms.TextBox();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.clearLine = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -649,6 +656,13 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.wpZLength);
+            this.tabPage1.Controls.Add(this.wpYLength);
+            this.tabPage1.Controls.Add(this.wpXLength);
+            this.tabPage1.Controls.Add(this.wpZloc);
+            this.tabPage1.Controls.Add(this.wpYloc);
+            this.tabPage1.Controls.Add(this.wpXloc);
+            this.tabPage1.Controls.Add(this.wpButton);
             this.tabPage1.Controls.Add(this.clearLine);
             this.tabPage1.Controls.Add(this.glTB3);
             this.tabPage1.Controls.Add(this.glTB2);
@@ -661,23 +675,76 @@
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // wpZLength
+            // 
+            this.wpZLength.Location = new System.Drawing.Point(138, 147);
+            this.wpZLength.Name = "wpZLength";
+            this.wpZLength.Size = new System.Drawing.Size(100, 20);
+            this.wpZLength.TabIndex = 4;
+            // 
+            // wpYLength
+            // 
+            this.wpYLength.Location = new System.Drawing.Point(137, 121);
+            this.wpYLength.Name = "wpYLength";
+            this.wpYLength.Size = new System.Drawing.Size(100, 20);
+            this.wpYLength.TabIndex = 4;
+            // 
+            // wpXLength
+            // 
+            this.wpXLength.Location = new System.Drawing.Point(138, 95);
+            this.wpXLength.Name = "wpXLength";
+            this.wpXLength.Size = new System.Drawing.Size(100, 20);
+            this.wpXLength.TabIndex = 4;
+            // 
+            // wpZloc
+            // 
+            this.wpZloc.Location = new System.Drawing.Point(32, 147);
+            this.wpZloc.Name = "wpZloc";
+            this.wpZloc.Size = new System.Drawing.Size(100, 20);
+            this.wpZloc.TabIndex = 4;
+            // 
+            // wpYloc
+            // 
+            this.wpYloc.Location = new System.Drawing.Point(32, 121);
+            this.wpYloc.Name = "wpYloc";
+            this.wpYloc.Size = new System.Drawing.Size(100, 20);
+            this.wpYloc.TabIndex = 4;
+            // 
+            // wpXloc
+            // 
+            this.wpXloc.Location = new System.Drawing.Point(32, 95);
+            this.wpXloc.Name = "wpXloc";
+            this.wpXloc.Size = new System.Drawing.Size(100, 20);
+            this.wpXloc.TabIndex = 4;
+            
+            // 
+            // clearLine
+            // 
+            this.clearLine.Location = new System.Drawing.Point(32, 15);
+            this.clearLine.Name = "clearLine";
+            this.clearLine.Size = new System.Drawing.Size(100, 23);
+            this.clearLine.TabIndex = 2;
+            this.clearLine.Text = "clear drawing";
+            this.clearLine.UseVisualStyleBackColor = true;
+            this.clearLine.Click += new System.EventHandler(this.clearLine_Click);
+            // 
             // glTB3
             // 
-            this.glTB3.Location = new System.Drawing.Point(272, 124);
+            this.glTB3.Location = new System.Drawing.Point(297, 95);
             this.glTB3.Name = "glTB3";
             this.glTB3.Size = new System.Drawing.Size(100, 20);
             this.glTB3.TabIndex = 1;
             // 
             // glTB2
             // 
-            this.glTB2.Location = new System.Drawing.Point(272, 70);
+            this.glTB2.Location = new System.Drawing.Point(297, 57);
             this.glTB2.Name = "glTB2";
             this.glTB2.Size = new System.Drawing.Size(100, 20);
             this.glTB2.TabIndex = 1;
             // 
             // glTB1
             // 
-            this.glTB1.Location = new System.Drawing.Point(272, 29);
+            this.glTB1.Location = new System.Drawing.Point(297, 18);
             this.glTB1.Name = "glTB1";
             this.glTB1.Size = new System.Drawing.Size(100, 20);
             this.glTB1.TabIndex = 1;
@@ -921,16 +988,6 @@
             this.contextMenuStrip3.Name = "contextMenuStrip3";
             this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
             // 
-            // clearLine
-            // 
-            this.clearLine.Location = new System.Drawing.Point(47, 29);
-            this.clearLine.Name = "clearLine";
-            this.clearLine.Size = new System.Drawing.Size(75, 23);
-            this.clearLine.TabIndex = 2;
-            this.clearLine.Text = "clear drawing";
-            this.clearLine.UseVisualStyleBackColor = true;
-            this.clearLine.Click += new System.EventHandler(this.clearLine_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1077,6 +1134,13 @@
         private System.Windows.Forms.TextBox statusBox;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
         private System.Windows.Forms.Button clearLine;
+        private System.Windows.Forms.TextBox wpZLength;
+        private System.Windows.Forms.TextBox wpYLength;
+        private System.Windows.Forms.TextBox wpXLength;
+        private System.Windows.Forms.TextBox wpZloc;
+        private System.Windows.Forms.TextBox wpYloc;
+        private System.Windows.Forms.TextBox wpXloc;
+        private System.Windows.Forms.Button wpButton;
     }
 }
 
