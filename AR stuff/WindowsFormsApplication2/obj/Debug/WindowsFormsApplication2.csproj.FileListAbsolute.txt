@@ -40,3 +40,6 @@ C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\Wind
 C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.exe
 C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.pdb
 C:\Users\sheng\Desktop\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.csprojResolveAssemblyReference.cache
+C:\Users\wtse224\Source\Repos\Part4GUI\AR stuff\WindowsFormsApplication2\bin\Debug\WindowsFormsApplication2.exe.config
+C:\Users\wtse224\Source\Repos\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.exe
+C:\Users\wtse224\Source\Repos\Part4GUI\AR stuff\WindowsFormsApplication2\obj\Debug\WindowsFormsApplication2.pdb
