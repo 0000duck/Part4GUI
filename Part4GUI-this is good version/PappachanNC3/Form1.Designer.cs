@@ -82,6 +82,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.clearLine = new System.Windows.Forms.Button();
             this.glTB3 = new System.Windows.Forms.TextBox();
             this.glTB2 = new System.Windows.Forms.TextBox();
             this.glTB1 = new System.Windows.Forms.TextBox();
@@ -115,7 +116,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusBox = new System.Windows.Forms.TextBox();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.clearLine = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -169,7 +169,7 @@
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
@@ -177,7 +177,7 @@
             // 
             this.terminateToolStripMenuItem.Enabled = false;
             this.terminateToolStripMenuItem.Name = "terminateToolStripMenuItem";
-            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.terminateToolStripMenuItem.Text = "Terminate";
             this.terminateToolStripMenuItem.Click += new System.EventHandler(this.terminateToolStripMenuItem_Click);
             // 
@@ -661,6 +661,16 @@
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // clearLine
+            // 
+            this.clearLine.Location = new System.Drawing.Point(47, 29);
+            this.clearLine.Name = "clearLine";
+            this.clearLine.Size = new System.Drawing.Size(75, 23);
+            this.clearLine.TabIndex = 2;
+            this.clearLine.Text = "clear drawing";
+            this.clearLine.UseVisualStyleBackColor = true;
+            this.clearLine.Click += new System.EventHandler(this.clearLine_Click);
+            // 
             // glTB3
             // 
             this.glTB3.Location = new System.Drawing.Point(272, 124);
@@ -729,21 +739,21 @@
             this.xtgBox.Location = new System.Drawing.Point(1124, 49);
             this.xtgBox.Name = "xtgBox";
             this.xtgBox.Size = new System.Drawing.Size(100, 20);
-            this.xtgBox.TabIndex = 25;
+            this.xtgBox.TabIndex = 27;
             // 
             // ytgBox
             // 
             this.ytgBox.Location = new System.Drawing.Point(1124, 75);
             this.ytgBox.Name = "ytgBox";
             this.ytgBox.Size = new System.Drawing.Size(100, 20);
-            this.ytgBox.TabIndex = 25;
+            this.ytgBox.TabIndex = 30;
             // 
             // ztgBox
             // 
             this.ztgBox.Location = new System.Drawing.Point(1124, 102);
             this.ztgBox.Name = "ztgBox";
             this.ztgBox.Size = new System.Drawing.Size(100, 20);
-            this.ztgBox.TabIndex = 25;
+            this.ztgBox.TabIndex = 33;
             // 
             // label1
             // 
@@ -759,7 +769,7 @@
             this.fBox.Location = new System.Drawing.Point(1124, 128);
             this.fBox.Name = "fBox";
             this.fBox.Size = new System.Drawing.Size(100, 20);
-            this.fBox.TabIndex = 25;
+            this.fBox.TabIndex = 35;
             // 
             // label2
             // 
@@ -809,21 +819,21 @@
             this.yBox.Location = new System.Drawing.Point(909, 75);
             this.yBox.Name = "yBox";
             this.yBox.Size = new System.Drawing.Size(100, 20);
-            this.yBox.TabIndex = 25;
+            this.yBox.TabIndex = 28;
             // 
             // zBox
             // 
             this.zBox.Location = new System.Drawing.Point(909, 102);
             this.zBox.Name = "zBox";
             this.zBox.Size = new System.Drawing.Size(100, 20);
-            this.zBox.TabIndex = 25;
+            this.zBox.TabIndex = 31;
             // 
             // sBox
             // 
             this.sBox.Location = new System.Drawing.Point(909, 128);
             this.sBox.Name = "sBox";
             this.sBox.Size = new System.Drawing.Size(100, 20);
-            this.sBox.TabIndex = 25;
+            this.sBox.TabIndex = 34;
             // 
             // xOffseted
             // 
@@ -837,14 +847,14 @@
             this.yOffseted.Location = new System.Drawing.Point(1012, 75);
             this.yOffseted.Name = "yOffseted";
             this.yOffseted.Size = new System.Drawing.Size(58, 20);
-            this.yOffseted.TabIndex = 26;
+            this.yOffseted.TabIndex = 29;
             // 
             // zOffseted
             // 
             this.zOffseted.Location = new System.Drawing.Point(1012, 102);
             this.zOffseted.Name = "zOffseted";
             this.zOffseted.Size = new System.Drawing.Size(58, 20);
-            this.zOffseted.TabIndex = 26;
+            this.zOffseted.TabIndex = 32;
             // 
             // offsetButton
             // 
@@ -920,16 +930,6 @@
             this.contextMenuStrip3.BackColor = System.Drawing.SystemColors.ControlDark;
             this.contextMenuStrip3.Name = "contextMenuStrip3";
             this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
-            // 
-            // clearLine
-            // 
-            this.clearLine.Location = new System.Drawing.Point(47, 29);
-            this.clearLine.Name = "clearLine";
-            this.clearLine.Size = new System.Drawing.Size(75, 23);
-            this.clearLine.TabIndex = 2;
-            this.clearLine.Text = "clear drawing";
-            this.clearLine.UseVisualStyleBackColor = true;
-            this.clearLine.Click += new System.EventHandler(this.clearLine_Click);
             // 
             // Form1
             // 
