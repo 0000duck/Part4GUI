@@ -62,6 +62,7 @@
     <Compile Include="AR\cameraFeed.cs" />
     <Compile Include="AR\render.cs" />
     <Compile Include="AR\stlObject.cs" />
+    <Compile Include="AR\workpiece.cs" />
     <Compile Include="GCodeParser.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="Form1.cs">
