@@ -55,6 +55,7 @@ namespace PappachanNC3
         bool glSync = false;
 
         public static double? currentX = null, currentY = null, currentZ = null;
+        public static double? currentX0 = null, currentY0 = null, currentZ0 = null;
 
 
         // functions
@@ -228,7 +229,8 @@ namespace PappachanNC3
                             if (InvokeRequired)
                                 this.Invoke(mi2);
 
-                            currentX = double.Parse(txt) + xOffset;
+                            currentX0 = double.Parse(txt);
+                            currentX = currentX0 + xOffset;
 
                             //dist to go
 
@@ -256,7 +258,8 @@ namespace PappachanNC3
                             if (InvokeRequired)
                                 this.Invoke(mi2);
 
-                            currentY = double.Parse(txt) + yOffset;
+                            currentY0 = double.Parse(txt);
+                            currentY = currentY0 + yOffset;
 
                             //dist to go
 
@@ -285,7 +288,8 @@ namespace PappachanNC3
                             if (InvokeRequired)
                                 this.Invoke(mi2);
 
-                            currentZ = double.Parse(txt) + zOffset + toolHeightOffset;
+                            currentZ0 = double.Parse(txt);
+                            currentZ = currentZ0 + zOffset + toolHeightOffset;
 
                             //dist to go
 
@@ -336,7 +340,8 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        currentX = double.Parse(txt) + xOffset;
+                        currentX0 = double.Parse(txt);
+                        currentX = currentX0 + xOffset;
 
                         //dist to go
 
@@ -363,7 +368,8 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        currentY = double.Parse(txt) + yOffset;
+                        currentY0 = double.Parse(txt);
+                        currentY = currentY0 + xOffset;
 
                         //dist to go
 
@@ -391,8 +397,8 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        currentX = double.Parse(txt) + xOffset;
-
+                        currentX0 = double.Parse(txt);
+                        currentX = currentX0 + xOffset;
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 18);
@@ -414,7 +420,8 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        currentZ = double.Parse(txt) + zOffset + toolHeightOffset;
+                        currentZ0 = double.Parse(txt);
+                        currentZ = currentZ0 + zOffset + toolHeightOffset;
 
 
                         //dist to go
@@ -444,8 +451,8 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        currentY = double.Parse(txt) + yOffset;
-
+                        currentY0 = double.Parse(txt);
+                        currentY = currentY0 + xOffset;
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 18);
@@ -467,7 +474,8 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        currentZ = double.Parse(txt) + zOffset + toolHeightOffset;
+                        currentZ0 = double.Parse(txt);
+                        currentZ = currentZ0 + zOffset + toolHeightOffset;
 
 
                         //dist to go
@@ -500,7 +508,8 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        currentX = double.Parse(txt) + xOffset;
+                        currentX0 = double.Parse(txt);
+                        currentX = currentX0 + xOffset;
 
                         //dist to go
 
@@ -524,7 +533,8 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        currentY = double.Parse(txt) + yOffset;
+                        currentY0 = double.Parse(txt);
+                        currentY = currentY0 + xOffset;
 
 
                         //dist to go
@@ -548,7 +558,8 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
 
-                        currentZ = double.Parse(txt) + zOffset;
+                        currentZ0 = double.Parse(txt);
+                        currentZ = currentZ0+ zOffset + toolHeightOffset;
 
                         //dist to go
 
@@ -563,6 +574,14 @@ namespace PappachanNC3
                     }
 
                 }
+                if (double.IsInfinity(currentX.GetValueOrDefault()))
+                    currentX = null;
+
+                if (double.IsInfinity(currentY.GetValueOrDefault()))
+                    currentY = null;
+
+                if (double.IsInfinity(currentZ.GetValueOrDefault()))
+                    currentZ = null;
 
             }
 
@@ -1174,6 +1193,9 @@ namespace PappachanNC3
             xOffset = double.Parse(xOffseted.Text) - double.Parse(xBox.Text);
             yOffset = double.Parse(yOffseted.Text) - double.Parse(yBox.Text);
             zOffset = double.Parse(zOffseted.Text) - double.Parse(zBox.Text) - toolHeightOffset;
+            currentX = currentX.Value + xOffset;
+            currentY = currentY.Value + yOffset;
+            currentZ = currentZ.Value + zOffset;
         }
 
         private void feedMinusButton_Click(object sender, EventArgs e)
@@ -1184,6 +1206,14 @@ namespace PappachanNC3
         private void feedPlusButton_Click(object sender, EventArgs e)
         {
             sendFile(new byte[8] { 0x01, 0x68, 0, 0, 0, 0, 0x00, 0x80 });
+        }
+
+        private void calibrateButton_Click(object sender, EventArgs e)
+        {
+            glRender.cc.loadCalibrationNow();
+
+            glRender.rotateArr = glRender.cc.rotateArr;
+            glRender.translateArr = glRender.cc.translateArr;
         }
 
         private void glControl1_Load(object sender, EventArgs e)

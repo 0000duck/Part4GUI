@@ -88,7 +88,7 @@
             this.wpZloc = new System.Windows.Forms.TextBox();
             this.wpYloc = new System.Windows.Forms.TextBox();
             this.wpXloc = new System.Windows.Forms.TextBox();
-            this.wpButton = new System.Windows.Forms.Button();
+            this.calibrateButton = new System.Windows.Forms.Button();
             this.clearLine = new System.Windows.Forms.Button();
             this.glTB3 = new System.Windows.Forms.TextBox();
             this.glTB2 = new System.Windows.Forms.TextBox();
@@ -662,7 +662,7 @@
             this.tabPage1.Controls.Add(this.wpZloc);
             this.tabPage1.Controls.Add(this.wpYloc);
             this.tabPage1.Controls.Add(this.wpXloc);
-            this.tabPage1.Controls.Add(this.wpButton);
+            this.tabPage1.Controls.Add(this.calibrateButton);
             this.tabPage1.Controls.Add(this.clearLine);
             this.tabPage1.Controls.Add(this.glTB3);
             this.tabPage1.Controls.Add(this.glTB2);
@@ -716,7 +716,15 @@
             this.wpXloc.Name = "wpXloc";
             this.wpXloc.Size = new System.Drawing.Size(100, 20);
             this.wpXloc.TabIndex = 4;
-            
+            // 
+            // calibrateButton
+            // 
+            this.calibrateButton.Location = new System.Drawing.Point(42, 44);
+            this.calibrateButton.Name = "calibrateButton";
+            this.calibrateButton.Size = new System.Drawing.Size(75, 23);
+            this.calibrateButton.TabIndex = 5;
+            this.calibrateButton.Text = "calibrate";
+            this.calibrateButton.Click += new System.EventHandler(this.calibrateButton_Click);
             // 
             // clearLine
             // 
@@ -1140,7 +1148,7 @@
         private System.Windows.Forms.TextBox wpZloc;
         private System.Windows.Forms.TextBox wpYloc;
         private System.Windows.Forms.TextBox wpXloc;
-        private System.Windows.Forms.Button wpButton;
+        private System.Windows.Forms.Button calibrateButton;
     }
 }
 

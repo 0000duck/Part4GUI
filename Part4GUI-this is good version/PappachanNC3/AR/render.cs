@@ -14,6 +14,10 @@ namespace PappachanNC3.AR
 {
     class render
     {
+        //0,0,0 position is 112.871, -17.592,57.106 is machine positions
+        //to find the camera co-ordinates, subtract the above position from the current machine position
+        public static double camX=-112.871, camY=17.592, camZ=-57.106;
+
         //class scope vars
         public float[] rotateArr;
         public float[] translateArr;
@@ -23,6 +27,8 @@ namespace PappachanNC3.AR
         int BGtextureID;
         int id;
 
+        public cameraCalibrate cc;
+
         public static Bitmap currentBMP;
         public static bool hasFirst;
 
@@ -31,6 +37,7 @@ namespace PappachanNC3.AR
         OpenTK.GLControl glControl1;
 
         ArrayList objects;
+        WorkPiece wp;
 
         public ArrayList lineList;
         
@@ -48,13 +55,17 @@ namespace PappachanNC3.AR
             lineList = new ArrayList();
 
             readStlObj rso = new readStlObj();
+            rso.readStl();
             objects = rso.objects;
 
-            cameraCalibrate cc = new cameraCalibrate();
+            cc = new cameraCalibrate();
             cc.loadCalibration();
             cameraPar = cc.cameraPar;
             rotateArr = cc.rotateArr;
             translateArr = cc.translateArr;
+
+            wp = new WorkPiece(0, 0, 0, 100, 100, 50, 2f);
+            
 
             cameraFeed.loadCamera();
 
@@ -82,15 +93,45 @@ namespace PappachanNC3.AR
             }
         }
 
+        public void removePoint()
+        {
+            float rad = 5;
+            if (Form1.currentX != null && Form1.currentY != null && Form1.currentZ != null)
+            {
+                int maxZ = Convert.ToInt32((Form1.currentZ.Value - wp.locZ) / wp.resolution);
+                for (int k=wp.zLen-1; k > maxZ && k>=0;k--)
+                {
+                    for (int j =0; j < wp.yLen; j++)
+                    {
+
+                        for (int i = 0; i < wp.xLen; i++)
+                        {
+                            if ((i * wp.resolution + wp.locX - Form1.currentX.Value) * (i * wp.resolution + wp.locX - Form1.currentX.Value) + (j * wp.resolution + wp.locY - Form1.currentY.Value) * (j * wp.resolution + wp.locY - Form1.currentY.Value) < 25)
+                                wp.removePoint(i, j, k);
+                        }
+
+
+                    }
+
+
+
+                }
+
+
+            }
+
+        }
+
 
         public void draw()
         {
             addLine();
+            removePoint();
 
             //GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             displayBackground();
 
-            float far = 500, near = 100f;
+            float far = 300, near = 50f;
 
 
 
@@ -143,8 +184,7 @@ namespace PappachanNC3.AR
             GL.LoadIdentity();
             GL.LoadMatrix(ref mvMat.Row0.X);
 
-
-
+            /*
 
             GL.LineWidth(2.5f);
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
@@ -158,15 +198,43 @@ namespace PappachanNC3.AR
             GL.Color3(Color.Aqua);
             GL.Begin(PrimitiveType.Lines);
             GL.Vertex3(0, 0, 0);
-            GL.Vertex3(0, 100, 0);
+            GL.Vertex3(0, 31, 0);
 
 
             GL.Color3(Color.Yellow);
             GL.Begin(PrimitiveType.Lines);
+            GL.Vertex3(31, 0, 0);
             GL.Vertex3(0, 0, 0);
-            GL.Vertex3(100, 0, 0);
 
             GL.End();
+
+
+            */
+
+            GL.LineWidth(2.5f);
+            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
+            GL.Color3(Color.Green);
+            GL.Begin(PrimitiveType.Lines);
+            GL.Vertex3(-109.9, -80, 0);
+            GL.Vertex3(-109.9, -80, 100);
+
+            GL.End();
+
+            GL.Color3(Color.Aqua);
+            GL.Begin(PrimitiveType.Lines);
+            GL.Vertex3(-109.9, -80, 0);
+            GL.Vertex3(-149.9, -80, 000);
+
+
+            GL.Color3(Color.Yellow);
+            GL.Begin(PrimitiveType.Lines);
+
+            GL.Vertex3(-109.9, -80, 0);
+            GL.Vertex3(-109.9, -110, 000);
+
+            GL.End();
+
+            
 
             foreach (line ln in lineList)
             {
@@ -179,9 +247,8 @@ namespace PappachanNC3.AR
             }
 
 
+            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
 
-
-            Color black = Color.FromArgb(0, 0, 0);
             GL.Enable(EnableCap.DepthTest);
             GL.DepthFunc(DepthFunction.Lequal);
 
@@ -191,6 +258,14 @@ namespace PappachanNC3.AR
 
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
             GL.Enable(EnableCap.Blend);
+
+            wp.draw();
+
+
+
+
+            Color black = Color.FromArgb(0, 0, 0);
+
 
             Color a = Color.FromArgb(160, 255, 0, 0);
             Color b = Color.FromArgb(160, 225, 25, 25);
@@ -202,20 +277,31 @@ namespace PappachanNC3.AR
                 object[] facetArray = obj.facets.ToArray();
                 for (int i = 0; i < obj.facetNum - 1; i++)
                 {
-                    GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
                     Object fcet = (facet)facetArray[i];
                     GL.Begin(PrimitiveType.Triangles);
                     facet fct = (facet)fcet;
 
-                    GL.Color4(a);
-                    GL.Vertex3(fct.points[0].x, fct.points[0].y, fct.points[0].z);
-                    GL.Color4(b);
-                    GL.Vertex3(fct.points[1].x, fct.points[1].y, fct.points[1].z);
-                    GL.Color4(c);
-                    GL.Vertex3(fct.points[2].x, fct.points[2].y, fct.points[2].z);
+                    if (Form1.currentX0 != null && Form1.currentY0 != null && Form1.currentZ0 != null)
+                    {
+                        GL.Color4(a);
+                        GL.Vertex3(fct.points[0].x - camX - Form1.currentX0.Value, fct.points[0].y - camY - Form1.currentY0.Value, fct.points[0].z - camZ - Form1.currentZ0.Value);
+                        GL.Color4(b);
+                        GL.Vertex3(fct.points[1].x - camX - Form1.currentX0.Value, fct.points[1].y - camY - Form1.currentY0.Value, fct.points[1].z - camZ - Form1.currentZ0.Value);
+                        GL.Color4(c);
+                        GL.Vertex3(fct.points[2].x - camX - Form1.currentX0.Value, fct.points[2].y - camY - Form1.currentY0.Value, fct.points[2].z - camZ - Form1.currentZ0.Value);
 
-                    GL.End();
+                        GL.End();
+                    }
+                    else {
+                        GL.Color4(a);
+                        GL.Vertex3(fct.points[0].x, fct.points[0].y, fct.points[0].z);
+                        GL.Color4(b);
+                        GL.Vertex3(fct.points[1].x, fct.points[1].y, fct.points[1].z);
+                        GL.Color4(c);
+                        GL.Vertex3(fct.points[2].x, fct.points[2].y, fct.points[2].z);
 
+                        GL.End();
+                    }
                     /*
                     GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
                     GL.Color3(black);
@@ -226,10 +312,10 @@ namespace PappachanNC3.AR
 
                     GL.End();
                     */
-                }
+        }
 
 
-            }
+    }
 
 
 

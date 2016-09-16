@@ -221,6 +221,80 @@ namespace PappachanNC3.AR
             }
 
         }
+
+
+        public void loadCalibrationNow(string file = "cameraMat.txt")
+        {
+            FileStorage fs = new FileStorage(file, FileStorage.Mode.Read);
+            Mat cameraMat = new Mat();
+            fs.GetFirstTopLevelNode().ReadMat(cameraMat);
+            fs = new FileStorage("distort.txt", FileStorage.Mode.Read);
+            Mat distortMat = new Mat();
+            fs.GetFirstTopLevelNode().ReadMat(distortMat);
+
+            cameraPar = new float[9];
+            double[] cameraParDouble = new Double[9];
+            cameraMat.CopyTo(cameraParDouble);
+            for (int i = 0; i < 9; i++)
+            {
+                cameraPar[i] = (float)cameraParDouble[i];
+            }
+
+            const int width = 4;//5 //width of chessboard no. squares in width - 1
+            const int height = 4;//5 // heght of chess board no. squares in heigth - 1
+            Size patternSize = new Size(width, height); //size of chess board to be detected
+
+            MCvPoint3D32f[] corners_object_list = new MCvPoint3D32f[width * height];
+            PointF[] corners_points_list = new PointF[width * height];
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    //corners_object_list[width * i + j] = new MCvPoint3D32f((j) * 31, (height -1  - i) * 31, 0 );
+                    corners_object_list[width * i + j] = new MCvPoint3D32f((j) * -31 - 289.916f + (float) Form1.currentX0.Value, (height - 1 - i) * -31 - 129.96f + (float)Form1.currentY0.Value, 0);
+                }
+            }
+
+
+            var output = new Emgu.CV.Util.VectorOfPointF();
+            Size smallerPicSize = new Size(800, 600);
+
+            render.currentBMP.Save("PicCalibrate.bmp");
+            
+            Mat smallerPic = new Mat("PicCalibrate.bmp",LoadImageType.Unchanged);
+            
+            bool found = CvInvoke.FindChessboardCorners(smallerPic, patternSize, output);//find chessboard
+            Console.WriteLine("found:" + found);
+            corners_points_list = output.ToArray();
+
+
+            Mat rotationVec = new Mat();
+            Mat translationVec = new Mat();
+
+            bool solved = CvInvoke.SolvePnP(corners_object_list, corners_points_list, cameraMat, distortMat, rotationVec, translationVec);
+
+            //1 by 3 array of rotate Matrix
+            rotateArr = new float[9];
+            Mat rotationMatrix = new Mat();
+            CvInvoke.Rodrigues(rotationVec, rotationMatrix);
+            double[] rotateArrDouble = new double[9];
+            rotationMatrix.CopyTo(rotateArrDouble);
+            for (int i = 0; i < 9; i++)
+            {
+                rotateArr[i] = (float)rotateArrDouble[i];
+            }
+
+            //1 by 3 array of translate Matrix
+            translateArr = new float[3];
+            double[] translateArrDouble = new double[3];
+            translationVec.CopyTo(translateArrDouble);
+            for (int i = 0; i < 3; i++)
+            {
+                translateArr[i] = (float)translateArrDouble[i];
+            }
+
+        }
     }
     
 }
