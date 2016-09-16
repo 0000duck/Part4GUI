@@ -23,6 +23,11 @@ namespace PappachanNC3.AR
         public float[] translateArr;
         public float[] cameraPar;
 
+        public static float Xoff, Yoff, Zoff;
+
+        //public static float toolXoff = -0, toolYoff = -0, toolZoff = 0;
+        public static float toolXoff = -43, toolYoff = -33, toolZoff = 57;
+
         bool bgLoaded = false;
         int BGtextureID;
         int id;
@@ -74,20 +79,20 @@ namespace PappachanNC3.AR
 
         public void addLine()
         {
-            if (Form1.currentX != null && Form1.currentY != null && Form1.currentZ != null)
+            if (Form1.currentX0 != null && Form1.currentY0 != null && Form1.currentZ0 != null)
             {
                 if (prevX != null)
                 {
-                    if (Form1.currentX != prevX || Form1.currentY != prevY || Form1.currentZ != prevZ)
+                    if (Form1.currentX0 != prevX || Form1.currentY0 != prevY || Form1.currentZ0 != prevZ)
                     {
-                        line temp = new line(Form1.currentX.Value, Form1.currentY.Value, Form1.currentZ.Value, prevX.Value, prevY.Value, prevZ.Value);
+                        line temp = new line(Form1.currentX0.Value, Form1.currentY0.Value, Form1.currentZ0.Value, prevX.Value, prevY.Value, prevZ.Value);
                         lineList.Add(temp);
                     }
                 }
 
-                prevX = Form1.currentX;
-                prevY = Form1.currentY;
-                prevZ = Form1.currentZ;
+                prevX = Form1.currentX0;
+                prevY = Form1.currentY0;
+                prevZ = Form1.currentZ0;
 
                 
             }
@@ -131,7 +136,7 @@ namespace PappachanNC3.AR
             //GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             displayBackground();
 
-            float far = 300, near = 50f;
+            float far = 600, near = 50f;
 
 
 
@@ -210,29 +215,35 @@ namespace PappachanNC3.AR
 
 
             */
+            if (Form1.currentX0 != null && Form1.currentY0 != null && Form1.currentZ0!= null)
+            {
+                Yoff = (float)Form1.currentY0 - 129.9f;
+                Xoff = (float)Form1.currentX0 - 289.9f;
+                Zoff = -(float)Form1.currentZ0 + 140f;
 
-            GL.LineWidth(2.5f);
-            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
-            GL.Color3(Color.Green);
-            GL.Begin(PrimitiveType.Lines);
-            GL.Vertex3(-109.9, -80, 0);
-            GL.Vertex3(-109.9, -80, 100);
+                GL.LineWidth(2.5f);
+                GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
+                GL.Color3(Color.Green);
+                GL.Begin(PrimitiveType.Lines);
+                GL.Vertex3(Xoff, Yoff, Zoff);
+                GL.Vertex3(Xoff, Yoff, Zoff + 100);
 
-            GL.End();
+                GL.End();
 
-            GL.Color3(Color.Aqua);
-            GL.Begin(PrimitiveType.Lines);
-            GL.Vertex3(-109.9, -80, 0);
-            GL.Vertex3(-149.9, -80, 000);
+                GL.Color3(Color.Aqua);
+                GL.Begin(PrimitiveType.Lines);
+                GL.Vertex3(Xoff, Yoff, Zoff);
+                GL.Vertex3(Xoff - 31, Yoff, Zoff);
 
 
-            GL.Color3(Color.Yellow);
-            GL.Begin(PrimitiveType.Lines);
+                GL.Color3(Color.Yellow);
+                GL.Begin(PrimitiveType.Lines);
 
-            GL.Vertex3(-109.9, -80, 0);
-            GL.Vertex3(-109.9, -110, 000);
+                GL.Vertex3(Xoff, Yoff, Zoff);
+                GL.Vertex3(Xoff, Yoff - 31, Zoff);
 
-            GL.End();
+                GL.End();
+            }
 
             
 
@@ -240,8 +251,8 @@ namespace PappachanNC3.AR
             {
                 GL.Color3(Color.Black);
                 GL.Begin(PrimitiveType.Lines);
-                GL.Vertex3(ln.startX, ln.startY, ln.startZ);
-                GL.Vertex3(ln.endX, ln.endY, ln.endZ);
+                GL.Vertex3(-ln.startX+Form1.currentX0.Value +180 + toolXoff-289.9, -ln.startY + Form1.currentY0.Value + toolYoff +50 - 129.9, (ln.startZ -140 + toolZoff)*1.45);
+                GL.Vertex3(-ln.endX + Form1.currentX0.Value + 180 + toolXoff - 289.9,- ln.endY + Form1.currentY0.Value + toolYoff + 50 - 129.9, (ln.endZ -140 + toolZoff)*1.45);
 
                 GL.End();
             }
@@ -284,21 +295,21 @@ namespace PappachanNC3.AR
                     if (Form1.currentX0 != null && Form1.currentY0 != null && Form1.currentZ0 != null)
                     {
                         GL.Color4(a);
-                        GL.Vertex3(fct.points[0].x - camX - Form1.currentX0.Value, fct.points[0].y - camY - Form1.currentY0.Value, fct.points[0].z - camZ - Form1.currentZ0.Value);
+                        GL.Vertex3(-fct.points[0].x +Xoff, -fct.points[0].y + Yoff, fct.points[0].z + Zoff);
                         GL.Color4(b);
-                        GL.Vertex3(fct.points[1].x - camX - Form1.currentX0.Value, fct.points[1].y - camY - Form1.currentY0.Value, fct.points[1].z - camZ - Form1.currentZ0.Value);
+                        GL.Vertex3(-fct.points[1].x + Xoff, -fct.points[1].y + Yoff, fct.points[1].z + Zoff);
                         GL.Color4(c);
-                        GL.Vertex3(fct.points[2].x - camX - Form1.currentX0.Value, fct.points[2].y - camY - Form1.currentY0.Value, fct.points[2].z - camZ - Form1.currentZ0.Value);
+                        GL.Vertex3(-fct.points[2].x + Xoff, -fct.points[2].y + Yoff, fct.points[2].z + Zoff);
 
                         GL.End();
                     }
                     else {
                         GL.Color4(a);
-                        GL.Vertex3(fct.points[0].x, fct.points[0].y, fct.points[0].z);
+                        GL.Vertex3(-fct.points[0].x, -fct.points[0].y, fct.points[0].z);
                         GL.Color4(b);
-                        GL.Vertex3(fct.points[1].x, fct.points[1].y, fct.points[1].z);
+                        GL.Vertex3(-fct.points[1].x, -fct.points[1].y, fct.points[1].z);
                         GL.Color4(c);
-                        GL.Vertex3(fct.points[2].x, fct.points[2].y, fct.points[2].z);
+                        GL.Vertex3(-fct.points[2].x, -fct.points[2].y, fct.points[2].z);
 
                         GL.End();
                     }

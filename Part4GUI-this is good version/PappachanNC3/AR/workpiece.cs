@@ -208,46 +208,46 @@ namespace PappachanNC3.AR
                         if (face.face == 1)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + resolution + render.Zoff);
                             GL.Color4(b);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY + resolution, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff - resolution, face.z + resolution + render.Zoff);
                             GL.Color4(c);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY + resolution, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff - resolution, face.z + resolution + render.Zoff);
                             GL.Color4(d);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + resolution + render.Zoff);
                         }
                         else if (face.face == 3)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY, face.z - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + render.Zoff);
                             GL.Color4(b);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY + resolution, face.z - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff - resolution, face.z + render.Zoff);
                             GL.Color4(c);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY + resolution, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff - resolution, face.z + resolution + render.Zoff);
                             GL.Color4(d);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + resolution + render.Zoff);
                         }
                         else if (face.face == 4)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY, face.z - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + render.Zoff);
                             GL.Color4(b);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + resolution + render.Zoff);
                             GL.Color4(c);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY + resolution, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff - resolution, face.z + resolution + render.Zoff);
                             GL.Color4(d);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY + resolution, face.z - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff - resolution, face.z + render.Zoff);
                         }
                         else if (face.face == 5)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY, face.z - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + render.Zoff);
                             GL.Color4(b);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + resolution + render.Zoff);
                             GL.Color4(c);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + resolution + render.Zoff);
                             GL.Color4(d);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY, face.z - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + render.Zoff);
                         }
                     }
 
@@ -267,46 +267,46 @@ namespace PappachanNC3.AR
                         if (face.face == 1)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x, face.y, face.z + resolution);
+                            GL.Vertex3(-face.x, -face.y, face.z + resolution);
                             GL.Color4(b);
-                            GL.Vertex3(face.x, face.y + resolution, face.z + resolution);
+                            GL.Vertex3(-face.x, -face.y - resolution, face.z + resolution);
                             GL.Color4(c);
-                            GL.Vertex3(face.x + resolution, face.y + resolution, face.z + resolution);
+                            GL.Vertex3(-face.x - resolution, -face.y - resolution, face.z + resolution);
                             GL.Color4(d);
-                            GL.Vertex3(face.x + resolution, face.y, face.z + resolution);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z + resolution);
                         }
                         else if (face.face == 3)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x, face.y, face.z);
+                            GL.Vertex3(-face.x, -face.y, face.z);
                             GL.Color4(b);
-                            GL.Vertex3(face.x, face.y + resolution, face.z);
+                            GL.Vertex3(-face.x, -face.y - resolution, face.z);
                             GL.Color4(c);
-                            GL.Vertex3(face.x, face.y + resolution, face.z + resolution);
+                            GL.Vertex3(-face.x, -face.y - resolution, face.z + resolution);
                             GL.Color4(d);
-                            GL.Vertex3(face.x, face.y, face.z + resolution);
+                            GL.Vertex3(-face.x, -face.y, face.z + resolution);
                         }
                         else if (face.face == 4)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x + resolution, face.y, face.z);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z);
                             GL.Color4(b);
-                            GL.Vertex3(face.x + resolution, face.y, face.z + resolution);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z + resolution);
                             GL.Color4(c);
-                            GL.Vertex3(face.x + resolution, face.y + resolution, face.z + resolution);
+                            GL.Vertex3(-face.x - resolution, -face.y - resolution, face.z + resolution);
                             GL.Color4(d);
-                            GL.Vertex3(face.x + resolution, face.y + resolution, face.z);
+                            GL.Vertex3(-face.x - resolution, -face.y - resolution, face.z);
                         }
                         else if (face.face == 5)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x, face.y, face.z);
+                            GL.Vertex3(-face.x, -face.y, face.z);
                             GL.Color4(b);
-                            GL.Vertex3(face.x, face.y, face.z + resolution);
+                            GL.Vertex3(-face.x, -face.y, face.z + resolution);
                             GL.Color4(c);
-                            GL.Vertex3(face.x + resolution, face.y, face.z + resolution);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z + resolution);
                             GL.Color4(d);
-                            GL.Vertex3(face.x + resolution, face.y, face.z);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z);
                         }
                     }
 
