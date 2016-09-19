@@ -583,6 +583,15 @@ namespace PappachanNC3
                 if (double.IsInfinity(currentZ.GetValueOrDefault()))
                     currentZ = null;
 
+                if (double.IsInfinity(currentX0.GetValueOrDefault()))
+                    currentX0 = null;
+
+                if (double.IsInfinity(currentY0.GetValueOrDefault()))
+                    currentY0 = null;
+
+                if (double.IsInfinity(currentZ0.GetValueOrDefault()))
+                    currentZ0 = null;
+
             }
 
         }
@@ -1211,6 +1220,8 @@ namespace PappachanNC3
         private void calibrateButton_Click(object sender, EventArgs e)
         {
             glRender.cc.loadCalibrationNow();
+
+            glRender.camInit = true;
 
             glRender.rotateArr = glRender.cc.rotateArr;
             glRender.translateArr = glRender.cc.translateArr;

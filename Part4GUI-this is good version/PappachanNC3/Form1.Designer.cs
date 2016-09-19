@@ -563,7 +563,7 @@
             this.zIn.Name = "zIn";
             this.zIn.Size = new System.Drawing.Size(66, 20);
             this.zIn.TabIndex = 18;
-            this.zIn.Text = "120";
+            this.zIn.Text = "140";
             // 
             // yIn
             // 
@@ -571,7 +571,7 @@
             this.yIn.Name = "yIn";
             this.yIn.Size = new System.Drawing.Size(66, 20);
             this.yIn.TabIndex = 18;
-            this.yIn.Text = "120";
+            this.yIn.Text = "50";
             // 
             // xIn
             // 
@@ -579,7 +579,7 @@
             this.xIn.Name = "xIn";
             this.xIn.Size = new System.Drawing.Size(66, 20);
             this.xIn.TabIndex = 18;
-            this.xIn.Text = "120";
+            this.xIn.Text = "180";
             // 
             // M03Param
             // 

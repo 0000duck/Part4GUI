@@ -107,7 +107,7 @@ namespace PappachanNC3.AR
 
                 }
             }
-            ;
+            
         }
 
         public void removePoint(int i, int j, int k)
@@ -189,13 +189,15 @@ namespace PappachanNC3.AR
 
         public void draw()
         {
-            Color a = Color.FromArgb(160, 255, 60, 0);
-            Color b = Color.FromArgb(160, 225, 85, 25);
-            Color c = Color.FromArgb(160, 195, 110, 50);
-            Color d = Color.FromArgb(160, 165, 135, 75);
+            Color a = Color.FromArgb( 255, 60, 0);
+            Color b = Color.FromArgb( 255, 60, 0);
+            Color c = Color.FromArgb( 245, 90, 0);
+            Color d = Color.FromArgb( 245, 90, 0);
 
-            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
+            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Point);
             GL.Color3(Color.Purple);
+
+            
 
             if (Form1.currentX0 != null && Form1.currentY0 != null && Form1.currentZ0 != null)
             {
