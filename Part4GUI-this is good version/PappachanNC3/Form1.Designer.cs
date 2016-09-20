@@ -1,4 +1,4 @@
-﻿namespace PappachanNC3
+﻿namespace iWindow
 {
     partial class Form1
     {
@@ -43,8 +43,6 @@
             this.mDIModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.functionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.referenceToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.moveXup = new System.Windows.Forms.Button();
             this.moveXdown = new System.Windows.Forms.Button();
@@ -82,6 +80,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.matRemoveButton = new System.Windows.Forms.Button();
             this.wpZLength = new System.Windows.Forms.TextBox();
             this.wpYLength = new System.Windows.Forms.TextBox();
             this.wpXLength = new System.Windows.Forms.TextBox();
@@ -123,6 +122,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusBox = new System.Windows.Forms.TextBox();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.loadCalib = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -142,8 +142,7 @@
             this.fileToolStripMenuItem,
             this.connectionToolStripMenuItem,
             this.modesToolStripMenuItem,
-            this.functionsToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.functionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1284, 24);
@@ -249,21 +248,6 @@
             this.referenceToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
             this.referenceToolStripMenuItem1.Text = "Reference";
             this.referenceToolStripMenuItem1.Click += new System.EventHandler(this.referenceToolStripMenuItem1_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // groupBox2
             // 
@@ -656,12 +640,14 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.matRemoveButton);
             this.tabPage1.Controls.Add(this.wpZLength);
             this.tabPage1.Controls.Add(this.wpYLength);
             this.tabPage1.Controls.Add(this.wpXLength);
             this.tabPage1.Controls.Add(this.wpZloc);
             this.tabPage1.Controls.Add(this.wpYloc);
             this.tabPage1.Controls.Add(this.wpXloc);
+            this.tabPage1.Controls.Add(this.loadCalib);
             this.tabPage1.Controls.Add(this.calibrateButton);
             this.tabPage1.Controls.Add(this.clearLine);
             this.tabPage1.Controls.Add(this.glTB3);
@@ -674,6 +660,16 @@
             this.tabPage1.TabIndex = 7;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // matRemoveButton
+            // 
+            this.matRemoveButton.Location = new System.Drawing.Point(32, 173);
+            this.matRemoveButton.Name = "matRemoveButton";
+            this.matRemoveButton.Size = new System.Drawing.Size(206, 23);
+            this.matRemoveButton.TabIndex = 6;
+            this.matRemoveButton.Text = "Toggle Material Removal Simulation";
+            this.matRemoveButton.UseVisualStyleBackColor = true;
+            this.matRemoveButton.Click += new System.EventHandler(this.matRemoveButton_Click);
             // 
             // wpZLength
             // 
@@ -984,10 +980,10 @@
             // 
             // statusBox
             // 
-            this.statusBox.Location = new System.Drawing.Point(21, 520);
+            this.statusBox.Location = new System.Drawing.Point(21, 543);
             this.statusBox.Multiline = true;
             this.statusBox.Name = "statusBox";
-            this.statusBox.Size = new System.Drawing.Size(541, 69);
+            this.statusBox.Size = new System.Drawing.Size(541, 46);
             this.statusBox.TabIndex = 30;
             // 
             // contextMenuStrip3
@@ -995,6 +991,15 @@
             this.contextMenuStrip3.BackColor = System.Drawing.SystemColors.ControlDark;
             this.contextMenuStrip3.Name = "contextMenuStrip3";
             this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
+            // 
+            // loadCalib
+            // 
+            this.loadCalib.Location = new System.Drawing.Point(42, 66);
+            this.loadCalib.Name = "loadCalib";
+            this.loadCalib.Size = new System.Drawing.Size(130, 23);
+            this.loadCalib.TabIndex = 5;
+            this.loadCalib.Text = "load Calibration";
+            this.loadCalib.Click += new System.EventHandler(this.loadCalib_Click);
             // 
             // Form1
             // 
@@ -1032,7 +1037,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "PappachanNC ver 0.3";
+            this.Text = "iWindow";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1068,8 +1073,6 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem functionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem referenceToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button moveXup;
         private System.Windows.Forms.Button moveXdown;
@@ -1149,6 +1152,8 @@
         private System.Windows.Forms.TextBox wpYloc;
         private System.Windows.Forms.TextBox wpXloc;
         private System.Windows.Forms.Button calibrateButton;
+        private System.Windows.Forms.Button matRemoveButton;
+        private System.Windows.Forms.Button loadCalib;
     }
 }
 

@@ -11,13 +11,15 @@ using System.Net.Sockets;
 using System.IO;
 using System.Threading;
 using System.Collections;
-//using PappachanNC3.GCodeParser;
+//using iWindow.GCodeParser;
 
 
-namespace PappachanNC3
+namespace iWindow
 {
     public partial class Form1 : Form
     {
+        public static bool matRemove = false;
+
         //global offset values
         public static double xOffset = 0;
         public static double yOffset = 0;
@@ -57,6 +59,8 @@ namespace PappachanNC3
         public static double? currentX = null, currentY = null, currentZ = null;
         public static double? currentX0 = null, currentY0 = null, currentZ0 = null;
 
+        double sendLimit = 120;
+
 
         // functions
         public void initialiseCNC()
@@ -64,27 +68,27 @@ namespace PappachanNC3
             //here i should send the files that is sent initially
 
             sendFile(b1);
-            sendFile(PappachanNC3.Properties.Resources.MILL1052);
+            sendFile(iWindow.Properties.Resources.MILL1052);
 
             sendFile(b3);
-            sendFile(PappachanNC3.Properties.Resources.MILL105_ACC);
+            sendFile(iWindow.Properties.Resources.MILL105_ACC);
 
             sendFile(b5);
-            sendFile(PappachanNC3.Properties.Resources.MILL105);
+            sendFile(iWindow.Properties.Resources.MILL105);
 
             sendFile(b7);
             //send part 8 and 9
-            sendFile(PappachanNC3.Properties.Resources.MILL1053);
+            sendFile(iWindow.Properties.Resources.MILL1053);
             sendFile(b10);
 
             //send file 11 (i created this file so be carefull)
-            sendFile(PappachanNC3.Properties.Resources.part11);
+            sendFile(iWindow.Properties.Resources.part11);
             sendFile(b12);
 
-            sendFile(PappachanNC3.Properties.Resources.PCMASCH0);
+            sendFile(iWindow.Properties.Resources.PCMASCH0);
             sendFile(b14);
-            sendFile(PappachanNC3.Properties.Resources.Mill1051);
-            sendFile(PappachanNC3.Properties.Resources.lastpacket);
+            sendFile(iWindow.Properties.Resources.Mill1051);
+            sendFile(iWindow.Properties.Resources.lastpacket);
             //listen to the backward communication and send the lastpacket again
             //listenTCP();
             //last file to be sent here.
@@ -131,11 +135,12 @@ namespace PappachanNC3
             while (true)
             {
                 while (stmQueue.Count == 0)
-                    Thread.Sleep(10);
+                    Thread.Sleep(5);
+     
 
-                Thread.Sleep(10);
-
-                stmElement se = stmQueue.Dequeue();
+                stmElement se = null;
+                while (se == null)
+                    se = stmQueue.Dequeue();
 
                 byte[] bc = se.bc;
                 int k = se.k;
@@ -156,9 +161,9 @@ namespace PappachanNC3
                     this.Invoke(mi);
                     */
 
-                if(k == 8)
+                if (k == 8)
                 {
-                    if(bc[0] == 0x0a && bc[1] == 0x08)
+                    if (bc[0] == 0x0a && bc[1] == 0x08)
                     {
                         string feedPercent = "";
                         if (bc[6] == 0xb0 && bc[7] == 0x04)
@@ -201,11 +206,25 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
                     }
+                }
 
-                    if (bc[0] == 0x00 && bc[1] == 0x08 && bc[2] == 0x04 && bc[8]== 0x00)
+                if (k == 12)
+                {
+
+                    if (bc[0] == 0x0f)
                     {
-                        //line ended
-                        lineComplete.Text = (int.Parse(lineComplete.Text)+1).ToString();
+                        if (bc[1] == 0x08 && bc[2] == 0x04)
+                        {
+                            sendLimit += 1.3;
+                            MethodInvoker mi2 = delegate
+                            {
+                            //line ended
+                            lineComplete.Text = (int.Parse(lineComplete.Text) + 1).ToString();
+                            };
+
+                            if (InvokeRequired)
+                                this.Invoke(mi2);
+                        }
                     }
                 }
 
@@ -641,14 +660,14 @@ namespace PappachanNC3
                             length = 512;
                         }
                         Array.ConstrainedCopy(bb, i * 512, bb_temp, 0, length);
-                        statusBox.Text += "Transmitting....Part" + i.ToString() + "\r\n";
+                        //statusBox.Text += "Transmitting....Part" + i.ToString() + "\r\n";
                         stm.Write(bb_temp, 0, bb_temp.Length);
                     }
 
                 }
                 else
                 {
-                    statusBox.Text += "Transmitting...." + "\r\n";
+                    //statusBox.Text += "Transmitting...." + "\r\n";
 
                     stm.Write(bb, 0, bb.Length);
 
@@ -684,7 +703,7 @@ namespace PappachanNC3
             }
              * */
 
-            //sendFile(PappachanNC3.Properties.Resources.lastpacket);
+            //sendFile(iWindow.Properties.Resources.lastpacket);
 
         }
 
@@ -755,11 +774,7 @@ namespace PappachanNC3
                 statusBox.Text += "Error \r\n" + ex.StackTrace;
             }
         }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Pappachan NC Connect for EMCO Mill 105 \r\n Version 0.1.10", "Pappachan NC Connect", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+        
 
         private void terminateToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1187,13 +1202,24 @@ namespace PappachanNC3
         private void runGCode_Click(object sender, EventArgs e)
         {
             ArrayList outputs = GCodeParser.runGCode(GCodeTxt.Text);
+            Thread thd = new Thread(() => sendGCode_thd(outputs));
+            thd.Start();
+
+        }
+
+        private void sendGCode_thd(ArrayList outputs)
+        {
             foreach (ArrayList outputLine in outputs)
             {
+                while (sendLimit <= 0)
+                    Thread.Sleep(50);
+
                 object[] a = outputLine.ToArray();
                 byte[] byteArr = new byte[a.Length];
                 for (int i = 0; i < a.Length; i++)
                     byteArr[i] = Convert.ToByte(a[i]);
                 sendFile(byteArr);
+                sendLimit--;
             }
         }
 
@@ -1220,6 +1246,21 @@ namespace PappachanNC3
         private void calibrateButton_Click(object sender, EventArgs e)
         {
             glRender.cc.loadCalibrationNow();
+
+            glRender.camInit = true;
+
+            glRender.rotateArr = glRender.cc.rotateArr;
+            glRender.translateArr = glRender.cc.translateArr;
+        }
+
+        private void matRemoveButton_Click(object sender, EventArgs e)
+        {
+            matRemove = !matRemove;
+        }
+
+        private void loadCalib_Click(object sender, EventArgs e)
+        {
+            glRender.cc.loadCalibrationAll();
 
             glRender.camInit = true;
 

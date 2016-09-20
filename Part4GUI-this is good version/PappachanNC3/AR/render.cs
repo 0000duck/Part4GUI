@@ -8,9 +8,9 @@ using OpenTK.Graphics.OpenGL;
 using System.IO;
 using System.Collections;
 using System.Drawing.Imaging;
-using PappachanNC3.AR;
+using iWindow.AR;
 
-namespace PappachanNC3.AR
+namespace iWindow.AR
 {
     class render
     {
@@ -71,7 +71,7 @@ namespace PappachanNC3.AR
             rotateArr = cc.rotateArr;
             translateArr = cc.translateArr;
 
-            wp = new WorkPiece(0, 0, 0, 100, 100, 8, .4f);
+            wp = new WorkPiece(0, 0, 0, 100, 100, 50, 1f);
             
 
             cameraFeed.loadCamera();
@@ -272,8 +272,6 @@ namespace PappachanNC3.AR
                 }
 
 
-                GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
-
                 GL.Enable(EnableCap.DepthTest);
                 GL.DepthFunc(DepthFunction.Lequal);
 
@@ -284,8 +282,11 @@ namespace PappachanNC3.AR
                 GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
                 GL.Enable(EnableCap.Blend);
 
-
-                wp.draw();
+                if (Form1.matRemove)
+                {
+                    wp.draw();
+                    wp.draw2();
+                }
 
 
 
@@ -303,6 +304,8 @@ namespace PappachanNC3.AR
                     object[] facetArray = obj.facets.ToArray();
                     for (int i = 0; i < obj.facetNum - 1; i++)
                     {
+                        GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
+
                         Object fcet = (facet)facetArray[i];
                         GL.Begin(PrimitiveType.Triangles);
                         facet fct = (facet)fcet;
@@ -329,16 +332,17 @@ namespace PappachanNC3.AR
 
                             GL.End();
                         }
-                        /*
+                        
                         GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
-                        GL.Color3(black);
-                        GL.Begin(PrimitiveType.Triangles);
-                        GL.Vertex3(fct.points[0].x , fct.points[0].y, fct.points[0].z );
-                        GL.Vertex3(fct.points[1].x , fct.points[1].y, fct.points[1].z );
-                        GL.Vertex3(fct.points[2].x , fct.points[2].y, fct.points[2].z );
+                        GL.Color4(black);
+                        GL.Begin(PrimitiveType.LineLoop);
+
+                        GL.Vertex3(-fct.points[0].x + Xoff, -fct.points[0].y + Yoff, fct.points[0].z + Zoff);
+                        GL.Vertex3(-fct.points[1].x + Xoff, -fct.points[1].y + Yoff, fct.points[1].z + Zoff);
+                        GL.Vertex3(-fct.points[2].x + Xoff, -fct.points[2].y + Yoff, fct.points[2].z + Zoff);
 
                         GL.End();
-                        */
+                        
                     }
 
 

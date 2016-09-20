@@ -8,8 +8,8 @@
     <ProjectGuid>{3650E4CD-C5E7-4873-BB02-A61CE96DB674}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PappachanNC3</RootNamespace>
-    <AssemblyName>PappachanNC3</AssemblyName>
+    <RootNamespace>iWindow</RootNamespace>
+    <AssemblyName>iWindow</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>

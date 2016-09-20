@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 
-namespace PappachanNC3
+namespace iWindow
 {
     class GCodeParser
     {
@@ -459,8 +459,8 @@ namespace PappachanNC3
                 //replace correct length
                 outputArr[2] = outputArr.Count - 8;
                 for (int i = 0; i < outputArr.Count; i++)
-                    Console.Write("{0:X} ", outputArr[i]);
-                Console.WriteLine();
+                    //Console.Write("{0:X} ", outputArr[i]);
+                //Console.WriteLine();
 
                 lineCount++;
                 ouput.Add(outputArr);

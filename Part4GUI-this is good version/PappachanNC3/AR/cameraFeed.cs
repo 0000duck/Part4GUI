@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using MjpegProcessor;
 
-namespace PappachanNC3.AR
+namespace iWindow.AR
 {
     class cameraFeed
     {
