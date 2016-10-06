@@ -59,7 +59,9 @@ namespace iWindow
         public static double? currentX = null, currentY = null, currentZ = null;
         public static double? currentX0 = null, currentY0 = null, currentZ0 = null;
 
-        double sendLimit = 120;
+        double sendLimit = 200;
+
+        public static string camIP = "169.254.6.232"; //"192.168.1.1";
 
 
         // functions
@@ -97,10 +99,7 @@ namespace iWindow
             //startToolStripMenuItem.Enabled = false;
 
             statusBox.Text += "CNC Has Been Initialised..\r\n";
-            referenceToolStripMenuItem1.Enabled = true;
-
-            statusBox.Text += "CNC Has Been Initialised..\r\n";
-            referenceToolStripMenuItem1.Enabled = true;
+            refButton.Enabled = true;
 
             //declare the packets
             byte[] packet1 = { 21, 104, 0, 0, 0, 0, 10, 0 };
@@ -127,7 +126,7 @@ namespace iWindow
 
         private void renderGL()
         {
-            glRender = new AR.render(glTB1,glTB2,glTB3,glControl1);
+            glRender = new AR.render(glControl1);
         }
 
         private void displayPos()
@@ -215,7 +214,7 @@ namespace iWindow
                     {
                         if (bc[1] == 0x08 && bc[2] == 0x04)
                         {
-                            sendLimit += 1.3;
+                            sendLimit += 1.00;
                             MethodInvoker mi2 = delegate
                             {
                             //line ended
@@ -254,13 +253,7 @@ namespace iWindow
                             //dist to go
 
                             txt = Converter.binaryToString(bc, 18);
-
-                            mi2 = delegate
-                            {
-                                xtgBox.Text = txt;
-                            };
-                            if (InvokeRequired)
-                                this.Invoke(mi2);
+                            
                         }
 
                         if (bc[6] == 2)// y direction
@@ -283,13 +276,7 @@ namespace iWindow
                             //dist to go
 
                             txt = Converter.binaryToString(bc, 18);
-
-                            mi2 = delegate
-                            {
-                                ytgBox.Text = txt;
-                            };
-                            if (InvokeRequired)
-                                this.Invoke(mi2);
+                            
                         }
 
 
@@ -313,13 +300,7 @@ namespace iWindow
                             //dist to go
 
                             txt = Converter.binaryToString(bc, 18);
-
-                            mi2 = delegate
-                            {
-                                ztgBox.Text = txt;
-                            };
-                            if (InvokeRequired)
-                                this.Invoke(mi2);
+                            
                         }
                     }
                     else if (bc[0] == 3 && bc[1] == 8)//spindlespeed
@@ -365,13 +346,7 @@ namespace iWindow
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 18);
-
-                        mi2 = delegate
-                        {
-                            xtgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
 
 
                         for (int i = 0; i < 8; i++)
@@ -393,13 +368,7 @@ namespace iWindow
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 36);
-
-                        mi2 = delegate
-                        {
-                            ytgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
                     }
 
                     if (bc[6] == 5)//  z + x direction
@@ -421,13 +390,7 @@ namespace iWindow
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 18);
-
-                        mi2 = delegate
-                        {
-                            xtgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
 
                         txt = Converter.binaryToString(bc, 28);
 
@@ -446,13 +409,7 @@ namespace iWindow
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 36);
-
-                        mi2 = delegate
-                        {
-                            ztgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
                     }
 
                     if (bc[6] == 6)// z + y direction
@@ -475,13 +432,7 @@ namespace iWindow
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 18);
-
-                        mi2 = delegate
-                        {
-                            ytgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
 
                         txt = Converter.binaryToString(bc, 28);
 
@@ -500,13 +451,7 @@ namespace iWindow
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 36);
-
-                        mi2 = delegate
-                        {
-                            xtgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
                     }
 
                 }
@@ -533,13 +478,7 @@ namespace iWindow
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 18);
-
-                        mi2 = delegate
-                        {
-                            xtgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
 
 
                         txt = Converter.binaryToString(bc, 28);
@@ -559,13 +498,7 @@ namespace iWindow
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 36);
-
-                        mi2 = delegate
-                        {
-                            ytgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
 
                         txt = Converter.binaryToString(bc, 46);
 
@@ -583,13 +516,7 @@ namespace iWindow
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 54);
-
-                        mi2 = delegate
-                        {
-                            ztgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
                     }
 
                 }
@@ -780,12 +707,6 @@ namespace iWindow
         {
             tcpclnt.Close();
             statusBox.Text += "\r\nConnection Closed\r\n";
-        }
-
-        private void referenceToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            //send the reference byte array
-            sendFile(reference);
         }
 
         //jog the machine functions       
@@ -1212,7 +1133,10 @@ namespace iWindow
             foreach (ArrayList outputLine in outputs)
             {
                 while (sendLimit <= 0)
+                {
                     Thread.Sleep(50);
+                    //sendLimit++;
+                }
 
                 object[] a = outputLine.ToArray();
                 byte[] byteArr = new byte[a.Length];
@@ -1266,6 +1190,17 @@ namespace iWindow
 
             glRender.rotateArr = glRender.cc.rotateArr;
             glRender.translateArr = glRender.cc.translateArr;
+        }
+
+        private void refButton_Click(object sender, EventArgs e)
+        {
+            //send the reference byte array
+            sendFile(reference);
+        }
+
+        private void changeIPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            camIP = Microsoft.VisualBasic.Interaction.InputBox("Enter Ip", "IP", camIP);
         }
 
         private void glControl1_Load(object sender, EventArgs e)

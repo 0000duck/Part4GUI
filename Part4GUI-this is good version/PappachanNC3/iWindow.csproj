@@ -37,6 +37,7 @@
     <Reference Include="Emgu.CV.World">
       <HintPath>..\..\AR stuff\emgu\Emgu.CV.World.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="MjpegProcessor">
       <HintPath>..\..\WindowsFormsApplication2\WindowsFormsApplication2\bin\Debug\MjpegProcessor.dll</HintPath>
     </Reference>

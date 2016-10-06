@@ -51,11 +51,8 @@ namespace iWindow.AR
 
         public double? prevX = null, prevY = null, prevZ = null;
 
-        public render(TextBox txb1, TextBox txb2, TextBox txb3, OpenTK.GLControl gc)
+        public render(OpenTK.GLControl gc)
         {
-            textBox1 = txb1;
-            textBox2 = txb2;
-            textBox3 = txb3;
 
             glControl1 = gc;
 
@@ -71,10 +68,10 @@ namespace iWindow.AR
             rotateArr = cc.rotateArr;
             translateArr = cc.translateArr;
 
-            wp = new WorkPiece(0, 0, 0, 100, 100, 50, 1f);
+            wp = new WorkPiece(-64, -36, -8, 240, 190, 8, 1f);
             
 
-            cameraFeed.loadCamera();
+            cameraFeed.loadCamera(Form1.camIP);
 
             int id = GL.GenTexture();
         }

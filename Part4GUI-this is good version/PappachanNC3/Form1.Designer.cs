@@ -30,76 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.terminateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.referenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.memoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mDIModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.functionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.referenceToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.moveXup = new System.Windows.Forms.Button();
-            this.moveXdown = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.moveYup = new System.Windows.Forms.Button();
-            this.moveYdown = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.moveZdown = new System.Windows.Forms.Button();
-            this.moveZup = new System.Windows.Forms.Button();
-            this.M05Button = new System.Windows.Forms.Button();
-            this.M03Button = new System.Windows.Forms.Button();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.feedDownButton = new System.Windows.Forms.Button();
-            this.feedUpButton = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.jogTab = new System.Windows.Forms.TabPage();
-            this.memoryTab = new System.Windows.Forms.TabPage();
-            this.runGCode = new System.Windows.Forms.Button();
-            this.GCodeTxt = new System.Windows.Forms.TextBox();
-            this.referenceTab = new System.Windows.Forms.TabPage();
-            this.ModeControl = new System.Windows.Forms.TabControl();
-            this.editTab = new System.Windows.Forms.TabPage();
-            this.mdiTab = new System.Windows.Forms.TabPage();
-            this.M06Number = new System.Windows.Forms.NumericUpDown();
-            this.fIn = new System.Windows.Forms.TextBox();
-            this.zIn = new System.Windows.Forms.TextBox();
-            this.yIn = new System.Windows.Forms.TextBox();
-            this.xIn = new System.Windows.Forms.TextBox();
-            this.M03Param = new System.Windows.Forms.TextBox();
-            this.M06button = new System.Windows.Forms.Button();
-            this.G01Button = new System.Windows.Forms.Button();
-            this.G00Button = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.matRemoveButton = new System.Windows.Forms.Button();
-            this.wpZLength = new System.Windows.Forms.TextBox();
-            this.wpYLength = new System.Windows.Forms.TextBox();
-            this.wpXLength = new System.Windows.Forms.TextBox();
-            this.wpZloc = new System.Windows.Forms.TextBox();
-            this.wpYloc = new System.Windows.Forms.TextBox();
-            this.wpXloc = new System.Windows.Forms.TextBox();
-            this.calibrateButton = new System.Windows.Forms.Button();
-            this.clearLine = new System.Windows.Forms.Button();
-            this.glTB3 = new System.Windows.Forms.TextBox();
-            this.glTB2 = new System.Windows.Forms.TextBox();
-            this.glTB1 = new System.Windows.Forms.TextBox();
+            this.changeIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.glControl1 = new OpenTK.GLControl();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.xtgBox = new System.Windows.Forms.TextBox();
-            this.ytgBox = new System.Windows.Forms.TextBox();
-            this.ztgBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.fBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -122,52 +57,75 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusBox = new System.Windows.Forms.TextBox();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.ARTab = new System.Windows.Forms.TabPage();
+            this.matRemoveButton = new System.Windows.Forms.Button();
             this.loadCalib = new System.Windows.Forms.Button();
+            this.calibrateButton = new System.Windows.Forms.Button();
+            this.clearLine = new System.Windows.Forms.Button();
+            this.mdiTab = new System.Windows.Forms.TabPage();
+            this.M06Number = new System.Windows.Forms.NumericUpDown();
+            this.fIn = new System.Windows.Forms.TextBox();
+            this.zIn = new System.Windows.Forms.TextBox();
+            this.yIn = new System.Windows.Forms.TextBox();
+            this.xIn = new System.Windows.Forms.TextBox();
+            this.M03Param = new System.Windows.Forms.TextBox();
+            this.M05Button = new System.Windows.Forms.Button();
+            this.M06button = new System.Windows.Forms.Button();
+            this.G01Button = new System.Windows.Forms.Button();
+            this.G00Button = new System.Windows.Forms.Button();
+            this.M03Button = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.jogTab = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.moveXup = new System.Windows.Forms.Button();
+            this.moveXdown = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.moveYup = new System.Windows.Forms.Button();
+            this.moveYdown = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.moveZdown = new System.Windows.Forms.Button();
+            this.moveZup = new System.Windows.Forms.Button();
+            this.memoryTab = new System.Windows.Forms.TabPage();
+            this.runGCode = new System.Windows.Forms.Button();
+            this.GCodeTxt = new System.Windows.Forms.TextBox();
+            this.referenceTab = new System.Windows.Forms.TabPage();
+            this.refButton = new System.Windows.Forms.Button();
+            this.ModeControl = new System.Windows.Forms.TabControl();
             this.menuStrip1.SuspendLayout();
+            this.ARTab.SuspendLayout();
+            this.mdiTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.M06Number)).BeginInit();
+            this.jogTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.jogTab.SuspendLayout();
             this.memoryTab.SuspendLayout();
+            this.referenceTab.SuspendLayout();
             this.ModeControl.SuspendLayout();
-            this.mdiTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.M06Number)).BeginInit();
-            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.connectionToolStripMenuItem,
-            this.modesToolStripMenuItem,
-            this.functionsToolStripMenuItem});
+            this.connectionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1284, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1322, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.closeToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.closeToolStripMenuItem.Text = "Close";
             // 
             // connectionToolStripMenuItem
             // 
             this.connectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startToolStripMenuItem,
-            this.terminateToolStripMenuItem});
+            this.terminateToolStripMenuItem,
+            this.changeIPToolStripMenuItem});
             this.connectionToolStripMenuItem.Name = "connectionToolStripMenuItem";
             this.connectionToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
             this.connectionToolStripMenuItem.Text = "Connection";
@@ -175,7 +133,7 @@
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
@@ -183,308 +141,290 @@
             // 
             this.terminateToolStripMenuItem.Enabled = false;
             this.terminateToolStripMenuItem.Name = "terminateToolStripMenuItem";
-            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.terminateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.terminateToolStripMenuItem.Text = "Terminate";
             this.terminateToolStripMenuItem.Click += new System.EventHandler(this.terminateToolStripMenuItem_Click);
             // 
-            // modesToolStripMenuItem
+            // changeIPToolStripMenuItem
             // 
-            this.modesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.referenceToolStripMenuItem,
-            this.memoryToolStripMenuItem,
-            this.jogToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.mDIModeToolStripMenuItem});
-            this.modesToolStripMenuItem.Name = "modesToolStripMenuItem";
-            this.modesToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.modesToolStripMenuItem.Text = "Modes";
+            this.changeIPToolStripMenuItem.Name = "changeIPToolStripMenuItem";
+            this.changeIPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.changeIPToolStripMenuItem.Text = "Change IP";
+            this.changeIPToolStripMenuItem.Click += new System.EventHandler(this.changeIPToolStripMenuItem_Click);
             // 
-            // referenceToolStripMenuItem
+            // glControl1
             // 
-            this.referenceToolStripMenuItem.Name = "referenceToolStripMenuItem";
-            this.referenceToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.referenceToolStripMenuItem.Text = "Reference Mode";
-            this.referenceToolStripMenuItem.Click += new System.EventHandler(this.referenceToolStripMenuItem_Click);
+            this.glControl1.BackColor = System.Drawing.Color.Black;
+            this.glControl1.Location = new System.Drawing.Point(12, 29);
+            this.glControl1.Name = "glControl1";
+            this.glControl1.Size = new System.Drawing.Size(810, 488);
+            this.glControl1.TabIndex = 0;
+            this.glControl1.VSync = false;
+            this.glControl1.Load += new System.EventHandler(this.glControl1_Load);
             // 
-            // memoryToolStripMenuItem
+            // label1
             // 
-            this.memoryToolStripMenuItem.Name = "memoryToolStripMenuItem";
-            this.memoryToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.memoryToolStripMenuItem.Text = "Memory Mode";
-            this.memoryToolStripMenuItem.Click += new System.EventHandler(this.memoryToolStripMenuItem_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1045, 144);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "feed rate";
             // 
-            // jogToolStripMenuItem
+            // fBox
             // 
-            this.jogToolStripMenuItem.Name = "jogToolStripMenuItem";
-            this.jogToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.jogToolStripMenuItem.Text = "Jog Mode";
-            this.jogToolStripMenuItem.Click += new System.EventHandler(this.jogToolStripMenuItem_Click);
+            this.fBox.Location = new System.Drawing.Point(1109, 141);
+            this.fBox.Name = "fBox";
+            this.fBox.Size = new System.Drawing.Size(100, 20);
+            this.fBox.TabIndex = 25;
             // 
-            // editToolStripMenuItem
+            // label2
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.editToolStripMenuItem.Text = "Edit Mode";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(845, 52);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Machine X";
             // 
-            // mDIModeToolStripMenuItem
+            // label3
             // 
-            this.mDIModeToolStripMenuItem.Name = "mDIModeToolStripMenuItem";
-            this.mDIModeToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.mDIModeToolStripMenuItem.Text = "MDI Mode";
-            this.mDIModeToolStripMenuItem.Click += new System.EventHandler(this.mDIModeToolStripMenuItem_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(845, 78);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 13);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Machine Y";
             // 
-            // functionsToolStripMenuItem
+            // label4
             // 
-            this.functionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.referenceToolStripMenuItem1});
-            this.functionsToolStripMenuItem.Name = "functionsToolStripMenuItem";
-            this.functionsToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.functionsToolStripMenuItem.Text = "Functions";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(845, 105);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 13);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "Machine Z";
             // 
-            // referenceToolStripMenuItem1
+            // label5
             // 
-            this.referenceToolStripMenuItem1.Enabled = false;
-            this.referenceToolStripMenuItem1.Name = "referenceToolStripMenuItem1";
-            this.referenceToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
-            this.referenceToolStripMenuItem1.Text = "Reference";
-            this.referenceToolStripMenuItem1.Click += new System.EventHandler(this.referenceToolStripMenuItem1_Click);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(845, 144);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 13);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Spindle";
             // 
-            // groupBox2
+            // xBox
             // 
-            this.groupBox2.Controls.Add(this.moveXup);
-            this.groupBox2.Controls.Add(this.moveXdown);
-            this.groupBox2.Location = new System.Drawing.Point(6, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(170, 52);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "X axis";
+            this.xBox.Location = new System.Drawing.Point(909, 49);
+            this.xBox.Name = "xBox";
+            this.xBox.Size = new System.Drawing.Size(100, 20);
+            this.xBox.TabIndex = 25;
             // 
-            // moveXup
+            // yBox
             // 
-            this.moveXup.Enabled = false;
-            this.moveXup.Location = new System.Drawing.Point(88, 19);
-            this.moveXup.Name = "moveXup";
-            this.moveXup.Size = new System.Drawing.Size(75, 23);
-            this.moveXup.TabIndex = 1;
-            this.moveXup.Text = "Right";
-            this.moveXup.UseVisualStyleBackColor = true;
-            this.moveXup.Click += new System.EventHandler(this.moveXup_Click);
+            this.yBox.Location = new System.Drawing.Point(909, 75);
+            this.yBox.Name = "yBox";
+            this.yBox.Size = new System.Drawing.Size(100, 20);
+            this.yBox.TabIndex = 25;
             // 
-            // moveXdown
+            // zBox
             // 
-            this.moveXdown.Enabled = false;
-            this.moveXdown.Location = new System.Drawing.Point(7, 20);
-            this.moveXdown.Name = "moveXdown";
-            this.moveXdown.Size = new System.Drawing.Size(75, 23);
-            this.moveXdown.TabIndex = 0;
-            this.moveXdown.Text = "Left";
-            this.moveXdown.UseVisualStyleBackColor = true;
-            this.moveXdown.Click += new System.EventHandler(this.moveXdown_Click_1);
+            this.zBox.Location = new System.Drawing.Point(909, 102);
+            this.zBox.Name = "zBox";
+            this.zBox.Size = new System.Drawing.Size(100, 20);
+            this.zBox.TabIndex = 25;
             // 
-            // groupBox3
+            // sBox
             // 
-            this.groupBox3.Controls.Add(this.moveYup);
-            this.groupBox3.Controls.Add(this.moveYdown);
-            this.groupBox3.Location = new System.Drawing.Point(6, 61);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(170, 52);
-            this.groupBox3.TabIndex = 3;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Y axis";
+            this.sBox.Location = new System.Drawing.Point(909, 141);
+            this.sBox.Name = "sBox";
+            this.sBox.Size = new System.Drawing.Size(100, 20);
+            this.sBox.TabIndex = 25;
             // 
-            // moveYup
+            // xOffseted
             // 
-            this.moveYup.Enabled = false;
-            this.moveYup.Location = new System.Drawing.Point(88, 19);
-            this.moveYup.Name = "moveYup";
-            this.moveYup.Size = new System.Drawing.Size(75, 23);
-            this.moveYup.TabIndex = 1;
-            this.moveYup.Text = "Front";
-            this.moveYup.UseVisualStyleBackColor = true;
-            this.moveYup.Click += new System.EventHandler(this.moveYup_Click);
+            this.xOffseted.Location = new System.Drawing.Point(1109, 49);
+            this.xOffseted.Name = "xOffseted";
+            this.xOffseted.Size = new System.Drawing.Size(100, 20);
+            this.xOffseted.TabIndex = 26;
             // 
-            // moveYdown
+            // yOffseted
             // 
-            this.moveYdown.Enabled = false;
-            this.moveYdown.Location = new System.Drawing.Point(7, 20);
-            this.moveYdown.Name = "moveYdown";
-            this.moveYdown.Size = new System.Drawing.Size(75, 23);
-            this.moveYdown.TabIndex = 0;
-            this.moveYdown.Text = "Back";
-            this.moveYdown.UseVisualStyleBackColor = true;
-            this.moveYdown.Click += new System.EventHandler(this.moveYdown_Click);
+            this.yOffseted.Location = new System.Drawing.Point(1109, 75);
+            this.yOffseted.Name = "yOffseted";
+            this.yOffseted.Size = new System.Drawing.Size(100, 20);
+            this.yOffseted.TabIndex = 26;
             // 
-            // groupBox4
+            // zOffseted
             // 
-            this.groupBox4.Controls.Add(this.moveZdown);
-            this.groupBox4.Controls.Add(this.moveZup);
-            this.groupBox4.Location = new System.Drawing.Point(6, 117);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(170, 52);
-            this.groupBox4.TabIndex = 3;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Z axis";
+            this.zOffseted.Location = new System.Drawing.Point(1109, 102);
+            this.zOffseted.Name = "zOffseted";
+            this.zOffseted.Size = new System.Drawing.Size(100, 20);
+            this.zOffseted.TabIndex = 26;
             // 
-            // moveZdown
+            // offsetButton
             // 
-            this.moveZdown.Enabled = false;
-            this.moveZdown.Location = new System.Drawing.Point(7, 19);
-            this.moveZdown.Name = "moveZdown";
-            this.moveZdown.Size = new System.Drawing.Size(75, 23);
-            this.moveZdown.TabIndex = 1;
-            this.moveZdown.Text = "Down";
-            this.moveZdown.UseVisualStyleBackColor = true;
-            this.moveZdown.Click += new System.EventHandler(this.moveZdown_Click);
+            this.offsetButton.Location = new System.Drawing.Point(1215, 61);
+            this.offsetButton.Name = "offsetButton";
+            this.offsetButton.Size = new System.Drawing.Size(95, 57);
+            this.offsetButton.TabIndex = 27;
+            this.offsetButton.Text = "Offset Coordinate";
+            this.offsetButton.UseVisualStyleBackColor = true;
+            this.offsetButton.Click += new System.EventHandler(this.offsetButton_Click);
             // 
-            // moveZup
+            // feedPlusButton
             // 
-            this.moveZup.Enabled = false;
-            this.moveZup.Location = new System.Drawing.Point(88, 19);
-            this.moveZup.Name = "moveZup";
-            this.moveZup.Size = new System.Drawing.Size(75, 23);
-            this.moveZup.TabIndex = 0;
-            this.moveZup.Text = "Up";
-            this.moveZup.UseVisualStyleBackColor = true;
-            this.moveZup.Click += new System.EventHandler(this.moveZup_Click);
+            this.feedPlusButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.feedPlusButton.Location = new System.Drawing.Point(949, 196);
+            this.feedPlusButton.Name = "feedPlusButton";
+            this.feedPlusButton.Size = new System.Drawing.Size(85, 40);
+            this.feedPlusButton.TabIndex = 28;
+            this.feedPlusButton.Text = "feed rate +";
+            this.feedPlusButton.UseVisualStyleBackColor = true;
+            this.feedPlusButton.Click += new System.EventHandler(this.feedPlusButton_Click);
             // 
-            // M05Button
+            // feedMinusButton
             // 
-            this.M05Button.Location = new System.Drawing.Point(303, 6);
-            this.M05Button.Name = "M05Button";
-            this.M05Button.Size = new System.Drawing.Size(75, 23);
-            this.M05Button.TabIndex = 17;
-            this.M05Button.Text = "Send M05";
-            this.M05Button.UseVisualStyleBackColor = true;
-            this.M05Button.Click += new System.EventHandler(this.M05Button_Click);
+            this.feedMinusButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.feedMinusButton.Location = new System.Drawing.Point(1142, 196);
+            this.feedMinusButton.Name = "feedMinusButton";
+            this.feedMinusButton.Size = new System.Drawing.Size(85, 40);
+            this.feedMinusButton.TabIndex = 28;
+            this.feedMinusButton.Text = "feed rate -";
+            this.feedMinusButton.UseVisualStyleBackColor = true;
+            this.feedMinusButton.Click += new System.EventHandler(this.feedMinusButton_Click);
             // 
-            // M03Button
+            // feedRatePercentTxtbox
             // 
-            this.M03Button.Location = new System.Drawing.Point(6, 6);
-            this.M03Button.Name = "M03Button";
-            this.M03Button.Size = new System.Drawing.Size(75, 23);
-            this.M03Button.TabIndex = 17;
-            this.M03Button.Text = "Send M03";
-            this.M03Button.UseVisualStyleBackColor = true;
-            this.M03Button.Click += new System.EventHandler(this.M03Button_Click);
+            this.feedRatePercentTxtbox.Location = new System.Drawing.Point(1040, 207);
+            this.feedRatePercentTxtbox.Name = "feedRatePercentTxtbox";
+            this.feedRatePercentTxtbox.Size = new System.Drawing.Size(85, 20);
+            this.feedRatePercentTxtbox.TabIndex = 25;
+            this.feedRatePercentTxtbox.Text = "100%";
             // 
-            // groupBox7
+            // alarmBtn
             // 
-            this.groupBox7.BackColor = System.Drawing.Color.Lavender;
-            this.groupBox7.Controls.Add(this.feedDownButton);
-            this.groupBox7.Controls.Add(this.feedUpButton);
-            this.groupBox7.Location = new System.Drawing.Point(6, 175);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(170, 51);
-            this.groupBox7.TabIndex = 4;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Feed Rate";
+            this.alarmBtn.Location = new System.Drawing.Point(848, 196);
+            this.alarmBtn.Name = "alarmBtn";
+            this.alarmBtn.Size = new System.Drawing.Size(75, 23);
+            this.alarmBtn.TabIndex = 28;
+            this.alarmBtn.Text = "clear alarm";
+            this.alarmBtn.UseVisualStyleBackColor = true;
+            this.alarmBtn.Visible = false;
+            this.alarmBtn.Click += new System.EventHandler(this.alarmBtn_Click);
             // 
-            // feedDownButton
+            // lineComplete
             // 
-            this.feedDownButton.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.feedDownButton.Enabled = false;
-            this.feedDownButton.Location = new System.Drawing.Point(7, 19);
-            this.feedDownButton.Name = "feedDownButton";
-            this.feedDownButton.Size = new System.Drawing.Size(75, 23);
-            this.feedDownButton.TabIndex = 1;
-            this.feedDownButton.Text = "Down";
-            this.feedDownButton.UseVisualStyleBackColor = false;
+            this.lineComplete.Location = new System.Drawing.Point(843, 234);
+            this.lineComplete.Name = "lineComplete";
+            this.lineComplete.Size = new System.Drawing.Size(100, 20);
+            this.lineComplete.TabIndex = 29;
+            this.lineComplete.Text = "0";
+            this.lineComplete.Visible = false;
             // 
-            // feedUpButton
+            // timer1
             // 
-            this.feedUpButton.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.feedUpButton.Enabled = false;
-            this.feedUpButton.Location = new System.Drawing.Point(88, 19);
-            this.feedUpButton.Name = "feedUpButton";
-            this.feedUpButton.Size = new System.Drawing.Size(75, 23);
-            this.feedUpButton.TabIndex = 0;
-            this.feedUpButton.Text = "Up";
-            this.feedUpButton.UseVisualStyleBackColor = false;
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // contextMenuStrip1
+            // statusBox
             // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.statusBox.Location = new System.Drawing.Point(12, 536);
+            this.statusBox.Multiline = true;
+            this.statusBox.Name = "statusBox";
+            this.statusBox.Size = new System.Drawing.Size(541, 46);
+            this.statusBox.TabIndex = 30;
+            this.statusBox.Visible = false;
             // 
-            // jogTab
+            // contextMenuStrip3
             // 
-            this.jogTab.Controls.Add(this.groupBox2);
-            this.jogTab.Controls.Add(this.groupBox3);
-            this.jogTab.Controls.Add(this.groupBox4);
-            this.jogTab.Controls.Add(this.groupBox7);
-            this.jogTab.Location = new System.Drawing.Point(4, 22);
-            this.jogTab.Name = "jogTab";
-            this.jogTab.Padding = new System.Windows.Forms.Padding(3);
-            this.jogTab.Size = new System.Drawing.Size(418, 219);
-            this.jogTab.TabIndex = 4;
-            this.jogTab.Text = "Jog";
-            this.jogTab.UseVisualStyleBackColor = true;
+            this.contextMenuStrip3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.contextMenuStrip3.Name = "contextMenuStrip3";
+            this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
             // 
-            // memoryTab
+            // label7
             // 
-            this.memoryTab.Controls.Add(this.runGCode);
-            this.memoryTab.Controls.Add(this.GCodeTxt);
-            this.memoryTab.Location = new System.Drawing.Point(4, 22);
-            this.memoryTab.Name = "memoryTab";
-            this.memoryTab.Padding = new System.Windows.Forms.Padding(3);
-            this.memoryTab.Size = new System.Drawing.Size(418, 219);
-            this.memoryTab.TabIndex = 3;
-            this.memoryTab.Text = "Memory";
-            this.memoryTab.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(1045, 52);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 13);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Offset X";
             // 
-            // runGCode
+            // label8
             // 
-            this.runGCode.Location = new System.Drawing.Point(372, 56);
-            this.runGCode.Name = "runGCode";
-            this.runGCode.Size = new System.Drawing.Size(75, 23);
-            this.runGCode.TabIndex = 1;
-            this.runGCode.Text = "Run G Code";
-            this.runGCode.UseVisualStyleBackColor = true;
-            this.runGCode.Click += new System.EventHandler(this.runGCode_Click);
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1045, 78);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(45, 13);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "Offset Y";
             // 
-            // GCodeTxt
+            // label9
             // 
-            this.GCodeTxt.Location = new System.Drawing.Point(15, 26);
-            this.GCodeTxt.Multiline = true;
-            this.GCodeTxt.Name = "GCodeTxt";
-            this.GCodeTxt.Size = new System.Drawing.Size(357, 177);
-            this.GCodeTxt.TabIndex = 0;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(1045, 105);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(45, 13);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Offset Z";
             // 
-            // referenceTab
+            // ARTab
             // 
-            this.referenceTab.Location = new System.Drawing.Point(4, 22);
-            this.referenceTab.Name = "referenceTab";
-            this.referenceTab.Padding = new System.Windows.Forms.Padding(3);
-            this.referenceTab.Size = new System.Drawing.Size(418, 219);
-            this.referenceTab.TabIndex = 0;
-            this.referenceTab.Text = "Reference";
-            this.referenceTab.UseVisualStyleBackColor = true;
+            this.ARTab.Controls.Add(this.matRemoveButton);
+            this.ARTab.Controls.Add(this.loadCalib);
+            this.ARTab.Controls.Add(this.calibrateButton);
+            this.ARTab.Controls.Add(this.clearLine);
+            this.ARTab.Location = new System.Drawing.Point(4, 22);
+            this.ARTab.Name = "ARTab";
+            this.ARTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ARTab.Size = new System.Drawing.Size(418, 219);
+            this.ARTab.TabIndex = 7;
+            this.ARTab.Text = "Augmented Reality";
+            this.ARTab.UseVisualStyleBackColor = true;
             // 
-            // ModeControl
+            // matRemoveButton
             // 
-            this.ModeControl.Controls.Add(this.referenceTab);
-            this.ModeControl.Controls.Add(this.memoryTab);
-            this.ModeControl.Controls.Add(this.jogTab);
-            this.ModeControl.Controls.Add(this.editTab);
-            this.ModeControl.Controls.Add(this.mdiTab);
-            this.ModeControl.Controls.Add(this.tabPage1);
-            this.ModeControl.Location = new System.Drawing.Point(833, 272);
-            this.ModeControl.Name = "ModeControl";
-            this.ModeControl.SelectedIndex = 0;
-            this.ModeControl.Size = new System.Drawing.Size(426, 245);
-            this.ModeControl.TabIndex = 22;
-            this.ModeControl.Click += new System.EventHandler(this.ModeControl_Click);
+            this.matRemoveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.matRemoveButton.Location = new System.Drawing.Point(32, 153);
+            this.matRemoveButton.Name = "matRemoveButton";
+            this.matRemoveButton.Size = new System.Drawing.Size(149, 43);
+            this.matRemoveButton.TabIndex = 6;
+            this.matRemoveButton.Text = "Toggle Material Removal Simulation";
+            this.matRemoveButton.UseVisualStyleBackColor = true;
+            this.matRemoveButton.Click += new System.EventHandler(this.matRemoveButton_Click);
             // 
-            // editTab
+            // loadCalib
             // 
-            this.editTab.Location = new System.Drawing.Point(4, 22);
-            this.editTab.Name = "editTab";
-            this.editTab.Padding = new System.Windows.Forms.Padding(3);
-            this.editTab.Size = new System.Drawing.Size(418, 219);
-            this.editTab.TabIndex = 5;
-            this.editTab.Text = "Edit";
-            this.editTab.UseVisualStyleBackColor = true;
+            this.loadCalib.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadCalib.Location = new System.Drawing.Point(211, 31);
+            this.loadCalib.Name = "loadCalib";
+            this.loadCalib.Size = new System.Drawing.Size(140, 55);
+            this.loadCalib.TabIndex = 5;
+            this.loadCalib.Text = "Load Calibration";
+            this.loadCalib.Click += new System.EventHandler(this.loadCalib_Click);
+            // 
+            // calibrateButton
+            // 
+            this.calibrateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.calibrateButton.Location = new System.Drawing.Point(32, 31);
+            this.calibrateButton.Name = "calibrateButton";
+            this.calibrateButton.Size = new System.Drawing.Size(140, 55);
+            this.calibrateButton.TabIndex = 5;
+            this.calibrateButton.Text = "Calibrate";
+            this.calibrateButton.Click += new System.EventHandler(this.calibrateButton_Click);
+            // 
+            // clearLine
+            // 
+            this.clearLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.clearLine.Location = new System.Drawing.Point(211, 153);
+            this.clearLine.Name = "clearLine";
+            this.clearLine.Size = new System.Drawing.Size(140, 43);
+            this.clearLine.TabIndex = 2;
+            this.clearLine.Text = "Clear Tool Path History";
+            this.clearLine.UseVisualStyleBackColor = true;
+            this.clearLine.Click += new System.EventHandler(this.clearLine_Click);
             // 
             // mdiTab
             // 
@@ -572,6 +512,16 @@
             this.M03Param.Size = new System.Drawing.Size(100, 20);
             this.M03Param.TabIndex = 18;
             // 
+            // M05Button
+            // 
+            this.M05Button.Location = new System.Drawing.Point(303, 6);
+            this.M05Button.Name = "M05Button";
+            this.M05Button.Size = new System.Drawing.Size(75, 23);
+            this.M05Button.TabIndex = 17;
+            this.M05Button.Text = "Send M05";
+            this.M05Button.UseVisualStyleBackColor = true;
+            this.M05Button.Click += new System.EventHandler(this.M05Button_Click);
+            // 
             // M06button
             // 
             this.M06button.Location = new System.Drawing.Point(42, 138);
@@ -601,6 +551,16 @@
             this.G00Button.Text = "G00";
             this.G00Button.UseVisualStyleBackColor = true;
             this.G00Button.Click += new System.EventHandler(this.g00Button_Click);
+            // 
+            // M03Button
+            // 
+            this.M03Button.Location = new System.Drawing.Point(6, 6);
+            this.M03Button.Name = "M03Button";
+            this.M03Button.Size = new System.Drawing.Size(75, 23);
+            this.M03Button.TabIndex = 17;
+            this.M03Button.Text = "Send M03";
+            this.M03Button.UseVisualStyleBackColor = true;
+            this.M03Button.Click += new System.EventHandler(this.M03Button_Click);
             // 
             // label6
             // 
@@ -638,374 +598,191 @@
             this.label12.TabIndex = 24;
             this.label12.Text = "Z";
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.matRemoveButton);
-            this.tabPage1.Controls.Add(this.wpZLength);
-            this.tabPage1.Controls.Add(this.wpYLength);
-            this.tabPage1.Controls.Add(this.wpXLength);
-            this.tabPage1.Controls.Add(this.wpZloc);
-            this.tabPage1.Controls.Add(this.wpYloc);
-            this.tabPage1.Controls.Add(this.wpXloc);
-            this.tabPage1.Controls.Add(this.loadCalib);
-            this.tabPage1.Controls.Add(this.calibrateButton);
-            this.tabPage1.Controls.Add(this.clearLine);
-            this.tabPage1.Controls.Add(this.glTB3);
-            this.tabPage1.Controls.Add(this.glTB2);
-            this.tabPage1.Controls.Add(this.glTB1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(418, 219);
-            this.tabPage1.TabIndex = 7;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // matRemoveButton
-            // 
-            this.matRemoveButton.Location = new System.Drawing.Point(32, 173);
-            this.matRemoveButton.Name = "matRemoveButton";
-            this.matRemoveButton.Size = new System.Drawing.Size(206, 23);
-            this.matRemoveButton.TabIndex = 6;
-            this.matRemoveButton.Text = "Toggle Material Removal Simulation";
-            this.matRemoveButton.UseVisualStyleBackColor = true;
-            this.matRemoveButton.Click += new System.EventHandler(this.matRemoveButton_Click);
-            // 
-            // wpZLength
-            // 
-            this.wpZLength.Location = new System.Drawing.Point(138, 147);
-            this.wpZLength.Name = "wpZLength";
-            this.wpZLength.Size = new System.Drawing.Size(100, 20);
-            this.wpZLength.TabIndex = 4;
-            // 
-            // wpYLength
-            // 
-            this.wpYLength.Location = new System.Drawing.Point(137, 121);
-            this.wpYLength.Name = "wpYLength";
-            this.wpYLength.Size = new System.Drawing.Size(100, 20);
-            this.wpYLength.TabIndex = 4;
-            // 
-            // wpXLength
-            // 
-            this.wpXLength.Location = new System.Drawing.Point(138, 95);
-            this.wpXLength.Name = "wpXLength";
-            this.wpXLength.Size = new System.Drawing.Size(100, 20);
-            this.wpXLength.TabIndex = 4;
-            // 
-            // wpZloc
-            // 
-            this.wpZloc.Location = new System.Drawing.Point(32, 147);
-            this.wpZloc.Name = "wpZloc";
-            this.wpZloc.Size = new System.Drawing.Size(100, 20);
-            this.wpZloc.TabIndex = 4;
-            // 
-            // wpYloc
-            // 
-            this.wpYloc.Location = new System.Drawing.Point(32, 121);
-            this.wpYloc.Name = "wpYloc";
-            this.wpYloc.Size = new System.Drawing.Size(100, 20);
-            this.wpYloc.TabIndex = 4;
-            // 
-            // wpXloc
-            // 
-            this.wpXloc.Location = new System.Drawing.Point(32, 95);
-            this.wpXloc.Name = "wpXloc";
-            this.wpXloc.Size = new System.Drawing.Size(100, 20);
-            this.wpXloc.TabIndex = 4;
-            // 
-            // calibrateButton
-            // 
-            this.calibrateButton.Location = new System.Drawing.Point(42, 44);
-            this.calibrateButton.Name = "calibrateButton";
-            this.calibrateButton.Size = new System.Drawing.Size(75, 23);
-            this.calibrateButton.TabIndex = 5;
-            this.calibrateButton.Text = "calibrate";
-            this.calibrateButton.Click += new System.EventHandler(this.calibrateButton_Click);
-            // 
-            // clearLine
-            // 
-            this.clearLine.Location = new System.Drawing.Point(32, 15);
-            this.clearLine.Name = "clearLine";
-            this.clearLine.Size = new System.Drawing.Size(100, 23);
-            this.clearLine.TabIndex = 2;
-            this.clearLine.Text = "clear drawing";
-            this.clearLine.UseVisualStyleBackColor = true;
-            this.clearLine.Click += new System.EventHandler(this.clearLine_Click);
-            // 
-            // glTB3
-            // 
-            this.glTB3.Location = new System.Drawing.Point(297, 95);
-            this.glTB3.Name = "glTB3";
-            this.glTB3.Size = new System.Drawing.Size(100, 20);
-            this.glTB3.TabIndex = 1;
-            // 
-            // glTB2
-            // 
-            this.glTB2.Location = new System.Drawing.Point(297, 57);
-            this.glTB2.Name = "glTB2";
-            this.glTB2.Size = new System.Drawing.Size(100, 20);
-            this.glTB2.TabIndex = 1;
-            // 
-            // glTB1
-            // 
-            this.glTB1.Location = new System.Drawing.Point(297, 18);
-            this.glTB1.Name = "glTB1";
-            this.glTB1.Size = new System.Drawing.Size(100, 20);
-            this.glTB1.TabIndex = 1;
-            // 
-            // glControl1
-            // 
-            this.glControl1.BackColor = System.Drawing.Color.Black;
-            this.glControl1.Location = new System.Drawing.Point(17, 49);
-            this.glControl1.Name = "glControl1";
-            this.glControl1.Size = new System.Drawing.Size(810, 488);
-            this.glControl1.TabIndex = 0;
-            this.glControl1.VSync = false;
-            this.glControl1.Load += new System.EventHandler(this.glControl1_Load);
-            // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(1080, 52);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 13);
-            this.label7.TabIndex = 24;
-            this.label7.Text = "X to Go";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1080, 78);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(43, 13);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "Y to Go";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1080, 105);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(43, 13);
-            this.label10.TabIndex = 24;
-            this.label10.Text = "Z to Go";
-            // 
-            // xtgBox
-            // 
-            this.xtgBox.Location = new System.Drawing.Point(1124, 49);
-            this.xtgBox.Name = "xtgBox";
-            this.xtgBox.Size = new System.Drawing.Size(100, 20);
-            this.xtgBox.TabIndex = 25;
-            // 
-            // ytgBox
-            // 
-            this.ytgBox.Location = new System.Drawing.Point(1124, 75);
-            this.ytgBox.Name = "ytgBox";
-            this.ytgBox.Size = new System.Drawing.Size(100, 20);
-            this.ytgBox.TabIndex = 25;
-            // 
-            // ztgBox
-            // 
-            this.ztgBox.Location = new System.Drawing.Point(1124, 102);
-            this.ztgBox.Name = "ztgBox";
-            this.ztgBox.Size = new System.Drawing.Size(100, 20);
-            this.ztgBox.TabIndex = 25;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1081, 131);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "feed rate";
-            // 
-            // fBox
-            // 
-            this.fBox.Location = new System.Drawing.Point(1124, 128);
-            this.fBox.Name = "fBox";
-            this.fBox.Size = new System.Drawing.Size(100, 20);
-            this.fBox.TabIndex = 25;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(876, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 13);
-            this.label2.TabIndex = 24;
-            this.label2.Text = "X";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(876, 78);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(14, 13);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "Y";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(876, 105);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(14, 13);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Z";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(866, 131);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(42, 13);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "Spindle";
-            // 
-            // xBox
-            // 
-            this.xBox.Location = new System.Drawing.Point(909, 49);
-            this.xBox.Name = "xBox";
-            this.xBox.Size = new System.Drawing.Size(100, 20);
-            this.xBox.TabIndex = 25;
-            // 
-            // yBox
-            // 
-            this.yBox.Location = new System.Drawing.Point(909, 75);
-            this.yBox.Name = "yBox";
-            this.yBox.Size = new System.Drawing.Size(100, 20);
-            this.yBox.TabIndex = 25;
-            // 
-            // zBox
-            // 
-            this.zBox.Location = new System.Drawing.Point(909, 102);
-            this.zBox.Name = "zBox";
-            this.zBox.Size = new System.Drawing.Size(100, 20);
-            this.zBox.TabIndex = 25;
-            // 
-            // sBox
-            // 
-            this.sBox.Location = new System.Drawing.Point(909, 128);
-            this.sBox.Name = "sBox";
-            this.sBox.Size = new System.Drawing.Size(100, 20);
-            this.sBox.TabIndex = 25;
-            // 
-            // xOffseted
-            // 
-            this.xOffseted.Location = new System.Drawing.Point(1012, 49);
-            this.xOffseted.Name = "xOffseted";
-            this.xOffseted.Size = new System.Drawing.Size(58, 20);
-            this.xOffseted.TabIndex = 26;
-            // 
-            // yOffseted
-            // 
-            this.yOffseted.Location = new System.Drawing.Point(1012, 75);
-            this.yOffseted.Name = "yOffseted";
-            this.yOffseted.Size = new System.Drawing.Size(58, 20);
-            this.yOffseted.TabIndex = 26;
-            // 
-            // zOffseted
-            // 
-            this.zOffseted.Location = new System.Drawing.Point(1012, 102);
-            this.zOffseted.Name = "zOffseted";
-            this.zOffseted.Size = new System.Drawing.Size(58, 20);
-            this.zOffseted.TabIndex = 26;
-            // 
-            // offsetButton
-            // 
-            this.offsetButton.Location = new System.Drawing.Point(1012, 129);
-            this.offsetButton.Name = "offsetButton";
-            this.offsetButton.Size = new System.Drawing.Size(63, 23);
-            this.offsetButton.TabIndex = 27;
-            this.offsetButton.Text = "Offset Coordinate";
-            this.offsetButton.UseVisualStyleBackColor = true;
-            this.offsetButton.Click += new System.EventHandler(this.offsetButton_Click);
-            // 
-            // feedPlusButton
-            // 
-            this.feedPlusButton.Location = new System.Drawing.Point(1134, 164);
-            this.feedPlusButton.Name = "feedPlusButton";
-            this.feedPlusButton.Size = new System.Drawing.Size(75, 23);
-            this.feedPlusButton.TabIndex = 28;
-            this.feedPlusButton.Text = "feed rate +";
-            this.feedPlusButton.UseVisualStyleBackColor = true;
-            this.feedPlusButton.Click += new System.EventHandler(this.feedPlusButton_Click);
-            // 
-            // feedMinusButton
-            // 
-            this.feedMinusButton.Location = new System.Drawing.Point(1134, 193);
-            this.feedMinusButton.Name = "feedMinusButton";
-            this.feedMinusButton.Size = new System.Drawing.Size(75, 23);
-            this.feedMinusButton.TabIndex = 28;
-            this.feedMinusButton.Text = "feed rate -";
-            this.feedMinusButton.UseVisualStyleBackColor = true;
-            this.feedMinusButton.Click += new System.EventHandler(this.feedMinusButton_Click);
-            // 
-            // feedRatePercentTxtbox
-            // 
-            this.feedRatePercentTxtbox.Location = new System.Drawing.Point(1124, 222);
-            this.feedRatePercentTxtbox.Name = "feedRatePercentTxtbox";
-            this.feedRatePercentTxtbox.Size = new System.Drawing.Size(100, 20);
-            this.feedRatePercentTxtbox.TabIndex = 25;
-            this.feedRatePercentTxtbox.Text = "100%";
-            // 
-            // alarmBtn
-            // 
-            this.alarmBtn.Location = new System.Drawing.Point(909, 164);
-            this.alarmBtn.Name = "alarmBtn";
-            this.alarmBtn.Size = new System.Drawing.Size(75, 23);
-            this.alarmBtn.TabIndex = 28;
-            this.alarmBtn.Text = "clear alarm";
-            this.alarmBtn.UseVisualStyleBackColor = true;
-            this.alarmBtn.Click += new System.EventHandler(this.alarmBtn_Click);
-            // 
-            // lineComplete
-            // 
-            this.lineComplete.Location = new System.Drawing.Point(884, 196);
-            this.lineComplete.Name = "lineComplete";
-            this.lineComplete.Size = new System.Drawing.Size(100, 20);
-            this.lineComplete.TabIndex = 29;
-            this.lineComplete.Text = "0";
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // statusBox
-            // 
-            this.statusBox.Location = new System.Drawing.Point(21, 543);
-            this.statusBox.Multiline = true;
-            this.statusBox.Name = "statusBox";
-            this.statusBox.Size = new System.Drawing.Size(541, 46);
-            this.statusBox.TabIndex = 30;
-            // 
-            // contextMenuStrip3
-            // 
-            this.contextMenuStrip3.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.contextMenuStrip3.Name = "contextMenuStrip3";
-            this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
-            // 
-            // loadCalib
-            // 
-            this.loadCalib.Location = new System.Drawing.Point(42, 66);
-            this.loadCalib.Name = "loadCalib";
-            this.loadCalib.Size = new System.Drawing.Size(130, 23);
-            this.loadCalib.TabIndex = 5;
-            this.loadCalib.Text = "load Calibration";
-            this.loadCalib.Click += new System.EventHandler(this.loadCalib_Click);
+            // jogTab
+            // 
+            this.jogTab.Controls.Add(this.groupBox2);
+            this.jogTab.Controls.Add(this.groupBox3);
+            this.jogTab.Controls.Add(this.groupBox4);
+            this.jogTab.Location = new System.Drawing.Point(4, 22);
+            this.jogTab.Name = "jogTab";
+            this.jogTab.Padding = new System.Windows.Forms.Padding(3);
+            this.jogTab.Size = new System.Drawing.Size(418, 219);
+            this.jogTab.TabIndex = 4;
+            this.jogTab.Text = "Jog";
+            this.jogTab.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.moveXup);
+            this.groupBox2.Controls.Add(this.moveXdown);
+            this.groupBox2.Location = new System.Drawing.Point(6, 18);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(184, 60);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "X axis";
+            // 
+            // moveXup
+            // 
+            this.moveXup.Enabled = false;
+            this.moveXup.Location = new System.Drawing.Point(88, 19);
+            this.moveXup.Name = "moveXup";
+            this.moveXup.Size = new System.Drawing.Size(75, 35);
+            this.moveXup.TabIndex = 1;
+            this.moveXup.Text = "Right";
+            this.moveXup.UseVisualStyleBackColor = true;
+            this.moveXup.Click += new System.EventHandler(this.moveXup_Click);
+            // 
+            // moveXdown
+            // 
+            this.moveXdown.Enabled = false;
+            this.moveXdown.Location = new System.Drawing.Point(7, 19);
+            this.moveXdown.Name = "moveXdown";
+            this.moveXdown.Size = new System.Drawing.Size(75, 35);
+            this.moveXdown.TabIndex = 0;
+            this.moveXdown.Text = "Left";
+            this.moveXdown.UseVisualStyleBackColor = true;
+            this.moveXdown.Click += new System.EventHandler(this.moveXdown_Click_1);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.moveYup);
+            this.groupBox3.Controls.Add(this.moveYdown);
+            this.groupBox3.Location = new System.Drawing.Point(6, 84);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(184, 60);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Y axis";
+            // 
+            // moveYup
+            // 
+            this.moveYup.Enabled = false;
+            this.moveYup.Location = new System.Drawing.Point(88, 18);
+            this.moveYup.Name = "moveYup";
+            this.moveYup.Size = new System.Drawing.Size(75, 35);
+            this.moveYup.TabIndex = 1;
+            this.moveYup.Text = "Front";
+            this.moveYup.UseVisualStyleBackColor = true;
+            this.moveYup.Click += new System.EventHandler(this.moveYup_Click);
+            // 
+            // moveYdown
+            // 
+            this.moveYdown.Enabled = false;
+            this.moveYdown.Location = new System.Drawing.Point(7, 18);
+            this.moveYdown.Name = "moveYdown";
+            this.moveYdown.Size = new System.Drawing.Size(75, 35);
+            this.moveYdown.TabIndex = 0;
+            this.moveYdown.Text = "Back";
+            this.moveYdown.UseVisualStyleBackColor = true;
+            this.moveYdown.Click += new System.EventHandler(this.moveYdown_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.moveZdown);
+            this.groupBox4.Controls.Add(this.moveZup);
+            this.groupBox4.Location = new System.Drawing.Point(6, 149);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(184, 60);
+            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Z axis";
+            // 
+            // moveZdown
+            // 
+            this.moveZdown.Enabled = false;
+            this.moveZdown.Location = new System.Drawing.Point(7, 19);
+            this.moveZdown.Name = "moveZdown";
+            this.moveZdown.Size = new System.Drawing.Size(75, 35);
+            this.moveZdown.TabIndex = 1;
+            this.moveZdown.Text = "Down";
+            this.moveZdown.UseVisualStyleBackColor = true;
+            this.moveZdown.Click += new System.EventHandler(this.moveZdown_Click);
+            // 
+            // moveZup
+            // 
+            this.moveZup.Enabled = false;
+            this.moveZup.Location = new System.Drawing.Point(88, 19);
+            this.moveZup.Name = "moveZup";
+            this.moveZup.Size = new System.Drawing.Size(75, 35);
+            this.moveZup.TabIndex = 0;
+            this.moveZup.Text = "Up";
+            this.moveZup.UseVisualStyleBackColor = true;
+            this.moveZup.Click += new System.EventHandler(this.moveZup_Click);
+            // 
+            // memoryTab
+            // 
+            this.memoryTab.Controls.Add(this.runGCode);
+            this.memoryTab.Controls.Add(this.GCodeTxt);
+            this.memoryTab.Location = new System.Drawing.Point(4, 22);
+            this.memoryTab.Name = "memoryTab";
+            this.memoryTab.Padding = new System.Windows.Forms.Padding(3);
+            this.memoryTab.Size = new System.Drawing.Size(418, 219);
+            this.memoryTab.TabIndex = 3;
+            this.memoryTab.Text = "Memory";
+            this.memoryTab.UseVisualStyleBackColor = true;
+            // 
+            // runGCode
+            // 
+            this.runGCode.Location = new System.Drawing.Point(322, 49);
+            this.runGCode.Name = "runGCode";
+            this.runGCode.Size = new System.Drawing.Size(75, 66);
+            this.runGCode.TabIndex = 1;
+            this.runGCode.Text = "Run G Code";
+            this.runGCode.UseVisualStyleBackColor = true;
+            this.runGCode.Click += new System.EventHandler(this.runGCode_Click);
+            // 
+            // GCodeTxt
+            // 
+            this.GCodeTxt.Location = new System.Drawing.Point(15, 26);
+            this.GCodeTxt.MaxLength = 0;
+            this.GCodeTxt.Multiline = true;
+            this.GCodeTxt.Name = "GCodeTxt";
+            this.GCodeTxt.Size = new System.Drawing.Size(296, 177);
+            this.GCodeTxt.TabIndex = 0;
+            // 
+            // referenceTab
+            // 
+            this.referenceTab.Controls.Add(this.refButton);
+            this.referenceTab.Location = new System.Drawing.Point(4, 22);
+            this.referenceTab.Name = "referenceTab";
+            this.referenceTab.Padding = new System.Windows.Forms.Padding(3);
+            this.referenceTab.Size = new System.Drawing.Size(418, 219);
+            this.referenceTab.TabIndex = 0;
+            this.referenceTab.Text = "Reference";
+            this.referenceTab.UseVisualStyleBackColor = true;
+            // 
+            // refButton
+            // 
+            this.refButton.Enabled = false;
+            this.refButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.refButton.Location = new System.Drawing.Point(22, 23);
+            this.refButton.Name = "refButton";
+            this.refButton.Size = new System.Drawing.Size(138, 83);
+            this.refButton.TabIndex = 0;
+            this.refButton.Text = "Reference Machine";
+            this.refButton.UseVisualStyleBackColor = true;
+            this.refButton.Click += new System.EventHandler(this.refButton_Click);
+            // 
+            // ModeControl
+            // 
+            this.ModeControl.Controls.Add(this.referenceTab);
+            this.ModeControl.Controls.Add(this.memoryTab);
+            this.ModeControl.Controls.Add(this.jogTab);
+            this.ModeControl.Controls.Add(this.mdiTab);
+            this.ModeControl.Controls.Add(this.ARTab);
+            this.ModeControl.Location = new System.Drawing.Point(833, 272);
+            this.ModeControl.Name = "ModeControl";
+            this.ModeControl.SelectedIndex = 0;
+            this.ModeControl.Size = new System.Drawing.Size(426, 245);
+            this.ModeControl.TabIndex = 22;
+            this.ModeControl.Click += new System.EventHandler(this.ModeControl_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 601);
+            this.ClientSize = new System.Drawing.Size(1322, 611);
             this.Controls.Add(this.statusBox);
             this.Controls.Add(this.ModeControl);
             this.Controls.Add(this.lineComplete);
@@ -1022,37 +799,33 @@
             this.Controls.Add(this.feedRatePercentTxtbox);
             this.Controls.Add(this.fBox);
             this.Controls.Add(this.yBox);
-            this.Controls.Add(this.ztgBox);
             this.Controls.Add(this.xBox);
-            this.Controls.Add(this.ytgBox);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.xtgBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "iWindow";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.jogTab.ResumeLayout(false);
-            this.memoryTab.ResumeLayout(false);
-            this.memoryTab.PerformLayout();
-            this.ModeControl.ResumeLayout(false);
+            this.ARTab.ResumeLayout(false);
             this.mdiTab.ResumeLayout(false);
             this.mdiTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.M06Number)).EndInit();
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.jogTab.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.memoryTab.ResumeLayout(false);
+            this.memoryTab.PerformLayout();
+            this.referenceTab.ResumeLayout(false);
+            this.ModeControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1061,50 +834,11 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem connectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem terminateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem referenceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem memoryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem jogToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem functionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem referenceToolStripMenuItem1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button moveXup;
-        private System.Windows.Forms.Button moveXdown;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button moveYup;
-        private System.Windows.Forms.Button moveYdown;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button moveZdown;
-        private System.Windows.Forms.Button moveZup;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Button feedDownButton;
-        private System.Windows.Forms.Button feedUpButton;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem mDIModeToolStripMenuItem;
-        private System.Windows.Forms.Button M05Button;
-        private System.Windows.Forms.Button M03Button;
-        private System.Windows.Forms.TabPage jogTab;
-        private System.Windows.Forms.TabPage memoryTab;
-        private System.Windows.Forms.TabPage referenceTab;
-        private System.Windows.Forms.TabControl ModeControl;
-        private System.Windows.Forms.TabPage mdiTab;
-        private System.Windows.Forms.TabPage editTab;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox xtgBox;
-        private System.Windows.Forms.TextBox ytgBox;
-        private System.Windows.Forms.TextBox ztgBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox fBox;
-        private System.Windows.Forms.TextBox M03Param;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -1113,28 +847,10 @@
         private System.Windows.Forms.TextBox yBox;
         private System.Windows.Forms.TextBox zBox;
         private System.Windows.Forms.TextBox sBox;
-        private System.Windows.Forms.TextBox zIn;
-        private System.Windows.Forms.TextBox yIn;
-        private System.Windows.Forms.TextBox xIn;
-        private System.Windows.Forms.Button G00Button;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button M06button;
-        private System.Windows.Forms.Button G01Button;
-        private System.Windows.Forms.TextBox fIn;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.NumericUpDown M06Number;
         private System.Windows.Forms.TextBox xOffseted;
         private System.Windows.Forms.TextBox yOffseted;
         private System.Windows.Forms.TextBox zOffseted;
-        private System.Windows.Forms.Button runGCode;
-        private System.Windows.Forms.TextBox GCodeTxt;
         private System.Windows.Forms.Button offsetButton;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TextBox glTB3;
-        private System.Windows.Forms.TextBox glTB2;
-        private System.Windows.Forms.TextBox glTB1;
         private OpenTK.GLControl glControl1;
         private System.Windows.Forms.Button feedPlusButton;
         private System.Windows.Forms.Button feedMinusButton;
@@ -1144,16 +860,47 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox statusBox;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
-        private System.Windows.Forms.Button clearLine;
-        private System.Windows.Forms.TextBox wpZLength;
-        private System.Windows.Forms.TextBox wpYLength;
-        private System.Windows.Forms.TextBox wpXLength;
-        private System.Windows.Forms.TextBox wpZloc;
-        private System.Windows.Forms.TextBox wpYloc;
-        private System.Windows.Forms.TextBox wpXloc;
-        private System.Windows.Forms.Button calibrateButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TabPage ARTab;
         private System.Windows.Forms.Button matRemoveButton;
         private System.Windows.Forms.Button loadCalib;
+        private System.Windows.Forms.Button calibrateButton;
+        private System.Windows.Forms.Button clearLine;
+        private System.Windows.Forms.TabPage mdiTab;
+        private System.Windows.Forms.NumericUpDown M06Number;
+        private System.Windows.Forms.TextBox fIn;
+        private System.Windows.Forms.TextBox zIn;
+        private System.Windows.Forms.TextBox yIn;
+        private System.Windows.Forms.TextBox xIn;
+        private System.Windows.Forms.TextBox M03Param;
+        private System.Windows.Forms.Button M05Button;
+        private System.Windows.Forms.Button M06button;
+        private System.Windows.Forms.Button G01Button;
+        private System.Windows.Forms.Button G00Button;
+        private System.Windows.Forms.Button M03Button;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TabPage jogTab;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button moveXup;
+        private System.Windows.Forms.Button moveXdown;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button moveYup;
+        private System.Windows.Forms.Button moveYdown;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button moveZdown;
+        private System.Windows.Forms.Button moveZup;
+        private System.Windows.Forms.TabPage memoryTab;
+        private System.Windows.Forms.Button runGCode;
+        private System.Windows.Forms.TextBox GCodeTxt;
+        private System.Windows.Forms.TabPage referenceTab;
+        private System.Windows.Forms.Button refButton;
+        private System.Windows.Forms.TabControl ModeControl;
+        private System.Windows.Forms.ToolStripMenuItem changeIPToolStripMenuItem;
     }
 }
 
