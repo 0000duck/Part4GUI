@@ -1203,6 +1203,21 @@ namespace iWindow
             camIP = Microsoft.VisualBasic.Interaction.InputBox("Enter Ip", "IP", camIP);
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void M03Param_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void glControl1_Load(object sender, EventArgs e)
         {
             glControl1.VSync = true;//not fired
