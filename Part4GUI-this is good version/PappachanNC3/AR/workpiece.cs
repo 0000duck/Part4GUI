@@ -6,7 +6,7 @@ using System.Collections;
 using OpenTK.Graphics.OpenGL;
 using System.Drawing;
 
-namespace PappachanNC3.AR
+namespace iWindow.AR
 {
     class WorkPiece
     {
@@ -107,7 +107,7 @@ namespace PappachanNC3.AR
 
                 }
             }
-            ;
+            
         }
 
         public void removePoint(int i, int j, int k)
@@ -189,13 +189,14 @@ namespace PappachanNC3.AR
 
         public void draw()
         {
-            Color a = Color.FromArgb(160, 255, 60, 0);
-            Color b = Color.FromArgb(160, 225, 85, 25);
-            Color c = Color.FromArgb(160, 195, 110, 50);
-            Color d = Color.FromArgb(160, 165, 135, 75);
+            Color a = Color.FromArgb(50,250,0,0);
+            Color b = Color.FromArgb(50, 240, 40, 0);
+            Color c = Color.FromArgb(50, 230, 0, 0);
+            Color d = Color.FromArgb(50, 240, 40, 0);
 
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
-            GL.Color3(Color.Purple);
+
+
 
             if (Form1.currentX0 != null && Form1.currentY0 != null && Form1.currentZ0 != null)
             {
@@ -208,46 +209,46 @@ namespace PappachanNC3.AR
                         if (face.face == 1)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + resolution + render.Zoff);
                             GL.Color4(b);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY + resolution, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff - resolution, face.z + resolution + render.Zoff);
                             GL.Color4(c);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY + resolution, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff - resolution, face.z + resolution + render.Zoff);
                             GL.Color4(d);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + resolution + render.Zoff);
                         }
                         else if (face.face == 3)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY, face.z - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + render.Zoff);
                             GL.Color4(b);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY + resolution, face.z - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff - resolution, face.z + render.Zoff);
                             GL.Color4(c);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY + resolution, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff - resolution, face.z + resolution + render.Zoff);
                             GL.Color4(d);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + resolution + render.Zoff);
                         }
                         else if (face.face == 4)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY, face.z - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + render.Zoff);
                             GL.Color4(b);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + resolution + render.Zoff);
                             GL.Color4(c);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY + resolution, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff - resolution, face.z + resolution + render.Zoff);
                             GL.Color4(d);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY + resolution, face.z - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff - resolution, face.z + render.Zoff);
                         }
                         else if (face.face == 5)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY, face.z - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + render.Zoff);
                             GL.Color4(b);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX, face.y - Form1.currentY0.Value - render.camY, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + resolution + render.Zoff);
                             GL.Color4(c);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY, face.z + resolution - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + resolution + render.Zoff);
                             GL.Color4(d);
-                            GL.Vertex3(face.x - Form1.currentX0.Value - render.camX + resolution, face.y - Form1.currentY0.Value - render.camY, face.z - Form1.currentZ0.Value - render.camZ);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + render.Zoff);
                         }
                     }
 
@@ -267,46 +268,178 @@ namespace PappachanNC3.AR
                         if (face.face == 1)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x, face.y, face.z + resolution);
+                            GL.Vertex3(-face.x, -face.y, face.z + resolution);
                             GL.Color4(b);
-                            GL.Vertex3(face.x, face.y + resolution, face.z + resolution);
+                            GL.Vertex3(-face.x, -face.y - resolution, face.z + resolution);
                             GL.Color4(c);
-                            GL.Vertex3(face.x + resolution, face.y + resolution, face.z + resolution);
+                            GL.Vertex3(-face.x - resolution, -face.y - resolution, face.z + resolution);
                             GL.Color4(d);
-                            GL.Vertex3(face.x + resolution, face.y, face.z + resolution);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z + resolution);
                         }
                         else if (face.face == 3)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x, face.y, face.z);
+                            GL.Vertex3(-face.x, -face.y, face.z);
                             GL.Color4(b);
-                            GL.Vertex3(face.x, face.y + resolution, face.z);
+                            GL.Vertex3(-face.x, -face.y - resolution, face.z);
                             GL.Color4(c);
-                            GL.Vertex3(face.x, face.y + resolution, face.z + resolution);
+                            GL.Vertex3(-face.x, -face.y - resolution, face.z + resolution);
                             GL.Color4(d);
-                            GL.Vertex3(face.x, face.y, face.z + resolution);
+                            GL.Vertex3(-face.x, -face.y, face.z + resolution);
                         }
                         else if (face.face == 4)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x + resolution, face.y, face.z);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z);
                             GL.Color4(b);
-                            GL.Vertex3(face.x + resolution, face.y, face.z + resolution);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z + resolution);
                             GL.Color4(c);
-                            GL.Vertex3(face.x + resolution, face.y + resolution, face.z + resolution);
+                            GL.Vertex3(-face.x - resolution, -face.y - resolution, face.z + resolution);
                             GL.Color4(d);
-                            GL.Vertex3(face.x + resolution, face.y + resolution, face.z);
+                            GL.Vertex3(-face.x - resolution, -face.y - resolution, face.z);
                         }
                         else if (face.face == 5)
                         {
                             GL.Color4(a);
-                            GL.Vertex3(face.x, face.y, face.z);
+                            GL.Vertex3(-face.x, -face.y, face.z);
                             GL.Color4(b);
-                            GL.Vertex3(face.x, face.y, face.z + resolution);
+                            GL.Vertex3(-face.x, -face.y, face.z + resolution);
                             GL.Color4(c);
-                            GL.Vertex3(face.x + resolution, face.y, face.z + resolution);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z + resolution);
                             GL.Color4(d);
-                            GL.Vertex3(face.x + resolution, face.y, face.z);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z);
+                        }
+                    }
+
+                    GL.End();
+                }
+            }
+        }
+
+
+             public void draw2()
+        {
+            Color a = Color.Black;
+            Color b = Color.Black;
+            Color c = Color.Black;
+            Color d = Color.Black;
+
+            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
+            GL.Color3(Color.Purple);
+
+
+
+            if (Form1.currentX0 != null && Form1.currentY0 != null && Form1.currentZ0 != null)
+            {
+                foreach (DictionaryEntry faceLs in faceArray)
+                {
+                    foreach (CubeFace face in (List<CubeFace>)faceLs.Value)
+                    {
+
+                        GL.Begin(PrimitiveType.LineLoop);
+                        if (face.face == 1)
+                        {
+                            GL.Color4(a);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + resolution + render.Zoff);
+                            GL.Color4(b);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff - resolution, face.z + resolution + render.Zoff);
+                            GL.Color4(c);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff - resolution, face.z + resolution + render.Zoff);
+                            GL.Color4(d);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + resolution + render.Zoff);
+                        }
+                        else if (face.face == 3)
+                        {
+                            GL.Color4(a);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + render.Zoff);
+                            GL.Color4(b);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff - resolution, face.z + render.Zoff);
+                            GL.Color4(c);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff - resolution, face.z + resolution + render.Zoff);
+                            GL.Color4(d);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + resolution + render.Zoff);
+                        }
+                        else if (face.face == 4)
+                        {
+                            GL.Color4(a);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + render.Zoff);
+                            GL.Color4(b);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + resolution + render.Zoff);
+                            GL.Color4(c);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff - resolution, face.z + resolution + render.Zoff);
+                            GL.Color4(d);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff - resolution, face.z + render.Zoff);
+                        }
+                        else if (face.face == 5)
+                        {
+                            GL.Color4(a);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + render.Zoff);
+                            GL.Color4(b);
+                            GL.Vertex3(-face.x + render.Xoff, -face.y + render.Yoff, face.z + resolution + render.Zoff);
+                            GL.Color4(c);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + resolution + render.Zoff);
+                            GL.Color4(d);
+                            GL.Vertex3(-face.x + render.Xoff - resolution, -face.y + render.Yoff, face.z + render.Zoff);
+                        }
+
+                        GL.End();
+                    }
+
+                }
+
+
+            }
+            else
+            {
+                foreach (DictionaryEntry faceLs in faceArray)
+                {
+                    foreach (CubeFace face in (List<CubeFace>)faceLs.Value)
+                    {
+
+                        GL.Begin(PrimitiveType.LineLoop);
+                        if (face.face == 1)
+                        {
+                            GL.Color4(a);
+                            GL.Vertex3(-face.x, -face.y, face.z + resolution);
+                            GL.Color4(b);
+                            GL.Vertex3(-face.x, -face.y - resolution, face.z + resolution);
+                            GL.Color4(c);
+                            GL.Vertex3(-face.x - resolution, -face.y - resolution, face.z + resolution);
+                            GL.Color4(d);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z + resolution);
+                        }
+                        else if (face.face == 3)
+                        {
+                            GL.Color4(a);
+                            GL.Vertex3(-face.x, -face.y, face.z);
+                            GL.Color4(b);
+                            GL.Vertex3(-face.x, -face.y - resolution, face.z);
+                            GL.Color4(c);
+                            GL.Vertex3(-face.x, -face.y - resolution, face.z + resolution);
+                            GL.Color4(d);
+                            GL.Vertex3(-face.x, -face.y, face.z + resolution);
+                        }
+                        else if (face.face == 4)
+                        {
+                            GL.Color4(a);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z);
+                            GL.Color4(b);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z + resolution);
+                            GL.Color4(c);
+                            GL.Vertex3(-face.x - resolution, -face.y - resolution, face.z + resolution);
+                            GL.Color4(d);
+                            GL.Vertex3(-face.x - resolution, -face.y - resolution, face.z);
+                        }
+                        else if (face.face == 5)
+                        {
+                            GL.Color4(a);
+                            GL.Vertex3(-face.x, -face.y, face.z);
+                            GL.Color4(b);
+                            GL.Vertex3(-face.x, -face.y, face.z + resolution);
+                            GL.Color4(c);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z + resolution);
+                            GL.Color4(d);
+                            GL.Vertex3(-face.x - resolution, -face.y, face.z);
                         }
                     }
 

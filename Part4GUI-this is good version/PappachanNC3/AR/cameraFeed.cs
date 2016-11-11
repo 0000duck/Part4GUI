@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using MjpegProcessor;
 
-namespace PappachanNC3.AR
+namespace iWindow.AR
 {
     class cameraFeed
     {
         public static MjpegDecoder MD;
 
-        public static void loadCamera()
+        public static void loadCamera(string URIpi)
         {
 
             MD = new MjpegDecoder();
 
             MD.FrameReady += mjpeg_FrameReady;
-            System.Uri a = new Uri("http://192.168.1.1:8081/");
+            System.Uri a = new Uri("http://" + URIpi +  ":8081/");
             MD.ParseStream(a);
 
         }

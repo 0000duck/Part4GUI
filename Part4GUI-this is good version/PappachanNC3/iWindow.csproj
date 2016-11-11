@@ -8,8 +8,8 @@
     <ProjectGuid>{3650E4CD-C5E7-4873-BB02-A61CE96DB674}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PappachanNC3</RootNamespace>
-    <AssemblyName>PappachanNC3</AssemblyName>
+    <RootNamespace>iWindow</RootNamespace>
+    <AssemblyName>iWindow</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -37,6 +37,7 @@
     <Reference Include="Emgu.CV.World">
       <HintPath>..\..\AR stuff\emgu\Emgu.CV.World.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="MjpegProcessor">
       <HintPath>..\..\WindowsFormsApplication2\WindowsFormsApplication2\bin\Debug\MjpegProcessor.dll</HintPath>
     </Reference>
@@ -58,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AR\badVolume.cs" />
     <Compile Include="AR\cameraCalibrate.cs" />
     <Compile Include="AR\cameraFeed.cs" />
     <Compile Include="AR\render.cs" />

@@ -8,9 +8,9 @@ using OpenTK.Graphics.OpenGL;
 using System.IO;
 using System.Collections;
 using System.Drawing.Imaging;
-using PappachanNC3.AR;
+using iWindow.AR;
 
-namespace PappachanNC3.AR
+namespace iWindow.AR
 {
     class render
     {
@@ -23,6 +23,13 @@ namespace PappachanNC3.AR
         public float[] translateArr;
         public float[] cameraPar;
 
+        public bool camInit = false;
+
+        public static float Xoff, Yoff, Zoff;
+
+        //public static float toolXoff = -0, toolYoff = -0, toolZoff = 0;
+        public static float toolXoff = -43, toolYoff = -33, toolZoff = 57;
+
         bool bgLoaded = false;
         int BGtextureID;
         int id;
@@ -33,8 +40,9 @@ namespace PappachanNC3.AR
         public static bool hasFirst;
 
         //ui elements
-        TextBox textBox1, textBox2, textBox3;
         OpenTK.GLControl glControl1;
+
+        ArrayList badVolumes;
 
         ArrayList objects;
         WorkPiece wp;
@@ -44,11 +52,8 @@ namespace PappachanNC3.AR
 
         public double? prevX = null, prevY = null, prevZ = null;
 
-        public render(TextBox txb1, TextBox txb2, TextBox txb3, OpenTK.GLControl gc)
+        public render(OpenTK.GLControl gc)
         {
-            textBox1 = txb1;
-            textBox2 = txb2;
-            textBox3 = txb3;
 
             glControl1 = gc;
 
@@ -64,41 +69,66 @@ namespace PappachanNC3.AR
             rotateArr = cc.rotateArr;
             translateArr = cc.translateArr;
 
-            wp = new WorkPiece(0, 0, 0, 100, 100, 50, 2f);
-            
+            wp = new WorkPiece(-64, -36, -8, 240, 190, 8, 1.5f);
 
-            cameraFeed.loadCamera();
+            badVolumes = new ArrayList();
+            badVolumes.Add(new badVolume(-100, 00, -100, 100, -5, 40));
+            badVolumes.Add(new badVolume(240, 340, -100, 100, -5, 40));
+            badVolumes.Add(new badVolume(-100, 300, -100, 200, -200, -10));
+
+            cameraFeed.loadCamera(Form1.camIP);
 
             int id = GL.GenTexture();
         }
 
         public void addLine()
         {
-            if (Form1.currentX != null && Form1.currentY != null && Form1.currentZ != null)
+            if (Form1.currentX0 != null && Form1.currentY0 != null && Form1.currentZ0 != null)
             {
                 if (prevX != null)
                 {
-                    if (Form1.currentX != prevX || Form1.currentY != prevY || Form1.currentZ != prevZ)
+                    if (Form1.currentX0 != prevX || Form1.currentY0 != prevY || Form1.currentZ0 != prevZ)
                     {
-                        line temp = new line(Form1.currentX.Value, Form1.currentY.Value, Form1.currentZ.Value, prevX.Value, prevY.Value, prevZ.Value);
+                        line temp = new line(Form1.currentX0.Value, Form1.currentY0.Value, Form1.currentZ0.Value, prevX.Value, prevY.Value, prevZ.Value);
                         lineList.Add(temp);
                     }
                 }
 
-                prevX = Form1.currentX;
-                prevY = Form1.currentY;
-                prevZ = Form1.currentZ;
+                prevX = Form1.currentX0;
+                prevY = Form1.currentY0;
+                prevZ = Form1.currentZ0;
 
                 
+            }
+        }
+
+        public void checkVol()
+        {
+            foreach (badVolume badVol in badVolumes)
+            {
+                if (Form1.currentX0 != null && Form1.currentY0 != null && Form1.currentZ0 != null && Form1.offsetSet)
+                {
+
+                    if (badVol.test(Form1.currentX.Value, Form1.currentY.Value, Form1.currentZ.Value))
+                    {
+                        Form1.writeErr("Outside safe milling volume");
+                    }
+
+                }
             }
         }
 
         public void removePoint()
         {
             float rad = 5;
-            if (Form1.currentX != null && Form1.currentY != null && Form1.currentZ != null)
+            if (Form1.currentX0.HasValue && Form1.currentY0.HasValue && Form1.currentZ0.HasValue)
             {
-                int maxZ = Convert.ToInt32((Form1.currentZ.Value - wp.locZ) / wp.resolution);
+                //converts current position into camera co-ord
+                double xPoint = Form1.currentX0.Value - 188 - toolXoff;
+                double yPoint = Form1.currentY0.Value - 50 - toolYoff;
+                double zPoint = Form1.currentZ0.Value - toolZoff;
+
+                int maxZ = Convert.ToInt32((zPoint - wp.locZ) / wp.resolution);
                 for (int k=wp.zLen-1; k > maxZ && k>=0;k--)
                 {
                     for (int j =0; j < wp.yLen; j++)
@@ -106,7 +136,7 @@ namespace PappachanNC3.AR
 
                         for (int i = 0; i < wp.xLen; i++)
                         {
-                            if ((i * wp.resolution + wp.locX - Form1.currentX.Value) * (i * wp.resolution + wp.locX - Form1.currentX.Value) + (j * wp.resolution + wp.locY - Form1.currentY.Value) * (j * wp.resolution + wp.locY - Form1.currentY.Value) < 25)
+                            if ((i * wp.resolution + wp.locX - xPoint) * (i * wp.resolution + wp.locX - xPoint) + (j * wp.resolution + wp.locY - yPoint) * (j * wp.resolution + wp.locY - yPoint) < rad*rad)
                                 wp.removePoint(i, j, k);
                         }
 
@@ -125,13 +155,21 @@ namespace PappachanNC3.AR
 
         public void draw()
         {
+            if (Form1.currentX0 != null && Form1.currentY0 != null && Form1.currentZ0 != null)
+            {
+                Yoff = (float)Form1.currentY0 - 129.9f;
+                Xoff = (float)Form1.currentX0 - 289.9f;
+                Zoff = -(float)Form1.currentZ0 + 140f;
+            }
+
             addLine();
             removePoint();
+            checkVol();
 
             //GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             displayBackground();
 
-            float far = 300, near = 50f;
+            float far = 800, near = 50f;
 
 
 
@@ -184,8 +222,8 @@ namespace PappachanNC3.AR
             GL.LoadIdentity();
             GL.LoadMatrix(ref mvMat.Row0.X);
 
+            
             /*
-
             GL.LineWidth(2.5f);
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
             GL.Color3(Color.Green);
@@ -207,119 +245,295 @@ namespace PappachanNC3.AR
             GL.Vertex3(0, 0, 0);
 
             GL.End();
-
-
             */
-
-            GL.LineWidth(2.5f);
-            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
-            GL.Color3(Color.Green);
-            GL.Begin(PrimitiveType.Lines);
-            GL.Vertex3(-109.9, -80, 0);
-            GL.Vertex3(-109.9, -80, 100);
-
-            GL.End();
-
-            GL.Color3(Color.Aqua);
-            GL.Begin(PrimitiveType.Lines);
-            GL.Vertex3(-109.9, -80, 0);
-            GL.Vertex3(-149.9, -80, 000);
-
-
-            GL.Color3(Color.Yellow);
-            GL.Begin(PrimitiveType.Lines);
-
-            GL.Vertex3(-109.9, -80, 0);
-            GL.Vertex3(-109.9, -110, 000);
-
-            GL.End();
-
             
 
-            foreach (line ln in lineList)
+            if (camInit == true)
             {
-                GL.Color3(Color.Black);
-                GL.Begin(PrimitiveType.Lines);
-                GL.Vertex3(ln.startX, ln.startY, ln.startZ);
-                GL.Vertex3(ln.endX, ln.endY, ln.endZ);
 
-                GL.End();
-            }
-
-
-            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
-
-            GL.Enable(EnableCap.DepthTest);
-            GL.DepthFunc(DepthFunction.Lequal);
-
-
-
-
-
-            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
-            GL.Enable(EnableCap.Blend);
-
-            wp.draw();
-
-
-
-
-            Color black = Color.FromArgb(0, 0, 0);
-
-
-            Color a = Color.FromArgb(160, 255, 0, 0);
-            Color b = Color.FromArgb(160, 225, 25, 25);
-            Color c = Color.FromArgb(160, 195, 50, 50);
-
-            GL.LineWidth(1.0f);
-            foreach (stlObj obj in objects)
-            {
-                object[] facetArray = obj.facets.ToArray();
-                for (int i = 0; i < obj.facetNum - 1; i++)
+                if (Form1.axisDisplay)
                 {
-                    Object fcet = (facet)facetArray[i];
-                    GL.Begin(PrimitiveType.Triangles);
-                    facet fct = (facet)fcet;
-
                     if (Form1.currentX0 != null && Form1.currentY0 != null && Form1.currentZ0 != null)
                     {
-                        GL.Color4(a);
-                        GL.Vertex3(fct.points[0].x - camX - Form1.currentX0.Value, fct.points[0].y - camY - Form1.currentY0.Value, fct.points[0].z - camZ - Form1.currentZ0.Value);
-                        GL.Color4(b);
-                        GL.Vertex3(fct.points[1].x - camX - Form1.currentX0.Value, fct.points[1].y - camY - Form1.currentY0.Value, fct.points[1].z - camZ - Form1.currentZ0.Value);
-                        GL.Color4(c);
-                        GL.Vertex3(fct.points[2].x - camX - Form1.currentX0.Value, fct.points[2].y - camY - Form1.currentY0.Value, fct.points[2].z - camZ - Form1.currentZ0.Value);
+
+                        GL.LineWidth(5.5f);
+                        GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
+                        GL.Color3(.99f, 0.1f, 0.1f);
+                        GL.Begin(PrimitiveType.Lines);
+                        GL.Vertex3(Xoff, Yoff, Zoff);
+                        GL.Vertex3(Xoff, Yoff, Zoff + 93);
+
+                        GL.End();
+
+                        GL.Color3(0.1f, 0.99f, 0.1f);
+                        GL.Begin(PrimitiveType.Lines);
+                        GL.Vertex3(Xoff, Yoff, Zoff);
+                        GL.Vertex3(Xoff - 93, Yoff, Zoff);
+
+
+                        GL.Color3(.1f, 0.1f, 0.99f);
+                        GL.Begin(PrimitiveType.Lines);
+
+                        GL.Vertex3(Xoff, Yoff, Zoff);
+                        GL.Vertex3(Xoff, Yoff - 93, Zoff);
+
+                        GL.End();
+
+
+                    }
+                }
+
+
+                if (Form1.physicalToolpath)
+                {
+                    foreach (line ln in lineList)
+                    {
+                        GL.LineWidth(2.5f);
+                        GL.Color3(Color.Blue);
+                        GL.Begin(PrimitiveType.Lines);
+                        GL.Vertex3(-ln.startX + Form1.currentX0.Value + 188 + toolXoff - 289.9, -ln.startY + Form1.currentY0.Value + toolYoff + 50 - 129.9, (ln.startZ - Form1.currentZ0.Value + 140 - toolZoff));
+                        GL.Vertex3(-ln.endX + Form1.currentX0.Value + 188 + toolXoff - 289.9, -ln.endY + Form1.currentY0.Value + toolYoff + 50 - 129.9, (ln.endZ - Form1.currentZ0.Value + 140 - toolZoff));
 
                         GL.End();
                     }
-                    else {
-                        GL.Color4(a);
-                        GL.Vertex3(fct.points[0].x, fct.points[0].y, fct.points[0].z);
-                        GL.Color4(b);
-                        GL.Vertex3(fct.points[1].x, fct.points[1].y, fct.points[1].z);
-                        GL.Color4(c);
-                        GL.Vertex3(fct.points[2].x, fct.points[2].y, fct.points[2].z);
+                }
 
-                        GL.End();
-                    }
-                    /*
-                    GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
-                    GL.Color3(black);
-                    GL.Begin(PrimitiveType.Triangles);
-                    GL.Vertex3(fct.points[0].x , fct.points[0].y, fct.points[0].z );
-                    GL.Vertex3(fct.points[1].x , fct.points[1].y, fct.points[1].z );
-                    GL.Vertex3(fct.points[2].x , fct.points[2].y, fct.points[2].z );
+                if (Form1.tooltipDisplay)
+                {
+                    GL.LineWidth(20f);
+                    line Drill = new line(Form1.currentX0.Value, Form1.currentY0.Value, Form1.currentZ0.Value, Form1.currentX0.Value, Form1.currentY0.Value, Form1.currentZ0.Value + 50);
+                    GL.Color3(Color.Silver);
+                    GL.Begin(PrimitiveType.Lines);
+                    GL.Vertex3(-Drill.startX + Form1.currentX0.Value + 188 + toolXoff - 289.9, -Drill.startY + Form1.currentY0.Value + toolYoff + 50 - 129.9, (Drill.startZ - Form1.currentZ0.Value + 140 - toolZoff));
+                    GL.Vertex3(-Drill.endX + Form1.currentX0.Value + 188 + toolXoff - 289.9, -Drill.endY + Form1.currentY0.Value + toolYoff + 50 - 129.9, (Drill.endZ - Form1.currentZ0.Value + 140 - toolZoff));
 
                     GL.End();
-                    */
-        }
+                }
 
 
-    }
+                GL.Enable(EnableCap.DepthTest);
+                GL.DepthFunc(DepthFunction.Lequal);
+
+                GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+                GL.Enable(EnableCap.Blend);
+
+                if (Form1.badVolDisplay)
+                {
+                    foreach (badVolume badVol in badVolumes)
+                    {
+
+                        Color a = Color.FromArgb(160, 255, 0, 0);
+                        Color b = Color.FromArgb(160, 225, 25, 25);
+                        Color c = Color.FromArgb(160, 195, 50, 50);
+                        Color d = Color.FromArgb(160, 225, 25, 25);
+
+                        GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
+
+                        GL.Begin(PrimitiveType.Quads);
+                        GL.Color4(a);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMax+Zoff );
+                        GL.Color4(b);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMax+Zoff );
+                        GL.Color4(c);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMax+Zoff );
+                        GL.Color4(d);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMax+Zoff );
+                        GL.End();
+
+                        GL.Begin(PrimitiveType.Quads);
+                        GL.Color4(a);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMax+Zoff );
+                        GL.Color4(b);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMax+Zoff );
+                        GL.Color4(c);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMin+Zoff );
+                        GL.Color4(d);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMin+Zoff );
+                        GL.End();
+
+                        GL.Begin(PrimitiveType.Quads);
+                        GL.Color4(a);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMax+Zoff );
+                        GL.Color4(b);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMax+Zoff );
+                        GL.Color4(c);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMin+Zoff );
+                        GL.Color4(d);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMin+Zoff );
+                        GL.End();
+
+                        GL.Begin(PrimitiveType.Quads);
+                        GL.Color4(a);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMin+Zoff );
+                        GL.Color4(b);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMin+Zoff );
+                        GL.Color4(c);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMin+Zoff );
+                        GL.Color4(d);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMin+Zoff );
+                        GL.End();
+
+                        GL.Begin(PrimitiveType.Quads);
+                        GL.Color4(a);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMin+Zoff );
+                        GL.Color4(b);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMin+Zoff );
+                        GL.Color4(c);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMax+Zoff );
+                        GL.Color4(d);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMax+Zoff );
+                        GL.End();
+
+                        GL.Begin(PrimitiveType.Quads);
+                        GL.Color4(a);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMin+Zoff );
+                        GL.Color4(b);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMin+Zoff );
+                        GL.Color4(c);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMax+Zoff );
+                        GL.Color4(d);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMax+Zoff );
+                        GL.End();
+
+                        Color black = Color.FromArgb(0, 0, 0);
+                        GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
+                        GL.Color4(black);
+                        GL.LineWidth(1.2f);
+
+
+                        GL.Begin(PrimitiveType.LineLoop);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMax+Zoff );
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMax+Zoff );
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMax+Zoff );
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMax+Zoff );
+                        GL.End();
+
+                        GL.Begin(PrimitiveType.LineLoop);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMax+Zoff );
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMax+Zoff );
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMin+Zoff );
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMin+Zoff );
+                        GL.End();
+
+                        GL.Begin(PrimitiveType.LineLoop);
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMax+Zoff );
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMax+Zoff );
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMin+Zoff );
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMin+Zoff );
+                        GL.End();
+
+                        GL.Begin(PrimitiveType.LineLoop);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMin+Zoff );
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMin+Zoff );
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMin+Zoff );
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMin+Zoff );
+                        GL.End();
+
+                        GL.Begin(PrimitiveType.LineLoop);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMin+Zoff );
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMin+Zoff );
+                        GL.Vertex3(badVol.xMax+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMax+Zoff );
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMax+Zoff );
+                        GL.End();
+
+                        GL.Begin(PrimitiveType.LineLoop);
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMin+Zoff );
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMin+Zoff );
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMax+Yoff-50, badVol.zMax+Zoff );
+                        GL.Vertex3(badVol.xMin+Xoff- 180, badVol.yMin+Yoff-50, badVol.zMax+Zoff );
+                        GL.End();
+
+                        GL.End();
+
+                        }
+
+                    }
+
+
+                
+                
+  
+                
+                GL.LineWidth(1.8f);
 
 
 
-            GL.Disable(EnableCap.Blend);
+                if (Form1.matRemove)
+                {
+                    wp.draw();
+                    wp.draw2();
+                }
+
+
+
+                if (Form1.cadModel)
+                {
+
+                    Color black = Color.FromArgb(0, 0, 0);
+
+
+                    Color a = Color.FromArgb(160, 119, 136, 153);
+                    Color b = Color.FromArgb(160, 112, 138, 144);
+                    Color c = Color.FromArgb(160, 49, 79, 79);
+
+
+
+                    GL.LineWidth(1.0f);
+                    foreach (stlObj obj in objects)
+                    {
+                        object[] facetArray = obj.facets.ToArray();
+                        for (int i = 0; i < obj.facetNum - 1; i++)
+                        {
+                            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
+
+                            Object fcet = (facet)facetArray[i];
+                            GL.Begin(PrimitiveType.Triangles);
+                            facet fct = (facet)fcet;
+
+                            if (Form1.currentX0 != null && Form1.currentY0 != null && Form1.currentZ0 != null)
+                            {
+                                GL.Color4(a);
+                                GL.Vertex3(-fct.points[0].x + Xoff, -fct.points[0].y + Yoff, fct.points[0].z + Zoff);
+                                GL.Color4(b);
+                                GL.Vertex3(-fct.points[1].x + Xoff, -fct.points[1].y + Yoff, fct.points[1].z + Zoff);
+                                GL.Color4(c);
+                                GL.Vertex3(-fct.points[2].x + Xoff, -fct.points[2].y + Yoff, fct.points[2].z + Zoff);
+
+                                GL.End();
+                            }
+                            else
+                            {
+                                GL.Color4(a);
+                                GL.Vertex3(-fct.points[0].x, -fct.points[0].y, fct.points[0].z);
+                                GL.Color4(b);
+                                GL.Vertex3(-fct.points[1].x, -fct.points[1].y, fct.points[1].z);
+                                GL.Color4(c);
+                                GL.Vertex3(-fct.points[2].x, -fct.points[2].y, fct.points[2].z);
+
+                                GL.End();
+                            }
+
+                            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
+                            GL.Color4(black);
+                            GL.Begin(PrimitiveType.LineLoop);
+
+                            GL.Vertex3(-fct.points[0].x + Xoff, -fct.points[0].y + Yoff, fct.points[0].z + Zoff);
+                            GL.Vertex3(-fct.points[1].x + Xoff, -fct.points[1].y + Yoff, fct.points[1].z + Zoff);
+                            GL.Vertex3(-fct.points[2].x + Xoff, -fct.points[2].y + Yoff, fct.points[2].z + Zoff);
+
+                            GL.End();
+
+                        }
+
+
+                    }
+
+                }
+
+
+
+                GL.Disable(EnableCap.Blend);
+            }
 
             glControl1.Refresh();// redraws and updates
 
@@ -403,7 +617,7 @@ namespace PappachanNC3.AR
 
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
-            GL.Ortho(0.0f, 816, 612.0f, 0.0f, 100.0f, 500.0f);
+            GL.Ortho(0.0f, 816, 612.0f, 0.0f, 050f, 800);
 
 
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
@@ -430,10 +644,10 @@ namespace PappachanNC3.AR
             GL.BindTexture(TextureTarget.Texture2D, BGtextureID);
 
             GL.Begin(PrimitiveType.Quads);
-            GL.TexCoord2(0.0, 0.0); GL.Vertex3(0.0, 0.0, -499);
-            GL.TexCoord2(1.0, 0.0); GL.Vertex3(800.0, 0.0, -499);
-            GL.TexCoord2(1.0, 1.0); GL.Vertex3(800.0, 600.0, -499);
-            GL.TexCoord2(0.0, 1.0); GL.Vertex3(0.0, 600.0, -499);
+            GL.TexCoord2(0.0, 0.0); GL.Vertex3(0.0, 0.0, -799);
+            GL.TexCoord2(1.0, 0.0); GL.Vertex3(800.0, 0.0, -799);
+            GL.TexCoord2(1.0, 1.0); GL.Vertex3(800.0, 600.0, -799);
+            GL.TexCoord2(0.0, 1.0); GL.Vertex3(0.0, 600.0, -799);
             GL.End();
 
 

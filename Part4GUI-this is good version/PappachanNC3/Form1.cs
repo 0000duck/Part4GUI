@@ -11,13 +11,22 @@ using System.Net.Sockets;
 using System.IO;
 using System.Threading;
 using System.Collections;
-//using PappachanNC3.GCodeParser;
+//using iWindow.GCodeParser;
 
 
-namespace PappachanNC3
+namespace iWindow
 {
     public partial class Form1 : Form
     {
+        public static Form1 frm;
+
+        public static bool matRemove = false;
+        public static bool cadModel = false;
+        public static bool physicalToolpath = false;
+        public static bool axisDisplay = false;
+        public static bool tooltipDisplay = false;
+        public static bool badVolDisplay = false;
+
         //global offset values
         public static double xOffset = 0;
         public static double yOffset = 0;
@@ -57,34 +66,44 @@ namespace PappachanNC3
         public static double? currentX = null, currentY = null, currentZ = null;
         public static double? currentX0 = null, currentY0 = null, currentZ0 = null;
 
+        double sendLimit = 200;
+        int lineNum = -1;
+
+        public static string camIP = "169.254.6.232"; //"192.168.1.1";
+
+        static SemaphoreSlim semaphore = new SemaphoreSlim(1);
+
+        public static bool offsetSet = false;
+
 
         // functions
         public void initialiseCNC()
         {
+
             //here i should send the files that is sent initially
 
             sendFile(b1);
-            sendFile(PappachanNC3.Properties.Resources.MILL1052);
+            sendFile(iWindow.Properties.Resources.MILL1052);
 
             sendFile(b3);
-            sendFile(PappachanNC3.Properties.Resources.MILL105_ACC);
+            sendFile(iWindow.Properties.Resources.MILL105_ACC);
 
             sendFile(b5);
-            sendFile(PappachanNC3.Properties.Resources.MILL105);
+            sendFile(iWindow.Properties.Resources.MILL105);
 
             sendFile(b7);
             //send part 8 and 9
-            sendFile(PappachanNC3.Properties.Resources.MILL1053);
+            sendFile(iWindow.Properties.Resources.MILL1053);
             sendFile(b10);
 
             //send file 11 (i created this file so be carefull)
-            sendFile(PappachanNC3.Properties.Resources.part11);
+            sendFile(iWindow.Properties.Resources.part11);
             sendFile(b12);
 
-            sendFile(PappachanNC3.Properties.Resources.PCMASCH0);
+            sendFile(iWindow.Properties.Resources.PCMASCH0);
             sendFile(b14);
-            sendFile(PappachanNC3.Properties.Resources.Mill1051);
-            sendFile(PappachanNC3.Properties.Resources.lastpacket);
+            sendFile(iWindow.Properties.Resources.Mill1051);
+            sendFile(iWindow.Properties.Resources.lastpacket);
             //listen to the backward communication and send the lastpacket again
             //listenTCP();
             //last file to be sent here.
@@ -93,10 +112,7 @@ namespace PappachanNC3
             //startToolStripMenuItem.Enabled = false;
 
             statusBox.Text += "CNC Has Been Initialised..\r\n";
-            referenceToolStripMenuItem1.Enabled = true;
-
-            statusBox.Text += "CNC Has Been Initialised..\r\n";
-            referenceToolStripMenuItem1.Enabled = true;
+            refButton.Enabled = true;
 
             //declare the packets
             byte[] packet1 = { 21, 104, 0, 0, 0, 0, 10, 0 };
@@ -119,11 +135,111 @@ namespace PappachanNC3
             Thread td2 = new Thread(tdStartPos);
             td2.Start();
 
+            ThreadStart tdStartSpd = new ThreadStart(calcSpeed);
+            Thread td3 = new Thread(tdStartSpd);
+            td3.Start();
+
+        }
+
+
+        private void calcSpeed()
+        {
+            double prevPosX, prevPosY, prevPosZ;
+            double currentVelX, currentVelY, currentVelZ;
+            double prevVelX, prevVelY, prevVelZ;
+            double accelX, accelY, accelZ;
+
+            while (currentX0 == null || currentY0 == null || currentZ0 == null)
+            {
+                Thread.Sleep(100);
+            }
+
+            //first tick
+            prevPosX = currentX0.Value;
+            prevPosY = currentY0.Value;
+            prevPosZ = currentZ0.Value;
+            
+            System.DateTime timeNext = System.DateTime.Now.AddMilliseconds(500);
+
+            //2nd tick
+            while(DateTime.Now.CompareTo(timeNext)<0)
+            {
+                Thread.Sleep(5);
+            }
+
+            while (currentX0 == null || currentY0 == null || currentZ0 == null)
+            {
+                Thread.Sleep(1);
+            }
+
+            currentVelX = (prevPosX - currentX0.Value) / .5;
+            currentVelY = (prevPosY - currentY0.Value) / .500;
+            currentVelZ = (prevPosZ - currentZ0.Value) / .500;
+            prevPosX = currentX0.Value;
+            prevPosY = currentY0.Value;
+            prevPosZ = currentZ0.Value;
+            timeNext = timeNext.AddMilliseconds(500);
+
+            //3rd + tick
+            while (true)
+            {
+                while (DateTime.Now.CompareTo(timeNext) < 0)
+                {
+                    Thread.Sleep(5);
+                }
+
+                if (currentX0 != null && currentY0 != null && currentZ0 != null)
+                {
+                    
+                    //assigning old velocities into placeholders
+                    prevVelX = currentVelX;
+                    prevVelY = currentVelY;
+                    prevVelZ = currentVelZ;
+
+                    double currentPosX = currentX0.Value;
+                    double currentPosY = currentY0.Value;
+                    double currentPosZ = currentZ0.Value;
+
+                    //calculating current velocity in mm/s
+                    currentVelX = (prevPosX - currentPosX) / .500 * 60;
+                    currentVelY = (prevPosY - currentPosY) / .500 * 60;
+                    currentVelZ = (prevPosZ - currentPosZ) / .500 * 60;
+
+
+                    prevPosX = currentPosX;
+                    prevPosY = currentPosY;
+                    prevPosZ = currentPosZ;
+
+                    accelX = (prevVelX - currentVelX) / .500;
+                    accelY = (prevVelY - currentVelY) / .500;
+                    accelZ = (prevVelZ - currentVelZ) / .500;
+
+                    timeNext = timeNext.AddMilliseconds(500);
+
+                    MethodInvoker mi2 = delegate
+                    {
+                        //line ended
+                        //lineComplete.Text = (int.Parse(lineComplete.Text) + 1).ToString();
+                        xVelBox.Text = String.Format("{0:0.0000}", currentVelX);
+                        yVelBox.Text = String.Format("{0:0.0000}", currentVelY);
+                        zVelBox.Text = String.Format("{0:0.0000}", currentVelZ);
+
+                        xAccelBox.Text = String.Format("{0:0.0000}", accelX);
+                        yAccelBox.Text = String.Format("{0:0.0000}", accelY);
+                        zAccelBox.Text = String.Format("{0:0.0000}", accelZ);
+
+                    };
+
+                    if (InvokeRequired)
+                        this.Invoke(mi2);
+                }
+
+            }
         }
 
         private void renderGL()
         {
-            glRender = new AR.render(glTB1,glTB2,glTB3,glControl1);
+            glRender = new AR.render(glControl1);
         }
 
         private void displayPos()
@@ -131,11 +247,14 @@ namespace PappachanNC3
             while (true)
             {
                 while (stmQueue.Count == 0)
-                    Thread.Sleep(10);
+                    Thread.Sleep(5);
 
-                Thread.Sleep(10);
 
-                stmElement se = stmQueue.Dequeue();
+                stmElement se = null;
+
+                semaphore.Wait();
+                se = stmQueue.Dequeue();
+                semaphore.Release();
 
                 byte[] bc = se.bc;
                 int k = se.k;
@@ -156,9 +275,9 @@ namespace PappachanNC3
                     this.Invoke(mi);
                     */
 
-                if(k == 8)
+                if (k == 8)
                 {
-                    if(bc[0] == 0x0a && bc[1] == 0x08)
+                    if (bc[0] == 0x0a && bc[1] == 0x08)
                     {
                         string feedPercent = "";
                         if (bc[6] == 0xb0 && bc[7] == 0x04)
@@ -201,11 +320,39 @@ namespace PappachanNC3
                         if (InvokeRequired)
                             this.Invoke(mi2);
                     }
+                }
 
-                    if (bc[0] == 0x00 && bc[1] == 0x08 && bc[2] == 0x04 && bc[8]== 0x00)
+                if (k == 12)
+                {
+
+                    if (bc[0] == 0x0f)
                     {
-                        //line ended
-                        lineComplete.Text = (int.Parse(lineComplete.Text)+1).ToString();
+                        if (bc[1] == 0x08 && bc[2] == 0x04)
+                        {
+                            if(lineNum!= -1)
+                                lineNum++;
+                            sendLimit += 1.00;
+
+                            if (lineNum == GCodeParser.commandStringArr.Length)
+                            {
+                                lineNum = -1;
+                                runGCode.Enabled = true;
+                            }
+
+                            MethodInvoker mi2 = delegate
+                            {
+                                //line ended
+                                //lineComplete.Text = (int.Parse(lineComplete.Text) + 1).ToString();
+                                if (lineNum != -1)
+                                {
+                                    lineNumberBox.Text = lineNum.ToString();
+                                    currentLineBox.Text = GCodeParser.commandStringArr[lineNum-1];
+                                }
+                            };
+
+                            if (InvokeRequired)
+                                this.Invoke(mi2);
+                        }
                     }
                 }
 
@@ -235,13 +382,7 @@ namespace PappachanNC3
                             //dist to go
 
                             txt = Converter.binaryToString(bc, 18);
-
-                            mi2 = delegate
-                            {
-                                xtgBox.Text = txt;
-                            };
-                            if (InvokeRequired)
-                                this.Invoke(mi2);
+                            
                         }
 
                         if (bc[6] == 2)// y direction
@@ -264,13 +405,7 @@ namespace PappachanNC3
                             //dist to go
 
                             txt = Converter.binaryToString(bc, 18);
-
-                            mi2 = delegate
-                            {
-                                ytgBox.Text = txt;
-                            };
-                            if (InvokeRequired)
-                                this.Invoke(mi2);
+                            
                         }
 
 
@@ -294,13 +429,7 @@ namespace PappachanNC3
                             //dist to go
 
                             txt = Converter.binaryToString(bc, 18);
-
-                            mi2 = delegate
-                            {
-                                ztgBox.Text = txt;
-                            };
-                            if (InvokeRequired)
-                                this.Invoke(mi2);
+                            
                         }
                     }
                     else if (bc[0] == 3 && bc[1] == 8)//spindlespeed
@@ -346,13 +475,7 @@ namespace PappachanNC3
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 18);
-
-                        mi2 = delegate
-                        {
-                            xtgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
 
 
                         for (int i = 0; i < 8; i++)
@@ -374,13 +497,7 @@ namespace PappachanNC3
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 36);
-
-                        mi2 = delegate
-                        {
-                            ytgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
                     }
 
                     if (bc[6] == 5)//  z + x direction
@@ -402,13 +519,7 @@ namespace PappachanNC3
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 18);
-
-                        mi2 = delegate
-                        {
-                            xtgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
 
                         txt = Converter.binaryToString(bc, 28);
 
@@ -427,13 +538,7 @@ namespace PappachanNC3
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 36);
-
-                        mi2 = delegate
-                        {
-                            ztgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
                     }
 
                     if (bc[6] == 6)// z + y direction
@@ -456,13 +561,7 @@ namespace PappachanNC3
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 18);
-
-                        mi2 = delegate
-                        {
-                            ytgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
 
                         txt = Converter.binaryToString(bc, 28);
 
@@ -481,13 +580,7 @@ namespace PappachanNC3
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 36);
-
-                        mi2 = delegate
-                        {
-                            xtgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
                     }
 
                 }
@@ -514,13 +607,7 @@ namespace PappachanNC3
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 18);
-
-                        mi2 = delegate
-                        {
-                            xtgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
 
 
                         txt = Converter.binaryToString(bc, 28);
@@ -540,13 +627,7 @@ namespace PappachanNC3
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 36);
-
-                        mi2 = delegate
-                        {
-                            ytgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
 
                         txt = Converter.binaryToString(bc, 46);
 
@@ -564,13 +645,7 @@ namespace PappachanNC3
                         //dist to go
 
                         txt = Converter.binaryToString(bc, 54);
-
-                        mi2 = delegate
-                        {
-                            ztgBox.Text = txt;
-                        };
-                        if (InvokeRequired)
-                            this.Invoke(mi2);
+                        
                     }
 
                 }
@@ -582,6 +657,15 @@ namespace PappachanNC3
 
                 if (double.IsInfinity(currentZ.GetValueOrDefault()))
                     currentZ = null;
+
+                if (double.IsInfinity(currentX0.GetValueOrDefault()))
+                    currentX0 = null;
+
+                if (double.IsInfinity(currentY0.GetValueOrDefault()))
+                    currentY0 = null;
+
+                if (double.IsInfinity(currentZ0.GetValueOrDefault()))
+                    currentZ0 = null;
 
             }
 
@@ -632,14 +716,14 @@ namespace PappachanNC3
                             length = 512;
                         }
                         Array.ConstrainedCopy(bb, i * 512, bb_temp, 0, length);
-                        statusBox.Text += "Transmitting....Part" + i.ToString() + "\r\n";
+                        //statusBox.Text += "Transmitting....Part" + i.ToString() + "\r\n";
                         stm.Write(bb_temp, 0, bb_temp.Length);
                     }
 
                 }
                 else
                 {
-                    statusBox.Text += "Transmitting...." + "\r\n";
+                    //statusBox.Text += "Transmitting...." + "\r\n";
 
                     stm.Write(bb, 0, bb.Length);
 
@@ -675,7 +759,7 @@ namespace PappachanNC3
             }
              * */
 
-            //sendFile(PappachanNC3.Properties.Resources.lastpacket);
+            //sendFile(iWindow.Properties.Resources.lastpacket);
 
         }
 
@@ -688,7 +772,9 @@ namespace PappachanNC3
             stmElement se = new stmElement();
             se.bc = bc;
             se.k = k;
+            semaphore.Wait();
             stmQueue.Enqueue(se);
+            semaphore.Release();
 
         }
 
@@ -746,22 +832,12 @@ namespace PappachanNC3
                 statusBox.Text += "Error \r\n" + ex.StackTrace;
             }
         }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Pappachan NC Connect for EMCO Mill 105 \r\n Version 0.1.10", "Pappachan NC Connect", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+        
 
         private void terminateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tcpclnt.Close();
             statusBox.Text += "\r\nConnection Closed\r\n";
-        }
-
-        private void referenceToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            //send the reference byte array
-            sendFile(reference);
         }
 
         //jog the machine functions       
@@ -1177,25 +1253,54 @@ namespace PappachanNC3
 
         private void runGCode_Click(object sender, EventArgs e)
         {
+            lineNum = 0;
+            sendLimit = 200;
+            Button button = sender as Button;
+
+            MethodInvoker mi2 = delegate
+            {
+                button.Enabled = false;
+            };
+            if (InvokeRequired)
+                this.Invoke(mi2);
+
             ArrayList outputs = GCodeParser.runGCode(GCodeTxt.Text);
+            Thread thd = new Thread(() => sendGCode_thd(outputs));
+            thd.Start();
+
+        }
+
+        private void sendGCode_thd(ArrayList outputs)
+        {
             foreach (ArrayList outputLine in outputs)
             {
+                while (sendLimit <= 0)
+                {
+                    Thread.Sleep(50);
+                    //sendLimit++;
+                }
+
                 object[] a = outputLine.ToArray();
                 byte[] byteArr = new byte[a.Length];
                 for (int i = 0; i < a.Length; i++)
                     byteArr[i] = Convert.ToByte(a[i]);
                 sendFile(byteArr);
+                sendLimit--;
             }
+            //runGCode.Enabled = true;
+            
         }
 
         private void offsetButton_Click(object sender, EventArgs e)
         {
+            
             xOffset = double.Parse(xOffseted.Text) - double.Parse(xBox.Text);
             yOffset = double.Parse(yOffseted.Text) - double.Parse(yBox.Text);
             zOffset = double.Parse(zOffseted.Text) - double.Parse(zBox.Text) - toolHeightOffset;
-            currentX = currentX.Value + xOffset;
-            currentY = currentY.Value + yOffset;
-            currentZ = currentZ.Value + zOffset;
+            currentX = double.Parse(xOffseted.Text);
+            currentY = double.Parse(yOffseted.Text);
+            currentZ = double.Parse(zOffseted.Text);
+            offsetSet = true;
         }
 
         private void feedMinusButton_Click(object sender, EventArgs e)
@@ -1212,14 +1317,77 @@ namespace PappachanNC3
         {
             glRender.cc.loadCalibrationNow();
 
+            glRender.camInit = true;
+
             glRender.rotateArr = glRender.cc.rotateArr;
             glRender.translateArr = glRender.cc.translateArr;
+        }
+
+        private void matRemoveButton_Click(object sender, EventArgs e)
+        {
+            matRemove = !matRemove;
+        }
+
+        private void loadCalib_Click(object sender, EventArgs e)
+        {
+            glRender.cc.loadCalibrationAll();
+
+            glRender.camInit = true;
+
+            glRender.rotateArr = glRender.cc.rotateArr;
+            glRender.translateArr = glRender.cc.translateArr;
+        }
+
+        private void refButton_Click(object sender, EventArgs e)
+        {
+            //send the reference byte array
+            sendFile(reference);
+        }
+
+        private void changeIPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            camIP = Microsoft.VisualBasic.Interaction.InputBox("Enter Ip", "IP", camIP);
+        }
+
+        private void cadToggle_Click(object sender, EventArgs e)
+        {
+            cadModel = !cadModel;
+        }
+
+        private void toolpathToggle_Click(object sender, EventArgs e)
+        {
+            physicalToolpath = !physicalToolpath;
+        }
+
+        private void axisToggle_Click(object sender, EventArgs e)
+        {
+            axisDisplay = !axisDisplay;
+        }
+
+        private void drillTipToggle_Click(object sender, EventArgs e)
+        {
+            tooltipDisplay = !tooltipDisplay;
+        }
+
+        private void zBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void glControl1_Load(object sender, EventArgs e)
         {
             glControl1.VSync = true;//not fired
             glSync = true;
+        }
+
+        private void toggleBadVolume_Click(object sender, EventArgs e)
+        {
+            badVolDisplay = !badVolDisplay;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            frm = this;
         }
 
         private void clearLine_Click(object sender, EventArgs e)
@@ -1230,7 +1398,7 @@ namespace PappachanNC3
             glRender.prevZ = null;
 
         }
-        
+
 
         private void alarmBtn_Click(object sender, EventArgs e)
         {
@@ -1246,7 +1414,16 @@ namespace PappachanNC3
             }
         }
 
+        public static void writeErr(string strIn)
+        {
+            frm.ErrorBox.Visible = true;
+            frm.ErrorBox.Text = strIn;
+        }
 
+        public bool checkGcodeButton()
+        {
+            return runGCode.Enabled;
+        }
 
 
         //end of modes

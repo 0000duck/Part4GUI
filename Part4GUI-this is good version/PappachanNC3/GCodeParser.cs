@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 
-namespace PappachanNC3
+namespace iWindow
 {
     class GCodeParser
     {
         static double toolHeightOffset = 0;
         static double[] toolOffsetTable = new double[21];
+        static public string[] commandStringArr = { };
 
         public static ArrayList runGCode(string textLong)
         {
@@ -22,6 +23,7 @@ namespace PappachanNC3
 
 
             string[] commandArray = textLong.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+            commandStringArr = (string[]) commandArray.Clone();
             int lineCount = 1;   //??? starts at 1
             double? xPast = null, yPast = null, zPast = null;
 
@@ -459,8 +461,8 @@ namespace PappachanNC3
                 //replace correct length
                 outputArr[2] = outputArr.Count - 8;
                 for (int i = 0; i < outputArr.Count; i++)
-                    Console.Write("{0:X} ", outputArr[i]);
-                Console.WriteLine();
+                    //Console.Write("{0:X} ", outputArr[i]);
+                //Console.WriteLine();
 
                 lineCount++;
                 ouput.Add(outputArr);
@@ -615,11 +617,7 @@ namespace PappachanNC3
 
             return quadResult;
         }
-        /*
-        private static string addWhiteSpace(string input)
-        {
-            return new string(input.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
-        }*/
+
 
         private static string addWhiteSpace(string input)
         {

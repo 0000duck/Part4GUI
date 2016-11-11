@@ -11,7 +11,7 @@ using System.Drawing.Imaging;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace PappachanNC3.AR
+namespace iWindow.AR
 {
     class cameraCalibrate
     {
@@ -38,7 +38,7 @@ namespace PappachanNC3.AR
                 {
                     for (int j = 0; j < 5; j++)
                     {
-                        corners_object_list[k][5 * i + j] = new MCvPoint3D32f((4 - i) * 29, (4 - j) * 29, 0);
+                        corners_object_list[k][5 * i + j] = new MCvPoint3D32f((4 - i) * 29, (4 - j) * 29, 8);
                     }
                 }
             }
@@ -175,7 +175,7 @@ namespace PappachanNC3.AR
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    corners_object_list[5 * i + j] = new MCvPoint3D32f((4 - i) * 29, (4 - j) * 29, 0);
+                    corners_object_list[5 * i + j] = new MCvPoint3D32f((4 - i) * 29, (4 - j) * 29, 5);
                 }
             }
 
@@ -265,6 +265,13 @@ namespace PappachanNC3.AR
             Mat smallerPic = new Mat("PicCalibrate.bmp",LoadImageType.Unchanged);
             
             bool found = CvInvoke.FindChessboardCorners(smallerPic, patternSize, output);//find chessboard
+
+            if (found == false)
+            {
+                MessageBox.Show("fail");
+                return;
+             }
+
             Console.WriteLine("found:" + found);
             corners_points_list = output.ToArray();
 
@@ -293,6 +300,59 @@ namespace PappachanNC3.AR
             {
                 translateArr[i] = (float)translateArrDouble[i];
             }
+
+            System.IO.StreamWriter swTranslate = new StreamWriter("transArr.txt");
+
+            for(int i = 0;i<3;i++)
+                swTranslate.WriteLine(translateArr[i]);
+
+            swTranslate.Close();
+
+            System.IO.StreamWriter swRot = new StreamWriter("rotArr.txt");
+
+
+            for (int i = 0; i < 9; i++)
+                swRot.WriteLine(rotateArr[i]);
+
+            swRot.Close();
+
+        }
+
+
+
+
+        public void loadCalibrationAll(string file = "cameraMat.txt")
+        {
+            FileStorage fs = new FileStorage(file, FileStorage.Mode.Read);
+            Mat cameraMat = new Mat();
+            fs.GetFirstTopLevelNode().ReadMat(cameraMat);
+            fs = new FileStorage("distort.txt", FileStorage.Mode.Read);
+            Mat distortMat = new Mat();
+            fs.GetFirstTopLevelNode().ReadMat(distortMat);
+
+            cameraPar = new float[9];
+            double[] cameraParDouble = new Double[9];
+            cameraMat.CopyTo(cameraParDouble);
+            for (int i = 0; i < 9; i++)
+            {
+                cameraPar[i] = (float)cameraParDouble[i];
+            }
+            
+
+            StreamReader swTranslate = new StreamReader("transArr.txt");
+
+            for (int i = 0; i < 3; i++)
+                translateArr[i] = float.Parse(swTranslate.ReadLine());
+
+            swTranslate.Close();
+
+            System.IO.StreamReader swRot = new StreamReader("rotArr.txt");
+
+
+            for (int i = 0; i < 9; i++)
+                rotateArr[i] = float.Parse(swRot.ReadLine());
+
+            swRot.Close();
 
         }
     }
